@@ -1,0 +1,22 @@
+<div id="informacionUsuario" class="offset-md-3 col-md-6">
+	<div class="d-flex flex-column align-items-center">
+		<h1 class="titulo">Mi Perfil</h1>
+		<div class="d-flex flex-column align-items-center w-100">
+			<img src="../../{{avatar}}" class="img-thumbnail d-block perfil" title="Foto de pérfil" src="Foto de pérfil" width="50%">
+			<div *ngIf="ocultarMostrar">
+				<input type="file" name="nuevaFotoPerfil" class="subirAvatar" (change)="subirAvatar($event)" accept="image/*">
+			</div>
+			<button (click)="mostarOcultar()" class="btn btn-primary d-block cambiar mt-1" title="Cambiar foto de pérfil">
+				{{textoBoton}}
+			</button>
+		</div>
+		<div class="d-flex flex-column align-items-center w-100">
+			<h4 class="nombre">{{nombre+" "+apellido}}</h4>
+			<h6>Bio</h6>
+			<textarea class="form-control" [(ngModel)]="bio" [ngModelOptions]="{standalone: true}" ></textarea>
+			<button (click)="guardarBio()" class="btn btn-primary" >
+				Guardar
+			</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,84 @@
+<!-- barrra seleccion -->
+<nav class="barraSeleccion container d-flex flex-row justify-content-center">
+	<!-- Opciones -->
+	<div class="seleccion {{estiloRecibidos}} d-flex justify-content-between" (click)="mostrarSoloRecibidos()">
+		<div class="bordeizquierdorecibidos"></div>
+
+		<a>Recibidos</a>
+
+		<div class="bordederechorecibidos"></div>
+	</div>
+	<div class="seleccion {{estiloEnviados}} d-flex justify-content-between" (click)="mostrarSoloEnviados()">
+		<div class="bordeizquierdoenviados"></div>
+
+		<a>Enviados</a>
+
+		<div class="bordederechoenviados"></div>
+	</div>
+</nav>
+<!-- mensajes -->
+<div class="todosMensajes container d-flex flex-row">
+	<div *ngFor = "let mensaje of mensajes" class="mensajes row col-12">
+		<!-- Mensajes recibidos -->
+		<!-- comprobamos si se pueden mostrar los recibidos -->
+		<div *ngIf="mensajeRecibido(mensaje)" class="recibido col-md-12">
+			<div class="col avatar mt-3">
+				<img src="../../{{mensaje.getOtroUsuario()['avatar']}}" class="mr-auto" width="5%">
+			</div>
+			<div class="col-7 amigo">
+				<div class="row ">
+					<span class="nombre">{{mensaje.getOtroUsuario['Nombre']+" "+mensaje.getOtroUsuario['Apellido']}}</span>
+				</div>
+				<div class="row">
+					<span class="bio">{{mensaje.getMensaje()}}</span>
+				</div>
+			</div>
+			<div class="col acciones">
+				<div class="d-block mb-2 mt-2">
+					<button title="Enviar Mensaje" data-toggle="modal" data-target="#enviarmensaje">
+						<img src="../../assets/iconos/mail.svg" width="50%" >
+					</button>
+				</div>
+				<div class="d-block mt-2 mb-2">
+					<button title="Borrar Amigo" data-toggle="modal" data-target="#borraramigo">
+						<img src="../../assets/iconos/basura.svg" width="50%" >
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+		<!-- Mensajes enviados -->
+		<!-- comprobamos si se pueden mostrar los enviado -->
+		<div *ngIf="mensajeEnviado(mensaje)" class="container col-md-12">
+			<!-- comprobamos que el mensaje lo ha enviado el usuario -->
+			<div *ngIf="mostrarEnviados" class="mensajes container row col-md-12">
+				<div class="col-9 cuerpo">
+					<div class="row ">
+						<span class="nombre">Para: {{mensaje.getIdusuarioto()}}</span>
+					</div>
+					<div class="row">
+						<span class="mensaje">{{mensaje.getMensaje()}}</span>
+					</div>
+				</div>
+				<div class="col acciones">
+					<div class="d-block mb-2 mt-2">
+						<button title="Responder" >
+							<img  src="../../assets/iconos/mail.svg" width="50%" >
+						</button>
+					</div>
+					<div class="d-block mt-2 mb-2">
+						<button title="Borrar mensaje">
+							<img src="../../assets/iconos/basura.svg" width="50%" >
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,245 @@
+#contenidoUsuario{
+	height: 50%;
+}
+.contenido{
+	height: 100vw;
+    box-sizing: content-box;
+
+}
+
+.botonsubir {
+	border: none;
+	background-color: white;
+}
+
+
+/*-----------------------Media queries del contenido---------------------------*/
+@media (min-height: 625px) {
+	.contenido{
+		max-height: 45vw;
+	}
+}
+@media (min-height: 728px) {
+	.contenido{
+		max-height: 55vw;
+	}	
+}
+@media (min-height: 914px) {
+	.contenido{
+		max-height: 50.5vw;
+	}
+}
+@media (min-height: 921px) {
+	.contenido{
+		max-height: 69vw;
+	}
+		
+}
+@media (min-height: 1024px) {
+	.contenido{
+		max-height: 77vw;
+	}	
+}
+@media (min-height: 1080px) {
+	.contenido{
+		max-height: 59vw;
+	}	
+}
+@media (max-width: 625px) {
+	.contenido{
+		min-height: 500vw;
+		margin-left: -5%;
+	}	
+}
+
+/*-----------------------Media queries de los comentarios---------------------------*/
+@media (max-width: 320px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 320px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 355px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 400px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 500px) {
+	.comentarios{
+		height: 23vw;
+	}	
+}
+@media (min-width: 600px) {
+	.comentarios{
+		height: 22vw;
+	}	
+}
+@media (min-width: 675px) {
+	.comentarios{
+		height: 21vw;
+	}	
+}
+@media (min-width: 730px) {
+	.comentarios{
+		height: 20vw;
+	}	
+}
+@media (min-width: 872px) {
+	.comentarios{
+		height: 25vw;
+	}	
+}
+@media (min-width: 1280px) {
+	.comentarios{
+		height: 29vw;
+	}	
+}
+@media (min-width: 1366px) {
+	.comentarios{
+		height: 29.5vw;
+	}	
+}
+
+.nombre{
+	width: 75%;
+	border: none;
+	background-color: rgba(255,255,255,1);
+	margin-bottom: -7px;
+	color: #40B0FF;
+}
+.nombre h2{
+	font-size: 1.5em;
+}
+.bordederecho{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 30px 30px 0;
+	border-color: transparent #E6E6E6 transparent transparent;
+}
+.bordeizquierdo{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 30px 0 0;
+	border-color: #E6E6E6 transparent transparent transparent;
+}
+.archivo{
+	/*BDBDBD*/
+	border: 1px solid #A0D8FE;
+	box-shadow: 2px 2px #D7EBFA;
+}
+.foto{
+	background-color: white;
+}
+.foto img{
+	position: absolute; 
+    top: 0; 
+    left: 0;
+    max-width: 100%; 
+    max-height: 100%;
+    width: 100vw; 
+    height: 100vw;
+}
+.video video{
+	position: absolute; 
+    top: 0; 
+    left: 0;
+    max-width: 100%; 
+    max-height: 100%;
+    width: 100vw; 
+    height: 100vw;
+    background-color: black;
+    background-size: contain;
+    overflow: hidden;
+}
+.informacion{
+	background-color: white;
+	border-left: 1px solid #008BEA;
+}
+.informacion h2{
+	font-size: 1em;
+	color: green;
+}
+
+.megusta,.guardar{
+	border: none;
+	background-color: rgba(0,0,0,0);	
+}
+
+.estados{
+	text-align: center;
+}
+
+.info{
+	color: red;
+	font-size: 0.8em;
+}
+
+.comentarios{
+	overflow-y: auto;
+}
+h5{
+	font-size: 0.8em;
+}
+.sincomentarios{
+	font-size: 0.8em;
+	font-style: italic;
+	text-align: center;
+}
+.comentario{
+	font-size: 0.8em;
+}
+.fecha{
+	font-size: 0.7em;
+	color: #B1B1B1;
+}
+.botonComentar{
+	background-color: white;
+	position: absolute;
+	border-left: 1px solid #008BEA;
+	bottom: 0px;
+	right: 1px
+}
+.botonComentar button{
+	border: none;
+	background-color: rgba(0,0,0,0);
+	color: #A5D0EE;
+}
+.botonComentar textarea{
+	width: 90%;
+}
+
+.relleno{
+	color: rgba(0,0,0,0);
+}
+
+.modal:before{
+	content: '';
+	display: inline-block;
+	height: 25%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
+.modal-header,.modal-footer{
+	color: #0557FF;
+	background-color: #C9E5FA;
+}
+
+.col-8,.col-12{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+/*.col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12,.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+	padding-left: 0px;
+	padding-right: 0px;
+}*/

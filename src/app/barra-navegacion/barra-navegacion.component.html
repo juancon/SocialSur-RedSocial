@@ -1,0 +1,141 @@
+<div class="navegacion">
+	<nav class="navbar navbar-expand-sm navbar-light fixed-top col-12">
+		<!-- Usuario y avatar -->
+		<a class="navbar-brand" routerLink="/inicio" title="Inicio">
+			<img src="../../{{usuario.getAvatar()}}" class="rounded-circle" width="30px" title="Avatar" alt="Avatar">
+			
+		</a>
+		<!-- Boton para expandir -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barraNavegacion" aria-controls="barraNavegacion" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Opciones -->
+		<div class="collapse navbar-collapse row" id="barraNavegacion">
+			<div class="navbar-nav container d-flex flex-row d-flex col-12">
+					<a class="nav-item nav-link active ml-0" routerLink="/perfil" routerLinkActive="active">
+						<img src="../../assets/iconos/user.png" width="30px" title="Mi Perfil" alt="Mi perfil"> 
+						<span class="sr-only">(current)</span>
+					</a>
+
+					<div class="dropdown">
+						<button class="btn btn-default" routerLink="/amigos" routerLinkActive="active" type="button" id="chat" >
+							<img src="../../assets/iconos/users.svg" width="30px" title="Amigos" alt="Amigos">
+						</button>
+						<button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu col-12" role="menu" aria-labelledby="chat">
+							<app-chat #chat></app-chat>
+						</ul>
+					</div>
+
+					<a class="nav-item nav-link active ml-0" routerLink="/mensajes" routerLinkActive="active">
+						<img src="{{mensajesIco}}" width="30px" title="{{numMensajes}}" alt=""> 
+						<span class="sr-only">(current)</span>
+					</a>
+					<a class="nav-item nav-link active ml-0" routerLink="/peticiones" routerLinkActive="active">
+						<img src="{{peticionesIco}}" class="rounded" width="30px" title="{{numPeticiones}}" alt=""> 
+						<span class="sr-only">(current)</span>
+					</a>
+					<input type="text" class="form-control mt-2 mx-auto" name="buscar" placeholder="Buscar usuarios" title="Buscar usuarios">
+					<a class="nav-item nav-link active ml-auto" routerLink="" (click)="cerrarSesion()">
+						<img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir"> 
+						<span class="sr-only">(current)</span>
+					</a>
+			</div>
+		</div>
+	</nav>
+</div>
+
+
+
+
+
+
+<div  *ngIf="hablando" class="chat container d-flex flex-column justify-content-start">
+	<!-- chat -->
+	<div *ngIf="hablando" class="container ventanaChat" style="">
+		<div class="msg-wgt-header">
+			<a href="#">
+				{{amigoHablando.getNombre()+" "+amigoHablando.getApellido()}}
+			</a>
+			<button class="cerrar" (click)="ocultarChat()">
+				<img src="../../assets/iconos/error.svg" width="20px" height="20px">
+			</button>
+		</div>
+		<!-- con #cuerpo [scrollTop]="cuerpo.scrollHeight" hacemos escroll hacia abajo automaticamente -->
+		<div class="msg-wgt-body" #cuerpo [scrollTop]="cuerpo.scrollHeight">
+			<table>
+				<tr class="msg-row-container">
+					<td>
+						<div class="msg-row" *ngFor="let conversacion of conversaciones">
+							<div *ngIf="!comprobarUsuarioFrom(conversacion.iduserfrom)">
+								<div class="avatar"><img src="../../{{amigoHablando.getAvatar()}}" class="rounded-circle" width="30" width="30"></div>
+								<div class="message">
+									<span class="user-label"><a style="color: #6D84B4;">{{amigoHablando.getNombre()}}</a> <span class="msg-time">{{conversacion.fecha}}</span></span><br/>{{conversacion.mensaje}}
+								</div>
+							</div>
+							<div *ngIf="comprobarUsuarioFrom(conversacion.iduserfrom)">
+								<div class="avatar"><img src="../../{{this.usuario.getAvatar()}}" class="rounded-circle" width="30" width="30"></div>
+								<div class="message">
+									<span class="user-label"><a style="color: #6D84B4;">Tú</a> <span class="msg-time">{{conversacion.fecha}}</span></span><br/>{{conversacion.mensaje}}
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="msg-wgt-footer">
+			<textarea id="chatMsg" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escribe tu mensaje..." (keyup.enter)="enviar()"></textarea>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<!-- BACKUP -->
+
+<!-- <div class="navegacion">
+	<nav class="navbar navbar-expand-sm navbar-light fixed-top col-12"> -->
+		<!-- Usuario y avatar -->
+		<!-- <a class="navbar-brand" routerLink="/inicio" title="Inicio">
+			<img src="../../{{usuario.getAvatar()}}" class="rounded-circle" width="30px" title="Avatar" alt="Avatar"> -->
+			<!-- {{usuario.getNombre()+" "+usuario.getApellido()}} -->
+		<!-- </a> -->
+		<!-- Boton para expandir -->
+		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barraNavegacion" aria-controls="barraNavegacion" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button> -->
+		<!-- Opciones -->
+		<!-- <div class="collapse navbar-collapse row" id="barraNavegacion">
+			<div class="navbar-nav container d-flex flex-row d-flex">
+					<a class="nav-item nav-link active ml-0" routerLink="/perfil" routerLinkActive="active">
+						<img src="../../assets/iconos/user.png" width="30px" title="Mi Perfil" alt="Mi perfil"> 
+						<span class="sr-only">(current)</span>
+					</a>
+					<a class="nav-item nav-link active ml-0" routerLink="/amigos" routerLinkActive="active">
+						<img src="../../assets/iconos/users.svg" width="30px" title="Amigos" alt="Amigos"> 
+						<span class="sr-only">(current)</span>
+					</a>
+					<a class="nav-item nav-link active ml-0" routerLink="/mensajes" routerLinkActive="active">
+						<img src="{{mensajesIco}}" width="30px" title="{{numMensajes}}" alt=""> 
+						<span class="sr-only">(current)</span>
+					</a>
+					<a class="nav-item nav-link active ml-0" routerLink="/peticiones" routerLinkActive="active">
+						<img src="{{peticionesIco}}" class="rounded" width="30px" title="{{numPeticiones}}" alt=""> 
+						<span class="sr-only">(current)</span>
+					</a>
+					<input type="text" class="form-control mt-2 mx-auto" name="buscar" placeholder="Buscar usuarios" title="Buscar usuarios">
+					<a class="nav-item nav-link active ml-auto" routerLink="" (click)="cerrarSesion()">
+						<img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir"> 
+						<span class="sr-only">(current)</span>
+					</a>
+			</div>
+		</div>
+	</nav>
+</div> -->

@@ -1,0 +1,113 @@
+.barraSeleccion{
+	color: rgba(0,0,0,0);
+	border-bottom: 1px solid white;
+}
+.barraSeleccion div.seleccion{
+	background-color: #ACACAC;
+	cursor: pointer;
+	width: 24%;
+	height: 100%;
+	text-align: center;
+	z-index: 0;
+}
+
+.barraSeleccion div:last-of-type{
+	margin-left:  -3%;
+}
+
+.barraSeleccion div a {
+	color: #0060D3;
+}
+.barraSeleccion div.seleccionado{
+	z-index: 1;
+	background-color: white;
+}
+
+/*--------------------bordes recibidos--------------------*/
+.bordederechorecibidos{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0px 30px 30px 0px;
+	border-color: transparent #E6E6E6 transparent transparent;
+}
+
+.seleccionado .bordederechorecibidos{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0px 30px 30px 0px;
+	border-color: transparent #ACACAC transparent transparent;
+}
+.bordeizquierdorecibidos{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 30px 0px 0px;
+	border-color: #E6E6E6 transparent transparent transparent;
+}
+
+/*--------------------bordes enviados--------------------*/
+.bordeizquierdoenviados{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 30px 0px 0px;
+	border-color: #E6E6E6 transparent transparent transparent;
+}
+.seleccionado .bordeizquierdoenviados{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 30px 0px 0px;
+	border-color: #ACACAC transparent transparent transparent;
+}
+.bordederechoenviados{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0px 30px 30px 0px;
+	border-color: transparent #E6E6E6 transparent transparent;
+}
+
+.col-9{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+
+.todosMensajes{
+	background-color: white;
+}
+
+
+.amigos{
+	border: 1px #A0D8FE solid;
+	background-color: white;
+	margin-bottom: 2%;
+}
+.amigos:hover{
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 2px 2px 20px 2px #BDE3FF;
+}
+.amigo,.avatar{
+	cursor: pointer;
+}
+
+.nombre{
+	font-size: 1.3em;
+	color: #40B0FF;
+	font-weight: bold;
+}
+
+.bio{
+	text-align: justify;
+	font-size: 0.8em;
+	font-style: italic;
+	color: #62A8DC;
+}
+
+.acciones button{
+	background-color: rgba(0,0,0,0);
+	border: none;
+}

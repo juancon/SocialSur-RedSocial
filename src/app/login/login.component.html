@@ -1,0 +1,37 @@
+<div id="login" class="">
+	<div class="d-flex justify-content-center h-100">
+		<div class="container h-100 justify-content-center">
+			<div class="campos mx-auto">
+				<div class="d-flex justify-content-center">
+					<form>
+						<div class="form-group justify-content-center">
+							<div class="info">{{emailPassIncorreto}}</div>
+						</div>
+						<div class="form-group justify-content-center">
+							<div class="info">{{correoInfo}}</div>
+							<input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Eléctronico"
+								[(ngModel)]="correo" [ngModelOptions]="{standalone: true}" (focusout)="validarCorreo()"/>
+						</div>
+						<div class="form-group justify-content-center">
+							<div class="info">{{passwordInfo}}</div>
+							<input type="password" class="form-control" name="password" id ="password" placeholder="Contraseña" 
+								[(ngModel)]="password" [ngModelOptions]="{standalone: true}" (focusout)="validarPassword()"/>
+						</div>
+						<div class="form-check justify-content-center">
+							<label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name="recordar" id ="recordar"
+									[(ngModel)]="recordar" [ngModelOptions]="{standalone: true}"/>Recordar
+							</label>
+						</div>
+						<div class="d-flex form-group justify-content-center">
+							<input type="button" class="btn btn-primary boton" (click)="validar()" value ="Iniciar Sesión" />
+						</div>
+						<div class="d-flex justify-content-center links">
+							<br><a href="/registro">Registrarme</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<li role="presentation">
+	<a role="menuitem" tabindex="-1">Amigos Conectados: {{amigosConectados.length}}</a>
+</li>
+<li role="presentation" *ngFor = "let amigo of amigosConectados" (click)="hablarAmigo(amigo)">
+	<a role="menuitem" tabindex="-1">
+		<img src="../../{{amigo.getAvatar()}}" width="15%" title="{{amigo.getNombre()+' '+amigo.getApellido()}}">
+		{{amigo.getNombre()+" "+amigo.getApellido()}}
+		<img src="../../assets/iconos/message.svg" width="5%" title="Conectado" *ngIf="comprobarSinLeido(amigo.getId())">
+	</a>
+</li>

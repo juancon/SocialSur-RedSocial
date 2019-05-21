@@ -1,0 +1,24 @@
+#registro{
+	background-image: url("../../assets/fondo.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 73vw;
+	width: 100vw;
+}
+
+.campos{
+	margin-top: 10%;
+	background-color: white;
+	width: 300px;
+}
+
+form{
+	margin: 3%;
+	margin-top: 15%;
+}
+
+.info{
+	color: red;
+	font-size: 0.8em;
+	text-align: center;
+}

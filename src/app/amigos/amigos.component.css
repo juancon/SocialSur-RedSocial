@@ -1,0 +1,54 @@
+h3{
+	color: #40B0FF;
+}
+.componenteAmigos{
+	overflow-y: auto;
+}
+.amigos{
+	border: 1px #A0D8FE solid;
+	background-color: white;
+	margin-bottom: 2%;
+}
+.amigos:hover{
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 2px 2px 20px 2px #BDE3FF;
+}
+.amigo,.avatar{
+	cursor: pointer;
+}
+
+.nombre{
+	font-size: 1.3em;
+	color: #40B0FF;
+	font-weight: bold;
+}
+
+.bio{
+	text-align: justify;
+	font-size: 0.8em;
+	font-style: italic;
+	color: #62A8DC;
+}
+
+.acciones button{
+	background-color: rgba(0,0,0,0);
+	border: none;
+}
+
+.modal:before{
+	content: '';
+	display: inline-block;
+	height: 25%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
+
+
+@media (max-width: 625px) {
+	.modal:before{
+		margin-right: 0px;
+	}	
+}
+.modal .col-12{
+	padding-left: 0px;
+}

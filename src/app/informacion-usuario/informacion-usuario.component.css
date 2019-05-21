@@ -1,0 +1,27 @@
+#informacionUsuario{
+	margin-top: 5%;
+	color: #2794E1;
+	background-color: white;
+	border: 1px solid #008BEA;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	box-shadow: 6px 6px #D7EBFA;
+}
+.perfil{
+	border: 1px solid 
+}
+textarea{
+	width: 80%;
+	display: inline-block;
+}
+.subirAvatar{
+	font-size: 0.75em;
+}
+
+.cambiar{
+	margin-bottom: 10%;
+}
+
+.nombre{
+	margin-bottom: 5%;	
+}
