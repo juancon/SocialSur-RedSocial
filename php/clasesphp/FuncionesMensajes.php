@@ -53,7 +53,7 @@
 			$seleccion = "	SELECT * 
 							FROM mensajes
 							WHERE idusuarioto = $idusuarioto
-							ORDER BY fecha;
+							ORDER BY fecha DESC;
 							";
 			$consulta = $conexion->query($seleccion);
 			$mensajes = [];
@@ -69,7 +69,7 @@
 			$seleccion = "	SELECT * 
 							FROM mensajes
 							WHERE idusuariofrom = $idusuario OR idusuarioto = $idusuario
-							ORDER BY fecha;
+							ORDER BY fecha DESC;
 							";
 			$consulta = $conexion->query($seleccion);
 			$mensajes = [];

@@ -18,30 +18,30 @@
 </nav>
 <!-- mensajes -->
 <div class="todosMensajes container">
-	<div *ngFor = "let mensaje of mensajes" class="mensajes row col-md-12 col-xs-12">
+	<div *ngFor = "let mensaje of mensajes" class="mensajes row col-12">
 		<!-- Mensajes recibidos -->
 		<!-- comprobamos si se pueden mostrar los recibidos -->
-		<div *ngIf="mensajeRecibido(mensaje)" class="recibido  col-md-12">
-			<div class="offset-3 col informacion mt-3">
+		<div *ngIf="mensajeRecibido(mensaje)" class="recibido  col-12">
+			<div class="offset-md-3 col-md-6  col-12 informacion mt-3">
 				<img src="../../{{mensaje.getOtroUsuario()['avatar']}}" class="mr-auto" width="5%">
 				<span class="nombre align-text-middle">
 					{{mensaje.getOtroUsuario()['nombre']+" "+mensaje.getOtroUsuario()['apellido']}}
 				</span>
 
-				<button class="btn btn-default ml-5" title="Responder"  (click)="responder(mensaje.getOtroUsuario()['id'],mensaje.getId())">
-					<img src="../../assets/iconos/mail.svg" width="50px" height="40px">
+				<button class="btn btn-default" title="Responder"  (click)="responder(mensaje.getOtroUsuario()['id'],mensaje.getId())">
+					<img src="../../assets/iconos/mail.svg" >
 				</button>
 
-				<button class="btn btn-default ml-2" title="Marcar como leido" *ngIf="comprobarNoLeido(mensaje)" (click)="marcarLeido(mensaje)">
-					<img src="../../assets/iconos/lector.svg" width="50px" height="40px">
+				<button class="btn btn-default" title="Marcar como leido" *ngIf="comprobarNoLeido(mensaje)" (click)="marcarLeido(mensaje)">
+					<img src="../../assets/iconos/lector.svg">
 				</button>
 				
 				<button class="btn btn-default mb-2" title="Borrar Amigo" (click)="borrarMensaje(mensaje,'recibido')">
-					<img src="../../assets/iconos/basura.svg" width="50px" height="40px">
+					<img src="../../assets/iconos/basura.svg">
 				</button>
 			</div>
 			<hr class="separarInfo">
-			<div class="offset-3 col-6 mensaje">
+			<div class="offset-md-3 col-md-6 mensaje">
 				<div>{{mensaje.getMensaje()}}</div>
 				<div id="responder{{mensaje.getId()}}" class="mt-2">
 					<textarea class="form-control" [(ngModel)]="respuesta" [ngModelOptions]="{standalone: true}" (keyup.enter)="responder(mensaje.getOtroUsuario()['id'],mensaje.getId())"></textarea>
@@ -53,18 +53,18 @@
 		<!-- Mensajes enviados -->
 		<!-- comprobamos si se pueden mostrar los enviado -->
 		<div *ngIf="mensajeEnviado(mensaje)" class="enviado col-md-12">
-			<div class="offset-3 col informacion mt-3">
+			<div class="offset-md-3 col-md-6  col-12 informacion mt-3">
 				<img src="../../{{mensaje.getOtroUsuario()['avatar']}}" class="mr-auto" width="5%">
 				<span class="nombre align-text-middle">
 					{{mensaje.getOtroUsuario()['nombre']+" "+mensaje.getOtroUsuario()['apellido']}}
 				</span>
 
-				<button class="btn btn-default mb-2 ml-5" title="Borrar Amigo" (click)="borrarMensaje(mensaje.getId(),usuario.getId(),'enviado')">
-					<img src="../../assets/iconos/basura.svg" width="50px" height="40px">
+				<button class="btn btn-default mb-2" title="Borrar Amigo" (click)="borrarMensaje(mensaje.getId(),usuario.getId(),'enviado')">
+					<img src="../../assets/iconos/basura.svg">
 				</button>
 			</div>
 			<hr class="separarInfo">
-			<div class="offset-3 col-6 mensaje">
+			<div class="offset-md-3 col-md-6 mensaje">
 				<div>{{mensaje.getMensaje()}}</div>
 			</div>
 			<hr class="separarMensajes">

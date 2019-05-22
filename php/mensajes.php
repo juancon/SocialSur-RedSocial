@@ -70,7 +70,7 @@
 			}else if($idusuario == $mensajes[$i]->getIdusuarioto()){
 				if($mensajes[$i]->getBorradoto() == 0){
 					//obtenemos el otro usuario
-					$otroUsuario = $funcionesUsuarios::getUsuarioById($mensajes[$i]->getIdusuarioto());
+					$otroUsuario = $funcionesUsuarios::getUsuarioById($mensajes[$i]->getIdusuariofrom());
 
 					//lo añadimos a un array
 					$mensaje = array(
@@ -97,7 +97,36 @@
 				}
 			}
 			
-		}	
+		}
+	}else if($accion == "borrarmensaje"){
+		@$idmensaje = $array->idmensaje;
+		@$idusuario = $array->idusuario;
+		@$tipomensaje = $array->tipomensaje;
+
+		//obtenemos el mensaje
+		$mensaje = $funcionesMensajes::getMensajesbyId($idmensaje);
+
+		//preguntamos si es un mensaje recibido u enviado
+		if($tipomensaje == "recibido"){
+			//modificamos el borradoto
+			$borrado = $funcionesMensajes::modificarBorradotoMensaje($idmensaje);
+		}else{
+			//modificamos el borradofrom
+			$borrado = $funcionesMensajes::modificarBorradofromMensaje($idmensaje);
+		}
+
+		//devolvemos la respuesta
+		$respuesta = array(
+			"borrado" => $borrado
+		);
+	}else if($accion == "marcarleido"){
+		@$idmensaje = $array->idmensaje;
+
+		$leido = $funcionesMensajes::modificarLeidoMensaje($idmensaje);
+
+		$respuesta = array(
+			"leido" => $leido
+		);
 	}
 	
 	
