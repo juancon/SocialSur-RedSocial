@@ -68,15 +68,13 @@ export class ContenidoUsuarioComponent implements OnInit {
 		//obetenemos todos los comentarios
 		this.obtenerComentariosArchivos();
 		//ocultamos los textarea de los comentarios
-		setTimeout(this.oculatr.bind(this),75);
-		
-		
+		setTimeout(this.oculatr.bind(this),200);
 	}
 
 	ngOnInit() {
 	}
 
-	oculatr(){
+	private oculatr():void{
 		//recogemos los textareas de los comentarios y los ocultamos
 		$('[id^="textcomentario"]').hide();
 	}

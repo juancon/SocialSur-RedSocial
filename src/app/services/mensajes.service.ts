@@ -42,6 +42,7 @@ export class MensajesService {
 				this.addMensajes(datos);
 			}
 		);
+		
 		return this.mensajes;
 	}
 	//funcion que pasa los resultado del fichero php al array de mensajes
@@ -72,10 +73,38 @@ export class MensajesService {
 		}
 		//funcion http.post para enviar los datos
 		let enviar = this._http.post(this.urlMensajes, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		//llamamos a la funcion subscribe para completar la llamada a PHP
 		enviar.subscribe(
 			result => {
-				//recogemos solo la respuesta del PHP y la pasamos a una variable
+			}
+		);
+	}
+
+	public borrarMensaje(idmensaje:number,tipomensaje:string):void{
+		let parametros = {
+			idmensaje : idmensaje,
+			tipomensaje : tipomensaje,
+			accion : "borrarmensaje"
+		}
+		//funcion http.post para enviar los datos
+		let enviar = this._http.post(this.urlMensajes, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para completar la llamada a PHP
+		enviar.subscribe(
+			result => {
+			}
+		);
+	}
+
+	public marcarLeido(idmensaje:number):void{
+		let parametros = {
+			idmensaje : idmensaje,
+			accion : "marcarleido"
+		}
+		//funcion http.post para enviar los datos
+		let enviar = this._http.post(this.urlMensajes, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para completar la llamada a PHP
+		enviar.subscribe(
+			result => {
 			}
 		);
 	}
