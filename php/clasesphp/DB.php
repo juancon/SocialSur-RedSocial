@@ -3,9 +3,12 @@ abstract class DB {
 	/*Datos de la base de datos */
 	private static $server = 'localhost';
 	private static $db = 'socialsur';
-	private static $user = 'admin';
-	private static $password = 'administrador';
-	private static $port=3306;
+    /*----------------casa----------------	
+    private static $user = 'admin';
+	private static $password = 'administrador';*/
+	private static $user = 'root';
+	private static $password = '';
+    private static $port=3306;
 
 	/*Funcion de conexion a la base de datos*/
 	public static function connectDB() {

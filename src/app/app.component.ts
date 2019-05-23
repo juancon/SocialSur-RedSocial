@@ -29,6 +29,7 @@ export class AppComponent {
 	private perfil:boolean = false;
 	private amigos:boolean = false;
 	private mensajes:boolean = false;
+	private peticiones:boolean = false;
 
 	constructor(
 	//instanciamos las variables de los componentes que hemos importado
@@ -89,6 +90,13 @@ export class AppComponent {
 						}else if(url == "/perfil"){
 							//si estamos en la pagina de perfil mostramos el componente de informacion
 							this.perfil = true;
+							this.amigos = false;
+							this.mensajes = false;
+							this.contenidoUsuario = false;
+						}else if(url == "/peticiones"){
+							//si estamos en la pagina de peticiones mostramos el componente de peticiones
+							this.peticiones = true;
+							this.perfil = false;
 							this.amigos = false;
 							this.mensajes = false;
 							this.contenidoUsuario = false;

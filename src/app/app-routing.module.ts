@@ -17,6 +17,7 @@ const routes: Routes = [
 	{path: 'login/:page', component: LoginComponent},
 	{path: 'amigos', component: AppComponent},
 	{path: 'mensajes', component: AppComponent},
+	{path: 'peticiones', component: AppComponent},
 	{path: 'registro', component: RegistroComponent},
 	{path: 'perfil', component: AppComponent}
 ];
