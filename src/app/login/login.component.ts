@@ -137,10 +137,10 @@ export class LoginComponent implements OnInit {
     //preguntamos si el usuario ha marcado la casilla de recordar
     if(this.recordar == true){
       //creamos una cookie con ese usuario
-      this._cookies.set("usuario",JSON.stringify(this.usuario));
+      localStorage.setItem("usuario",JSON.stringify(this.usuario));
     }
     //guardamos el usuario en el navegador
-    localStorage.setItem("usuario",JSON.stringify(this.usuario))
+    sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
     //redirigimos al usuario
     this._refrescar.refrescar();
     //this._router.navigate(['']);

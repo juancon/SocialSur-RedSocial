@@ -13,10 +13,10 @@ export class UrlsService {
 	constructor() {
         //asignamos el nombre del servidor
         //casa
-        //this.servidor = "http://192.168.1.150/";
+        this.servidor = "http://192.168.1.150/";
 
         //otros
-        this.servidor = "http://localhost/php/";
+        //this.servidor = "http://localhost/php/";
 
 		//añadimos el nombre del fichero y su accion al array
 		this.urls = [
@@ -40,7 +40,8 @@ export class UrlsService {
 			 {nombre: "subirArchivo", fichero: "subirArchivo.php"},
 			 {nombre: "mensajes", fichero: "mensajes.php"},
 			 {nombre: "comentarios", fichero: "comentarios.php"},
-			 {nombre: "usuarios", fichero: "usuarios.php"}
+			 {nombre: "usuarios", fichero: "usuarios.php"},
+			 {nombre: "peticiones", fichero: "peticiones.php"}
 
 			 
 		]

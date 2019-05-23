@@ -21,7 +21,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ContenidoUsuarioComponent } from './contenido-usuario/contenido-usuario.component';
 import { AmigosComponent } from './amigos/amigos.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
-import { PeticionesComponentComponent } from './peticiones-component/peticiones-component.component';
+import { PeticionesComponent } from './peticiones-component/peticiones-component.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { PeticionesComponentComponent } from './peticiones-component/peticiones-
     ContenidoUsuarioComponent,
     AmigosComponent,
     MensajesComponent,
-    PeticionesComponentComponent
+    PeticionesComponent
   ],
   imports: [
     BrowserModule,

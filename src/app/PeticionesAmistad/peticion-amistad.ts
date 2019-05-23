@@ -1,22 +1,24 @@
+//importamos la clase usuario
+import { Usuario } from '../Usuario/usuario';
 
 export class Peticion{
 	private usuariofrom:number;
 	private usuarioto:number;
 	private mensaje:string;
-	private aceptado:number;
+	private otroUsuario:Usuario;
 	private fecha:string;
   
 	constructor(
 		usuariofrom:number,
 		usuarioto:number,
 		mensaje:string,
-		aceptado:number,
+		otroUsuario:Usuario,
 		fecha:string
 	) {
 		this.usuariofrom = usuariofrom;
 		this.usuarioto = usuarioto;
 		this.mensaje = mensaje;
-		this.aceptado = aceptado;
+		this.otroUsuario = otroUsuario;
 		this.fecha = fecha;
 	}
 	// getters/setter
@@ -29,8 +31,8 @@ export class Peticion{
 	public getMensaje():string{
 		return this.mensaje;
 	}
-	public getAceptado():number{
-		return this.aceptado;
+	public getOtroUsuario():Usuario{
+		return this.otroUsuario;
 	}
 	public getFecha():string{
 		return this.fecha;
@@ -45,8 +47,8 @@ export class Peticion{
 	public setMensaje(mensaje:string):void{
 		this.mensaje = mensaje;
 	}
-	public setAceptado(aceptado:number):void{
-		this.aceptado = aceptado;
+	public setOtroUsuario(otroUsuario:Usuario):void{
+		this.otroUsuario = otroUsuario;
 	}
 	public setFecha(fecha:string):void{
 		this.fecha = fecha;

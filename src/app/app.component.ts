@@ -43,13 +43,13 @@ export class AppComponent {
 		//asignas la url de los ficheros php
 		this.urlConectar = this._urls.getUrl("conectar")
 		//comprobamos si la cookie esta creada y la sesion no
-		if(this._cookies.check("usuario") && localStorage.getItem("usuario") == null){
+		if(localStorage.getItem("usuario") != null && sessionStorage.getItem("usuario") == null){
 			//de ser asi creamos la sesion a partir de la cookie
-			localStorage.setItem("usuario",this._cookies.get("usuario"));
+			sessionStorage.setItem("usuario",localStorage.getItem("usuario"));
 		}
 		//this.usarioLogueado = this._cookies.check('usuario');
 		//comprobamos si existe un localstyorage del usuario
-		if(localStorage.getItem("usuario") == null){
+		if(sessionStorage.getItem("usuario") == null){
 			this.usarioLogueado = false;
 		}else{
 			this.usarioLogueado = true;
@@ -80,18 +80,21 @@ export class AppComponent {
 							this.amigos = true;
 							this.perfil = false;
 							this.mensajes = false;
+							this.peticiones = false;
 							this.contenidoUsuario = false;
 						}else if(url == "/mensajes"){
 							//si estamos en la página de mensaje mostramos el componente de mensajes
 							this.mensajes = true;
 							this.amigos = false;
 							this.perfil = false;
+							this.peticiones = false;
 							this.contenidoUsuario = false;
 						}else if(url == "/perfil"){
 							//si estamos en la pagina de perfil mostramos el componente de informacion
 							this.perfil = true;
 							this.amigos = false;
 							this.mensajes = false;
+							this.peticiones = false;
 							this.contenidoUsuario = false;
 						}else if(url == "/peticiones"){
 							//si estamos en la pagina de peticiones mostramos el componente de peticiones
@@ -106,6 +109,7 @@ export class AppComponent {
 							this.mensajes = false;
 							this.perfil = false;
 							this.amigos = false;
+							this.peticiones = false;
 
 						}
 					}

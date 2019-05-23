@@ -32,9 +32,9 @@ export class MensajesService {
 			accion : "obtenermensajes"
 		}
 		//funcion http.post para enviar los datos
-		let enviar = this._http.post(this.urlMensajes, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		let obtener = this._http.post(this.urlMensajes, JSON.stringify(parametros)).pipe(map(res => res.json()));
 		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
-		enviar.subscribe(
+		obtener.subscribe(
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;

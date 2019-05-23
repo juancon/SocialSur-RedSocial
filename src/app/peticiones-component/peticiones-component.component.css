@@ -1,0 +1,48 @@
+.titulo{
+	width: 50%;
+	border: none;
+	background-color: rgba(255,255,255,1);
+	margin-bottom: -7px;
+	color: #40B0FF;
+	margin: 0 auto;
+	text-align: center
+}
+.titulo a{
+	font-size: 1em;
+}
+.bordederecho{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0px 30px 30px 0px;
+	border-color: transparent #E6E6E6 transparent transparent;
+}
+.bordeizquierdo{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 30px 0px 0px;
+	border-color: #E6E6E6 transparent transparent transparent;
+}
+.peticiones{
+	background-color: white;
+}
+
+.peticion{
+	border-bottom: solid #E6E6E6 2px;
+}
+.informacion{
+	width: 100%;
+	color: #40B0FF;
+}
+.informacion .nombre{
+	margin: 0 auto;
+}
+.informacion .perfil{
+	width: 30%;
+	margin: 0 auto;
+}
+.mensaje{
+	color: #40B0FF;
+	text-align: center;
+}

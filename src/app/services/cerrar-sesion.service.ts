@@ -43,7 +43,7 @@ export class CerrarSesionService {
 				console.log(datos["desconectado"])
 			}
 		);
-		this._cookies.deleteAll();;
+		sessionStorage.clear();		
 		localStorage.clear();
 	}
 

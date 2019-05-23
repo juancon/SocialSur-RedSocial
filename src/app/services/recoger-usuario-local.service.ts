@@ -11,9 +11,9 @@ export class RecogerUsuarioLocalService {
 	}
 
 	public getUsuario():Usuario{
-		if(localStorage.getItem("usuario") != null){
+		if(sessionStorage.getItem("usuario") != null){
 			//recogemos el usuario almacenado en local y lo convertimos a objeto
-			let aux = JSON.parse(localStorage.getItem("usuario"));
+			let aux = JSON.parse(sessionStorage.getItem("usuario"));
 			//creamos un usuario con ese objeto
 			let usuarioAux = new Usuario(
 					aux.id,
@@ -29,6 +29,9 @@ export class RecogerUsuarioLocalService {
 			);
 			//lo devolvemos
 			return usuarioAux;
+		}else if(localStorage.getItem("usuario") != null){
+			sessionStorage.setItem("usuario",localStorage.getItem("usuario"));
+			this.getUsuario();
 		}
 		return null;
 	}
@@ -56,4 +59,7 @@ export class RecogerUsuarioLocalService {
 		}
 		return new Usuario(0," "," "," "," "," "," "," ",0,0);
 	}
+
+
+	get
 }

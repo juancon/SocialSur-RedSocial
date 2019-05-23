@@ -1,3 +1,42 @@
-<p>
-  peticiones-component works!
-</p>
+<div class="titulo d-flex justify-content-between">
+  <div class="bordeizquierdo"></div>
+
+  <a>Peticiones de amistad</a>
+
+  <div class="bordederecho"></div>
+</div>
+
+<div class="">
+  <div *ngFor="let peticion of peticiones" class="peticiones row offset-1 col-10">
+
+    <div class="offset-3 col-6 peticion mt-4 mb-4">
+
+      <!-- informacion sobre el usaurio que ha enviado la peticion -->
+      <div class="informacion col-12">
+        <div class="row">
+          <img src="../../{{peticion.getOtroUsuario()['avatar']}}" class="perfil">
+        </div>
+        <div class="row">
+          <b class="nombre">{{peticion.getOtroUsuario()['nombre']+" "+peticion.getOtroUsuario()['apellido']}}</b>
+        </div>
+      </div>
+
+      <!-- mensaje de la peticion -->
+      <div *ngIf="comprobarMensaje(peticion)" class="mensaje mt-2">
+          {{peticion.getMensaje()}}
+      </div>
+
+      <!-- accion a realizar -->
+      <div class="botones col-12 mt-4 mb-4 d-flex justify-content-around">
+        <button class="btn btn-danger" (click)="responder(peticion.getOtroUsuario()['id'],'rechazar')">
+            Rechazar
+        </button>
+        <button class="btn btn-primary" (click)="responder(peticion.getOtroUsuario()['id'],'aceptar')">
+            Aceptar
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -6,8 +6,12 @@
 	width: 100vw;
 }
 
+.logo{
+	width: 20%;
+	margin: 0 auto;
+}
+
 .campos{
-	margin-top: 10%;
 	background-color: white;
 	width: 300px;
 }
