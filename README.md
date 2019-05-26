@@ -3,25 +3,11 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
 ## Development server
+Clonar el projecto.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Ejecutar el script SQL situado en la carpeta php en el servidor y colocar los demás ficheros de dicha carpeta en un servidor apache.
+Modificar el fichero situado en src/app/services llamado urls.service.ts para indicar la url del servidor.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Acceder a la carpeta raíz desde el terminal del sistema.
+Ejecutar `npm install` para descargar los paquetes y dependencias necesarias.
+Ejecutar `npm serve` para iniciar la aplicación en modo desarrollo. acceder a `http://localhost:4200/` desde cualquier navegador para ver la aplicación.
