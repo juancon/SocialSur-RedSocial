@@ -10,4 +10,4 @@ Modificar el fichero situado en src/app/services llamado urls.service.ts para in
 
 Acceder a la carpeta raíz desde el terminal del sistema.
 Ejecutar `npm install` para descargar los paquetes y dependencias necesarias.
-Ejecutar `npm serve` para iniciar la aplicación en modo desarrollo. acceder a `http://localhost:4200/` desde cualquier navegador para ver la aplicación.
+Ejecutar `ng serve` para iniciar la aplicación en modo desarrollo. acceder a `http://localhost:4200/` desde cualquier navegador para ver la aplicación.
