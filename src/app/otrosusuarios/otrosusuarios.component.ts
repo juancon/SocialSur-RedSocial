@@ -74,8 +74,8 @@ export class OtrosusuariosComponent implements OnInit {
 		private _comentarios: ComentariosService,
 		private _mensajes: MensajesService
 	) {
+		this.miUsuario = this._recogerUsuario.getUsuario();
 		this.obtenerUrl();
-
 		setTimeout(this.iniciar.bind(this),500);
 
 	}
@@ -89,7 +89,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	private iniciar():void{
-		this.miUsuario = this._recogerUsuario.getUsuario();
+		
 		this.urlRecogerArchivos = this._urls.getUrl("recogerArchivos");
 		//obtenemos los archivos
 		this.recogerArchivos();
@@ -99,7 +99,10 @@ export class OtrosusuariosComponent implements OnInit {
 	private obtenerUrl():void{
 		//obtenemos el parametro que queremos de la url
     let url = this._router.parseUrl(this._router.url);
-    this.apodo = url.queryParams['apodo'];
+		this.apodo = url.queryParams['apodo'];
+		if(this.apodo == this.miUsuario.getApodo()){
+			this._router.navigate([""]);
+		}
     //llamamos a la funcion para obtener a los usuario que coincidad
 		this._operacionesUsuarios.getUsuarioByApodo(this.apodo);
     setTimeout(this.obtenerOtroUsuario.bind(this),500);

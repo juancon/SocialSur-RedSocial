@@ -6,10 +6,16 @@
 	//iniciamos las sesiones
 	session_start();
 	//incluimos el fichero que continen las funciones referentes a los comentarios y los usuarios
+	include 'clasesphp/FuncionesMensajes.php';
 	include 'clasesphp/FuncionesComentarios.php';
+	include 'clasesphp/FuncionesFotosVideos.php';
+	include 'clasesphp/FuncionesAmigos.php';
 	include 'clasesphp/FuncionesUsuarios.php';
 	//instanciamos la clase que contiene todas las funciones de los comentarios y los usuario
 	$funcionesComentarios = new FuncionesComentarios;
+	$funcionesMensajes = new FuncionesMensajes;
+	$funcionesAmigos = new FuncionesAmigos;
+	$funcionesFotosVideos = new FuncionesFotosVideos;
 	$funcionesUsuarios = new FuncionesUsuarios;
 
 	//convertimos a Jason los datos enviados por angular con la funcion http.post
@@ -30,6 +36,45 @@
 
 		//enviamos el mensaje
 		$funcionesComentarios::crearComentario($idusuario,$idelemento,$comentario);
+
+		//obtenemos el usuario
+		$usuario = $funcionesUsuarios::getUsuarioById($idusuario);
+		//obtenemos el archivo
+		$archivo = $funcionesFotosVideos::getArchivosById($idelemento);
+		//obtenemos el usuario que ha subido la pulicacion
+		$autor = $funcionesUsuarios::getUsuarioById($archivo[0]->getIdusuario());
+
+		//comprobamos si el usuario ha tagueado a un amigo
+		//obtenemos los amigos del usuario
+		$amigos = $funcionesAmigos::getAmigosUsuario($idusuario);
+		$aux = array();
+		for ($i=0; $i < count($amigos); $i++) {
+			//obtenemos los datos del amigo por su id
+			$friend = $funcionesUsuarios::getUsuarioById($amigos[$i]);
+			//lo añadimos a un array
+			$amigo = array(
+				"id" => $friend[0]->getId(),
+				"nombre" => $friend[0]->getNombre(),
+				"apellido" => $friend[0]->getApellido(),
+				"apodo" => $friend[0]->getApodo(),
+				"email" => $friend[0]->getPassword(),
+				"bio" => $friend[0]->getBio(),
+				"avatar" => $friend[0]->getAvatar(),
+				"conectado" => $friend[0]->getConectado()
+			);
+			//lo añadimos a un array auxiliar
+			array_push($aux, $amigo);
+		}
+		//recorremos el array auxiliar
+		for($i = 0; $i < count($aux) ;$i++){
+			//preguntamos si el apodo del amigo se encontro en el mensaje
+			if(strrpos($comentario, $aux[$i]["apodo"]) !== false){
+				//creamos el mensaje de aviso
+				$mensaje = $usuario[0]->getNombre()." ".$usuario[0]->getApellido()." te ha mencionado en su comentario en la publicación ".$archivo[0]->getNombre()." subida por ".$autor[0]->getNombre()." ".$autor[0]->getApellido().".";
+				//enviamos un mensaje al usuario del apado informandolo de que ha sido tagueado
+				$funcionesMensajes::crearMensaje(0,$aux[$i]["id"],$mensaje);
+			}
+		}
 
 
 	}else if($accion == "obtenercomentarios"){

@@ -7,6 +7,8 @@ import {Usuario } from '../Usuario/usuario';
 import { MensajesService } from '../services/mensajes.service';
 //importamos el servicio que me permite recoger el usuario en local
 import { RecogerUsuarioLocalService } from '../services/recoger-usuario-local.service';
+//importamos el servicio que contine las funciones referentes a los amigos
+import { OperacioneAmigosService } from '../services/operacione-amigos.service';
 
 @Component({
   selector: 'app-mensajes',
@@ -23,19 +25,26 @@ export class MensajesComponent implements OnInit {
 	private mostrarEnviados:boolean = false;
 	private estiloEnviados:string;
 	private estiloRecibidos:string;
-	//variables referentes a responder mensajes
+	//variables referentes a responder/enviar mensajes
 	private respondiendo:boolean = false;
+	private nuevoMensaje:boolean = false;
 	private respuesta:string = "";
+	private mensaje:string = "";
+	private destinatario:number = 0;
+	//variables referentyes a los amigos
+	private amigos:Array<Usuario> = new Array();
 
 
 	constructor(
 		private _mensajes: MensajesService,
-		private _recogerUsuario: RecogerUsuarioLocalService
+		private _recogerUsuario: RecogerUsuarioLocalService,
+		private _operacionesAmigos: OperacioneAmigosService
 	) {
 		this.usuario = this._recogerUsuario.getUsuario();
 		this.obtenerMensajes();
 		this.cambiarEstilo("recibidos");
 
+		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
 		setInterval(this.obtenerMensajes.bind(this),15000);
 		
 	}
@@ -54,7 +63,7 @@ export class MensajesComponent implements OnInit {
 
 	private obtenerMensajes():void{
 		//si no se esta respondiendo se pueden recargar los mensajes
-		if(!this.respondiendo){
+		if(!this.respondiendo && !this.nuevoMensaje){
 			this.mensajes = this._mensajes.obtenerMensajes(this.mensajes,this.usuario.getId());
 		}
 	}
@@ -145,19 +154,50 @@ export class MensajesComponent implements OnInit {
 		this.ocultar();
 	}
 
-	private enviar(idusuarioto:number,idmensaje:number){
-		//enviamos el comentario a la base de datos
-		this.enviarMensaje(this.usuario.getId(),idusuarioto,this.respuesta);
-		//ocultamos el textarea y reseteamos los avriables
-		this.respondiendo = false;
-		this.respuesta = "";
-		
-		//actualizamos el array actual
-		this.obtenerMensajes();
+	private responder(idusuarioto:number,idmensaje:number){
+		//comprobamos que se halla escrito una respuesta
+		if(this.respuesta != ""){
+			//enviamos el comentario a la base de datos
+			this.enviarMensaje(this.usuario.getId(),idusuarioto,this.respuesta);
+			//ocultamos el textarea y reseteamos los avriables
+			this.respondiendo = false;
+			this.respuesta = "";
+			
+			//actualizamos el array actual
+			this.obtenerMensajes();
+		}
 	}
 
+	private mensajeNuevo():void{
+		//indicamos que estamos escribiendop un nuevo mensaje
+		this.nuevoMensaje = true;
+	}
+
+	private enviar():void{
+		//comprobamos que se halla escrito una respuesta
+		if(this.mensaje != "" && this.destinatario != 0){
+			//enviamos el comentario a la base de datos
+			this.enviarMensaje(this.usuario.getId(),this.destinatario,this.mensaje);
+			//cerramos la ventana y reinicamos las variables
+			this.cerrarModal();
+		}
+	}
 
 	private enviarMensaje(idusuario:number,idusuarioto:number,mensaje:string):void{
 		this._mensajes.enviarMensaje(idusuario,idusuarioto,mensaje);
 	}
+
+	//funcion para cerrar la ventana modal
+	private cerrarModal(): void {
+		//recorremos la ventana modal y la cerramos
+		//usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
+		//componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
+		//@ts-ignore
+		$('#enviarmensaje').modal('hide');
+		//reinicamos sus variables
+		this.nuevoMensaje = false;
+		this.destinatario = 0;
+		this.mensaje = "";
+	}
+	
 }

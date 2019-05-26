@@ -108,7 +108,9 @@
 		height: 29.5vw;
 	}	
 }
-
+.referencia{
+	display: none;
+}
 .nombre{
 	width: 75%;
 	border: none;
