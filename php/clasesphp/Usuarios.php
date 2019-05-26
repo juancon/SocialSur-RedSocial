@@ -3,6 +3,7 @@ class Usuario{
 	private $id;
 	private $nombre;
 	private $apellido;
+	private $apodo;
 	private $email;
 	private $password;
 	private $bio;
@@ -11,10 +12,11 @@ class Usuario{
 	private $activado;
 	private $admin;
   
-	function __construct($id, $nombre,$apellido, $password, $email,$bio,$avatar,$conectado,$activado, $admin) {
+	function __construct($id, $nombre,$apellido,$apodo,$password, $email,$bio,$avatar,$conectado,$activado, $admin) {
 		$this->id = $id;
 		$this->nombre = $nombre;
 		$this->apellido = $apellido;
+		$this->apodo = $apodo;
 		$this->password = $password;
 		$this->email = $email;
 		$this->bio = $bio;
@@ -50,6 +52,9 @@ class Usuario{
 	}
 	function getApellido(){
 		return $this->apellido;
+	}
+	function getApodo(){
+		return $this->apodo;
 	}
 	function getEmail(){
 		return $this->email;

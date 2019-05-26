@@ -1,11 +1,14 @@
 <div class="componenteAmigos offset-md-3 col-md-6">
 	<div *ngFor = "let amigo of amigos" class="amigos row" title="{{amigo.getNombre()+' '+amigo.getApellido()}}">
-		<div class="col avatar mt-3">
-			<img src="../../{{amigo.getAvatar()}}" class="mr-auto" width="90%">
+		<div class="col avatar pt-1 pb-1" (click)="redirigir(amigo.getApodo())">
+			<img src="../../{{amigo.getAvatar()}}" class="mr-auto rounded" width="90%">
 		</div>
-		<div class="col-7 amigo">
+		<div class="col-7 amigo" (click)="redirigir(amigo.getApodo())">
 			<div class="row ">
-				<span class="nombre">{{amigo.getNombre()+" "+amigo.getApellido()}}</span>
+				<span class="nombre">{{amigo.getNombre()+" "+amigo.getApellido()}} </span>
+			</div>
+			<div class="row">
+				<span class="apodo">{{amigo.getApodo()}} </span>
 			</div>
 			<div class="row">
 				<span class="bio">{{amigo.getBio()}}</span>
@@ -33,7 +36,7 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<div>
-					<h3 class="mb-3">{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</h3>
+					<h3 class="mb-3 text-center">{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</h3>
 					<textarea id="form7" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
 				</div>
 				<div class="modal-footer">

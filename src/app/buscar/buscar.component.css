@@ -1,6 +1,10 @@
 h3{
 	color: #40B0FF;
 }
+.apodo{
+	font-size: 0.8em;
+	color: #5880AF;
+}
 .componenteAmigos{
 	overflow-y: auto;
 }
@@ -51,8 +55,4 @@ h3{
 }
 .modal .col-12{
 	padding-left: 0px;
-}
-.apodo{
-	font-size: 0.8em;
-	color: #5880AF;
 }

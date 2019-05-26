@@ -18,6 +18,10 @@ const routes: Routes = [
 	{path: 'amigos', component: AppComponent},
 	{path: 'mensajes', component: AppComponent},
 	{path: 'peticiones', component: AppComponent},
+	{path: 'buscar', component: AppComponent},
+	{path: 'buscar/:page', component: AppComponent},
+	{path: 'usuario', component: AppComponent},
+	{path: 'usuario/:page', component: AppComponent},
 	{path: 'registro', component: RegistroComponent},
 	{path: 'perfil', component: AppComponent}
 ];

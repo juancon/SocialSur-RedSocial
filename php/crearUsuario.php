@@ -13,8 +13,9 @@
 	//convertimos ese json a objeto
 	$array = json_decode($json);
 	//recogemos las variables de ese objeto
-	@$name = strtolower($array->name);
-	@$lastname = strtolower($array->lastname);
+	@$name = $array->name;
+	@$lastname = $array->lastname;
+	@$nick = "@".$array->nick;
 	@$email = $array->email;
 	@$password = $array->pass;
 
@@ -22,7 +23,7 @@
 	$funciones = new FuncionesUsuarios;
 
 	//creamos un usuario con los datos recibidos
-	$nuevoUsuario = new Usuario(0,$name,$lastname,$email,$password,"","",0,0);
+	$nuevoUsuario = new Usuario(0,$name,$lastname,$nick,$email,$password,"","",0,0,0);
 	
 	//llamamos a la funcion que crea un usuario
 	if($funciones::crearUsuario($nuevoUsuario) == 1 ){
@@ -35,6 +36,7 @@
 			"id" => $usuario[0]->getId(),
 			"nombre" => $usuario[0]->getNombre(),
 			"apellido" => $usuario[0]->getApellido(),
+			"apodo" => $usuario[0]->getApodo(),
 			"password" => $usuario[0]->getPassword(),
 			"email" => $usuario[0]->getEmail(),
 			"bio" => $usuario[0]->getBio(),
@@ -42,8 +44,6 @@
 			"activado" => $usuario[0]->getActivado(),
 			"admin" => $usuario[0]->getAdmin()
 		);
-		//Creamos una sesion con ese usuario
-		$_SESSION["usuario"] = serialize($respuesta);
 	}else{
 		//si devuleve cualquier otro resultado
 		//creamos un array con error

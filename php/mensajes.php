@@ -53,6 +53,7 @@
 											"id" => $otroUsuario[0]->getId(),
 											"nombre" => $otroUsuario[0]->getNombre(),
 											"apellido" => $otroUsuario[0]->getApellido(),
+											"apodo" => $otroUsuario[0]->getApodo(),
 											"email" => $otroUsuario[0]->getPassword(),
 											"bio" => $otroUsuario[0]->getBio(),
 											"avatar" => $otroUsuario[0]->getAvatar(),
@@ -81,6 +82,7 @@
 											"id" => $otroUsuario[0]->getId(),
 											"nombre" => $otroUsuario[0]->getNombre(),
 											"apellido" => $otroUsuario[0]->getApellido(),
+											"apodo" => $otroUsuario[0]->getApodo(),
 											"email" => $otroUsuario[0]->getPassword(),
 											"bio" => $otroUsuario[0]->getBio(),
 											"avatar" => $otroUsuario[0]->getAvatar(),
@@ -108,6 +110,8 @@
 
 		//preguntamos si es un mensaje recibido u enviado
 		if($tipomensaje == "recibido"){
+			//marcamos el mensaje como leido 
+			$leido = $funcionesMensajes::modificarLeidoMensaje($idmensaje);
 			//modificamos el borradoto
 			$borrado = $funcionesMensajes::modificarBorradotoMensaje($idmensaje);
 		}else{

@@ -41,6 +41,7 @@
 												"id" => $otroUsuario[0]->getId(),
 												"nombre" => $otroUsuario[0]->getNombre(),
 												"apellido" => $otroUsuario[0]->getApellido(),
+												"apodo" => $otroUsuario[0]->getApodo(),
 												"email" => $otroUsuario[0]->getPassword(),
 												"bio" => $otroUsuario[0]->getBio(),
 												"avatar" => $otroUsuario[0]->getAvatar(),
@@ -54,7 +55,7 @@
 		}
 
 
-	}elseif($accion = "responderpeticion"){
+	}else if($accion == "responderpeticion"){
 		@$idusuariofrom = $array->idusuariofrom;
 		@$idusuarioto = $array->idusuarioto;
 		@$respuestaUsuario = $array->respuesta;
@@ -71,9 +72,6 @@
 			$respuesta = array(
 				"aceptar" => $amigoNuevo
 			);
-
-
-
 		}else{
 			//borramos la peticion
 			$borrar = $funcionesPeticionAmistad::borrarPeticion($idusuariofrom,$idusuarioto);
@@ -83,6 +81,16 @@
 				"rechazar" => $borrar
 			);
 		}
+	}else if($accion == "enviarsolicitud"){
+		@$idusuario = $array->idusuario;
+		@$idusuarioto = $array->idusuarioto;
+		@$mensaje = $array->mensaje;
+
+		$enviar = $funcionesPeticionAmistad::nuevaPeticion($idusuario,$idusuarioto,$mensaje);
+
+		$respuesta = array(
+			"enviar" => $enviar
+		);
 	}
 
 	

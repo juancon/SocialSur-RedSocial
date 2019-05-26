@@ -19,6 +19,8 @@ import { Usuario } from '../Usuario/usuario';
 import { Mensaje } from '../Mensaje/mensaje';
 //importamos el componente chat
 import {ChatComponent} from "../chat/chat.component";
+//importamos el modulo que nos permite redireccionar
+import { Router, ActivatedRoute, Params,NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -43,8 +45,12 @@ export class BarraNavegacionComponent implements OnInit {
 	private amigoHablando:Usuario ;
 	private conversaciones:Array<string>;
 	private mensaje:string = "";
+	//variable referente a buscar
+	private buscar:string = "";
 
 	constructor(
+		private _route: ActivatedRoute,
+		private _router: Router,
 		private _cerrarSesion: CerrarSesionService,
 		private _refrescar:RefrescarService,
 		private _recogerUsuario: RecogerUsuarioLocalService,
@@ -58,8 +64,8 @@ export class BarraNavegacionComponent implements OnInit {
 		this.usuario = _recogerUsuario.getUsuario();
 		this.obtenerNotificaciones();
 		this.obtenerMensajes();
-		setInterval(this.obtenerNotificaciones.bind(this),15000);
-		setInterval(this.obtenerMensajes.bind(this),15000);
+		setInterval(this.obtenerNotificaciones.bind(this),10000);
+		setInterval(this.obtenerMensajes.bind(this),10000);
 	}
 
 	ngOnInit() {
@@ -223,6 +229,13 @@ export class BarraNavegacionComponent implements OnInit {
 			this.numMensajes = num+" Mensaje Nuevo";
 		}else{	
 			this.numMensajes = num+" Mensajes Nuevos";
+		}
+	}
+
+	public buscarUsuario(){
+		if(this.buscar.trim() != ""){
+			let url = "/buscar?nombre="+this.buscar.trim();
+			window.location.href = url;
 		}
 	}
 

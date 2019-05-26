@@ -5,8 +5,6 @@ import { UrlsService } from './services/urls.service'
 import {Http, Response, Headers} from "@angular/http";
 //Importamos la funcion map
 import { map } from 'rxjs/operators';
-//cookies
-import { CookieService } from 'ngx-cookie-service';
 //importamos el modulo que nos permite redireccionar
 import { Router, ActivatedRoute, Params,NavigationEnd } from '@angular/router';
 //servivioc que me indica el usuario en local
@@ -30,13 +28,14 @@ export class AppComponent {
 	private amigos:boolean = false;
 	private mensajes:boolean = false;
 	private peticiones:boolean = false;
+	private buscar:boolean = false;
+	private otrosusuarios:boolean = false;
 
 	constructor(
 	//instanciamos las variables de los componentes que hemos importado
 	private _route: ActivatedRoute,
 	private _router: Router,
 	private _http: Http,
-	private _cookies: CookieService,
 	private _recogerUsuario: RecogerUsuarioLocalService,
 	private _urls: UrlsService
 	) {
@@ -75,50 +74,15 @@ export class AppComponent {
 						this._router.navigate(['login']);
 					}else{
 						//comprobamos que en que pagina estamos
-						if(url == "/amigos"){
-							//si estamos en la pagina de amigos mostramos el componente de amigo
-							this.amigos = true;
-							this.perfil = false;
-							this.mensajes = false;
-							this.peticiones = false;
-							this.contenidoUsuario = false;
-						}else if(url == "/mensajes"){
-							//si estamos en la página de mensaje mostramos el componente de mensajes
-							this.mensajes = true;
-							this.amigos = false;
-							this.perfil = false;
-							this.peticiones = false;
-							this.contenidoUsuario = false;
-						}else if(url == "/perfil"){
-							//si estamos en la pagina de perfil mostramos el componente de informacion
-							this.perfil = true;
-							this.amigos = false;
-							this.mensajes = false;
-							this.peticiones = false;
-							this.contenidoUsuario = false;
-						}else if(url == "/peticiones"){
-							//si estamos en la pagina de peticiones mostramos el componente de peticiones
-							this.peticiones = true;
-							this.perfil = false;
-							this.amigos = false;
-							this.mensajes = false;
-							this.contenidoUsuario = false;
-						}else{
-							//si no estamos en ninguna de estas paginas motramos el componente de contenido del usuario
-							this.contenidoUsuario = true;
-							this.mensajes = false;
-							this.perfil = false;
-							this.amigos = false;
-							this.peticiones = false;
-
-						}
+						this.mostrarComponentes(url);
 					}
 				}
 			}
 		});
-		if(localStorage.getItem("usuario") != null)
-		//llamamos a la funcion que cambia el estado a conectado cada segundo
-		setInterval(this.ponerConectado.bind(this),1000)
+		if(sessionStorage.getItem("usuario") != null){
+			//llamamos a la funcion que cambia el estado a conectado cada segundo
+			setInterval(this.ponerConectado.bind(this),1000);
+		}
 	}
 	//funcion para poner el estado en conectado
 	private ponerConectado():void{
@@ -134,5 +98,38 @@ export class AppComponent {
 			result => {
 			}
 		);
+	}
+
+	private mostrarComponentes(componente:string):void{
+		this.amigos = false;
+		this.perfil = false;
+		this.mensajes = false;
+		this.peticiones = false;
+		this.contenidoUsuario = false;
+		this.buscar = false;
+		this.otrosusuarios = false;
+
+		if(componente == "/amigos"){
+			//si estamos en la pagina de amigos mostramos el componente de amigo
+			this.amigos = true;
+		}else if(componente == "/mensajes"){
+			//si estamos en la página de mensaje mostramos el componente de mensajes
+			this.mensajes = true;
+		}else if(componente == "/perfil"){
+			//si estamos en la pagina de perfil mostramos el componente de informacion
+			this.perfil = true;
+		}else if(componente == "/peticiones"){
+			//si estamos en la pagina de peticiones mostramos el componente de peticiones
+			this.peticiones = true;
+		}else if(componente.substring(0,7) == "/buscar"){
+			//si estamos en la pagina de buscar mostramos el componente de buscar
+			this.buscar = true;
+		}else if(componente.substring(0,8) == "/usuario"){
+			//si no estamos en ninguna de estas paginas motramos el componente de contenido del usuario
+			this.otrosusuarios = true;
+		}else{
+			this.contenidoUsuario = true;
+		}
+
 	}
 }

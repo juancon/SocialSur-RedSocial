@@ -28,7 +28,6 @@ export class CerrarSesionService {
 	}
 
 	public cerrarSesion(idusuario:number):void{
-		console.log("entra")
 		//borramos todas las cookies y las sesiones
 		let parametros = {
 			"id" : idusuario,
@@ -40,7 +39,6 @@ export class CerrarSesionService {
 		logout.subscribe(
 			result => {
 				let datos = result
-				console.log(datos["desconectado"])
 			}
 		);
 		sessionStorage.clear();		

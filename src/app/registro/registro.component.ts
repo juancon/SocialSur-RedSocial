@@ -23,6 +23,7 @@ export class RegistroComponent implements OnInit {
 	//variables relacionadas al HTML
 	private nombre:string = "";
 	private apellido:string = "";
+	private apodo:string = "";
 	private correo :string = "";
 	private password:string = "";
 	private password2:string = "";
@@ -30,8 +31,10 @@ export class RegistroComponent implements OnInit {
 	//variables que informan al usuario
 	private nombreInfo:string;
 	private apellidoInfo:string;
+	private apodoInfo:string;
 	private correoInfo:string;
 	private correoExiste:string;
+	private apodoExiste:string;
 	private passwordInfo:string;
 	private password2Info:string;
 	private errorRegistro:string;
@@ -39,6 +42,8 @@ export class RegistroComponent implements OnInit {
 	//variables de validacion
 	private name:boolean = false;
 	private lastName:boolean = false;
+	private nick:boolean = false;
+	private nickExist:boolean = false;
 	private email:boolean = false;
 	private emailExist:boolean = false;
 	private pass:boolean = false;
@@ -63,11 +68,12 @@ export class RegistroComponent implements OnInit {
 	//validacion boton
 	private validar():void{
 		// preguntamos si todos los campos son validos
-		if(this.name && this.lastName && this.email && this.pass && this.pass2 && this.emailExist){
+		if(this.name && this.lastName && this.nick && this.email && this.pass && this.pass2 && this.emailExist && this.nickExist){
 			//creamos un array con los valores de los campos
 			let parametros = {
 				name: this.nombre,
 				lastname: this.apellido,
+				nick: this.apodo,
 				email: this.correo,
 				pass: this.password
 			}
@@ -85,6 +91,7 @@ export class RegistroComponent implements OnInit {
 						datos['id'],
 						datos['nombre'],
 						datos['apellido'],
+						datos['apodo'],
 						datos['email'],
 						datos['password'],
 						datos['bio'],
@@ -94,7 +101,7 @@ export class RegistroComponent implements OnInit {
 						datos['admin']
 						);
 						//guardamos el usuario en el navegador
-						localStorage.setItem("usuario",JSON.stringify(this.usuario))
+						sessionStorage.setItem("usuario",JSON.stringify(this.usuario))
 						//redirigimos al usuario
 						this._refrescar.refrescar();
 					}else{
@@ -108,6 +115,7 @@ export class RegistroComponent implements OnInit {
 			//si no lo son informamos de los campos incorrectos al usuario
 			this.validarNombre();
 			this.validarApellido();
+			this.validarApodo();
 			this.validarCorreo();
 			this.validarPassword();
 			this.validarPassword2();
@@ -140,6 +148,20 @@ export class RegistroComponent implements OnInit {
 		}else{
 			this.apellidoInfo = "Escribe un apellido.";
 			this.lastName = false;
+		}
+	}
+	private validarApodo():void{
+		if(this.apodo != "" || this.apodo == null){
+			if(this.expresionApodo(this.apodo)){
+				this.apodoInfo = "";
+				this.nick = true;
+			}else{
+				this.apodoInfo = "Apodo no válido.";
+				this.nick = false;
+			}
+		}else{
+			this.apodoInfo = "Escribe un apodo.";
+			this.nick = false;
 		}
 	}
 	private validarCorreo():void{
@@ -188,31 +210,38 @@ export class RegistroComponent implements OnInit {
 	private longitudNombre():void{
 		if(this.nombre.length > 50){
 			this.nombre = this.nombre.substring(0,49);
-			this.nombreInfo = "Maximo 50 caracteres.";
+			this.nombreInfo = "Máximo 50 caracteres.";
 		}
 	}
 	private longitudApellido():void{
 		if(this.apellido.length > 50){
 			this.apellido = this.apellido.substring(0,49);
-			this.apellidoInfo = "Maximo 50 caracteres.";
+			this.apellidoInfo = "Máximo 50 caracteres.";
 		}
+	}
+	private longitudApodo():void{
+		if(this.apodo.length > 49){
+			this.apodo = this.apodo.substring(0,48);
+			this.apodoInfo = "Máximo 49 caracteres.";
+		}
+		this.comprobarApodo();
 	}
 	private longitudCorreo():void{
 		if(this.correo.length > 100){
 			this.correo = this.correo.substring(0,99);
-			this.correoInfo = "Maximo 100 caracteres.";
+			this.correoInfo = "Máximo 100 caracteres.";
 		}
 		this.comprobarCorreo();
 	}
 	private longitudPassword():void{
 		if(this.password.length < 8){
-			this.passwordInfo = "Minimo 8 caracteres.";
+			this.passwordInfo = "Mínimo 8 caracteres.";
 		}else if(this.password.length > 7 && this.password.length < 33){
 			this.passwordInfo = "";
 			this.passlon = true;
 		}else if(this.password.length > 33){
 			this.password = this.password.substring(0,32);
-			this.passwordInfo = "Maximo 32 caracteres.";
+			this.passwordInfo = "Máximo 32 caracteres.";
 		}
 	}
 	//validaciones de expresiones regulares
@@ -223,7 +252,15 @@ export class RegistroComponent implements OnInit {
 		if(expresion.test(cadena)){
 			return true;
 		}
-		console.log(this.correoExiste);
+		return false;
+	}
+	private expresionApodo(cadena):boolean{
+		//patron que solo permite introducir palabras espacios, tildes y la ñ
+		let expresion = new RegExp('^([a-zA-Z0-9]{6,50})');
+		//comprobamos el patron con la cadena que se nos ha pasado
+		if(expresion.test(cadena)){
+			return true;
+		}
 		return false;
 	}
 	private expresionCorreo(cadena):boolean{
@@ -235,11 +272,40 @@ export class RegistroComponent implements OnInit {
 		}
 		return false;
 	}
+	//comprobar si un apodo existe
+	private comprobarApodo():void{
+		//creamos un array con los valores de los campos
+		let parametros = {
+			apodo: this.apodo,
+			accion: "comprobarapodo"
+		};
+		//funcion http.post para enviar los datos
+		let correo = this._http.post(this.urlComprobarCorreo, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		correo.subscribe(
+			result => {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos = result;
+				this.apodoInformar(datos['existe'])
+			}
+		);
+	}
+	private apodoInformar(existe:string):void{
+		//comprobamos el resultado e informamos al usuario
+		if(existe == "1"){
+			this.apodoExiste = "El apodo ya esta en uso.";
+			this.nickExist = false;
+		}else{
+			this.apodoExiste = "";
+			this.nickExist = true;
+		}
+	}
 	//comprobar si un correo existe
 	private comprobarCorreo():void{
 		//creamos un array con los valores de los campos
 		let parametros = {
-			email: this.correo
+			email: this.correo,
+			accion : "comprobarcorreo"
 		};
 		//funcion http.post para enviar los datos
 		let correo = this._http.post(this.urlComprobarCorreo, JSON.stringify(parametros)).pipe(map(res => res.json()));

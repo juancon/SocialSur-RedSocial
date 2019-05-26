@@ -7,19 +7,14 @@
 	{
 		public static function nuevaPeticion($usuariofrom,$usuarioto,$mensaje)
 		{
-			if(FuncionesAmigos::comprobarAmistad($usuariofrom,$usuarioto) == 0){
-				if(self::comprobarPeticion($usuariofrom,$usuarioto) == 0){
-					$conexion = DB::connectDB();
-		    		$insercion = "INSERT INTO solicitudesamistad (usuariofrom, usuarioto,mensaje) VALUES 
-		    						(".$usuariofrom.",".$usuarioto.",\"".$mensaje."\")";
-		    		if($conexion->exec($insercion) == 1){
-		    			return 1;
-		    		}
-				}
-				return 0;
-			}
+				$conexion = DB::connectDB();
+	    		$insercion = "INSERT INTO solicitudesamistad (usuariofrom, usuarioto,mensaje) VALUES 
+	    						(".$usuariofrom.",".$usuarioto.",\"".$mensaje."\")";
+	    		if($conexion->exec($insercion) == 1){
+	    			return 1;
+	    		}
 
-			return -1;
+				return 0;
 		}
 
 		public static function getPeticionesUsuarioFrom($idusuario)
@@ -86,15 +81,14 @@
 
 		public static function borrarPeticion($usuariofrom,$usuarioto)
 		{
-			if(self::comprobarPeticion($usuariofrom,$usuarioto) == 1){
-				$conexion = DB::connectDB();
-	    		$insercion = "DELETE FROM solicitudesamistad
-	    						WHERE (usuariofrom = $usuariofrom AND usuarioto = $usuarioto)
-	    							OR (usuariofrom = $usuarioto AND usuarioto = $usuariofrom)";
-	    		if($conexion->exec($insercion) == 1){
-	    			return 1;
-	    		}
-			}
+			
+			$conexion = DB::connectDB();
+    		$insercion = "DELETE FROM solicitudesamistad
+    						WHERE (usuariofrom = $usuariofrom AND usuarioto = $usuarioto)
+    							OR (usuariofrom = $usuarioto AND usuarioto = $usuariofrom)";
+    		if($conexion->exec($insercion) == 1){
+    			return 1;
+    		}
 			return 0;
 		}
 		/**/

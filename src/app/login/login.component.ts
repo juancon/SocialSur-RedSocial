@@ -126,6 +126,7 @@ export class LoginComponent implements OnInit {
       datos['id'],
       datos['nombre'],
       datos['apellido'],
+      datos['apodo'],
       datos['email'],
       datos['password'],
       datos['bio'],
@@ -136,7 +137,7 @@ export class LoginComponent implements OnInit {
     );
     //preguntamos si el usuario ha marcado la casilla de recordar
     if(this.recordar == true){
-      //creamos una cookie con ese usuario
+      //creamos un localstorage con ese usuario
       localStorage.setItem("usuario",JSON.stringify(this.usuario));
     }
     //guardamos el usuario en el navegador

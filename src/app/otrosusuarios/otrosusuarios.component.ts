@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//importamos los servicios para poder interactuar con las urls
+import { Router, ActivatedRoute, Params,NavigationEnd } from '@angular/router';
 //Importamos el modulo http al servicio
 import {Http, Response, Headers} from "@angular/http";
 //Importamos la funcion map
@@ -9,10 +11,10 @@ import { RecogerUsuarioLocalService } from '../services/recoger-usuario-local.se
 import {UrlsService} from '../services/urls.service';
 //Importamos el servicio que realiza operaciones con las fechas
 import { OperacionesFechasService } from '../services/operaciones-fechas.service';
-//importamos el servicio que contiene las urls
+//importamos el servicio que contiene las operaciones de los megustas
 import {OperacionesMeGustasService} from '../services/operaciones-me-gustas.service';
-//importamos el servicio que contiene las urls
-import {SubirArchivoService} from '../services/subir-archivo.service';
+//importamos el servicio que contiene las operaciones de los amigos
+import {OperacioneAmigosService} from '../services/operacione-amigos.service';
 //Importamos la clase usuario
 import { Usuario } from '../Usuario/usuario';
 //Importamos la clase archivo
@@ -21,18 +23,26 @@ import { Archivo } from '../Archivo/archivo';
 import { Comentario } from '../Comentario/comentario';
 //importamos el servicio con las funciones de los comentarios
 import {ComentariosService } from '../services/comentarios.service';
+//importamos el servicio con las funciones de los usuarios
+import {OperacionesUsuariosService } from '../services/operaciones-usuarios.service';
+//importamos el servicio con las funciones de loas peticiones
+import {OperacionesPeticionesService } from '../services/operaciones-peticiones.service';
+//importamos el servicio con las funciones de loas peticiones
+import {MensajesService } from '../services/mensajes.service';
+
 
 @Component({
-  selector: 'app-contenido-usuario',
-  templateUrl: './contenido-usuario.component.html',
-  styleUrls: ['./contenido-usuario.component.css'],
-  providers: [RecogerUsuarioLocalService, UrlsService, OperacionesFechasService, OperacionesMeGustasService, SubirArchivoService]
+  selector: 'app-otrosusuarios',
+  templateUrl: './otrosusuarios.component.html',
+  styleUrls: ['./otrosusuarios.component.css']
 })
-export class ContenidoUsuarioComponent implements OnInit {
-	//variables referentes a las urls
+export class OtrosusuariosComponent implements OnInit {
+  //variables referentes a las urls
 	private urlRecogerArchivos:string;
 	//Variables referentes al usuario
-	private usuario:Usuario;
+	private miUsuario:Usuario;
+	private otroUsuario:Usuario;
+	private apodo:string;
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
 	private contenidoUsuario:Array<Archivo> = new Array();
 	//variables referentes a subir archivos
@@ -47,28 +57,56 @@ export class ContenidoUsuarioComponent implements OnInit {
 	private ocultar:boolean = false;
 	private nuevoComentario:string = "";
 	private comentarioinfo:string = "";
+	//variable referente a los mensajes
+	private mensaje:string = "";
 
 
 	constructor(
+		private _router: Router,
 		private _recogerUsuario: RecogerUsuarioLocalService,
 		private _urls: UrlsService,
 		private _http: Http,
 		private _operacionesFechas: OperacionesFechasService,
 		private _operacionesMegustas: OperacionesMeGustasService,
-		private _subirArchivo: SubirArchivoService,
-		private _comentarios: ComentariosService
+		private _operacionesUsuarios: OperacionesUsuariosService,
+		private _operacionesPeticiones: OperacionesPeticionesService,
+		private _operacionesAmigos: OperacioneAmigosService,
+		private _comentarios: ComentariosService,
+		private _mensajes: MensajesService
 	) {
-		this.usuario = this._recogerUsuario.getUsuario();
+		this.obtenerUrl();
+
+		setTimeout(this.iniciar.bind(this),500);
+
+	}
+
+
+	ngOnInit() {
+    
+		//ocultamos loc comentarios cuando no se este comentado
+    setInterval(this.oculatr.bind(this),75);
+    
+	}
+
+	private iniciar():void{
+		this.miUsuario = this._recogerUsuario.getUsuario();
 		this.urlRecogerArchivos = this._urls.getUrl("recogerArchivos");
 		//obtenemos los archivos
 		this.recogerArchivos();
-		//obetenemos todos los comentarios
-		this.obtenerComentariosArchivos();
+		setInterval(this.recogerArchivos.bind(this),30000)
 	}
 
-	ngOnInit() {
-		//ocultamos loc comentarios cuando no se este comentado
-		setInterval(this.oculatr.bind(this),75);
+	private obtenerUrl():void{
+		//obtenemos el parametro que queremos de la url
+    let url = this._router.parseUrl(this._router.url);
+    this.apodo = url.queryParams['apodo'];
+    //llamamos a la funcion para obtener a los usuario que coincidad
+		this._operacionesUsuarios.getUsuarioByApodo(this.apodo);
+    setTimeout(this.obtenerOtroUsuario.bind(this),500);
+	}
+
+	private obtenerOtroUsuario(){
+		this.otroUsuario =  this._recogerUsuario.getOtroUsuario();
 	}
 
 	private oculatr():void{
@@ -78,21 +116,23 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	private recogerArchivos():void{
-		//enviamos el id del usuario
-		let parametros = {
-			id : this.usuario.getId()
-		}
-		//funcion http.post para enviar los datos
-		let notificaciones = this._http.post(this.urlRecogerArchivos, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
-		notificaciones.subscribe(
-			result => {
-				//recogemos solo la respuesta del PHP y la pasamos a una variable
-				let datos = result;
-				//llamamos a la funcion que almacena los datos en el array en local
-				this.agregarArchivosArray(datos);
+		if(!this.comentando){
+			//enviamos el id del usuario
+			let parametros = {
+				id : this.otroUsuario.getId()
 			}
-		);
+			//funcion http.post para enviar los datos
+			let notificaciones = this._http.post(this.urlRecogerArchivos, JSON.stringify(parametros)).pipe(map(res => res.json()));
+			//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+			notificaciones.subscribe(
+				result => {
+					//recogemos solo la respuesta del PHP y la pasamos a una variable
+					let datos = result;
+					//llamamos a la funcion que almacena los datos en el array en local
+					this.agregarArchivosArray(datos);
+				}
+			);
+		}
 	}
 
 	//funcion para actualizar el array con las fotos y los videos en local
@@ -114,6 +154,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 			);
 			
 		}
+	
 		//llamamos al servicio que actualiza los megustas a los megustas reales de los contenidos
 		this.contenidoUsuario = this._operacionesMegustas.obtenerMegustas(this.contenidoUsuario);
 		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
@@ -143,81 +184,13 @@ export class ContenidoUsuarioComponent implements OnInit {
 	//funcion para dar o quitar un megusta
 	private darQuitarMegusta(idelemento:number):void{
 		//llamamos al servicio que me permite dar un nuevo megusta
-		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.usuario.getId(),idelemento,this.contenidoUsuario);
+		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.miUsuario.getId(),idelemento,this.contenidoUsuario);
 		this.actualizarRuta();
 	}
 
 	private actualizarRuta():void{
 		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
 		this.contenidoUsuario = this._operacionesMegustas.actualizarRuta(this.contenidoUsuario);
-	}
-
-	//funcion para almacenar un archivo en local
-	private almacenarFichero(ev):void{
-		this.archivo = ev.target;
-	}
-	//funcion subir ficheros
-	private subirFichero():void{
-		//comprobamos que se halla introducido un nombre
-		if(this.nombreArchivo.trim() != ""){
-			//comprobamos que se ha introducido un fichero
-			if(this.fichero != null){
-				//cremaos la variable donde almacenaremos el tipo de archivo
-				let tipoArchivo;
-				//comprobamos si es una imagen o un video
-				//obtenemos la extension del archivo
-				let extension = (this.fichero+"").split(".").pop();
-				//creamos los patrones con los que sabremos si es un video
-				let patronVideo = /(mp4|m4v|avi|mpeg)$/i;
-				//comprobamos el patron
-				if(patronVideo.exec(extension)){
-					//si es un video cambiamos el tipo de por video
-					tipoArchivo = "video";
-				}else{
-					//si no es un video es una foto
-					tipoArchivo = "foto";
-				}
-				//creamos la varible que pasaremos al servidor
-				let parametros = new FormData();
-				//le añadimos los campos que deseamos pasar al PHP
-				
-				parametros.append('file',this.archivo.files[0]);
-				parametros.append('idusuario',this.usuario.getId()+"");
-				parametros.append('nombre',this.nombreArchivo);
-				parametros.append('tipo',tipoArchivo);
-				parametros.append('extension',extension);
-				
-				//funcion http.post para enviar los datos
-				this._subirArchivo.subirArchivo(parametros).subscribe(
-					resp => {
-						//si el resultado es 1
-						if(resp.resultado == 1){
-							//llamamos a la funcion que recoge los archivos del usuario
-							this.recogerArchivos();
-							this.cerrarModal();
-						}
-					}
-				);
-				
-			}else{
-			this.infoFichero = "Selecciona una imágen o un vídeo Fichero"
-			}
-		}else{
-			this.infoNombre = "Introduce un Nombre para el Fichero"
-		}
-	}
-	
-	//funcion para cerrar la ventana modal
-	private cerrarModal(){
-		//recorremos la ventana modal y la cerramos
-		//usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
-		//componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
-		//@ts-ignore
-		$('#subirarchivo').modal('toggle');
-		//reinicamos sus variables
-		this.nombreArchivo = "";
-		this.fichero = null;
-		
 	}
 
 	//funcion para obetener los comentarios de cada archivo
@@ -246,7 +219,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 			//comprobamos que el comentario no este vacio
 			if(this.nuevoComentario != ""){
 				//enviamos el comentario a la base de datos
-				this._comentarios.nuevoComentario(this.usuario.getId(),idelemento,this.nuevoComentario);
+				this._comentarios.nuevoComentario(this.miUsuario.getId(),idelemento,this.nuevoComentario);
 				//ocultamos el textarea y reseteamos los avriables
 				this.comentando = false;
 				$("#textcomentario"+idelemento).hide();
@@ -272,4 +245,57 @@ export class ContenidoUsuarioComponent implements OnInit {
 			this.comentando = true;
 		}
 	}
+
+	//comprobamos si los usuarios son amigos
+  private comprobarAmistad(amistad:number):boolean{
+    if(amistad == 1){
+      return true;
+    }
+
+    return false;
+  }
+
+  private comprobarSocilitud(amistad:number):boolean{
+    if(amistad == 2){
+      return false;
+    }
+    return true;
+	}
+	
+	private enviarSolicitud(): void {
+    //comprobamos que el mensaje no este vacio
+    if (this.mensaje.trim() != "") {
+      this._operacionesPeticiones.enviarSolicitud(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje)
+			this.otroUsuario.setAmistad(2);
+      this.cerrarModal();
+    }
+	}
+	
+	//funcion paera enviar el mensaje
+  private enviarMensaje(): void {
+    //comprobamos que el mensaje no este vacio
+    if (this.mensaje.trim() != "") {
+      this._mensajes.enviarMensaje(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje);
+      this.cerrarModal();
+    }
+	}
+	
+	//funcion par aborrar amigo
+	private borrarAmigo():void{
+		//borramos el amigo
+		this._operacionesAmigos.borrarAmigo(this.miUsuario.getId(),this.otroUsuario.getId())
+		this.otroUsuario.setAmistad(0);
+	}
+
+	private cerrarModal(): void {
+    //recorremos la ventana modal y la cerramos
+    //usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
+    //componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
+    //@ts-ignore
+    $('#enviarmensaje').modal('hide');
+    //@ts-ignore
+    $('#solicitaramistad').modal('hide');
+    //reinicamos sus variables
+    this.mensaje = "";
+  }
 }

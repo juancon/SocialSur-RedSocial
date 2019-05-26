@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 //servicio que contiene las urls
 import { UrlsService } from '../services/urls.service'
-//Importamos el modulo http al servicio
-import {Http, Response, Headers} from "@angular/http";
-//Importamos la funcion map
-import { map } from 'rxjs/operators';
+//servicio para redirigir
+import { RefrescarService } from '../services/refrescar.service'
 //importamos la clase usuario
 import {Usuario} from '../Usuario/usuario';
 //servivioc que me indica el usuario en local
@@ -33,6 +31,7 @@ export class AmigosComponent implements OnInit {
 	private ventanaModal:any = null;
 	constructor(
 		private _urls: UrlsService,
+		private _redirigir: RefrescarService,
 		private _recogerUsuario: RecogerUsuarioLocalService,
 		private _operacionesAmigos: OperacioneAmigosService,
 		private _mensajes:MensajesService
@@ -42,7 +41,7 @@ export class AmigosComponent implements OnInit {
 		this.obtenerAmigos();
 		setInterval(this.obtenerAmigos.bind(this),20000);
 		//inicializamos la variuable amigoActivo para que no de problemas
-		this.amigoActivo = new Usuario(0,"","","","","","","",0,0)
+		this.amigoActivo = new Usuario(0,"","","","","","","","",0,0)
 	}
 
 	ngOnInit() {
@@ -57,7 +56,6 @@ export class AmigosComponent implements OnInit {
 		if(this.ventanaModal == null){
 			this.ventanaModal = ev.target;
 		}
-		console.log(this.ventanaModal)
 	}
 
 	//recogemos el usuario sobre el que queremos realizar la accion
@@ -95,5 +93,10 @@ export class AmigosComponent implements OnInit {
 			}
 		}
 		this.obtenerAmigos();
+	}
+
+	private redirigir(apodo:string){
+		let url = "/usuario?apodo="+apodo;
+		window.location.href = url;
 	}
 }

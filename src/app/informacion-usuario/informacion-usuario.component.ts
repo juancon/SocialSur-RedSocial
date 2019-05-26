@@ -29,6 +29,7 @@ export class InformacionUsuarioComponent implements OnInit {
 	private avatar:string;
 	private nombre:string;
 	private apellido:string;
+	private apodo:string;
 	private bio:string;
 	private aux:string;
 	//variable para cambiar el avatar
@@ -51,6 +52,7 @@ export class InformacionUsuarioComponent implements OnInit {
 		this.avatar = this.usuario.getAvatar();
 		this.nombre = this.usuario.getNombre();
 		this.apellido = this.usuario.getApellido();
+		this.apodo = this.usuario.getApodo();
 		this.bio = this.usuario.getBio();
 		this.ocultarMostrar = false;
 	}
@@ -93,7 +95,6 @@ export class InformacionUsuarioComponent implements OnInit {
 				let datos = result;
 				//comprobamos que no haya devuleto error
 				if(datos["actualizacion"] == "1"){
-					console.log("entra");
 					//si no da error
 					//llamamos a la funcion que cambia el usuario almacenado en el navegador
 					this.guardarUsuario();

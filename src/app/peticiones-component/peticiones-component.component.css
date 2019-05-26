@@ -24,6 +24,18 @@
 	border-width: 30px 30px 0px 0px;
 	border-color: #E6E6E6 transparent transparent transparent;
 }
+
+.vacio{
+	background-color: white;
+	color: #40B0FF;
+	text-align: center;
+	font-weight: bold;
+}
+.vacio div{
+	margin: 0 auto;
+	text-align: center;
+}
+
 .peticiones{
 	background-color: white;
 }
@@ -37,12 +49,20 @@
 }
 .informacion .nombre{
 	margin: 0 auto;
+	cursor: pointer;
 }
 .informacion .perfil{
 	width: 30%;
+	cursor: pointer;
 	margin: 0 auto;
 }
 .mensaje{
 	color: #40B0FF;
 	text-align: center;
+}
+.apodo{
+	font-size: 0.8em;
+	color: #5880AF;
+	margin: 0 auto;
+	cursor: pointer;
 }

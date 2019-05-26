@@ -18,6 +18,7 @@ export class OperacioneAmigosService {
 	private usuario:Usuario;
 	//variables referentes a los amigos
 	private amigos:Array<Usuario> = new Array();
+	private respuesta:boolean;
 
 	constructor(
 		private _recogerUsuario: RecogerUsuarioLocalService,
@@ -57,6 +58,7 @@ export class OperacioneAmigosService {
 					amigos[i]["id"],
 					amigos[i]["nombre"],
 					amigos[i]["apellido"],
+					amigos[i]["apodo"],
 					"",
 					amigos[i]["email"],
 					amigos[i]["bio"],

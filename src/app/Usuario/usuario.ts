@@ -2,6 +2,7 @@ export class Usuario {
 	private id:number;
 	private nombre:string;
 	private apellido:string;
+	private apodo:string;
 	private password:string;
 	private email:string;
 	private bio:string;
@@ -9,11 +10,14 @@ export class Usuario {
 	private conectado:string;
 	private activado:number;
 	private admin:number
+	private amistad: number;
+
 
 	constructor(
 		id:number,
 		nombre:string,
 		apellido:string,
+		apodo:string,
 		password:string,
 		email:string,
 		bio:string,
@@ -25,6 +29,7 @@ export class Usuario {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.apodo = apodo;
 		this.password = password;
 		this.email = email;
 		this.bio = bio;
@@ -42,6 +47,9 @@ export class Usuario {
 	}
 	public getApellido():string{
 		return this.apellido;
+	}
+	public getApodo():string{
+		return this.apodo;
 	}
 	public getPassword():string{
 		return this.password;
@@ -64,6 +72,9 @@ export class Usuario {
 	public getAdmin():number{
 		return this.admin;
 	}
+	public getAmistad():number {
+		return this.amistad;
+	}
 
 	public setId(id:number):void{
 		this.id = id;
@@ -73,6 +84,9 @@ export class Usuario {
 	}
 	public setApellido(apellido:string):void{
 		this.apellido = apellido;
+	}
+	public setApodo(apodo:string):void{
+		this.apodo = apodo;
 	}
 	public setPassword(password:string):void{
 		this.password = password;
@@ -94,6 +108,9 @@ export class Usuario {
 	}
 	public setAdmin(admin:number):void{
 		this.admin = admin;
+	}
+	public setAmistad(amistad: number):void {
+		this.amistad = amistad;
 	}
 
 }

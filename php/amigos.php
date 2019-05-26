@@ -35,6 +35,7 @@
 				"id" => $usuario[0]->getId(),
 				"nombre" => $usuario[0]->getNombre(),
 				"apellido" => $usuario[0]->getApellido(),
+				"apodo" => $usuario[0]->getApodo(),
 				"email" => $usuario[0]->getPassword(),
 				"bio" => $usuario[0]->getBio(),
 				"avatar" => $usuario[0]->getAvatar(),
@@ -48,6 +49,10 @@
 		@$idamigo = strtolower($array->idamigo);
 
 		$usuario = $funcionesAmigos::borrarAmigo($idusuario,$idamigo);
+
+		$respuesta = array(
+			"borrado" => 1
+		);
 	}
 	
 	

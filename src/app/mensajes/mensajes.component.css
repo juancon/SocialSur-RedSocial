@@ -9,6 +9,7 @@
 	height: 100%;
 	text-align: center;
 	z-index: 0;
+	min-width: 150px;
 }
 
 .barraSeleccion div:last-of-type{
@@ -84,19 +85,36 @@
 
 
 @media (min-width: 625px) {
-	.informacion img{
+	.informacion img, .acciones img{
 		width: 40px; height: 40px;
 	}	
 }
 
 @media (max-width: 625px) {
-	.informacion img{
+	.informacion img, .acciones img{
 		width: 20px; height: 20px;
-	}	
+	}
+	.bordeizquierdoenviados{
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 30px 30px 0px 0px;
+		border-color: transparent transparent transparent transparent;
+	}
+	.bordederechorecibidos{
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0px 30px 30px 0px;
+		border-color: transparent transparent transparent transparent;
+	}
+
 }
 
 .enviado,.recibido{
-	margin-bottom: 5%; 
+	margin-bottom: 5%;
+	margin-top: 5%;
+
 }
 
 .informacion .nombre{
@@ -104,6 +122,9 @@
 	color: #40B0FF;
 	font-weight: bold;
 	margin-left: 2%;
+}
+.informacion a:hover{
+	text-decoration: none;
 }
 
 hr.separarInfo{
@@ -114,7 +135,22 @@ hr.separarInfo{
 	min-height: 40%;
 	color: #4097FF
 }
+
+.enviar{
+	width: 100%;
+	margin: 0 auto;
+	cursor: pointer;
+}
+.enviar img{
+	width: 10%;
+}
+
 hr.separarMensajes{
 	width: 90%;
-	border-color: #008BEA;
+	border-color: #E6E6E6;
+}
+.apodo{
+	font-size: 0.8em;
+	color: #5880AF;
+	margin: 0 auto;
 }

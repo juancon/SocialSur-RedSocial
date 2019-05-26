@@ -29,6 +29,7 @@
 			"id" => $usuario[0]->getId(),
 			"nombre" => $usuario[0]->getNombre(),
 			"apellido" => $usuario[0]->getApellido(),
+			"apodo" => $usuario[0]->getApodo(),
 			"password" => $usuario[0]->getPassword(),
 			"email" => $usuario[0]->getEmail(),
 			"bio" => $usuario[0]->getBio(),

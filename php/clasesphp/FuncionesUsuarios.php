@@ -17,8 +17,8 @@
 			$TRegistros = count($CountReg);
 
 			if($TRegistros == 0){
-	    		$insercion = "INSERT INTO usuarios (nombre, apellido, email, password) VALUES 
-	    						(\"".$usuario->getNombre()."\", \"".$usuario->getApellido()."\", \"".$usuario->getPassword()."\", \"".md5($usuario->getEmail())."\")";
+	    		$insercion = "INSERT INTO usuarios (nombre, apellido,apodo, email, password) VALUES 
+	    						(\"".$usuario->getNombre()."\", \"".$usuario->getApellido()."\", \"".$usuario->getApodo()."\", \"".$usuario->getPassword()."\", \"".md5($usuario->getEmail())."\")";
 	    		if($conexion->exec($insercion) == 1){
 	    			return 1;
 	    		}else{
@@ -45,6 +45,21 @@
 			return $TRegistros;
 		}
 
+		public static function buscarUsuarioByApodo($apodo)
+		{
+			$conexion = DB::connectDB();
+
+			$busqueda = "SELECT *
+						 FROM usuarios
+						 WHERE apodo = '".$apodo."'";
+
+			$consulta = $conexion->query($busqueda);
+			$CountReg = $consulta -> fetchAll();
+			$TRegistros = count($CountReg);
+
+			return $TRegistros;
+		}
+
 		public static function getUsuarios()
 		{
 			$conexion = DB::connectDB();
@@ -54,7 +69,7 @@
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {
-				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
+				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->apodo,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
 			}
 			return $usuarios;
 		}
@@ -69,7 +84,7 @@
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {
-				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
+				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->apodo,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
 			}
 			return $usuarios;
 		}
@@ -84,7 +99,7 @@
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {
-				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
+				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->apodo,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
 			}
 			return $usuarios;
 		}
@@ -92,13 +107,28 @@
 		public static function getUsuariosByCadenaBusqueda($cadena)
 		{
 			$conexion = DB::connectDB();
-			$seleccion = "	SELECT id, nombre, apellido, email, password, bio, avatar,conectado, activado, admin
+			$seleccion = "	SELECT *
 							FROM usuarios
 							WHERE lower(CONCAT(nombre, ' ', apellido)) like '%".strtolower($cadena)."%' AND admin != 1";
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {
-				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
+				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->apodo,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
+			}
+
+			return $usuarios;
+		}
+
+		public static function getUsuariosByApodo($apodo)
+		{
+			$conexion = DB::connectDB();
+			$seleccion = "	SELECT *
+							FROM usuarios
+							WHERE apodo = '".$apodo."' AND admin != 1";
+			$consulta = $conexion->query($seleccion);
+			$usuarios = [];
+			while ($registro = $consulta->fetchObject()) {
+				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->apodo,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
 			}
 
 			return $usuarios;
@@ -107,13 +137,13 @@
 		public static function getUsuariosByEmail($email)
 		{
 			$conexion = DB::connectDB();
-			$seleccion = "	SELECT id, nombre, apellido, email, password, bio, avatar,conectado, activado, admin
+			$seleccion = "	SELECT *
 							FROM usuarios
 							WHERE email = '$email'";
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {
-				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
+				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->apodo,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
 			}
 
 			return $usuarios;

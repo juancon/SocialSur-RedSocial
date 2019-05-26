@@ -76,4 +76,20 @@ export class OperacionesPeticionesService {
 		responder.subscribe(result => {});
   }
 
+
+  public enviarSolicitud(idusuario:number,idusuarioto:number,mensaje:string){
+		let parametros = {
+			idusuario : idusuario,
+			idusuarioto : idusuarioto,
+			mensaje : mensaje,
+			accion : "enviarsolicitud"
+    }
+		//funcion http.post para enviar los datos
+		let enviar = this._http.post(this.urlPeticiones, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para completar la llamada a PHP
+		enviar.subscribe(
+      result => {
+			}
+		);
+  }
 }

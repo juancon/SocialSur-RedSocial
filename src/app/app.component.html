@@ -25,10 +25,14 @@
 		<div class="col-md-12" *ngIf="peticiones">
 			<app-peticiones-component></app-peticiones-component>
 		</div>
-		<!-- chat -->
-		<!-- <div class="col-1" *ngIf="contenidoUsuario">
-			<app-chat></app-chat>
-		</div> -->
+		
+		<div class="col-md-12" *ngIf="buscar">
+			<app-buscar></app-buscar>
+		</div>
+
+		<div class="col-md-12" *ngIf="otrosusuarios">
+			<app-otrosusuarios></app-otrosusuarios>
+		</div>
 	</div>
 </div>
 <div *ngIf="!usarioLogueado" class="login">

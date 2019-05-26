@@ -21,6 +21,12 @@
 								[(ngModel)]="apellido" [ngModelOptions]="{standalone: true}" (focusout)="validarApellido()" (input)="longitudApellido()">
 						</div>
 						<div class="form-group justify-content-center">
+							<div class="info">{{apodoInfo}}</div>
+							<input type="text" class="form-control" name="apodo" id="apodo" placeholder="Apodo"
+								[(ngModel)]="apodo" [ngModelOptions]="{standalone: true}" (focusout)="validarApodo()" (input)="longitudApodo()" oninvalid="setCustomValidity('Correo invalido')">
+							<label class="info">{{apodoExiste}}</label>
+						</div>
+						<div class="form-group justify-content-center">
 							<div class="info">{{correoInfo}}</div>
 							<input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Eléctronico"
 								[(ngModel)]="correo" [ngModelOptions]="{standalone: true}" (focusout)="validarCorreo()" (input)="longitudCorreo()" oninvalid="setCustomValidity('Correo invalido')">

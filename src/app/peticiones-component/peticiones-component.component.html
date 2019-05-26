@@ -7,17 +7,22 @@
 </div>
 
 <div class="">
+  <div class="vacio row offset-1 col-10" *ngIf="peticiones.length == 0">
+    <div>No hay peticiones</div>
+  </div>
   <div *ngFor="let peticion of peticiones" class="peticiones row offset-1 col-10">
-
     <div class="offset-3 col-6 peticion mt-4 mb-4">
 
       <!-- informacion sobre el usaurio que ha enviado la peticion -->
-      <div class="informacion col-12">
+      <div class="informacion col-12" (click)="redirigir(peticion.getOtroUsuario()['apodo'])">
         <div class="row">
           <img src="../../{{peticion.getOtroUsuario()['avatar']}}" class="perfil">
         </div>
         <div class="row">
           <b class="nombre">{{peticion.getOtroUsuario()['nombre']+" "+peticion.getOtroUsuario()['apellido']}}</b>
+        </div>
+        <div class="row">
+          <span class="apodo">{{peticion.getOtroUsuario()['apodo']}} </span>
         </div>
       </div>
 

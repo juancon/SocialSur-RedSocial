@@ -22,6 +22,8 @@ textarea{
 	margin-bottom: 10%;
 }
 
-.nombre{
-	margin-bottom: 5%;	
+.apodo{
+	margin-bottom: 5%;
+	font-size: 0.9em;
+	color: #5880AF;
 }

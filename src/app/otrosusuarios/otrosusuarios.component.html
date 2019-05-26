@@ -1,0 +1,220 @@
+<div class="supreme-container" id="contenidoUsuario">
+  <div class="container contenido">
+    <!-- informacion del usuario que se esta mostrando -->
+    <div class="infousuario offset-md-3 col-md-6 row" *ngIf="otroUsuario != null">
+      <div class="col pt-1 pb-1">
+        <img src="../../{{otroUsuario.getAvatar()}}" class="mr-auto rounded" width="90%">
+      </div>
+      <div class="col-7 ">
+        <div class="row ">
+          <span class="nombreusuario">{{otroUsuario.getNombre()+" "+otroUsuario.getApellido()}} </span>
+        </div>
+        <div class="row">
+          <span class="apodo">{{otroUsuario.getApodo()}} </span>
+        </div>
+        <div class="row">
+          <span class="bio">{{otroUsuario.getBio()}}</span>
+        </div>
+      </div>
+
+      <div class="col acciones">
+        <div class="d-block mt-2 mb-2" *ngIf="comprobarAmistad(otroUsuario.getAmistad())">
+          <button title="Borrar Amigo" data-toggle="modal" data-target="#borraramigo">
+            <img src="../../assets/iconos/basura.svg" width="50%">
+          </button>
+        </div>
+        <div class="d-block mb-2 mt-2" *ngIf="comprobarAmistad(otroUsuario.getAmistad())">
+          <button title="Enviar Mensaje" data-toggle="modal" data-target="#enviarmensaje">
+            <img src="../../assets/iconos/sobre.svg" width="50%">
+          </button>
+        </div>
+        <div class="d-block mb-2 mt-2"
+          *ngIf="!comprobarAmistad(otroUsuario.getAmistad()) && comprobarSocilitud(otroUsuario.getAmistad())">
+          <button title="solicituar amistad" data-toggle="modal" data-target="#solicitaramistad">
+            <img src="../../assets/iconos/add-user.png" width="50%">
+          </button>
+        </div>
+        <div class="d-block mb-2 mt-2"
+          *ngIf="!comprobarAmistad(otroUsuario.getAmistad()) && !comprobarSocilitud(otroUsuario.getAmistad())">
+          <button title="Esperando respuesta...">
+            <img src="../../assets/iconos/sand-clock.png" width="50%">
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- recorremos el array con el contenido del usuario -->
+    <div *ngFor="let contenido of contenidoUsuario" class="archivos mb-5">
+
+      <div class="nombre d-flex justify-content-between mx-auto" title="{{contenido.getNombre()}}">
+        <div class="bordeizquierdo"></div>
+        <h2>{{contenido.getNombre()}}</h2>
+        <div class="bordederecho"></div>
+      </div>
+
+      <!-- prguntamos si el contenido actual es un video -->
+      <div class="archivo d-flex" *ngIf="comprobarVideo(contenido.getTipo())">
+        <!-- archivo -->
+        <div class="col-8 video">
+          <video src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}" width="100%" controls></video>
+        </div>
+        <div class="col-4 informacion">
+          <!-- megusta y fecha -->
+          <div class="row">
+            <button class="megusta" (click)="darQuitarMegusta(contenido.getId())" *ngIf="otroUsuario.getAmistad() == 1">
+              <img src="{{contenido.getRutamegustas()}}" width="20px" height="20px" title="Me gusta" alt="Me gusta">
+              {{contenido.getMegustas()}}
+            </button>
+            <div class="ml-auto fecha">
+              {{contenido.getFecha()}}
+            </div>
+          </div>
+          <!-- comentarios -->
+          <div>
+            <div class="comentarios">
+              <div *ngIf="esVacio(contenido.getComentarios())">
+                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+              </div>
+              <div *ngFor="let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
+                <div class="col-12 comentario d-block">
+                  <b>{{comentario.getNombreUsuario()}}</b>
+                  {{comentario.getComentario()}}
+                  <i class="fecha">{{comentario.getFecha()}}</i><br />
+                </div>
+              </div>
+            </div>
+            <div class="relleno">Comentarios</div>
+            <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
+              <div class="col-12" id="textcomentario{{contenido.getId()}}">
+                <div class="info text-center">{{comentarioinfo}}</div>
+                <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
+                  [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
+              </div>
+              <button class="d-flex ml-auto comentar" (click)="comentar(contenido.getId(),contenido.getComentarios())">
+                Comentar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- prguntamos si el contenido actual es una foto -->
+      <div class="archivo d-flex" *ngIf="comprobarFoto(contenido.getTipo())">
+        <!-- archivo -->
+        <div class="col-8 foto">
+          <img src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}">
+        </div>
+        <div class="col-4 informacion">
+          <!-- fecha y megusta -->
+          <div class="row">
+            <button class="megusta" (click)="darQuitarMegusta(contenido.getId())" *ngIf="otroUsuario.getAmistad() == 1">
+              <img src="{{contenido.getRutamegustas()}}" width="20px" height="20px" title="Me gusta" alt="Me gusta">
+              {{contenido.getMegustas()}}
+            </button>
+            <div class="ml-auto fecha">
+              {{contenido.getFecha()}}
+            </div>
+          </div>
+          <!-- comentarios -->
+          <div>
+            <div class="comentarios">
+              <div *ngIf="esVacio(contenido.getComentarios())">
+                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+              </div>
+              <div *ngFor="let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
+                <div class="col-12 comentario d-block">
+                  <i class="fecha">{{comentario.getFecha()}}</i><br />
+                </div>
+                <div class="col-12 comentario d-block">
+                  <b>{{comentario.getNombreUsuario()}}</b>
+                  {{comentario.getComentario()}}
+
+                </div>
+              </div>
+            </div>
+            <div class="relleno">Comentarios</div>
+            <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
+              <!-- *ngIf="comentando" -->
+              <div class="col-12" id="textcomentario{{contenido.getId()}}">
+                <div class="info text-center">{{comentarioinfo}}</div>
+                <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
+                  [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
+              </div>
+              <button class="d-flex ml-auto comentar" (click)="comentar(contenido.getId(),contenido.getComentarios())">
+                Comentar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ventana modal para enviar solicidtud de amistad -->
+<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="solicitaramistad" tabindex="-1"
+  role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true" *ngIf="otroUsuario != null">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <h3 class="mb-3 text-center">Solicitud de amistad para:</h3>
+          <h3 class="mb-3 text-center">{{otroUsuario.getNombre()+" "+otroUsuario.getApellido()}}</h3>
+          <textarea id="form7" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+            class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="enviarSolicitud()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ventana modal para enviar mensaje -->
+<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="enviarmensaje" tabindex="-1"
+  role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true" *ngIf="otroUsuario != null">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <h3 class="mb-3 text-center">Mensaje para:</h3>
+          <h3 class="mb-3 text-center">{{otroUsuario.getNombre()+" "+otroUsuario.getApellido()}}</h3>
+          <textarea id="form" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+            class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="enviarMensaje()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ventana modal para borrar amigo -->
+<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="borraramigo" tabindex="-1" role="dialog"
+  aria-labelledby="enviarmensajes" aria-hidden="true" *ngIf="otroUsuario != null">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <h3 class="mb-3 text-center">
+            ¿Está seguro que desea eliminar a
+            <b>{{otroUsuario.getNombre()+" "+otroUsuario.getApellido()}}</b>
+            de sus amigos?
+          </h3>
+          <div class="row d-flex justify-content-around">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-danger" (click)="borrarAmigo()" data-dismiss="modal">Si</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

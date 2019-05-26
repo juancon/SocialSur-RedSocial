@@ -22,6 +22,8 @@ import { ContenidoUsuarioComponent } from './contenido-usuario/contenido-usuario
 import { AmigosComponent } from './amigos/amigos.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { PeticionesComponent } from './peticiones-component/peticiones-component.component';
+import { BuscarComponent } from './buscar/buscar.component';
+import { OtrosusuariosComponent } from './otrosusuarios/otrosusuarios.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { PeticionesComponent } from './peticiones-component/peticiones-component
     ContenidoUsuarioComponent,
     AmigosComponent,
     MensajesComponent,
-    PeticionesComponent
+    PeticionesComponent,
+    BuscarComponent,
+    OtrosusuariosComponent
   ],
   imports: [
     BrowserModule,

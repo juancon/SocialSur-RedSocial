@@ -19,6 +19,7 @@ export class RecogerUsuarioLocalService {
 					aux.id,
 					aux.nombre,
 					aux.apellido,
+					aux.apodo,
 					aux.password,
 					aux.email,
 					aux.bio,
@@ -46,6 +47,7 @@ export class RecogerUsuarioLocalService {
 					aux.id,
 					aux.nombre,
 					aux.apellido,
+					aux.apodo,
 					aux.password,
 					aux.email,
 					aux.bio,
@@ -57,9 +59,33 @@ export class RecogerUsuarioLocalService {
 			//lo devolvemos
 			return usuarioAux;
 		}
-		return new Usuario(0," "," "," "," "," "," "," ",0,0);
+		return new Usuario(0," "," "," ",""," "," "," "," ",0,0);
 	}
 
-
-	get
+	public getOtroUsuario():Usuario{
+		if(sessionStorage.getItem("otrousuario") != null){
+			//recogemos el usuario almacenado en local y lo convertimos a objeto
+			let aux = JSON.parse(sessionStorage.getItem("otrousuario"));
+			//creamos un usuario con ese objeto
+			let usuarioAux = new Usuario(
+					aux.id,
+					aux.nombre,
+					aux.apellido,
+					aux.apodo,
+					aux.password,
+					aux.email,
+					aux.bio,
+					aux.avatar,
+					aux.conectado,
+					aux.activado,
+					aux.admin
+			);
+			usuarioAux.setAmistad(aux.amistad);
+			
+			sessionStorage.removeItem("otrousuario")
+			//lo devolvemos
+			return usuarioAux;
+		}
+		return new Usuario(0," "," "," ",""," "," "," "," ",0,0);
+	}
 }

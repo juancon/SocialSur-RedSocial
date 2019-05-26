@@ -36,12 +36,12 @@ export class MensajesComponent implements OnInit {
 		this.obtenerMensajes();
 		this.cambiarEstilo("recibidos");
 
-		setInterval(this.obtenerMensajes.bind(this),30000);
+		setInterval(this.obtenerMensajes.bind(this),15000);
 		
 	}
 
 	ngOnInit() {
-		setInterval(this.ocultar.bind(this),75);
+		setInterval(this.ocultar.bind(this),1);
 	}
 
 	private ocultar():void{
@@ -64,14 +64,14 @@ export class MensajesComponent implements OnInit {
 		//ocultamos los recibidos y mostramoslos enviados
 		this.mostrarRecibidos = true;
 		this.mostrarEnviados = false;
-
+		this.respondiendo = false;
 		this.cambiarEstilo("recibidos");
 	}
 	private mostrarSoloEnviados():void{
 		//ocultamos los enviados y mostramoslos recibidos
 		this.mostrarEnviados = true;
 		this.mostrarRecibidos = false;
-		
+		this.respondiendo = false;		
 		this.cambiarEstilo("enviados");
 	}
 
@@ -89,7 +89,6 @@ export class MensajesComponent implements OnInit {
 	// funciones para saber si un mensaje ha sido enviado o recibido y mostrarlo o no
 	private mensajeEnviado(mensaje:Mensaje):boolean{
 		//comprobamos si el que envio el mensaje es el Usuario
-		//console.log("UsuarioFrom: "+mensaje.getIdusuariofrom()+"||| IdUsuario: "+this.usuario.getId() +"//"+ this.mostrarEnviados)
 		if(this.mostrarEnviados){
 			if(mensaje.getIdusuariofrom() == this.usuario.getId()){
 				return true
@@ -133,28 +132,30 @@ export class MensajesComponent implements OnInit {
 		this.obtenerMensajes();
 	}
 
-	private responder(idusuarioto:number,idmensaje:number):void{
+	private mostrarResponder(idmensaje:number):void{
 		if(this.respondiendo){
-			//comprobamos que el comentario no este vacio
-			if(this.respuesta != ""){
-				//enviamos el comentario a la base de datos
-				this.enviarMensaje(this.usuario.getId(),idusuarioto,this.respuesta);
-				//ocultamos el textarea y reseteamos los avriables
-				this.respondiendo = false;
-				$("#responder"+idmensaje).hide();
-				this.respuesta = "";
-				
-				//actualizamos el array actual
-				this.obtenerMensajes();
-			}else{
-				$("#responder"+idmensaje).hide();
-				this.respondiendo = false;
-			}
+			this.respondiendo = false;
+			this.respuesta = "";
 		}else{
-			$("#responder"+idmensaje).show();
 			this.respondiendo = true;
+			//@ts-ignore
+			$("#responder"+idmensaje).show();
 		}
+
+		this.ocultar();
 	}
+
+	private enviar(idusuarioto:number,idmensaje:number){
+		//enviamos el comentario a la base de datos
+		this.enviarMensaje(this.usuario.getId(),idusuarioto,this.respuesta);
+		//ocultamos el textarea y reseteamos los avriables
+		this.respondiendo = false;
+		this.respuesta = "";
+		
+		//actualizamos el array actual
+		this.obtenerMensajes();
+	}
+
 
 	private enviarMensaje(idusuario:number,idusuarioto:number,mensaje:string):void{
 		this._mensajes.enviarMensaje(idusuario,idusuarioto,mensaje);
