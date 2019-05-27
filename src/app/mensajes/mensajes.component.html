@@ -38,7 +38,7 @@
             {{mensaje.getOtroUsuario()['nombre']+" "+mensaje.getOtroUsuario()['apellido']}}
           </span>
 
-          <span class="apodo">{{mensaje.getOtroUsuario()['apodo']}} </span>
+          <span class="apodo" >{{mensaje.getOtroUsuario()['apodo']}} </span>
         </a>
         <button class="btn btn-default" title="Marcar como leído" *ngIf="comprobarNoLeido(mensaje)"
           (click)="marcarLeido(mensaje)">
@@ -47,7 +47,7 @@
       </div>
       <hr class="separarInfo">
       <div class="offset-md-3 col-md-6 mensaje">
-        <div>{{mensaje.getMensaje()}}</div>
+        <div  [innerHTML]="mensaje.getMensaje()"></div>
         <div class="mt-2" id="responder{{mensaje.getId()}}">
           <textarea class="form-control" [(ngModel)]="respuesta" [ngModelOptions]="{standalone: true}"
             placeholder="Escribe tu mensaje..."></textarea>

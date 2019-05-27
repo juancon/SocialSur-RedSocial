@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//importamos los servicios para poder interactuar con las urls
+import { Router, ActivatedRoute, Params,NavigationEnd } from '@angular/router';
 //Importamos el modulo http al servicio
 import {Http, Response, Headers} from "@angular/http";
 //Importamos la funcion map
@@ -47,9 +49,12 @@ export class ContenidoUsuarioComponent implements OnInit {
 	private ocultar:boolean = false;
 	private nuevoComentario:string = "";
 	private comentarioinfo:string = "";
+	//variable para la referencia
+	private referencia:string = "";
 
 
 	constructor(
+		private _router: Router,
 		private _recogerUsuario: RecogerUsuarioLocalService,
 		private _urls: UrlsService,
 		private _http: Http,
@@ -64,11 +69,33 @@ export class ContenidoUsuarioComponent implements OnInit {
 		this.recogerArchivos();
 		//obetenemos todos los comentarios
 		this.obtenerComentariosArchivos();
+		this.obtenerReferencia();
+		setTimeout(this.irA.bind(this),1000);
 	}
 
 	ngOnInit() {
 		//ocultamos loc comentarios cuando no se este comentado
 		setInterval(this.oculatr.bind(this),75);
+	}
+
+	private obtenerReferencia():void{
+		//obtenemos el parametro que queremos de la url
+		let url = this._router.parseUrl(this._router.url);
+		//si esxites la referencia la obtenemos
+		if(typeof(url.queryParams['ref']) != "undefined"){
+			this.referencia = url.queryParams['ref'];
+			
+		}
+
+	}
+
+	private irA():void{
+		if(this.referencia != ""){
+			//si la referencia no esta vacia movemos el contenido del body hasta el top -100 del nombre de la publicacion
+			$("html, body").animate({
+				scrollTop: $("[name='"+this.referencia+"']").offset().top-100
+			}, 0);
+		}
 	}
 
 	private oculatr():void{
@@ -268,8 +295,8 @@ export class ContenidoUsuarioComponent implements OnInit {
 				this.comentando = false;
 			}
 		}else{
-			$("#textcomentario"+idelemento).show();
 			this.comentando = true;
+			$("#textcomentario"+idelemento).show();
 		}
 	}
 }

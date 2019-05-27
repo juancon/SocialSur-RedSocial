@@ -59,6 +59,8 @@ export class OtrosusuariosComponent implements OnInit {
 	private comentarioinfo:string = "";
 	//variable referente a los mensajes
 	private mensaje:string = "";
+	//variable referente a la redireccion a un archivo en concreto
+	private referencia:string = "";
 
 
 	constructor(
@@ -77,6 +79,7 @@ export class OtrosusuariosComponent implements OnInit {
 		this.miUsuario = this._recogerUsuario.getUsuario();
 		this.obtenerUrl();
 		setTimeout(this.iniciar.bind(this),500);
+		setTimeout(this.irA.bind(this),1000);
 
 	}
 
@@ -100,12 +103,25 @@ export class OtrosusuariosComponent implements OnInit {
 		//obtenemos el parametro que queremos de la url
     let url = this._router.parseUrl(this._router.url);
 		this.apodo = url.queryParams['apodo'];
+		//si esxites la referencia la obtenemos
+		if(typeof(url.queryParams['ref']) != "undefined"){
+			this.referencia = url.queryParams['ref'];
+		}
+
 		if(this.apodo == this.miUsuario.getApodo()){
 			this._router.navigate([""]);
 		}
     //llamamos a la funcion para obtener a los usuario que coincidad
 		this._operacionesUsuarios.getUsuarioByApodo(this.apodo);
     setTimeout(this.obtenerOtroUsuario.bind(this),500);
+	}
+
+	private irA():void{
+		if(this.referencia != ""){
+			$("html, body").animate({
+				scrollTop: $("[name='"+this.referencia+"']").offset().top-100
+			}, 0);
+		}
 	}
 
 	private obtenerOtroUsuario(){

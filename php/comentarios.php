@@ -70,7 +70,17 @@
 			//preguntamos si el apodo del amigo se encontro en el mensaje
 			if(strrpos($comentario, $aux[$i]["apodo"]) !== false){
 				//creamos el mensaje de aviso
-				$mensaje = $usuario[0]->getNombre()." ".$usuario[0]->getApellido()." te ha mencionado en su comentario en la publicación ".$archivo[0]->getNombre()." subida por ".$autor[0]->getNombre()." ".$autor[0]->getApellido().".";
+				//$mensaje = $usuario[0]->getNombre()." ".$usuario[0]->getApellido()." te ha mencionado en su <a href='/usuario?apodo=@juan' >comentario</a> en la publicación ".$archivo[0]->getNombre()." subida por ".$autor[0]->getNombre()." ".$autor[0]->getApellido().".";
+
+				//preguntamos si el autor de la publicacion es el mismo que el que va a recibir el mensaje
+				if($autor[0]->getId() == $aux[$i]["id"]){
+					$mensaje = "<a href='/usuario?apodo=".$usuario[0]->getApodo()."'>".$usuario[0]->getNombre()." ".$usuario[0]->getApellido()."</a> te ha mencionado en su último <a href='/?ref=".$archivo[0]->getId()."'>comentario</a>";
+				}else{
+					//de lo contrario enviamos el siguiente mensaje
+					$mensaje = "<a href='/usuario?apodo=".$usuario[0]->getApodo()."'>".$usuario[0]->getNombre()." ".$usuario[0]->getApellido()."</a> te ha mencionado en su último <a href='/usuario?apodo=".$autor[0]->getApodo()."&ref=".$archivo[0]->getId()."'>comentario</a>";
+
+				}
+
 				//enviamos un mensaje al usuario del apado informandolo de que ha sido tagueado
 				$funcionesMensajes::crearMensaje(0,$aux[$i]["id"],$mensaje);
 			}
