@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 27-05-2019 a las 20:39:20
+-- Tiempo de generación: 22-05-2019 a las 22:07:38
 -- Versión del servidor: 5.7.26-0ubuntu0.18.04.1
 -- Versión de PHP: 7.2.17-0ubuntu0.18.04.1
 
@@ -156,6 +156,8 @@ CREATE TABLE `comentarios` (
 --
 
 INSERT INTO `comentarios` (`id`, `idusuario`, `idelemento`, `comentario`, `fecha`) VALUES
+(1, 2, 4, 'Lore ipsum', '2019-04-21 22:05:00'),
+(2, 3, 2, 'Lore ipsum Lore ipsum Lore ipsum', '2019-04-19 22:15:00'),
 (3, 2, 1, 'Bien', '2019-05-04 08:59:13'),
 (4, 2, 1, 'Bien', '2019-05-04 09:43:00'),
 (5, 2, 19, 'Prueba', '2019-05-18 11:34:50'),
@@ -170,18 +172,7 @@ INSERT INTO `comentarios` (`id`, `idusuario`, `idelemento`, `comentario`, `fecha
 (29, 2, 19, 'Annie, are you okay?\nWill you tell us that you\'re okay?', '2019-05-19 11:00:16'),
 (30, 2, 19, 'Annie, are you okay?\nWill you tell us that you\'re okay?', '2019-05-19 11:00:20'),
 (31, 2, 19, 'do you like that', '2019-05-19 12:02:41'),
-(32, 2, 19, 'after the poison summer has gone', '2019-05-19 14:39:16'),
-(33, 2, 23, 'hey', '2019-05-26 12:57:46'),
-(34, 6, 23, 'pasa', '2019-05-26 12:57:57'),
-(35, 2, 19, 'key', '2019-05-26 16:31:13'),
-(51, 2, 21, '@juanma', '2019-05-26 17:34:02'),
-(52, 2, 21, '@juanma', '2019-05-27 17:25:49'),
-(53, 2, 21, '@juanma', '2019-05-27 17:35:26'),
-(54, 2, 21, '@juanma', '2019-05-27 17:36:11'),
-(55, 6, 18, '@juanma mira aqui', '2019-05-27 18:20:22'),
-(56, 2, 18, '@juanma mira aqui', '2019-05-27 18:20:58'),
-(57, 2, 18, '@juanma eo', '2019-05-27 18:24:22'),
-(58, 6, 18, '@juan ya mire', '2019-05-27 18:25:39');
+(32, 2, 19, 'after the poison summer has gone', '2019-05-19 14:39:16');
 
 -- --------------------------------------------------------
 
@@ -242,9 +233,7 @@ INSERT INTO `fotosvideos` (`id`, `url`, `nombre`, `idusuario`, `tipo`, `fecha`) 
 (18, './assets/videos/a575a65c7781f7d32c46cd97db096fa3.mp4', 'juan', 2, 'video', '2019-05-17 09:43:40'),
 (19, './assets/fotos/ff2167a409bae3b07939478a0230d286.jpg', '🤷‍♂️', 2, 'foto', '2019-05-18 07:10:35'),
 (21, './assets/fotos/de90a88453b7134bdcba97d16abc4874.jpg', 'Nice', 2, 'foto', '2019-05-19 20:07:24'),
-(22, './assets/fotos/83e39a617004311bf114b1225b1232a4.jpg', 'Iron Giant', 2, 'foto', '2019-05-22 18:18:14'),
-(23, './assets/fotos/791870e2d537079403359833dff06496.jpg', 'Rock it', 6, 'foto', '2019-05-26 11:54:39'),
-(24, './assets/fotos/8081dd7904c316243f93bc9fe5d89883.jpg', '5a', 18, 'foto', '2019-05-26 13:49:09');
+(22, './assets/fotos/83e39a617004311bf114b1225b1232a4.jpg', 'Iron Giant', 2, 'foto', '2019-05-22 18:18:14');
 
 -- --------------------------------------------------------
 
@@ -292,11 +281,9 @@ INSERT INTO `megustafotosvideos` (`idusuario`, `idelemento`) VALUES
 (2, 16),
 (2, 18),
 (2, 19),
-(2, 23),
 (3, 4),
 (4, 1),
-(5, 2),
-(6, 23);
+(5, 2);
 
 -- --------------------------------------------------------
 
@@ -334,31 +321,7 @@ INSERT INTO `mensajes` (`id`, `idusuariofrom`, `idusuarioto`, `mensaje`, `leido`
 (26, 2, 5, 'prueba', '0', '1', '0', '2019-05-19 21:14:15'),
 (27, 2, 4, 'test', '0', '0', '0', '2019-05-22 19:25:40'),
 (28, 2, 4, 'everything its alright\n', '0', '0', '0', '2019-05-22 19:31:35'),
-(29, 6, 2, 'si me voy va haber peligro', '1', '0', '1', '2019-05-22 19:36:30'),
-(30, 2, 6, 'throw away your television', '1', '0', '0', '2019-05-24 18:21:40'),
-(31, 2, 6, 'Stacy\'s mom has got it goin\' on\nShe\'s all I want and I\'ve waited for so long\nStacy, can\'t you see you\'re just not the girl for me\nI know it might be wrong but I\'m in love with Stacy\'s mom', '1', '0', '1', '2019-05-25 09:07:04'),
-(32, 2, 6, 'its a sweet sensation over the dub', '1', '0', '0', '2019-05-26 14:29:04'),
-(33, 2, 6, 'it\'s a sweet sensation over the dub', '1', '0', '0', '2019-05-26 14:32:44'),
-(34, 2, 6, 'Te ha mencionado en su último comentario', '1', '0', '1', '2019-05-26 17:00:09'),
-(35, 0, 6, 'Te ha mencionado en su último comentario', '1', '0', '1', '2019-05-26 17:07:42'),
-(36, 0, 6, 'Juan Contreras te ha mencionado en su comentario', '1', '0', '1', '2019-05-26 17:14:46'),
-(37, 0, 6, 'Juan Contreras te ha mencionado en su comentario', '1', '0', '1', '2019-05-26 17:17:54'),
-(38, 0, 6, 'Juan Contreras te ha mencionado en su comentario en la publicación Iron Giant', '1', '0', '1', '2019-05-26 17:20:26'),
-(39, 0, 6, 'Juan Contreras te ha mencionado en su comentario en la publicación Iron Giant', '1', '0', '1', '2019-05-26 17:23:51'),
-(40, 0, 6, 'Juan Contreras te ha mencionado en su comentario en la publicación Iron Giant', '1', '0', '1', '2019-05-26 17:26:33'),
-(41, 0, 6, 'Juan Contreras te ha mencionado en su comentario en la publicación Iron Giant', '1', '0', '1', '2019-05-26 17:27:12'),
-(42, 0, 6, 'Juan Contreras te ha mencionado en su comentario en la publicación Iron Giant subida por Juan Contreras.', '1', '0', '1', '2019-05-26 17:29:19'),
-(43, 0, 6, 'Juan Contreras te ha mencionado en su comentario en la publicación Nice subida por Juan Contreras.', '1', '0', '1', '2019-05-26 17:34:02'),
-(44, 2, 3, 'fe', '0', '0', '0', '2019-05-26 17:55:03'),
-(46, 2, 6, 'que pasa', '1', '0', '1', '2019-05-26 18:00:26'),
-(47, 2, 6, 'heyses', '1', '0', '1', '2019-05-26 18:05:11'),
-(48, 0, 6, 'Juan Contreras te ha mencionado en su <a href=\'/usuario?apodo=@juan\' >comentario</a> en la publicación Nice subida por Juan Contreras.', '1', '0', '1', '2019-05-27 17:25:49'),
-(49, 0, 6, '<a href=\'/usuario?apodo=@juan\'>Juan Contreras te ha mencionado en su último <a href=\'/usuario?apodo=@juan&ref=21\'>comentario</a>', '1', '0', '1', '2019-05-27 17:35:26'),
-(50, 0, 6, '<a href=\'/usuario?apodo=@juan\'>Juan Contreras</a> te ha mencionado en su último <a href=\'/usuario?apodo=@juan&ref=21\'>comentario</a>', '1', '0', '1', '2019-05-27 17:36:11'),
-(51, 0, 2, '<a href=\'/usuario?apodo=@juanma\'>Juan Manuel Hernandez</a> te ha mencionado en su último <a href=\'/usuario?apodo=@juan&ref=18\'>comentario</a>', '0', '0', '0', '2019-05-27 18:20:22'),
-(52, 0, 6, '<a href=\'/usuario?apodo=@juan\'>Juan Contreras</a> te ha mencionado en su último <a href=\'/usuario?apodo=@juan&ref=18\'>comentario</a>', '1', '0', '1', '2019-05-27 18:20:58'),
-(53, 0, 6, '<a href=\'/usuario?apodo=@juan\'>Juan Contreras</a> te ha mencionado en su último <a href=\'/usuario?apodo=@juan&ref=18\'>comentario</a>', '0', '0', '0', '2019-05-27 18:24:22'),
-(54, 0, 2, '<a href=\'/usuario?apodo=@juanma\'>Juan Manuel Hernandez</a> te ha mencionado en su último <a href=\'/inicio?ref=18\'>comentario</a>', '0', '0', '0', '2019-05-27 18:25:39');
+(29, 6, 2, 'si me voy va haber peligro', '1', '0', '0', '2019-05-22 19:36:30');
 
 -- --------------------------------------------------------
 
@@ -379,7 +342,12 @@ CREATE TABLE `solicitudesamistad` (
 --
 
 INSERT INTO `solicitudesamistad` (`usuariofrom`, `usuarioto`, `mensaje`, `aceptado`, `fecha`) VALUES
-(18, 2, 'No cure is near 🤢', '0', '2019-05-25 12:14:45');
+(2, 3, '', '1', '2019-05-04 17:08:16'),
+(3, 4, '', '1', '2019-05-04 17:08:16'),
+(3, 6, '', '1', '2019-05-04 17:08:16'),
+(5, 2, '', '1', '2019-05-04 17:08:49'),
+(5, 4, 'Soy yo', '1', '2019-05-04 11:23:50'),
+(6, 2, '', '1', '2019-05-04 17:08:16');
 
 -- --------------------------------------------------------
 
@@ -391,10 +359,9 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `apellido` varchar(50) COLLATE utf8mb4_bin NOT NULL,
-  `apodo` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `email` varchar(100) COLLATE utf8mb4_bin NOT NULL,
   `password` varchar(100) COLLATE utf8mb4_bin NOT NULL,
-  `bio` varchar(200) COLLATE utf8mb4_bin DEFAULT 'Hey there! I am using SocialSur!',
+  `bio` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
   `avatar` varchar(500) COLLATE utf8mb4_bin DEFAULT '/assets/iconos/user-3.svg',
   `conectado` char(1) COLLATE utf8mb4_bin NOT NULL DEFAULT '1',
   `activado` char(1) COLLATE utf8mb4_bin DEFAULT '0',
@@ -405,19 +372,16 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `apodo`, `email`, `password`, `bio`, `avatar`, `conectado`, `activado`, `admin`) VALUES
-(0, 'Información', 'SocialSur', '', 'socialsur@gmail.com', '9fc2931ce49cdec579def68635c38798', '¡Bienvenido a SocialSur!', '/assets/logo.png', '0', '1', '0'),
-(1, 'admin', 'admin', '', 'admin@socialsur.com', '21232f297a57a5a743894a0e4a801fc3', '', '/assets/iconos/user-3.svg', '0', '1', '1'),
-(2, 'Juan', 'Contreras', '@juan', 'juan@gmail.com', 'a94652aa97c7211ba8954dd15a3cf838', 'Turn it up at five minutes to midnight!', './assets/img/avatar/2.jpg', '0', '1', '0'),
-(3, 'Roberto', 'Fernandez', '@roberto', 'roberto@gmail.com', 'c1bfc188dba59d2681648aa0e6ca8c8e', 'Oh there ain\'t no rest for the wicked\nMoney don\'t grow on trees\nI got bills to pay, I got mouths to feed\nThere ain\'t nothing in this world for free', '/assets/iconos/user-3.svg', '0', '1', '0'),
-(4, 'José Carlos', 'Salatti', '@salatti', 'salatti@gmail.com', '4199fbdc311bffda6dd704d0801973f5', '', '/assets/iconos/user-3.svg', '0', '1', '0'),
-(5, 'Fernando', 'Sanchez', '@fernando', 'fernando@gmail.com', '56437ee14d804bfa14762e0b1782827e', 'This ain\'t no place for no hero This ain\'t no place for no better man This ain\'t no place for no hero To call \"home\"', '/assets/iconos/user-3.svg', '0', '1', '0'),
-(6, 'Juan Manuel', 'Hernandez', '@juanma', 'juanma@gmail.com', '65a368f66ad6b9ee45263577713d8a95', 'A  seven nation army couldn\'t hold me back 🐱‍👤', '/assets/iconos/user-3.svg', '0', '0', '0'),
-(10, 'Another', 'One', '@another', 'bites@the.dust', 'b32d73e56ec99bc5ec8f83871cde708a', 'And another one gone, and another one gone', '/assets/iconos/user-3.svg', '0', '0', '0'),
-(11, 'I\'m going', 'Off the rails', '@rails', 'run@i.run', '9e6417ebffecef071eaeeb2ed0ca654b', 'On the crazy train', '/assets/iconos/user-3.svg', '0', '1', '0'),
-(18, 'test', 'test', '@test', 'test@test.com', '098f6bcd4621d373cade4e832627b4f6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non ante augue. Sed vehicula fermentum purus, eget sollicitudin erat sollicitudin a.', '/assets/iconos/user-3.svg', '0', '0', '0'),
-(19, 'Antonio', 'Hernandez', '@antonio', 'antonio@gmail.com', '1e3a746dfb254de3bdf400c45137a389', NULL, '/assets/iconos/user-3.svg', '0', '0', '0'),
-(20, 'Eduardo', 'Herrera', '@eduardo', 'eduardo@gmail.com', '3b7c2688d955cf91d6ce42e2fa9ebbe3', NULL, '/assets/iconos/user-3.svg', '0', '0', '0');
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `bio`, `avatar`, `conectado`, `activado`, `admin`) VALUES
+(1, 'admin', 'admin', 'admin@socialsur.com', '21232f297a57a5a743894a0e4a801fc3', '', '/assets/iconos/user-3.svg', '0', '1', '1'),
+(2, 'Juan', 'Contreras', 'juan@gmail.com', 'a94652aa97c7211ba8954dd15a3cf838', 'Turn it up at five minutes to midnight!', './assets/img/avatar/2.jpg', '0', '1', '0'),
+(3, 'Roberto', 'Fernandez', 'roberto@gmail.com', 'c1bfc188dba59d2681648aa0e6ca8c8e', 'Oh there ain\'t no rest for the wicked\nMoney don\'t grow on trees\nI got bills to pay, I got mouths to feed\nThere ain\'t nothing in this world for free', '/assets/iconos/user-3.svg', '0', '1', '0'),
+(4, 'José Carlos', 'Salatti', 'salatti@gmail.com', '4199fbdc311bffda6dd704d0801973f5', '', '/assets/iconos/user-3.svg', '0', '1', '0'),
+(5, 'Fernando', 'Sanchez', 'fernando@gmail.com', '56437ee14d804bfa14762e0b1782827e', 'This ain\'t no place for no hero This ain\'t no place for no better man This ain\'t no place for no hero To call \"home\"', '/assets/iconos/user-3.svg', '0', '1', '0'),
+(6, 'Juan Manuel', 'Hernandez', 'juanma@gmail.com', '65a368f66ad6b9ee45263577713d8a95', 'A  seven nation army couldn\'t hold me back 🐱‍👤', '/assets/iconos/user-3.svg', '0', '0', '0'),
+(10, 'Another', 'One', 'bites@the.dust', 'b32d73e56ec99bc5ec8f83871cde708a', 'And another one gone, and another one gone', '/assets/iconos/user-3.svg', '0', '0', '0'),
+(11, 'I\'m going', 'Off the rails', 'run@i.run', '9e6417ebffecef071eaeeb2ed0ca654b', 'On the crazy train', '/assets/iconos/user-3.svg', '0', '1', '0'),
+(18, 'test', 'test', 'test@test.com', '05a671c66aefea124cc08b76ea6d30bb', NULL, '/assets/iconos/user-3.svg', '0', '0', '0');
 
 --
 -- Índices para tablas volcadas
@@ -502,7 +466,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
@@ -512,17 +476,17 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT de la tabla `fotosvideos`
 --
 ALTER TABLE `fotosvideos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Restricciones para tablas volcadas
 --

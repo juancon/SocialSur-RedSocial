@@ -204,7 +204,14 @@
 	color: red;
 	font-size: 0.8em;
 }
-
+.denunciar{
+	z-index: 2;
+	width: 50%;
+}
+.denunciar button{
+	border: none;
+	background-color: rgba(0, 0, 0,0)
+}
 .comentarios{
 	overflow-y: auto;
 }
@@ -228,7 +235,8 @@ h5{
 	position: absolute;
 	border-left: 1px solid #008BEA;
 	bottom: 0px;
-	right: 1px
+	right: 1px;
+	z-index: 1;
 }
 .botonComentar button{
 	border: none;

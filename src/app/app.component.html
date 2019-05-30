@@ -1,12 +1,20 @@
 <div *ngIf="usarioLogueado" class="usariologueado">
+	<!-- si el suaurio es admin -->
+	<div class="row" *ngIf="esAdmin">
+		<div class="col-12">
+			<app-administracion></app-administracion>
+		</div>
+	</div>
+
+	<!-- si el usuario no es administrador -->
 	<!-- fila barra de navegacion -->
-	<div class="row">
+	<div class="row" *ngIf="!esAdmin">
 		<div class="col-12">
 			<app-barra-navegacion></app-barra-navegacion>
 		</div>
 	</div>
 	<!-- Informacion contenido y chat -->
-	<div class="row">
+	<div class="row" *ngIf="!esAdmin">
 		<!-- perfil -->
 		<div class="col-md-12" *ngIf="perfil">
 			<app-informacion-usuario></app-informacion-usuario>

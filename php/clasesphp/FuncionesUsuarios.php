@@ -80,7 +80,7 @@
 			$conexion = DB::connectDB();
 			$seleccion = "	SELECT * 
 							FROM usuarios
-							WHERE email = '$email' AND password = '".md5($password)."' AND admin != 1";
+							WHERE email = '$email' AND password = '".md5($password)."'";
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {

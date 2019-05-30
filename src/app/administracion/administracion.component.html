@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="navegacion col-12">
+    <nav class="navbar navbar-expand-sm navbar-light col-12">
+      <!-- Boton para expandir -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barraNavegacion"
+        aria-controls="barraNavegacion" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Opciones -->
+      <div class="collapse navbar-collapse row" id="barraNavegacion">
+        <div class="navbar-nav container d-flex flex-row d-flex col-12">
+          <a class="nav-item nav-link active ml-auto mr-3" routerLink="" (click)="cerrarSesion()">
+            <img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir">
+            <span class="sr-only">(current)</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div id="denuncias" class="container contenido col-md-10">
+    <div *ngFor="let denuncia of denuncias" class="archivos mb-5">
+
+      <div class="nombre d-flex justify-content-between mx-auto" title="{{denuncia.getElemento().getNombre()}}">
+        <div class="bordeizquierdo"></div>
+        <h2>
+          <a class="referencia" name="{{denuncia.getElemento().getId()}}">
+            {{denuncia.getElemento().getNombre()}}
+            <span class="numDenuncia">{{denuncia.getNumdenuncias()}}</span>
+          </a>
+        </h2>
+        <div class="bordederecho"></div>
+      </div>
+
+      <!-- prguntamos si el contenido actual es un video -->
+      <div class="archivo d-flex" *ngIf="comprobarVideo(denuncia.getElemento().getTipo())">
+        <!-- archivo -->
+        <div class="col-8 video">
+          <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}"
+            width="100%" controls></video>
+        </div>
+        <div class="col-4 informacion">
+          <!--  fecha -->
+          <div class="row">
+            <div class="ml-auto fecha">
+              {{denuncia.getElemento().getFecha()}}
+            </div>
+          </div>
+          <!-- comentarios -->
+          <div>
+            <div class="comentarios">
+              <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">
+                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+              </div>
+              <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"
+                class="d-flex align-items-start flex-column">
+                <div class="col-12 comentario d-block">
+                  <b>{{comentario.getNombreUsuario()}}</b>
+                  {{comentario.getComentario()}}
+                  <i class="fecha">{{comentario.getFecha()}}</i><br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- prguntamos si el contenido actual es una foto -->
+      <div class="archivo d-flex" *ngIf="comprobarFoto(denuncia.getElemento().getTipo())">
+        <!-- archivo -->
+        <div class="col-8 foto">
+          <img src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}">
+        </div>
+        <div class="col-4 informacion">
+          <!-- fecha y megusta -->
+          <div class="row">
+            <div class="ml-auto fecha">
+              {{denuncia.getElemento().getFecha()}}
+            </div>
+          </div>
+          <!-- comentarios -->
+          <div>
+            <div class="comentarios">
+              <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">
+                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+              </div>
+              <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"
+                class="d-flex align-items-start flex-column">
+                <div class="col-12 comentario d-block">
+                  <i class="fecha">{{comentario.getFecha()}}</i><br />
+                </div>
+                <div class="col-12 comentario d-block">
+                  <b>{{comentario.getNombreUsuario()}}</b>
+                  {{comentario.getComentario()}}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -24,6 +24,7 @@ import { MensajesComponent } from './mensajes/mensajes.component';
 import { PeticionesComponent } from './peticiones-component/peticiones-component.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { OtrosusuariosComponent } from './otrosusuarios/otrosusuarios.component';
+import { AdministracionComponent } from './administracion/administracion.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { OtrosusuariosComponent } from './otrosusuarios/otrosusuarios.component'
     MensajesComponent,
     PeticionesComponent,
     BuscarComponent,
-    OtrosusuariosComponent
+    OtrosusuariosComponent,
+    AdministracionComponent
   ],
   imports: [
     BrowserModule,

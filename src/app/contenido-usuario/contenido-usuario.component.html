@@ -1,5 +1,5 @@
 <div class="supreme-container" id="contenidoUsuario">		
-	<div class="container contenido">
+	<div class="container contenido col-md-10">
 		<!-- botones para agregar contenido -->
 		<div class="agregarContenido">
 			<div class="d-flex mx-auto justify-content-end mt-1 mb-1">
@@ -12,7 +12,7 @@
 
 
 		<!-- recorremos el array con el contenido del usuario -->
-		<div *ngFor="let contenido of contenidoUsuario" class="archivos mb-5">
+		<div *ngFor="let contenido of contenidoUsuario" class="archivos mb-5 col-12">
 
 			<div class="nombre d-flex justify-content-between mx-auto" title="{{contenido.getNombre()}}">
 				<div class="bordeizquierdo"></div>
@@ -70,7 +70,7 @@
 
 			
 			<!-- prguntamos si el contenido actual es una foto -->
-			<div class="archivo d-flex" *ngIf="comprobarFoto(contenido.getTipo())" >
+			<div class="archivo d-flex col-12" *ngIf="comprobarFoto(contenido.getTipo())" >
 				<!-- archivo -->
 				<div class="col-8 foto">
 					<img src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}">

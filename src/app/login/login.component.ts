@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
         let datos = result;
         //comprobamos que no haya devuleto error
         if(typeof(datos['error']) == "undefined"){
-          this.crearCookie(datos);
+          this.almacenarUsuaro(datos);
         }else{
           //si da error llamamos a ala funcion que informa al usuario
           this.emailPassMal();
@@ -120,7 +120,7 @@ export class LoginComponent implements OnInit {
     this._router.navigateByUrl("http://localhost:4200/");
   }
 
-  private crearCookie(datos):void{
+  private almacenarUsuaro(datos):void{
     //creamos un nuevo usuario con los datos que hemos recibido
     this.usuario = new Usuario(
       datos['id'],

@@ -30,6 +30,8 @@ export class AppComponent {
 	private peticiones:boolean = false;
 	private buscar:boolean = false;
 	private otrosusuarios:boolean = false;
+	//variable para saber si es admin
+	private esAdmin:boolean = false;
 
 	constructor(
 	//instanciamos las variables de los componentes que hemos importado
@@ -52,6 +54,10 @@ export class AppComponent {
 			this.usarioLogueado = false;
 		}else{
 			this.usarioLogueado = true;
+			//comprobamos si el usuario es administrador
+			if(this._recogerUsuario.getUsuario().getAdmin() == 1){
+				this.esAdmin = true;
+			}
 		}
 	}
 

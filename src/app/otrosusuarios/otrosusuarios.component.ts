@@ -29,6 +29,8 @@ import {OperacionesUsuariosService } from '../services/operaciones-usuarios.serv
 import {OperacionesPeticionesService } from '../services/operaciones-peticiones.service';
 //importamos el servicio con las funciones de loas peticiones
 import {MensajesService } from '../services/mensajes.service';
+//importamos el servicio de las denuncias
+import {OperacionesDenunciasService} from '../services/operaciones-denuncias.service';
 
 
 @Component({
@@ -72,6 +74,7 @@ export class OtrosusuariosComponent implements OnInit {
 		private _operacionesMegustas: OperacionesMeGustasService,
 		private _operacionesUsuarios: OperacionesUsuariosService,
 		private _operacionesPeticiones: OperacionesPeticionesService,
+		private _operacionesDenuncias: OperacionesDenunciasService,
 		private _operacionesAmigos: OperacioneAmigosService,
 		private _comentarios: ComentariosService,
 		private _mensajes: MensajesService
@@ -96,7 +99,7 @@ export class OtrosusuariosComponent implements OnInit {
 		this.urlRecogerArchivos = this._urls.getUrl("recogerArchivos");
 		//obtenemos los archivos
 		this.recogerArchivos();
-		setInterval(this.recogerArchivos.bind(this),30000)
+		setInterval(this.recogerArchivos.bind(this),300000)
 	}
 
 	private obtenerUrl():void{
@@ -316,5 +319,10 @@ export class OtrosusuariosComponent implements OnInit {
     $('#solicitaramistad').modal('hide');
     //reinicamos sus variables
     this.mensaje = "";
-  }
+	}
+	
+	//funcion para denunciar un contenido
+	private denunciar(idelemento,idautor):void{
+		this._operacionesDenuncias.crearDenuncia(this.miUsuario.getId(),idelemento,idautor);
+	}
 }

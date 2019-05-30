@@ -41,7 +41,8 @@ export class UrlsService {
 			 {nombre: "mensajes", fichero: "mensajes.php"},
 			 {nombre: "comentarios", fichero: "comentarios.php"},
 			 {nombre: "usuarios", fichero: "usuarios.php"},
-			 {nombre: "peticiones", fichero: "peticiones.php"}
+			 {nombre: "peticiones", fichero: "peticiones.php"},
+			 {nombre: "denuncias", fichero: "denuncias.php"}
 
 			 
 		]

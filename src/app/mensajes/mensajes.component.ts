@@ -45,7 +45,7 @@ export class MensajesComponent implements OnInit {
 		this.cambiarEstilo("recibidos");
 
 		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
-		setInterval(this.obtenerMensajes.bind(this),15000);
+		setInterval(this.obtenerMensajes.bind(this),30000);
 		
 	}
 

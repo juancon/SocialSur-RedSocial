@@ -1,5 +1,5 @@
 <div class="supreme-container" id="contenidoUsuario">
-  <div class="container contenido">
+  <div class="container contenido col-md-10">
     <!-- informacion del usuario que se esta mostrando -->
     <div class="infousuario offset-md-3 col-md-6 row" *ngIf="otroUsuario != null">
       <div class="col pt-1 pb-1">
@@ -86,7 +86,15 @@
                 </div>
               </div>
             </div>
-            <div class="relleno">Comentarios</div>
+            <div class="dropdown denunciar">
+              <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../../assets/iconos/flag.svg">
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido inapropiado u ofensivo.</a>
+              </div>
+            </div>
+
             <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
               <div class="col-12" id="textcomentario{{contenido.getId()}}">
                 <div class="info text-center">{{comentarioinfo}}</div>
@@ -136,7 +144,14 @@
                 </div>
               </div>
             </div>
-            <div class="relleno">Comentarios</div>
+            <div class="dropdown denunciar">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="../../assets/iconos/flag.svg">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido inapropiado u ofensivo.</a>
+                </div>
+              </div>
             <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
               <!-- *ngIf="comentando" -->
               <div class="col-12" id="textcomentario{{contenido.getId()}}">
