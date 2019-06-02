@@ -102,6 +102,37 @@
 		);
 
 		array_push($respuesta, $usuario);
+	}else if($accion == "obteneradmins"){
+		@$idusuario = $array->idusuario;
+
+		//realizamos la consulta
+		$admins = $funcionesUsuarios::getAdmins();
+
+		for( $i = 0; $i < count($admins); $i++){
+			//evitamos devolver el usuario que ha realizado la busqueda
+			if ($idusuario == $admins[$i]->getId()) {
+				continue;
+			}
+			
+
+			$admin = array(
+					"id" => $admins[$i]->getId(),
+					"nombre" => $admins[$i]->getNombre(),
+					"apellido" => $admins[$i]->getApellido(),
+					"apodo" => $admins[$i]->getApodo(),
+					"email" => $admins[$i]->getPassword(),
+					"bio" => $admins[$i]->getBio(),
+					"avatar" => $admins[$i]->getAvatar(),
+					"conectado" => $admins[$i]->getConectado()
+			);
+
+			array_push($respuesta, $admin);
+		}
+	}else if($accion == "borrarusuario"){
+		@$idusuario = $array->idusuario;
+
+		//borramos el usuario
+		$borrar = $funcionesUsuarios::borrarUsuario($idusuario);
 	}
 	
 	

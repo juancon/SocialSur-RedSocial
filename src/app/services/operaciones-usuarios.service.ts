@@ -122,6 +122,42 @@ export class OperacionesUsuariosService {
 		sessionStorage.setItem("otrousuario",JSON.stringify(datos[0]))
 		
 	}
+
+	public getAdmins(idusuario:number,arrayAdmins:Array<Usuario>):Array<Usuario>{
+		this.usuarios = arrayAdmins;
+
+		let parametros = {
+			idusuario: idusuario,
+			accion : "obteneradmins"
+		}
+		//funcion http.post para enviar los datos
+		let obtener = this._http.post(this.urlUsuarios, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		obtener.subscribe(
+			result => {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos = result;
+				//llamamos a la funcion que ñade los mensajes al array principal
+				this.addUsuarios(datos);
+			}
+		);
+
+		return this.usuarios;
+	}
+
+	public borrarUsuario(idusuario:number):void{
+		let parametros = {
+			idusuario: idusuario,
+			accion : "borrarusuario"
+		}
+		//funcion http.post para enviar los datos
+		let obtener = this._http.post(this.urlUsuarios, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para completar la llamada phps
+		obtener.subscribe(
+			result => {
+			}
+		);
+	}
 }
 
 

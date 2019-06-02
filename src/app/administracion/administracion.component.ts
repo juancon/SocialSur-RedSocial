@@ -1,3 +1,4 @@
+import { RecogerUsuarioLocalService } from './../services/recoger-usuario-local.service';
 import { Component, OnInit } from '@angular/core';
 //importamos la clase con las operacions de las denuncias
 import { OperacionesDenunciasService } from './../services/operaciones-denuncias.service';
@@ -10,10 +11,15 @@ import { OperacionesFechasService } from '../services/operaciones-fechas.service
 import { OperacionesUsuariosService } from '../services/operaciones-usuarios.service';
 import { ComentariosService } from '../services/comentarios.service';
 import { BorrarArchivoService } from './../services/borrar-archivo.service';
+import {UrlsService} from '../services/urls.service';
 import { Comentario } from '../Comentario/comentario';
 import { Usuario } from '../Usuario/usuario';
 //servicio para cerrar sesion
 import { CerrarSesionService } from '../services/cerrar-sesion.service';
+//Importamos el modulo http al servicio
+import {Http, Response, Headers} from "@angular/http";
+//Importamos la funcion map
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-administracion',
@@ -21,11 +27,36 @@ import { CerrarSesionService } from '../services/cerrar-sesion.service';
   styleUrls: ['./administracion.component.css']
 })
 export class AdministracionComponent implements OnInit {
-  private denuncias:Array<Denuncias>;
+	private urlRegistro:string;
+	private urlComprobarCorreo:string;
+	private denuncias:Array<Denuncias>;
+	private admin:Usuario;
+	private admins:Array<Usuario> = new Array();
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
 	private contenidoUsuario:Array<Archivo> = new Array();
 	//variables para ordenar
 	private ordenarPor:string = "nada";
+	//variable para dar de alta a nuevos administradores
+	private altaAdmin:boolean = false;
+	//variables relacionadas al HTML
+	private correo :string = "";
+	private password:string = "";
+	private password2:string = "";
+	private enviar:boolean = false;
+	//variables que informan al usuario
+	private correoInfo:string;
+	private correoExiste:string;
+	private passwordInfo:string;
+	private password2Info:string;
+	private errorRegistro:string;
+	private errorRegistro2:string;
+	//variables de validacion
+	private email:boolean = false;
+	private emailExist:boolean = false;
+	private pass:boolean = false;
+	private passlon:boolean = false;
+	private pass2:boolean = false;
+	private error:boolean = false;
   
   constructor(
 		private _cerrarSesion: CerrarSesionService,
@@ -34,12 +65,180 @@ export class AdministracionComponent implements OnInit {
 		private _operacionesUsuarios: OperacionesUsuariosService,
 		private _borrarArchivo: BorrarArchivoService,
 		private _comentarios: ComentariosService,
+		private _http: Http,
+		private _urls: UrlsService,
+		private _recogerUsuario: RecogerUsuarioLocalService
   ) {
+		this.urlRegistro = _urls.getUrl("crearUsuario");
+		this.urlComprobarCorreo = _urls.getUrl("comprobarCorreo");
+		this.admin = _recogerUsuario.getUsuario();
 		this.obtenerDenuncias();
 		setInterval(this.obtenerDenuncias.bind(this),300000)
   }
-
+	
   ngOnInit() {
+	}
+
+	private obtenerAdmins(){
+		this.admins = this._operacionesUsuarios.getAdmins(this.admin.getId(),this.admins);
+	}
+
+	private altaAdminFormulario():void{
+		this.altaAdmin = true;
+		this.obtenerAdmins();
+	}
+
+	private irDenuncias(){
+		this.altaAdmin = false;
+	}
+
+	private validar():void{
+		// preguntamos si todos los campos son validos
+		if(this.email && this.pass && this.pass2 && this.emailExist){
+			//creamos un array con los valores de los campos
+			let parametros = {
+				tipo: "admin",
+				email: this.correo,
+				pass: this.password
+			}
+			//funcion http.post para enviar los datos
+			let registro = this._http.post(this.urlRegistro, JSON.stringify(parametros)).pipe(map(res => res.json()));
+			//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+			registro.subscribe(
+				result => {
+					//recogemos solo la respuesta del PHP y la pasamos a una variable
+					let datos = result;
+					//comprobamos que no haya devuleto error
+					if(typeof(datos['error']) == "undefined"){
+						this.correo = "";
+						this.password = "";
+						this.password2 = "";
+						this.email = false;
+						this.emailExist = false;
+						this.pass = false;
+						this.pass2 = false;
+						this.obtenerAdmins();
+					}else{
+						//si da error se lo informamos al usuario
+						this.errorRegistro = "Se ha producido un error.";
+						this.errorRegistro2 = "Por favor, inténtelo más tarde.";
+					}
+				}
+			);
+		}else{
+			//si no lo son informamos de los campos incorrectos al usuario
+			this.validarCorreo();
+			this.validarPassword();
+			this.validarPassword2();
+		}
+	}
+
+	private validarCorreo():void{
+		if(this.correo != "" || this.correo == null){
+			if(this.expresionCorreo(this.correo)){
+				this.correoInfo = "";
+				this.email = true;
+			}else{
+				this.correoInfo = "Correo no válido.";
+				this.email = false;
+			}
+		}else{
+			this.correoInfo = "Escribe una dirección de correo.";
+			this.email = false;
+		}
+	}
+	private validarPassword():void{
+		if(this.password != "" || this.password == null){
+			if(this.passlon){
+				this.passwordInfo = "";
+				this.pass = true;
+			}
+			this.validarPassword2();
+		}else{
+			this.passwordInfo = "Escribe una contraseña.";
+			this.pass = false;
+		}
+	}
+	private validarPassword2():void{
+		if(this.password2 != "" || this.password2 == null){
+			//comprobamos si las contraseñas son iguales
+			if(this.password == this.password2){
+				this.password2Info = "";
+				this.pass2 = true;
+			}else{
+				this.password2Info = "Las contraseñas no coinciden.";
+				this.pass2 = false;	
+			}
+		}else{
+			this.password2Info = "Escribe una contraseña.";
+			this.pass2 = false;
+		}
+	}
+	private longitudCorreo():void{
+		if(this.correo.length > 100){
+			this.correo = this.correo.substring(0,99);
+			this.correoInfo = "Máximo 100 caracteres.";
+		}
+		this.comprobarCorreo();
+	}
+	private longitudPassword():void{
+		if(this.password.length < 8){
+			this.passwordInfo = "Mínimo 8 caracteres.";
+		}else if(this.password.length > 7 && this.password.length < 33){
+			this.passwordInfo = "";
+			this.passlon = true;
+		}else if(this.password.length > 33){
+			this.password = this.password.substring(0,32);
+			this.passwordInfo = "Máximo 32 caracteres.";
+		}
+	}
+	private expresionCorreo(cadena):boolean{
+		//patron que valida el 99% de los correos existentes
+		let expresion = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+		//comprobamos el patron con la cadena que se nos ha pasado
+		if(expresion.test(cadena)){
+			return true;
+		}
+		return false;
+	}
+
+	//comprobar si un correo existe
+	private comprobarCorreo():void{
+		//creamos un array con los valores de los campos
+		let parametros = {
+			email: this.correo,
+			accion : "comprobarcorreo"
+		};
+		//funcion http.post para enviar los datos
+		let correo = this._http.post(this.urlComprobarCorreo, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		correo.subscribe(
+			result => {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos = result;
+				this.correoInformar(datos['existe'])
+			}
+		);
+	}
+	private correoInformar(existe:string):void{
+		//comprobamos el resultado e informamos al usuario
+		if(existe == "1"){
+			this.correoExiste = "El correo ya esta en uso.";
+			this.emailExist = false;
+		}else{
+			this.correoExiste = "";
+			this.emailExist = true;
+		}
+	}
+
+	private borraAdmin(idusuario:number):void{
+		this._operacionesUsuarios.borrarUsuario(idusuario);
+		
+		for(var i = 0; i < this.admins.length; i++){
+			if(this.admins[i].getId() == idusuario){
+				this.admins.splice(i,1);
+			}
+		}
 	}
 	
 	private ordenarPorNumero():void{

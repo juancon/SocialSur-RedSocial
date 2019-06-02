@@ -1,3 +1,4 @@
+import { EmailConfirmacionService } from './../services/email-confirmacion.service';
 import { Component, OnInit } from '@angular/core';
 //Importamos el modulo http al servicio
 import {Http, Response, Headers} from "@angular/http";
@@ -56,7 +57,8 @@ export class RegistroComponent implements OnInit {
 	constructor(
 		private _http: Http,
 		private _refrescar: RefrescarService,
-		private _urls: UrlsService
+		private _urls: UrlsService,
+		private _confirmacion: EmailConfirmacionService
 	) {
 		//asignamos el valor a las urls
 		this.urlRegistro = _urls.getUrl("crearUsuario");
@@ -71,6 +73,7 @@ export class RegistroComponent implements OnInit {
 		if(this.name && this.lastName && this.nick && this.email && this.pass && this.pass2 && this.emailExist && this.nickExist){
 			//creamos un array con los valores de los campos
 			let parametros = {
+				tipo: "usuario",
 				name: this.nombre,
 				lastname: this.apellido,
 				nick: this.apodo,
@@ -102,6 +105,8 @@ export class RegistroComponent implements OnInit {
 						);
 						//guardamos el usuario en el navegador
 						sessionStorage.setItem("usuario",JSON.stringify(this.usuario))
+						//enviamos el meail de confirmacion
+						this._confirmacion.enviarEmail(datos['password'],datos['nombre']+" "+datos['apellido'],datos['apodo']);
 						//redirigimos al usuario
 						this._refrescar.refrescar();
 					}else{

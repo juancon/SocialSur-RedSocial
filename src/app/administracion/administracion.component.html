@@ -21,6 +21,13 @@
             </div>
           </div>
 
+          <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
+            <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
+              aria-expanded="false" (click)="altaAdminFormulario()">
+              Nuevo administrador
+            </button>
+          </div>
+
           <a class="nav-item nav-link active ml-auto mr-3" routerLink="" (click)="cerrarSesion()">
             <img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir">
             <span class="sr-only">(current)</span>
@@ -30,134 +37,189 @@
     </nav>
   </div>
 
-  <div class="d-flex mx-auto justify-content-center mb-1">
-    <!-- botones subir contenido -->
-    <button class="btn botonsubir" title="Actualizar" data-toggle="modal" data-target="#enviarmensaje"
-      (click)="obtenerDenuncias()">
-      <img src="../../assets/iconos/refrescar.svg" class="plus" width="40px" height="40px">
+  <div *ngIf="altaAdmin">
+    <!-- botones volver -->
+    <button class="btn" title="Volver" data-toggle="modal" data-target="#enviarmensaje"
+      (click)="irDenuncias()">
+      <img src="../../assets/iconos/volver.svg" class="plus" width="40px" height="40px">
     </button>
-  </div>
 
-  <div id="denuncias" class="container contenido col-md-10">
-    <div class="noHay" *ngIf="!hayDenuncias()">
-      No hay contenido denunciado.
+    
+    <div class="adminform col-md-8 mx-auto">
+      <!-- formulario nuevo administrador -->
+      <form class="col-10 mx-auto">
+        <legend class="text-center header">Añadir un nuevo administrador.</legend>
+        <div class="form-group">
+          <label for="correo">Correo eléctronico</label>
+          <div class="info">{{correoInfo}}</div>
+          <input type="email" class="form-control" id="correo" placeholder="nombre@ejemplo.com" [(ngModel)]="correo"
+            [ngModelOptions]="{standalone: true}" (focusout)="validarCorreo()" (input)="longitudCorreo()"
+            oninvalid="setCustomValidity('Correo invalido')">
+          <label class="info">{{correoExiste}}</label>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <div class="info">{{passwordInfo}}</div>
+          <input type="password" class="form-control" id="password" placeholder="Contraseña" [(ngModel)]="password"
+            [ngModelOptions]="{standalone: true}" (focusout)="validarPassword()" (input)="longitudPassword()">
+        </div>
+        <div class="form-group">
+          <label for="password2">Repita la contraseña</label>
+          <div class="info">{{password2Info}}</div>
+          <input type="password" class="form-control" id="password2" placeholder="Repita la contraseña."
+            [(ngModel)]="password2" [ngModelOptions]="{standalone: true}" (focusout)="validarPassword2()">
+        </div>
+        <div class="form-group">
+          <div class="col-md-12 text-center">
+            <button class="btn btn-primary btn-lg" (click)="validar()">Crear</button>
+          </div>
+        </div>
+      </form>
     </div>
 
+    <div clas="col-md-8 mx-auto">
+      <table class="adminform col-md-6 mx-auto">
+        <tr *ngFor="let administrador of admins">
+          <td class="correoadmin">{{administrador.getEmai()}}</td>
+          <td class="borrar">
+            <button class="btn btn-danger" (click)="borraAdmin(administrador.getId())">Borrar</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-    <div *ngFor="let denuncia of denuncias" class="archivos mb-5">
 
-      <div class="nombre d-flex justify-content-between mx-auto" title="{{denuncia.getElemento().getNombre()}}">
-        <div class="bordeizquierdo"></div>
-        <h2>
-          <a class="referencia" name="{{denuncia.getElemento().getId()}}">
-            {{denuncia.getElemento().getNombre()}}
-            <span class="numDenuncia">{{denuncia.getNumdenuncias()}}</span>
-          </a>
-        </h2>
-        <div class="bordederecho"></div>
-      </div>
+  <div *ngIf="!altaAdmin">
+    <div class="d-flex mx-auto justify-content-center mb-1">
+      <!-- botones actualizar -->
+      <button class="btn botonsubir" title="Actualizar" data-toggle="modal" data-target="#enviarmensaje"
+        (click)="obtenerDenuncias()">
+        <img src="../../assets/iconos/refrescar.svg" class="plus" width="40px" height="40px">
+      </button>
+    </div>
 
-      <!-- prguntamos si el contenido actual es un video -->
-      <div class="archivo d-flex" *ngIf="comprobarVideo(denuncia.getElemento().getTipo())">
-        <!-- archivo -->
-        <div class="col-8 video">
-          <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}"
-            width="100%" controls></video>
-        </div>
-        <div class="col-4 informacion">
-          <!--  fecha y acciones -->
-          <div class="row">
-            <div class="dropdown acciones" title="Acciones">
-              <button class="btn btn-default dropdown-toggle" type="button" id="acciones" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <img src="../../assets/iconos/settings-1.svg">
-              </button>
-              <div class="dropdown-menu" aria-labelledby="acciones">
-                <a class="dropdown-item" (click)="borrarPublicacion(denuncia.getElemento().getId())">Borrar
-                  publicación.</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="borrarComentarios(denuncia.getElemento().getId())">Borrar todos los
-                  comentarios.</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="borrarDenuncias(denuncia.getElemento().getId())">Ignorar
-                  denuncias.</a>
-              </div>
-            </div>
-            <div class="ml-auto fecha">
-              {{denuncia.getElemento().getFecha()}}
-            </div>
-          </div>
-          <!-- comentarios -->
-          <div>
-            <div class="comentarios">
-              <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">
-                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
-              </div>
-              <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"
-                class="d-flex align-items-start flex-column">
-                <div class="col-12 comentario d-block">
-                  <i class="fecha">{{comentario.getFecha()}}</i><br />
-                </div>
-                <div class="col-12 comentario d-block">
-                  <b>{{comentario.getNombreUsuario()}}</b>
-                  {{comentario.getComentario()}}
-                  <img src="../../assets/iconos/trash.svg" class="borrarcomentario" width="5%"
-                    (click)="borrarComentario(comentario.getId(),denuncia.getElemento().getId())"
-                    title="Borrar comentario">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div id="denuncias" class="container contenido col-md-10">
+      <div class="noHay" *ngIf="!hayDenuncias()">
+        No hay contenido denunciado.
       </div>
 
 
-      <!-- prguntamos si el contenido actual es una foto -->
-      <div class="archivo d-flex" *ngIf="comprobarFoto(denuncia.getElemento().getTipo())">
-        <!-- archivo -->
-        <div class="col-8 foto">
-          <img src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}">
+      <div *ngFor="let denuncia of denuncias" class="archivos mb-5">
+
+        <div class="nombre d-flex justify-content-between mx-auto" title="{{denuncia.getElemento().getNombre()}}">
+          <div class="bordeizquierdo"></div>
+          <h2>
+            <a class="referencia" name="{{denuncia.getElemento().getId()}}">
+              {{denuncia.getElemento().getNombre()}}
+              <span class="numDenuncia">{{denuncia.getNumdenuncias()}}</span>
+            </a>
+          </h2>
+          <div class="bordederecho"></div>
         </div>
-        <div class="col-4 informacion">
-          <!-- fecha y acciones -->
-          <div class="row">
-            <div class="dropdown acciones" title="Acciones">
-              <button class="btn btn-default dropdown-toggle" type="button" id="acciones" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <img src="../../assets/iconos/settings-1.svg">
-              </button>
-              <div class="dropdown-menu" aria-labelledby="acciones">
-                <a class="dropdown-item" (click)="borrarPublicacion(denuncia.getElemento().getId())">Borrar
-                  publicación.</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="borrarComentarios(denuncia.getElemento().getId())">Borrar todos los
-                  comentarios.</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" (click)="borrarDenuncias(denuncia.getElemento().getId())">Ignorar
-                  denuncias.</a>
+
+        <!-- prguntamos si el contenido actual es un video -->
+        <div class="archivo d-flex" *ngIf="comprobarVideo(denuncia.getElemento().getTipo())">
+          <!-- archivo -->
+          <div class="col-8 video">
+            <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}"
+              width="100%" controls></video>
+          </div>
+          <div class="col-4 informacion">
+            <!--  fecha y acciones -->
+            <div class="row">
+              <div class="dropdown acciones" title="Acciones">
+                <button class="btn btn-default dropdown-toggle" type="button" id="acciones" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img src="../../assets/iconos/settings-1.svg">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="acciones">
+                  <a class="dropdown-item" (click)="borrarPublicacion(denuncia.getElemento().getId())">Borrar
+                    publicación.</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="borrarComentarios(denuncia.getElemento().getId())">Borrar todos los
+                    comentarios.</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="borrarDenuncias(denuncia.getElemento().getId())">Ignorar
+                    denuncias.</a>
+                </div>
+              </div>
+              <div class="ml-auto fecha">
+                {{denuncia.getElemento().getFecha()}}
               </div>
             </div>
-            <div class="ml-auto fecha">
-              {{denuncia.getElemento().getFecha()}}
+            <!-- comentarios -->
+            <div>
+              <div class="comentarios">
+                <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">
+                  <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+                </div>
+                <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"
+                  class="d-flex align-items-start flex-column">
+                  <div class="col-12 comentario d-block">
+                    <i class="fecha">{{comentario.getFecha()}}</i><br />
+                  </div>
+                  <div class="col-12 comentario d-block">
+                    <b>{{comentario.getNombreUsuario()}}</b>
+                    {{comentario.getComentario()}}
+                    <img src="../../assets/iconos/trash.svg" class="borrarcomentario" width="5%"
+                      (click)="borrarComentario(comentario.getId(),denuncia.getElemento().getId())"
+                      title="Borrar comentario">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- comentarios -->
-          <div>
-            <div class="comentarios">
-              <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">
-                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
-              </div>
-              <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"
-                class="d-flex align-items-start flex-column">
-                <div class="col-12 comentario d-block">
-                  <i class="fecha">{{comentario.getFecha()}}</i><br />
+        </div>
+
+
+        <!-- prguntamos si el contenido actual es una foto -->
+        <div class="archivo d-flex" *ngIf="comprobarFoto(denuncia.getElemento().getTipo())">
+          <!-- archivo -->
+          <div class="col-8 foto">
+            <img src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}">
+          </div>
+          <div class="col-4 informacion">
+            <!-- fecha y acciones -->
+            <div class="row">
+              <div class="dropdown acciones" title="Acciones">
+                <button class="btn btn-default dropdown-toggle" type="button" id="acciones" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img src="../../assets/iconos/settings-1.svg">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="acciones">
+                  <a class="dropdown-item" (click)="borrarPublicacion(denuncia.getElemento().getId())">Borrar
+                    publicación.</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="borrarComentarios(denuncia.getElemento().getId())">Borrar todos los
+                    comentarios.</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" (click)="borrarDenuncias(denuncia.getElemento().getId())">Ignorar
+                    denuncias.</a>
                 </div>
-                <div class="col-12 comentario d-block">
-                  <b>{{comentario.getNombreUsuario()}}</b>
-                  {{comentario.getComentario()}}
-                  <img src="../../assets/iconos/trash.svg" class="borrarcomentario" width="5%"
-                    (click)="borrarComentario(comentario.getId(),denuncia.getElemento().getId())"
-                    title="Borrar comentario">
+              </div>
+              <div class="ml-auto fecha">
+                {{denuncia.getElemento().getFecha()}}
+              </div>
+            </div>
+            <!-- comentarios -->
+            <div>
+              <div class="comentarios">
+                <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">
+                  <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+                </div>
+                <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"
+                  class="d-flex align-items-start flex-column">
+                  <div class="col-12 comentario d-block">
+                    <i class="fecha">{{comentario.getFecha()}}</i><br />
+                  </div>
+                  <div class="col-12 comentario d-block">
+                    <b>{{comentario.getNombreUsuario()}}</b>
+                    {{comentario.getComentario()}}
+                    <img src="../../assets/iconos/trash.svg" class="borrarcomentario" width="5%"
+                      (click)="borrarComentario(comentario.getId(),denuncia.getElemento().getId())"
+                      title="Borrar comentario">
+                  </div>
                 </div>
               </div>
             </div>

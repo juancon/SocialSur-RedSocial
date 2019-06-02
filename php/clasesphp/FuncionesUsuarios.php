@@ -17,8 +17,9 @@
 			$TRegistros = count($CountReg);
 
 			if($TRegistros == 0){
-	    		$insercion = "INSERT INTO usuarios (nombre, apellido,apodo, email, password) VALUES 
-	    						(\"".$usuario->getNombre()."\", \"".$usuario->getApellido()."\", \"".$usuario->getApodo()."\", \"".$usuario->getPassword()."\", \"".md5($usuario->getEmail())."\")";
+				$codigo = md5($usuario->getApodo());
+	    		$insercion = "INSERT INTO usuarios (nombre, apellido,apodo, email, password,codigo) VALUES 
+	    						(\"".$usuario->getNombre()."\", \"".$usuario->getApellido()."\", \"".$usuario->getApodo()."\", \"".$usuario->getPassword()."\", \"".md5($usuario->getEmail())."\",'$codigo')";
 	    		if($conexion->exec($insercion) == 1){
 	    			return 1;
 	    		}else{
@@ -26,6 +27,21 @@
 	    		}
 
 			}
+
+			return -1;
+		}
+
+		public static function crearAdmin($correo,$password)
+		{
+			$conexion = DB::connectDB();
+
+    		$insercion = "INSERT INTO usuarios (nombre, apellido,apodo, email, password,admin) VALUES 
+    						('admin','admin', '', '$correo', \"".md5($password)."\", 1)";
+    		if($conexion->exec($insercion) == 1){
+    			return 1;
+    		}else{
+    			return 0;
+    		}
 
 			return -1;
 		}
@@ -66,6 +82,20 @@
 			$seleccion = "	SELECT * 
 							FROM usuarios
 							WHERE admin != 1";
+			$consulta = $conexion->query($seleccion);
+			$usuarios = [];
+			while ($registro = $consulta->fetchObject()) {
+				$usuarios[] = new Usuario($registro->id,$registro->nombre,$registro->apellido,$registro->apodo,$registro->email,$registro->password,$registro->bio,$registro->avatar,$registro->conectado,$registro->activado,$registro->admin);
+			}
+			return $usuarios;
+		}
+
+		public static function getAdmins()
+		{
+			$conexion = DB::connectDB();
+			$seleccion = "	SELECT * 
+							FROM usuarios
+							WHERE admin != 0";
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {

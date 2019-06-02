@@ -43,7 +43,8 @@ export class UrlsService {
 			 {nombre: "usuarios", fichero: "usuarios.php"},
 			 {nombre: "peticiones", fichero: "peticiones.php"},
 			 {nombre: "denuncias", fichero: "denuncias.php"},
-			 {nombre: "archivos", fichero: "archivos.php"}
+			 {nombre: "archivos", fichero: "archivos.php"},
+			 {nombre: "emailConfirmacion", fichero: "emailConfirmacion.php"}
 
 			 
 		]
