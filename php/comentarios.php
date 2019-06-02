@@ -109,6 +109,16 @@
 			//lo añadimos al array de respuesta
 			array_push($respuesta, $comentario);
 		}	
+	}else if($accion == "borrarcomentario"){
+		//recogemos las demas variables
+		@$idcomentario = $array->idcomentario;
+		//borramos el comentario
+		$comentarios = $funcionesComentarios::borrarComentario($idcomentario);
+	}else if($accion == "borrarcomentarios"){
+		//recogemos las demas variables
+		@$idelemento = $array->idelemento;
+		//borramos el comentario
+		$comentarios = $funcionesComentarios::borrarComentarios($idelemento);
 	}
 	
 	

@@ -56,3 +56,10 @@ h3{
 .modal .col-12{
 	padding-left: 0px;
 }
+
+.noHay{
+	font-size: 2em;
+	color: #40B0FF;
+	text-align: center;
+	font-weight: bold;
+}

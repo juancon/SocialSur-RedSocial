@@ -80,9 +80,11 @@
               </div>
               <div *ngFor="let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
                 <div class="col-12 comentario d-block">
+                  <i class="fecha">{{comentario.getFecha()}}</i><br/>
+                </div>
+                <div class="col-12 comentario d-block">
                   <b>{{comentario.getNombreUsuario()}}</b>
                   {{comentario.getComentario()}}
-                  <i class="fecha">{{comentario.getFecha()}}</i><br />
                 </div>
               </div>
             </div>

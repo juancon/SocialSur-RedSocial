@@ -143,4 +143,36 @@ export class ComentariosService {
 			}
 		}
 	}
+
+	public borrarComentario(idcomentario:number):void{
+		let parametros = {
+			idcomentario : idcomentario,
+			accion : "borrarcomentario"
+		}
+
+		//funcion http.post para enviar los datos
+		let enviar = this._http.post(this.urlComentarios, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para completar la llamada php
+		enviar.subscribe(
+			result => {
+				
+			}
+		);
+	}
+
+	public borrarComentarios(idelemento:number):void{
+		let parametros = {
+			idelemento : idelemento,
+			accion : "borrarcomentarios"
+		}
+
+		//funcion http.post para enviar los datos
+		let enviar = this._http.post(this.urlComentarios, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para completar la llamada php
+		enviar.subscribe(
+			result => {
+				
+			}
+		);
+	}
 }

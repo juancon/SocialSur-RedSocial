@@ -45,7 +45,7 @@ export class MensajesComponent implements OnInit {
 		this.cambiarEstilo("recibidos");
 
 		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
-		setInterval(this.obtenerMensajes.bind(this),30000);
+		setInterval(this.obtenerMensajes.bind(this),10000);
 		
 	}
 
@@ -137,8 +137,12 @@ export class MensajesComponent implements OnInit {
 
 	private marcarLeido(mensaje:Mensaje):void{
 		this._mensajes.marcarLeido(mensaje.getId());
-		//refrescamos el array
-		this.obtenerMensajes();
+		//cambiamos el mensaje a leidp
+		for(var i = 0; i < this.mensajes.length ; i++){
+			if(this.mensajes[i].getId() == mensaje.getId()){
+				this.mensajes[i].setLeido(1);
+			}
+		}
 	}
 
 	private mostrarResponder(idmensaje:number):void{
@@ -198,6 +202,34 @@ export class MensajesComponent implements OnInit {
 		this.nuevoMensaje = false;
 		this.destinatario = 0;
 		this.mensaje = "";
+	}
+
+	private hayRecibidos():boolean{
+		if(this.mostrarRecibidos){
+			//comprobamos si hay mensajes recibidor
+			for (var i = 0; i < this.mensajes.length; i++){
+				if(this.mensajeRecibido(this.mensajes[i])){
+					return true;
+				}
+			}
+
+			return false;
+		}
+		return true;
+	}
+
+	private hayEnviados():boolean{
+		if(this.mostrarEnviados){
+			//comprobamos si hay mensajes recibidor
+			for (var i = 0; i < this.mensajes.length; i++){
+				if(this.mensajeEnviado(this.mensajes[i])){
+					return true;
+				}
+			}
+			return false
+		}
+
+		return true;
 	}
 	
 }

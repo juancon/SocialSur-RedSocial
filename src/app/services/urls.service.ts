@@ -16,7 +16,7 @@ export class UrlsService {
         this.servidor = "http://192.168.1.150/";
 
         //otros
-        //this.servidor = "http://localhost/php/";
+        //this.servidor = "http://192.168.114.56/";
 
 		//añadimos el nombre del fichero y su accion al array
 		this.urls = [
@@ -42,7 +42,8 @@ export class UrlsService {
 			 {nombre: "comentarios", fichero: "comentarios.php"},
 			 {nombre: "usuarios", fichero: "usuarios.php"},
 			 {nombre: "peticiones", fichero: "peticiones.php"},
-			 {nombre: "denuncias", fichero: "denuncias.php"}
+			 {nombre: "denuncias", fichero: "denuncias.php"},
+			 {nombre: "archivos", fichero: "archivos.php"}
 
 			 
 		]

@@ -151,4 +151,11 @@ export class BuscarComponent implements OnInit {
     let url = "/usuario?apodo="+apodo;
 		window.location.href = url;
   }
+
+  private hayResultados():boolean{
+    if(this.usuarios.length == 0){
+      return false;
+    }
+    return true;
+  }
 }

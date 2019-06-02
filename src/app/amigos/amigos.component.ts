@@ -99,4 +99,11 @@ export class AmigosComponent implements OnInit {
 		let url = "/usuario?apodo="+apodo;
 		window.location.href = url;
 	}
+
+	private hayAmigos():boolean{
+		if(this.amigos.length == 0){
+			return false;
+		}
+		return true;
+	}
 }

@@ -75,7 +75,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 
 	ngOnInit() {
 		//ocultamos loc comentarios cuando no se este comentado
-		setInterval(this.oculatr.bind(this),75);
+		setInterval(this.oculatr.bind(this),500);
 	}
 
 	private obtenerReferencia():void{
@@ -171,13 +171,14 @@ export class ContenidoUsuarioComponent implements OnInit {
 	private darQuitarMegusta(idelemento:number):void{
 		//llamamos al servicio que me permite dar un nuevo megusta
 		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.usuario.getId(),idelemento,this.contenidoUsuario);
-		this.actualizarRuta();
+
+		//this.actualizarRuta();
 	}
 
-	private actualizarRuta():void{
+	/* private actualizarRuta():void{
 		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
 		this.contenidoUsuario = this._operacionesMegustas.actualizarRuta(this.contenidoUsuario);
-	}
+	} */
 
 	//funcion para almacenar un archivo en local
 	private almacenarFichero(ev):void{

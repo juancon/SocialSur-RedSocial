@@ -2,7 +2,8 @@
 <div class="agregarContenido">
   <div class="d-flex mx-auto justify-content-center mt-1 mb-1">
     <!-- botones subir contenido -->
-    <button class="btn botonsubir" title="Enviar mensaje nuevo" data-toggle="modal" data-target="#enviarmensaje" (click)="mensajeNuevo()">
+    <button class="btn botonsubir" title="Enviar mensaje nuevo" data-toggle="modal" data-target="#enviarmensaje"
+      (click)="mensajeNuevo()">
       <img src="../../assets/iconos/sobre.svg" class="plus" width="40px" height="40px">
     </button>
   </div>
@@ -27,6 +28,15 @@
 </nav>
 <!-- mensajes -->
 <div class="todosMensajes container">
+  <!-- avisamos que no hay mensajes recibids -->
+  <div class="noHay" *ngIf="!hayRecibidos()">
+    No hay mensajes recibidos.😴
+  </div>
+  <!-- avisamos que no hay mensajes recibids -->
+  <div class="noHay" *ngIf="!hayEnviados()">
+    No hay mensajes enviados.😴
+  </div>
+
   <div *ngFor="let mensaje of mensajes" class="mensajes row col-12">
     <!-- Mensajes recibidos -->
     <!-- comprobamos si se pueden mostrar los recibidos -->
@@ -38,7 +48,7 @@
             {{mensaje.getOtroUsuario()['nombre']+" "+mensaje.getOtroUsuario()['apellido']}}
           </span>
 
-          <span class="apodo" >{{mensaje.getOtroUsuario()['apodo']}} </span>
+          <span class="apodo">{{mensaje.getOtroUsuario()['apodo']}} </span>
         </a>
         <button class="btn btn-default" title="Marcar como leído" *ngIf="comprobarNoLeido(mensaje)"
           (click)="marcarLeido(mensaje)">
@@ -47,7 +57,7 @@
       </div>
       <hr class="separarInfo">
       <div class="offset-md-3 col-md-6 mensaje">
-        <div  [innerHTML]="mensaje.getMensaje()"></div>
+        <div [innerHTML]="mensaje.getMensaje()"></div>
         <div class="mt-2" id="responder{{mensaje.getId()}}">
           <textarea class="form-control" [(ngModel)]="respuesta" [ngModelOptions]="{standalone: true}"
             placeholder="Escribe tu mensaje..."></textarea>
@@ -94,7 +104,7 @@
       <hr class="separarInfo">
 
       <div class="acciones offset-md-3 col-md-6  col-12  mt-3 d-flex justify-content-around">
-        <button class="btn btn-default" title="Borrar Amigo" (click)="borrarMensaje(mensaje,'recibido')">
+        <button class="btn btn-default" title="Borrar Amigo" (click)="borrarMensaje(mensaje,'enviado')">
           <img src="../../assets/iconos/basura.svg">
         </button>
       </div>
@@ -104,24 +114,28 @@
   </div>
 </div>
 
- <!-- ventana modal para enviar mensaje -->
- <div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="enviarmensaje" tabindex="-1" role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div>
-            <h3 class="mb-3 text-center">Mensaje para:</h3>
-            <select class="browser-default custom-select mb-3" [(ngModel)]="destinatario" [ngModelOptions]="{standalone: true}">
-				<option selected value="0">Selecciona a un amigo.</option>
-				<option *ngFor="let amigo of amigos" value="{{amigo.getId()}}">{{amigo.getNombre()+" "+amigo.getApellido()}}</option>
-			</select>
-            <textarea id="form7" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="enviar()">Enviar</button>
-          </div>
+<!-- ventana modal para enviar mensaje -->
+<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="enviarmensaje" tabindex="-1"
+  role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <h3 class="mb-3 text-center">Mensaje para:</h3>
+          <select class="browser-default custom-select mb-3" [(ngModel)]="destinatario"
+            [ngModelOptions]="{standalone: true}">
+            <option selected value="0">Selecciona a un amigo.</option>
+            <option *ngFor="let amigo of amigos" value="{{amigo.getId()}}">{{amigo.getNombre()+" "+amigo.getApellido()}}
+            </option>
+          </select>
+          <textarea id="form7" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+            class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="enviar()">Enviar</button>
         </div>
       </div>
     </div>
   </div>
+</div>

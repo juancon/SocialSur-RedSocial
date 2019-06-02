@@ -78,11 +78,12 @@ export class InformacionUsuarioComponent implements OnInit {
 
 	private guardarUsuario():void{
 		//cambiamos el almacenamiento local por el nuevo
-		localStorage.setItem("usuario",JSON.stringify(this.usuario));
-		//si existe la cookie tambien la cambiamos
-		if(this._cookies.check("usuario")){
-			this._cookies.set("usuario",JSON.stringify(this.usuario));
-		};
+		sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
+
+		//si existe el localstorage tambien lo cambiamos
+		if(localStorage.getItem("usuario") != null){
+			localStorage.setItem("usuario",JSON.stringify(this.usuario));
+		}
 	}
 
 	private modificarUsuarioBD(parametros:Object,tipo:string):void{
@@ -129,14 +130,16 @@ export class InformacionUsuarioComponent implements OnInit {
 			//llamamos al servicio
 			this._subirArchivo.cambiarAvatar(parametros).subscribe(
 				resp => {
-					//si no da error modificamos el usuario guardado en local con el nuevo avatar
-					if(typeof(resp.error) == "undefined"){
-						this.usuario.setAvatar(resp.avatar);
-						this.guardarUsuario();
-					}
+					//llamamos a la funcion que cambia el avatar
+					this.cambiarAvatar(resp.avatar)
 				}
 			);
 		}
+	}
+
+	private cambiarAvatar(ruta:string){
+		this.usuario.setAvatar(ruta);
+		this.guardarUsuario();
 	}
 
 	private mostarOcultar():void{
@@ -148,4 +151,6 @@ export class InformacionUsuarioComponent implements OnInit {
 			this.textoBoton="Cambiar";
 		}
 	}
+
+	
 }

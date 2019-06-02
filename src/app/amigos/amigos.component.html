@@ -1,4 +1,8 @@
 <div class="componenteAmigos offset-md-3 col-md-6">
+	<!-- informamos si no hay ninguna amigo -->
+	<div class="noHay" *ngIf="!hayAmigos()">
+		No tienes ningún amigo agregado en este momento.😨
+	</div>
 	<div *ngFor = "let amigo of amigos" class="amigos row" title="{{amigo.getNombre()+' '+amigo.getApellido()}}">
 		<div class="col avatar pt-1 pb-1" (click)="redirigir(amigo.getApodo())">
 			<img src="../../{{amigo.getAvatar()}}" class="mr-auto rounded" width="90%">

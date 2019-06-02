@@ -47,20 +47,25 @@ export class MensajesService {
 	}
 	//funcion que pasa los resultado del fichero php al array de mensajes
 	private addMensajes(datos:Array<string>):void{
-		//recorremos los mensajes recibidos
-		for (var i = 0; i <  datos.length; i++){
-			//creamos u objeto mensaje en el array por cada mensaje recibido
-			this.mensajes[i] = new Mensaje(
-					datos[i]["id"],
-					datos[i]["idusuariofrom"],
-					datos[i]["idusuarioto"],
-					datos[i]["otroUsuario"],
-					datos[i]["mensaje"],
-					datos[i]["leido"],
-					datos[i]["borradofrom"],
-					datos[i]["borradoto"],
-					datos[i]["fecha"]
-			);
+
+		//comprobamos que las longitudes sean diferentes
+		if(this.mensajes.length != datos.length){
+			//recorremos los mensajes recibidos
+			for (var i = 0; i <  datos.length; i++){
+				//creamos u objeto mensaje en el array por cada mensaje recibido
+				this.mensajes[i] = new Mensaje(
+						datos[i]["id"],
+						datos[i]["idusuariofrom"],
+						datos[i]["idusuarioto"],
+						datos[i]["otroUsuario"],
+						datos[i]["mensaje"],
+						datos[i]["leido"],
+						datos[i]["borradofrom"],
+						datos[i]["borradoto"],
+						datos[i]["fecha"]
+				);
+			}
+
 		}
 	}
 	

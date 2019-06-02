@@ -49,17 +49,20 @@ export class OperacionesPeticionesService {
   }
 
   private addPeticiones(datos:Array<string>):void {
-    //recorremos los mensajes recibidos
-		for (var i = 0; i <  datos.length; i++){
-			//creamos u objeto mensaje en el array por cada mensaje recibido
-			this.peticiones[i] = new Peticion(
-					datos[i]["idusuariofrom"],
-					datos[i]["idusuarioto"],
-					datos[i]["mensaje"],
-					datos[i]["otroUsuario"],
-					datos[i]["fecha"]
-			);
-		}
+    //comprobamos quye el array recibido sea diferente al almacenado
+    if(this.peticiones.length != datos.length){
+      //recorremos los mensajes recibidos
+      for (var i = 0; i <  datos.length; i++){
+        //creamos u objeto mensaje en el array por cada mensaje recibido
+        this.peticiones[i] = new Peticion(
+            datos[i]["idusuariofrom"],
+            datos[i]["idusuarioto"],
+            datos[i]["mensaje"],
+            datos[i]["otroUsuario"],
+            datos[i]["fecha"]
+        );
+      }
+    }
   }
 
   public responder(idusuariofrom:number,idusuarioto:number,respuesta:string):void{

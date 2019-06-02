@@ -28,7 +28,8 @@ export class ChatComponent implements OnInit {
 	private usuario:Usuario;
 	//variables refrentes a los amigos y el chat
 	private amigos:Array<Usuario> = new Array();
-	private amigosConectados:Array<Usuario> = new Array();	private amigoHablando:Usuario;
+	private amigosConectados:Array<Usuario> = new Array();
+	private amigoHablando:Usuario;
 	private idAmigoActual:number = 0;
 	@Output() enviarHablando:EventEmitter<boolean> = new EventEmitter<boolean>();
 	private hablando:boolean = false;
@@ -62,9 +63,6 @@ export class ChatComponent implements OnInit {
 	
 	//mostrar el chat
 	private mostrarChat():void{
-		/*this.getMensajesChat();
-		//hacemos que los mensajes se refresquen cada 0.5 segundos
-		setInterval(this.getMensajesChat.bind(this), 2000);*/
 		this.hablando = true;
 		this.enviarHablando.emit(this.hablando);
 	}
@@ -95,25 +93,6 @@ export class ChatComponent implements OnInit {
 		}
 		this.marcarConversacionLeido();
 	}
-	/*//funcion para recoger los mensajes
-	private getMensajesChat():void{
-		//recogemos la id de nuestro usuario y del usuario con quien queremos hablar
-		let parametros = {
-			id : this.usuario.getId(),
-			idAmigo : this.amigoHablando.getId(),
-			accion : "getconversacion"
-		}
-		//funcion http.post para enviar los datos
-		let conversaciones = this._http.post(this.urlGetConversacion, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
-		conversaciones.subscribe(
-			result => {
-				//recogemos solo la respuesta del PHP y la pasamos a una variable
-				let datos = result;
-				this.conversaciones = this._operacionesFechas.convertirfechas(datos);
-			}
-		);
-	}*/
 
 	private marcarConversacionLeido(){
 		//marcamos las conversaciones como leidas
@@ -140,44 +119,25 @@ export class ChatComponent implements OnInit {
 		}
 	}
 
-	/*//enviar mensaje
-	private enviar():void{
-		if(this.mensaje.length-1 > 0){
-			//recogemos los parametros que vamos a enviar
-			let parametros = {
-				id : this.usuario.getId(),
-				idAmigo : this.amigoHablando.getId(),
-				mensaje : this.mensaje,
-			}
-			//funcion http.post para enviar los datos
-			let nuevoMensaje = this._http.post(this.urlEnviarMensajeChat, JSON.stringify(parametros)).pipe(map(res => res.json()));
-			//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
-			nuevoMensaje.subscribe(
-				result => {
-					//recogemos solo la respuesta del PHP y la pasamos a una variable
-					let datos = result;
-					this.getMensajesChat();
-					
-					
-				}
-			);
-		}
-		this.borrarText();
-	}*/
 	//Borrar el texto en mi chat
 	private borrarText():void{
 		this.mensaje = "";
 	}
 	//funcion para obtener los amigos conectados
 	private obtenerAmigosConectados():void{
-		this.amigosConectados = [];
+		//creamos un array auxiliar donde guardaremos los amigos conectado
+		let amigosAux = [];
 		//rrecorremos el array de amigos
 		for (var i = 0; i < this.amigos.length; i++) {
-				
 			//si esta conectadolo agregamos al array
 			if(this.amigos[i].getConectado() == "1"){
-				this.amigosConectados.push(this.amigos[i]);
+				amigosAux.push(this.amigos[i]);
 			}
+		}
+		//cuando tengamos todos los amigos conectado simplemnete comparamos la longitud del array de miagos conectado con el auxiliar para comprobar que se hayan desconectado o conectado amigos nuevos
+
+		if(this.amigosConectados.length != amigosAux.length){
+			this.amigosConectados = amigosAux;
 		}
 	}
 

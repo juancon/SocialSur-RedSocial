@@ -88,6 +88,18 @@
     		}else{
     			return 0;
     		}
+		}	
+
+		public static function borrarComentarios($idelemento)
+		{
+			$conexion = DB::connectDB();
+    		$insercion = "DELETE FROM comentarios
+    						WHERE idelemento = $idelemento";
+    		if($conexion->exec($insercion) == 1){
+    			return 1;
+    		}else{
+    			return 0;
+    		}
 		}					
 	}
 ?>

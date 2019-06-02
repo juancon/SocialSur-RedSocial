@@ -21,7 +21,7 @@
 		$nombre = $_FILES['file']['name'];
 		//recogemos la extencion
 		$ext = '.'.pathinfo($nombre, PATHINFO_EXTENSION);
-		$nombre = $id.$ext;
+		$nombre = $id.strtolower($ext);
 		$rutaCompleta = $ruta.$nombre;
 		//preguntamos si podemos escribir n la ruta
 		if (isset($_FILES['file'])) {

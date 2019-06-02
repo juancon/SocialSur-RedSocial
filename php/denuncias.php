@@ -35,7 +35,7 @@
 
 		array_push($respuesta, $var);
 		
-	}else if($accion == "borrardenuncia"){
+	}else if($accion == "borrardenuncias"){
 		@$idelemento = $array->idelemento;
 
 		//borramos la denuncia

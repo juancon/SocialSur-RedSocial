@@ -158,3 +158,11 @@ hr.separarMensajes{
 .modal h3{
 	color: #40B0FF;
 }
+
+.noHay{
+	background-color: white;
+	font-size: 1.5em;
+	color: #40B0FF;
+	text-align: center;
+	font-weight: bold;
+}

@@ -135,4 +135,19 @@ export class OperacionesDenunciasService {
 			this.denuncias[i].setNumdenuncias(datos[i]["numdenuncias"][0]["numdenuncias"]);
 		}
 	}
+
+	public borrarDenuncias(idelemento:number):void{
+		//creamos una variable con los parametros que vamos a pasar a backend
+		let parametros = {
+			idelemento : idelemento,
+			accion : "borrardenuncias"
+		}
+		//funcion http.post para enviar los datos
+		let obtener = this._http.post(this.urlDenuncias, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para completar la llamada
+		obtener.subscribe(
+			result => {
+			}
+		);
+	}
 }

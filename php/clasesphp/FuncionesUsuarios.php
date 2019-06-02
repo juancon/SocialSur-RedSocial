@@ -109,7 +109,7 @@
 			$conexion = DB::connectDB();
 			$seleccion = "	SELECT *
 							FROM usuarios
-							WHERE lower(CONCAT(nombre, ' ', apellido)) like '%".strtolower($cadena)."%' AND admin != 1";
+							WHERE lower(CONCAT(nombre, ' ', apellido)) like '%".strtolower($cadena)."%' AND admin != 1 AND id != 0";
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {
@@ -124,7 +124,7 @@
 			$conexion = DB::connectDB();
 			$seleccion = "	SELECT *
 							FROM usuarios
-							WHERE apodo = '".$apodo."' AND admin != 1";
+							WHERE apodo = '".$apodo."' AND admin != 1 AND id != 0";
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {

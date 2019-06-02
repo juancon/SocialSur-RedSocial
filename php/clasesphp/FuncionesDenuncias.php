@@ -22,7 +22,8 @@
 
 			$conexion = DB::connectDB();
 			$seleccion = "	SELECT *
-							FROM denuncias";
+							FROM denuncias
+							ORDER BY fecha";
 			$consulta = $conexion->query($seleccion);
 			while ($registro = $consulta->fetchObject()) {
 				$denuncias[] = array(
@@ -71,14 +72,12 @@
 
 		public static function borrarDenuncias($idelemento)
 		{
-			if(self::comprobarPeticion($usuariofrom,$usuarioto) == 1){
-				$conexion = DB::connectDB();
-	    		$insercion = "DELETE FROM denuncias
-	    						WHERE idelemento = $idelemento";
-	    		if($conexion->exec($insercion) == 1){
-	    			return 1;
-	    		}
-			}
+			$conexion = DB::connectDB();
+    		$insercion = "DELETE FROM denuncias
+    						WHERE idelemento = $idelemento";
+    		if($conexion->exec($insercion) == 1){
+    			return 1;
+    		}
 			return 0;
 		}
 	}

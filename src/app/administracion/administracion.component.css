@@ -182,7 +182,9 @@ nav{
 .estados{
 	text-align: center;
 }
-
+.acciones button{
+	width: 115%;
+}
 .info{
 	color: red;
 	font-size: 0.8em;
@@ -213,7 +215,9 @@ h5{
 	font-size: 0.7em;
 	color: #B1B1B1;
 }
-
+.borrarcomentario{
+	cursor: pointer;
+}
 .relleno{
 	color: rgba(0,0,0,0);
 }
@@ -242,4 +246,11 @@ h5{
 .col-8,.col-12{
 	padding-left: 0px;
 	padding-right: 0px;
+}
+
+.noHay{
+	font-size: 1.5em;
+	color: #40B0FF;
+	text-align: center;
+	font-weight: bold;
 }
