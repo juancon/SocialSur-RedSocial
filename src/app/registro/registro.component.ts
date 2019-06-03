@@ -104,7 +104,8 @@ export class RegistroComponent implements OnInit {
 						datos['admin']
 						);
 						//guardamos el usuario en el navegador
-						sessionStorage.setItem("usuario",JSON.stringify(this.usuario))
+						localStorage.setItem("usuario",JSON.stringify(this.usuario));
+						sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
 						//enviamos el meail de confirmacion
 						this._confirmacion.enviarEmail(datos['password'],datos['nombre']+" "+datos['apellido'],datos['apodo']);
 						//redirigimos al usuario

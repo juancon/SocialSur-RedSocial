@@ -192,13 +192,13 @@
     		}
 		}
 
-		public static function modificarActivadoUsuario($id)
+		public static function modificarActivadoUsuario($codigo)
 		{
 			$conexion = DB::connectDB();
 
     		$modificar = "UPDATE usuarios
     						SET activado = 1
-    						WHERE id = $id;";
+    						WHERE codigo = '$codigo';";
     		if($conexion->exec($modificar) == 1){
     			return 1;
     		}else{

@@ -2,6 +2,18 @@
 	background-color: rgba(230,230,230,1);
 }
 
+#correoenviado{
+	width: 35%;
+	background: #A0D8FE;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	color: white;
+}
+
+#correoenviado div.cerrar{
+	cursor: pointer;
+}
+
 .col-md-1,.offset-1{
 	padding-right: 0;
 	padding-left: 0;

@@ -15,6 +15,11 @@
 	</div>
 	<!-- Informacion contenido y chat -->
 	<div class="row" *ngIf="!esAdmin">
+		<!-- correo enviado -->
+		<div id="correoenviado" class="d-flex" *ngIf="correoEnviado">
+			<div class="mx-auto mr-auto">El correo te llegará en unos minutos.</div>
+			<div class="pr-1 cerrar" title="cerrar" (click)="cerrar()">X</div>
+		</div>
 		<!-- perfil -->
 		<div class="col-md-12" *ngIf="perfil">
 			<app-informacion-usuario></app-informacion-usuario>
@@ -41,6 +46,10 @@
 		<div class="col-md-12" *ngIf="otrosusuarios">
 			<app-otrosusuarios></app-otrosusuarios>
 		</div>
+	</div>
+	<!-- infroar al suaurio sorbe cuenta no activada -->
+	<div class="row" *ngIf="!esAdmin && informarActivado">
+		<app-confirmar class="fixed-bottom" #activar></app-confirmar>
 	</div>
 </div>
 <div *ngIf="!usarioLogueado" class="login">

@@ -1,7 +1,7 @@
 <div class="supreme-container" id="contenidoUsuario">		
 	<div class="container contenido col-md-10">
 		<!-- botones para agregar contenido -->
-		<div class="agregarContenido">
+		<div class="agregarContenido" *ngIf="usuario.getActivado() == 1">
 			<div class="d-flex mx-auto justify-content-end mt-1 mb-1">
 				<!-- botones subir contenido -->
 				<button class="btn botonsubir" title="Subir foto/video" data-toggle="modal" data-target="#subirarchivo">
@@ -10,6 +10,12 @@
 			</div>
 		</div>
 
+		<!-- si el usuario no ha subido ninguna foto o video mostramos un gif -->
+		<div class="sincontenido mx-auto mb-5 col-12" *ngIf="!hayContenido">
+			<div class="d-flex justify-content-center">
+				<img src="../../assets/arbusto.gif" width="60%">
+			</div>
+		</div>
 
 		<!-- recorremos el array con el contenido del usuario -->
 		<div *ngFor="let contenido of contenidoUsuario" class="archivos mb-5 col-12">

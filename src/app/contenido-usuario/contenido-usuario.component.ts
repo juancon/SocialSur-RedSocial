@@ -37,6 +37,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	private usuario:Usuario;
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
 	private contenidoUsuario:Array<Archivo> = new Array();
+	private hayContenido:boolean = true;
 	//variables referentes a subir archivos
 	private nombreArchivo:string = "";
 	private fichero:File;
@@ -71,11 +72,20 @@ export class ContenidoUsuarioComponent implements OnInit {
 		this.obtenerComentariosArchivos();
 		this.obtenerReferencia();
 		setTimeout(this.irA.bind(this),1000);
+		setTimeout(this.comprobarContenido.bind(this),1000);
 	}
 
 	ngOnInit() {
 		//ocultamos loc comentarios cuando no se este comentado
 		setInterval(this.oculatr.bind(this),500);
+	}
+
+	private comprobarContenido():void{
+		if(this.contenidoUsuario.length == 0){
+			this.hayContenido = false;
+		}else{
+			this.hayContenido = true;
+		}
 	}
 
 	private obtenerReferencia():void{

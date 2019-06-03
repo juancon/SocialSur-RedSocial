@@ -129,6 +129,9 @@
 	}	
 }
 
+.sincontenido img{
+	border: 1px solid #A0D8FE;
+}
 .nombre{
 	width: 75%;
 	border: none;

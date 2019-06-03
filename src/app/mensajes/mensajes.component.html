@@ -63,7 +63,7 @@
             placeholder="Escribe tu mensaje..."></textarea>
 
           <div class="btn btn-default enviar" title="Enviar respuesta"
-            (click)="responder(mensaje.getOtroUsuario()['id'],mensaje.getId())">
+            (click)="responder(mensaje.getOtroUsuario()['id'],mensaje.getId(),mensaje)">
             <img src="../../assets/iconos/paper-plane-1.svg">
           </div>
 

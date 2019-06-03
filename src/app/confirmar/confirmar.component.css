@@ -1,0 +1,30 @@
+.informaractivado{
+    background-color: white;
+    border-top: 2px solid #A0D8FE;
+    padding-bottom: 5px; 
+}
+
+.informaractivado h3{
+    text-align: center;
+    color: #2794E1;
+}
+
+.informaractivado h6{
+    text-align: center;
+    color: #40B0FF;
+}
+
+.informaractivado .reenviar{
+    text-align: center;
+    color: #40B0FF;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+.informaractivado .reenviar:hover{
+    text-decoration: underline;
+}
+
+.entendido{
+    width: 100%;
+}

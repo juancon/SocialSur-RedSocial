@@ -68,7 +68,7 @@
 		//recorremos el array auxiliar
 		for($i = 0; $i < count($aux) ;$i++){
 			//preguntamos si el apodo del amigo se encontro en el mensaje
-			if(strrpos($comentario, $aux[$i]["apodo"]) !== false){
+			if(strrpos($comentario." ", $aux[$i]["apodo"]." ") !== false){
 				//creamos el mensaje de aviso
 				//$mensaje = $usuario[0]->getNombre()." ".$usuario[0]->getApellido()." te ha mencionado en su <a href='/usuario?apodo=@juan' >comentario</a> en la publicación ".$archivo[0]->getNombre()." subida por ".$autor[0]->getNombre()." ".$autor[0]->getApellido().".";
 

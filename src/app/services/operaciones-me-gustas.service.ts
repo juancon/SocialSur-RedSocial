@@ -73,11 +73,11 @@ export class OperacionesMeGustasService {
 					//sumamos uno al numero de megustas actual
 				}else if(megustas == -1){
 					//si es -1 sumamos uno a los megustas actuales
-					this.contenidoUsuario[i].setMegustas(this.contenidoUsuario[i].getMegustas()+1);
+					this.contenidoUsuario[i].setMegustas(+this.contenidoUsuario[i].getMegustas()+1);
 					this.contenidoUsuario[i].setRutamegustas("../../assets/iconos/like-1.svg");
 				}else if(megustas == -2){
 					//si es -2 restamos uno a los megustas actuales
-					this.contenidoUsuario[i].setMegustas(this.contenidoUsuario[i].getMegustas()-1);
+					this.contenidoUsuario[i].setMegustas(+this.contenidoUsuario[i].getMegustas()-1);
 					this.contenidoUsuario[i].setRutamegustas("../../assets/iconos/like-3.svg");
 				}
 			}

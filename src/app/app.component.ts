@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ConfirmarComponent } from './confirmar/confirmar.component';
+import { Component, ViewChild } from '@angular/core';
 //servicio que contiene las urls
 import { UrlsService } from './services/urls.service'
 //Importamos el modulo http al servicio
@@ -30,8 +31,11 @@ export class AppComponent {
 	private peticiones:boolean = false;
 	private buscar:boolean = false;
 	private otrosusuarios:boolean = false;
+	private informarActivado:boolean = false;
+	private correoEnviado:boolean = false;
 	//variable para saber si es admin
 	private esAdmin:boolean = false;
+	@ViewChild('activar') activar: ConfirmarComponent; //variabla para recoger cuando se ha cerrado el mensaje de activar
 
 	constructor(
 	//instanciamos las variables de los componentes que hemos importado
@@ -89,7 +93,28 @@ export class AppComponent {
 			//llamamos a la funcion que cambia el estado a conectado cada segundo
 			setInterval(this.ponerConectado.bind(this),1000);
 		}
+
+		setInterval(this.ocultar.bind(this),1000)
 	}
+
+	private ocultar():void{
+		if(this.informarActivado){
+			this.activar.ocultar
+			.subscribe(
+				res => {
+					this.informarActivado = false;
+					if(!res){
+						this.correoEnviado = true;				
+					}
+				}
+			);
+		}
+	}
+
+	private cerrar():void{
+		this.correoEnviado = false;
+	}
+
 	//funcion para poner el estado en conectado
 	private ponerConectado():void{
 		let idusuario = this._recogerUsuario.getUsuario().getId();
@@ -114,6 +139,7 @@ export class AppComponent {
 		this.contenidoUsuario = false;
 		this.buscar = false;
 		this.otrosusuarios = false;
+		this.informarActivado = false;
 
 		if(componente == "/amigos"){
 			//si estamos en la pagina de amigos mostramos el componente de amigo
@@ -133,8 +159,14 @@ export class AppComponent {
 		}else if(componente.substring(0,8) == "/usuario"){
 			//si no estamos en ninguna de estas paginas motramos el componente de contenido del usuario
 			this.otrosusuarios = true;
+			if(this._recogerUsuario.getUsuario().getActivado() == 0){
+				this.informarActivado = true;
+			}
 		}else{
 			this.contenidoUsuario = true;
+			if(this._recogerUsuario.getUsuario().getActivado() == 0){
+				this.informarActivado = true;
+			}
 		}
 
 	}

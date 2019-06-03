@@ -47,6 +47,7 @@ export class OtrosusuariosComponent implements OnInit {
 	private apodo:string;
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
 	private contenidoUsuario:Array<Archivo> = new Array();
+	private hayContenido:boolean = true;
 	//variables referentes a subir archivos
 	private nombreArchivo:string = "";
 	private fichero:File;
@@ -83,6 +84,7 @@ export class OtrosusuariosComponent implements OnInit {
 		this.obtenerUrl();
 		setTimeout(this.iniciar.bind(this),500);
 		setTimeout(this.irA.bind(this),1000);
+		setTimeout(this.comprobarContenido.bind(this),1000);
 
 	}
 
@@ -92,6 +94,22 @@ export class OtrosusuariosComponent implements OnInit {
 		//ocultamos loc comentarios cuando no se este comentado
     setInterval(this.oculatr.bind(this),500);
     
+	}
+
+	private comprobarContenido():void{
+		if(this.contenidoUsuario.length == 0){
+			this.hayContenido = false;
+		}else{
+			this.hayContenido = true;
+		}
+	}
+
+	private esActivado():boolean{
+		if(this.miUsuario.getActivado() == 1){
+			return true;
+		}
+
+		return false;
 	}
 
 	private iniciar():void{
@@ -133,8 +151,9 @@ export class OtrosusuariosComponent implements OnInit {
 
 	private oculatr():void{
 		//recogemos los textareas de los comentarios y los ocultamos siempre que no se ente comentando
-		if(!this.comentando)
+		if(!this.comentando){
 			$('[id^="textcomentario"]').hide();
+		}
 	}
 
 	private recogerArchivos():void{

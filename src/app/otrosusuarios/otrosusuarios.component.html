@@ -44,6 +44,13 @@
     </div>
 
 
+    <!-- si el usuario no ha subido ninguna foto o video mostramos un gif -->
+    <div class="sincontenido mx-auto mb-5 col-12" *ngIf="!hayContenido">
+      <div class="d-flex justify-content-center">
+        <img src="../../assets/arbusto.gif" width="60%">
+      </div>
+    </div>
+
     <!-- recorremos el array con el contenido del usuario -->
     <div *ngFor="let contenido of contenidoUsuario" class="archivos mb-5">
 
@@ -80,7 +87,7 @@
               </div>
               <div *ngFor="let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
                 <div class="col-12 comentario d-block">
-                  <i class="fecha">{{comentario.getFecha()}}</i><br/>
+                  <i class="fecha">{{comentario.getFecha()}}</i><br />
                 </div>
                 <div class="col-12 comentario d-block">
                   <b>{{comentario.getNombreUsuario()}}</b>
@@ -88,25 +95,35 @@
                 </div>
               </div>
             </div>
-            <div class="dropdown denunciar">
-              <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="../../assets/iconos/flag.svg">
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido inapropiado u ofensivo.</a>
+
+
+            <div *ngIf="esActivado()">
+              <div class="dropdown denunciar">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img src="../../assets/iconos/flag.svg">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido
+                    inapropiado u ofensivo.</a>
+                </div>
+              </div>
+
+              <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
+                <div class="col-12" id="textcomentario{{contenido.getId()}}">
+                  <div class="info text-center">{{comentarioinfo}}</div>
+                  <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
+                    [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <button class="d-flex ml-auto comentar"
+                  (click)="comentar(contenido.getId(),contenido.getComentarios())">
+                  Comentar
+                </button>
               </div>
             </div>
 
-            <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
-              <div class="col-12" id="textcomentario{{contenido.getId()}}">
-                <div class="info text-center">{{comentarioinfo}}</div>
-                <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
-                  [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
-              </div>
-              <button class="d-flex ml-auto comentar" (click)="comentar(contenido.getId(),contenido.getComentarios())">
-                Comentar
-              </button>
-            </div>
+
+
           </div>
         </div>
       </div>
@@ -146,25 +163,33 @@
                 </div>
               </div>
             </div>
-            <div class="dropdown denunciar">
-                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <div *ngIf="esActivado()">
+              <div class="dropdown denunciar">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
                   <img src="../../assets/iconos/flag.svg">
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido inapropiado u ofensivo.</a>
+                  <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido
+                    inapropiado u ofensivo.</a>
                 </div>
               </div>
-            <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
-              <!-- *ngIf="comentando" -->
-              <div class="col-12" id="textcomentario{{contenido.getId()}}">
-                <div class="info text-center">{{comentarioinfo}}</div>
-                <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
-                  [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
+              <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
+                <!-- *ngIf="comentando" -->
+                <div class="col-12" id="textcomentario{{contenido.getId()}}">
+                  <div class="info text-center">{{comentarioinfo}}</div>
+                  <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
+                    [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <button class="d-flex ml-auto comentar"
+                  (click)="comentar(contenido.getId(),contenido.getComentarios())">
+                  Comentar
+                </button>
               </div>
-              <button class="d-flex ml-auto comentar" (click)="comentar(contenido.getId(),contenido.getComentarios())">
-                Comentar
-              </button>
             </div>
+
+
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ export class MensajesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		setInterval(this.ocultar.bind(this),1);
+		setInterval(this.ocultar.bind(this),75);
 	}
 
 	private ocultar():void{
@@ -158,7 +158,7 @@ export class MensajesComponent implements OnInit {
 		this.ocultar();
 	}
 
-	private responder(idusuarioto:number,idmensaje:number){
+	private responder(idusuarioto:number,idmensaje:number,mensaje){
 		//comprobamos que se halla escrito una respuesta
 		if(this.respuesta != ""){
 			//enviamos el comentario a la base de datos
@@ -166,6 +166,7 @@ export class MensajesComponent implements OnInit {
 			//ocultamos el textarea y reseteamos los avriables
 			this.respondiendo = false;
 			this.respuesta = "";
+			this.marcarLeido(mensaje);
 			
 			//actualizamos el array actual
 			this.obtenerMensajes();
