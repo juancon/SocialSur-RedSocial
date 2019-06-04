@@ -309,6 +309,11 @@ export class OtrosusuariosComponent implements OnInit {
       this._operacionesPeticiones.enviarSolicitud(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje)
 			this.otroUsuario.setAmistad(2);
       this.cerrarModal();
+    }else{
+      $("#peticion").addClass("parpadear");
+			setTimeout(function () {
+				$("#peticion").removeClass("parpadear");
+			}, 5000)
     }
 	}
 	
@@ -318,6 +323,11 @@ export class OtrosusuariosComponent implements OnInit {
     if (this.mensaje.trim() != "") {
       this._mensajes.enviarMensaje(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje);
       this.cerrarModal();
+    }else{
+      $("#mensaje").addClass("parpadear");
+			setTimeout(function () {
+				$("#mensaje").removeClass("parpadear");
+			}, 5000)
     }
 	}
 	

@@ -166,3 +166,16 @@ hr.separarMensajes{
 	text-align: center;
 	font-weight: bold;
 }
+
+/* creamos el macro */
+@keyframes parpadear { 
+	50% { border-color: #ff0000; } 
+ }
+ /* clase que llamara a ese macro */
+.parpadear{
+	animation-name: parpadear ;/* llamamamos al macro*/
+    animation-duration: .5s ; /* establecemos el tiempo que durara la animacion */
+    animation-timing-function: step-end; /* establecemos la manera en la que la animacion se ejecutara */
+    animation-iteration-count: 10 ; /*establecememos las veces que se ejecutaran las animaciones*/
+    animation-direction: alternate ; /*establecemos la direccion de la animacion*/
+}

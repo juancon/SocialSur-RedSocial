@@ -59,11 +59,11 @@
       <div class="offset-md-3 col-md-6 mensaje">
         <div [innerHTML]="mensaje.getMensaje()"></div>
         <div class="mt-2" id="responder{{mensaje.getId()}}">
-          <textarea class="form-control" [(ngModel)]="respuesta" [ngModelOptions]="{standalone: true}"
+          <textarea id="respuesta{{mensaje.getId()}}" class="form-control" [(ngModel)]="respuesta" [ngModelOptions]="{standalone: true}"
             placeholder="Escribe tu mensaje..."></textarea>
 
           <div class="btn btn-default enviar" title="Enviar respuesta"
-            (click)="responder(mensaje.getOtroUsuario()['id'],mensaje.getId(),mensaje)">
+            (click)="responder(mensaje.getOtroUsuario()['id'],'respuesta'+mensaje.getId(),mensaje)">
             <img src="../../assets/iconos/paper-plane-1.svg">
           </div>
 
@@ -122,13 +122,13 @@
       <div class="modal-body">
         <div>
           <h3 class="mb-3 text-center">Mensaje para:</h3>
-          <select class="browser-default custom-select mb-3" [(ngModel)]="destinatario"
+          <select id="para" class="browser-default custom-select mb-3" [(ngModel)]="destinatario"
             [ngModelOptions]="{standalone: true}">
             <option selected value="0">Selecciona a un amigo.</option>
             <option *ngFor="let amigo of amigos" value="{{amigo.getId()}}">{{amigo.getNombre()+" "+amigo.getApellido()}}
             </option>
           </select>
-          <textarea id="form7" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+          <textarea id="mensaje" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
             class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
         </div>
         <div class="modal-footer">

@@ -207,7 +207,7 @@
         <div>
           <h3 class="mb-3 text-center">Solicitud de amistad para:</h3>
           <h3 class="mb-3 text-center">{{otroUsuario.getNombre()+" "+otroUsuario.getApellido()}}</h3>
-          <textarea id="form7" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+          <textarea id="peticion" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
             class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
         </div>
         <div class="modal-footer">
@@ -229,7 +229,7 @@
         <div>
           <h3 class="mb-3 text-center">Mensaje para:</h3>
           <h3 class="mb-3 text-center">{{otroUsuario.getNombre()+" "+otroUsuario.getApellido()}}</h3>
-          <textarea id="form" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+          <textarea id="mensaje" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
             class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
         </div>
         <div class="modal-footer">

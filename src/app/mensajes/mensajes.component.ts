@@ -50,7 +50,7 @@ export class MensajesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		setInterval(this.ocultar.bind(this),75);
+		setTimeout(this.ocultar.bind(this),250);
 	}
 
 	private ocultar():void{
@@ -65,6 +65,7 @@ export class MensajesComponent implements OnInit {
 		//si no se esta respondiendo se pueden recargar los mensajes
 		if(!this.respondiendo && !this.nuevoMensaje){
 			this.mensajes = this._mensajes.obtenerMensajes(this.mensajes,this.usuario.getId());
+			setTimeout(this.ocultar.bind(this),50);
 		}
 	}
 	
@@ -75,6 +76,7 @@ export class MensajesComponent implements OnInit {
 		this.mostrarEnviados = false;
 		this.respondiendo = false;
 		this.cambiarEstilo("recibidos");
+		setTimeout(this.ocultar.bind(this),1);
 	}
 	private mostrarSoloEnviados():void{
 		//ocultamos los enviados y mostramoslos recibidos
@@ -82,6 +84,7 @@ export class MensajesComponent implements OnInit {
 		this.mostrarRecibidos = false;
 		this.respondiendo = false;		
 		this.cambiarEstilo("enviados");
+		this.ocultar();
 	}
 
 	private cambiarEstilo(mostrar:string):void{
@@ -158,9 +161,9 @@ export class MensajesComponent implements OnInit {
 		this.ocultar();
 	}
 
-	private responder(idusuarioto:number,idmensaje:number,mensaje){
+	private responder(idusuarioto:number,idtextarea:string,mensaje){
 		//comprobamos que se halla escrito una respuesta
-		if(this.respuesta != ""){
+		if(this.respuesta.trim() != ""){
 			//enviamos el comentario a la base de datos
 			this.enviarMensaje(this.usuario.getId(),idusuarioto,this.respuesta);
 			//ocultamos el textarea y reseteamos los avriables
@@ -170,6 +173,12 @@ export class MensajesComponent implements OnInit {
 			
 			//actualizamos el array actual
 			this.obtenerMensajes();
+		}else{
+			//indicamos al usuario que debe de introducir una respuesta
+			$("#"+idtextarea).addClass("parpadear");
+			setTimeout(function(){
+				$("#"+idtextarea).removeClass("parpadear");
+			},5000)
 		}
 	}
 
@@ -180,16 +189,34 @@ export class MensajesComponent implements OnInit {
 
 	private enviar():void{
 		//comprobamos que se halla escrito una respuesta
-		if(this.mensaje != "" && this.destinatario != 0){
+		if(this.mensaje.trim() != "" && this.destinatario != 0){
 			//enviamos el comentario a la base de datos
 			this.enviarMensaje(this.usuario.getId(),this.destinatario,this.mensaje);
 			//cerramos la ventana y reinicamos las variables
 			this.cerrarModal();
+		}else{
+
+			//indicamos al usuario que no ha introducido
+			if(this.mensaje.trim() == ""){
+				$("#mensaje").addClass("parpadear");
+				setTimeout(function(){
+					$("#mensaje").removeClass("parpadear");
+				},5000)
+			}
+
+			if(this.destinatario == 0){
+				$("#para").addClass("parpadear");
+				setTimeout(function(){
+					$("#para").removeClass("parpadear");
+				},5000)
+			}
 		}
 	}
+	  
 
 	private enviarMensaje(idusuario:number,idusuarioto:number,mensaje:string):void{
 		this._mensajes.enviarMensaje(idusuario,idusuarioto,mensaje);
+		this.ocultar();
 	}
 
 	//funcion para cerrar la ventana modal

@@ -89,6 +89,11 @@ export class BuscarComponent implements OnInit {
     if (this.mensaje.trim() != "") {
       this._mensajes.enviarMensaje(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje);
       this.cerrarModal();
+    }else{
+      $("#mensaje").addClass("parpadear");
+			setTimeout(function () {
+				$("#mensaje").removeClass("parpadear");
+			}, 5000)
     }
   }
 
@@ -97,13 +102,18 @@ export class BuscarComponent implements OnInit {
     if (this.mensaje.trim() != "") {
       this._operacionesPeticiones.enviarSolicitud(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje)
       this.cerrarModal();
+      //cambiamos el estado de la amistad
+      for(var i = 0; i < this.usuarios.length; i++){
+        if(this.usuarios[i].getId() == this.amigoActivo.getId()){
+          this.usuarios[i].setAmistad(2);
+        }
+      }
+    }else{
+      $("#peticion").addClass("parpadear");
+			setTimeout(function () {
+				$("#peticion").removeClass("parpadear");
+			}, 5000)
     }
-    //cambiamos el estado de la amistad
-    for(var i = 0; i < this.usuarios.length; i++){
-			if(this.usuarios[i].getId() == this.amigoActivo.getId()){
-        this.usuarios[i].setAmistad(2);
-			}
-		}
   }
 
   //funcion par aborrar amigo

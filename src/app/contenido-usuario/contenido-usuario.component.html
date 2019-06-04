@@ -135,7 +135,6 @@
 	<div class="modal-dialog " role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 class="modal-title mx-auto" id="subirArchivos">Subir Foto/Vídeo</h3>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -143,7 +142,7 @@
 			<form>
 				<div class="modal-body">
 					<div>
-						<input type="text" class="form-control" name="nombre" [(ngModel)]="nombreArchivo" [ngModelOptions]="{standalone: true}" placeholder="Nombre" required>
+						<input type="text" class="form-control" name="nombre" [(ngModel)]="nombreArchivo" [ngModelOptions]="{standalone: true}" placeholder="Nombre de la publicación" required>
 						<div class="info">{{infoNombre}}</div><br>
 					</div>
 					<div class="input-group">

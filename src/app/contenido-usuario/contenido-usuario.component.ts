@@ -77,7 +77,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 
 	ngOnInit() {
 		//ocultamos loc comentarios cuando no se este comentado
-		setInterval(this.oculatr.bind(this),500);
+		setTimeout(this.oculatr.bind(this),500);
 	}
 
 	private comprobarContenido():void{
@@ -280,6 +280,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	private comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
+		console.log(2);
 		if(this.comentando){
 			//comprobamos que el comentario no este vacio
 			if(this.nuevoComentario != ""){
@@ -302,9 +303,10 @@ export class ContenidoUsuarioComponent implements OnInit {
 					}
 				}
 			}else{
-				$("#textcomentario"+idelemento).hide();
+				//$("#textcomentario"+idelemento).hide();
 				this.comentando = false;
 			}
+			this.oculatr();
 		}else{
 			this.comentando = true;
 			$("#textcomentario"+idelemento).show();
