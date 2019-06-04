@@ -17,15 +17,15 @@ import {RefrescarService} from '../services/refrescar.service'
 })
 export class PeticionesComponent implements OnInit {
 	//variables referentes a los usuarios
-	private usuario:Usuario;
+	public usuario:Usuario;
 	//variables referentes a los mensajes
-	private peticiones:Array<Peticion> = new Array();
+	public peticiones:Array<Peticion> = new Array();
 
 
 	constructor(
-		private _redirigir: RefrescarService,
-		private _peticiones: OperacionesPeticionesService,
-		private _recogerUsuario: RecogerUsuarioLocalService,
+		public _redirigir: RefrescarService,
+		public _peticiones: OperacionesPeticionesService,
+		public _recogerUsuario: RecogerUsuarioLocalService,
 	) {
 		this.usuario = this._recogerUsuario.getUsuario();
 		this.obtenerPeticiones();
@@ -37,12 +37,12 @@ export class PeticionesComponent implements OnInit {
 		
 	}
 
-	private obtenerPeticiones():void{
+	public obtenerPeticiones():void{
 		//si no se esta respondiendo se pueden recargar los mensajes
 		this.peticiones = this._peticiones.obtenerPeticiones(this.usuario.getId(),this.peticiones);
 	}
 
-	private responder(idusuariofrom:number,respuesta:string):void{
+	public responder(idusuariofrom:number,respuesta:string):void{
 		for(var i = 0; i < this.peticiones.length; i++){
 			if(this.peticiones[i].getOtroUsuario()["id"] == idusuariofrom){
 				this.peticiones.splice(i,1)
@@ -52,7 +52,7 @@ export class PeticionesComponent implements OnInit {
 		this._peticiones.responder(idusuariofrom,this.usuario.getId(),respuesta);
 		//eliminamos la peticion del array
 	}
-	private comprobarMensaje(peticion:Peticion):boolean{
+	public comprobarMensaje(peticion:Peticion):boolean{
 		if(peticion.getMensaje() == null && peticion.getMensaje() == ""){
 			return false;
 		}
@@ -60,7 +60,7 @@ export class PeticionesComponent implements OnInit {
 		return true;
 	}
 
-	private redirigir(apodo:string):void{
+	public redirigir(apodo:string):void{
 		let url = "/usuario?apodo="+apodo;
 		window.location.href = url;
 	}

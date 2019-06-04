@@ -32,37 +32,37 @@ import {ComentariosService } from '../services/comentarios.service';
 })
 export class ContenidoUsuarioComponent implements OnInit {
 	//variables referentes a las urls
-	private urlRecogerArchivos:string;
+	public urlRecogerArchivos:string;
 	//Variables referentes al usuario
-	private usuario:Usuario;
+	public usuario:Usuario;
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
-	private contenidoUsuario:Array<Archivo> = new Array();
-	private hayContenido:boolean = true;
+	public contenidoUsuario:Array<Archivo> = new Array();
+	public hayContenido:boolean = true;
 	//variables referentes a subir archivos
-	private nombreArchivo:string = "";
-	private fichero:File;
-	private infoNombre:string = "";
-	private infoFichero:string = "";
-	private archivo:any;
+	public nombreArchivo:string = "";
+	public fichero:File;
+	public infoNombre:string = "";
+	public infoFichero:string = "";
+	public archivo:any;
 	//variables referentes a los comentarios de los archivos
-	private comentarios:Array<Comentario> = new Array();
-	private comentando:boolean = false;
-	private ocultar:boolean = false;
-	private nuevoComentario:string = "";
-	private comentarioinfo:string = "";
+	public comentarios:Array<Comentario> = new Array();
+	public comentando:boolean = false;
+	public ocultar:boolean = false;
+	public nuevoComentario:string = "";
+	public comentarioinfo:string = "";
 	//variable para la referencia
-	private referencia:string = "";
+	public referencia:string = "";
 
 
 	constructor(
-		private _router: Router,
-		private _recogerUsuario: RecogerUsuarioLocalService,
-		private _urls: UrlsService,
-		private _http: Http,
-		private _operacionesFechas: OperacionesFechasService,
-		private _operacionesMegustas: OperacionesMeGustasService,
-		private _subirArchivo: SubirArchivoService,
-		private _comentarios: ComentariosService
+		public _router: Router,
+		public _recogerUsuario: RecogerUsuarioLocalService,
+		public _urls: UrlsService,
+		public _http: Http,
+		public _operacionesFechas: OperacionesFechasService,
+		public _operacionesMegustas: OperacionesMeGustasService,
+		public _subirArchivo: SubirArchivoService,
+		public _comentarios: ComentariosService
 	) {
 		this.usuario = this._recogerUsuario.getUsuario();
 		this.urlRecogerArchivos = this._urls.getUrl("recogerArchivos");
@@ -80,7 +80,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 		setTimeout(this.oculatr.bind(this),500);
 	}
 
-	private comprobarContenido():void{
+	public comprobarContenido():void{
 		if(this.contenidoUsuario.length == 0){
 			this.hayContenido = false;
 		}else{
@@ -88,7 +88,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 		}
 	}
 
-	private obtenerReferencia():void{
+	public obtenerReferencia():void{
 		//obtenemos el parametro que queremos de la url
 		let url = this._router.parseUrl(this._router.url);
 		//si esxites la referencia la obtenemos
@@ -99,7 +99,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 
 	}
 
-	private irA():void{
+	public irA():void{
 		if(this.referencia != ""){
 			//si la referencia no esta vacia movemos el contenido del body hasta el top -100 del nombre de la publicacion
 			$("html, body").animate({
@@ -108,13 +108,13 @@ export class ContenidoUsuarioComponent implements OnInit {
 		}
 	}
 
-	private oculatr():void{
+	public oculatr():void{
 		//recogemos los textareas de los comentarios y los ocultamos siempre que no se ente comentando
 		if(!this.comentando)
 			$('[id^="textcomentario"]').hide();
 	}
 
-	private recogerArchivos():void{
+	public recogerArchivos():void{
 		//enviamos el id del usuario
 		let parametros = {
 			id : this.usuario.getId()
@@ -133,7 +133,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	//funcion para actualizar el array con las fotos y los videos en local
-	private agregarArchivosArray(datos:Array<string>):void{
+	public agregarArchivosArray(datos:Array<string>):void{
 		//recogemos el array
 		for ( var i = 0; i < datos.length; i++){
 			//modifico la fecha en funcion si es de hoy
@@ -162,7 +162,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	//comprobar si el archivo es un video
-	private comprobarVideo(tipo:string):boolean{
+	public comprobarVideo(tipo:string):boolean{
 		if(tipo == "video"){
 			return true;
 		}
@@ -170,7 +170,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	//comprobar si el archivo es un foto
-	private comprobarFoto(tipo:string):boolean{
+	public comprobarFoto(tipo:string):boolean{
 		if(tipo == "foto"){
 			return true;
 		}
@@ -178,24 +178,24 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 	
 	//funcion para dar o quitar un megusta
-	private darQuitarMegusta(idelemento:number):void{
+	public darQuitarMegusta(idelemento:number):void{
 		//llamamos al servicio que me permite dar un nuevo megusta
 		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.usuario.getId(),idelemento,this.contenidoUsuario);
 
 		//this.actualizarRuta();
 	}
 
-	/* private actualizarRuta():void{
+	/* public actualizarRuta():void{
 		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
 		this.contenidoUsuario = this._operacionesMegustas.actualizarRuta(this.contenidoUsuario);
 	} */
 
 	//funcion para almacenar un archivo en local
-	private almacenarFichero(ev):void{
+	public almacenarFichero(ev):void{
 		this.archivo = ev.target;
 	}
 	//funcion subir ficheros
-	private subirFichero():void{
+	public subirFichero():void{
 		//comprobamos que se halla introducido un nombre
 		if(this.nombreArchivo.trim() != ""){
 			//comprobamos que se ha introducido un fichero
@@ -246,7 +246,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 	
 	//funcion para cerrar la ventana modal
-	private cerrarModal(){
+	public cerrarModal(){
 		//recorremos la ventana modal y la cerramos
 		//usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
 		//componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
@@ -259,7 +259,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	//funcion para obetener los comentarios de cada archivo
-	private obtenerComentariosArchivos():Array<Archivo>{
+	public obtenerComentariosArchivos():Array<Archivo>{
 		//creamos un array que devolveremos
 		let ret = this.contenidoUsuario;
 		//recorremos el array actual
@@ -271,7 +271,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	//saber si un array esta vacio
-	private esVacio(array:Array<any>):boolean{
+	public esVacio(array:Array<any>):boolean{
 		if(array.length > 0){
 			return false;
 		}
@@ -279,7 +279,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 		return true;
 	}
 
-	private comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
+	public comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
 		console.log(2);
 		if(this.comentando){
 			//comprobamos que el comentario no este vacio

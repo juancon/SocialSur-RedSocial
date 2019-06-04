@@ -22,27 +22,27 @@ import { Usuario } from '../Usuario/usuario';
 })
 export class ChatComponent implements OnInit {
 	//urls
-	private urlRecogerAmigos:string;
-	private urlGetConversacion:string;
-	private urlEnviarMensajeChat:string;
-	private usuario:Usuario;
+	public urlRecogerAmigos:string;
+	public urlGetConversacion:string;
+	public urlEnviarMensajeChat:string;
+	public usuario:Usuario;
 	//variables refrentes a los amigos y el chat
-	private amigos:Array<Usuario> = new Array();
-	private amigosConectados:Array<Usuario> = new Array();
-	private amigoHablando:Usuario;
-	private idAmigoActual:number = 0;
+	public amigos:Array<Usuario> = new Array();
+	public amigosConectados:Array<Usuario> = new Array();
+	public amigoHablando:Usuario;
+	public idAmigoActual:number = 0;
 	@Output() enviarHablando:EventEmitter<boolean> = new EventEmitter<boolean>();
-	private hablando:boolean = false;
-	private conversaciones:Array<string>;
-	private conversacionesSinLeer:Array<string> = new Array();
-	private mensaje:string = "";
+	public hablando:boolean = false;
+	public conversaciones:Array<string>;
+	public conversacionesSinLeer:Array<string> = new Array();
+	public mensaje:string = "";
 
 	constructor(
-		private _recogerUsuario: RecogerUsuarioLocalService,
-		private _http: Http,
-		private _urls: UrlsService,
-		private _operacionesFechas: OperacionesFechasService,
-		private _operacionesAmigos: OperacioneAmigosService
+		public _recogerUsuario: RecogerUsuarioLocalService,
+		public _http: Http,
+		public _urls: UrlsService,
+		public _operacionesFechas: OperacionesFechasService,
+		public _operacionesAmigos: OperacioneAmigosService
 	) {
 		this.usuario = this._recogerUsuario.getUsuario();
 		this.urlRecogerAmigos = this._urls.getUrl("recogerAmigos");
@@ -57,22 +57,22 @@ export class ChatComponent implements OnInit {
 	ngOnInit() {
 	}
 	//recoger los amigos que tiene el usuario
-	private recogerAmigos():void{
+	public recogerAmigos():void{
 		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
 	}
 	
 	//mostrar el chat
-	private mostrarChat():void{
+	public mostrarChat():void{
 		this.hablando = true;
 		this.enviarHablando.emit(this.hablando);
 	}
 	//ocultar el chat
-	private ocultarChat():void{
+	public ocultarChat():void{
 		this.hablando = false;
 		this.enviarHablando.emit(this.hablando);
 	}
 	//funcion para mostrar el chat de la persona indicada
-	private hablarAmigo(amigo:Usuario):void{
+	public hablarAmigo(amigo:Usuario):void{
 		if(typeof(this.amigoHablando) == "undefined"){
 			this.amigoHablando = amigo;
 			this.mostrarChat();
@@ -94,7 +94,7 @@ export class ChatComponent implements OnInit {
 		this.marcarConversacionLeido();
 	}
 
-	private marcarConversacionLeido(){
+	public marcarConversacionLeido(){
 		//marcamos las conversaciones como leidas
 		let parametros = {
 			id : this.usuario.getId(),
@@ -111,7 +111,7 @@ export class ChatComponent implements OnInit {
 	}
 
 	//comprobamos quien envia el mensaje
-	private comprobarUsuarioFrom(id:number):boolean{
+	public comprobarUsuarioFrom(id:number):boolean{
 		if( id == this.usuario.getId()){
 			return true;
 		}else{
@@ -120,11 +120,11 @@ export class ChatComponent implements OnInit {
 	}
 
 	//Borrar el texto en mi chat
-	private borrarText():void{
+	public borrarText():void{
 		this.mensaje = "";
 	}
 	//funcion para obtener los amigos conectados
-	private obtenerAmigosConectados():void{
+	public obtenerAmigosConectados():void{
 		//creamos un array auxiliar donde guardaremos los amigos conectado
 		let amigosAux = [];
 		//rrecorremos el array de amigos
@@ -141,7 +141,7 @@ export class ChatComponent implements OnInit {
 		}
 	}
 
-	private getConversacionesSinLeer():void{
+	public getConversacionesSinLeer():void{
 		let parametros = {
 			id : this.usuario.getId(),
 			accion : "getconversaciones"
@@ -158,7 +158,7 @@ export class ChatComponent implements OnInit {
 		);
 	}
 
-	private comprobarSinLeido(idusuario:number):boolean{
+	public comprobarSinLeido(idusuario:number):boolean{
 		for(var i = 0; i < this.conversacionesSinLeer.length; i++){
 			if(idusuario == this.conversacionesSinLeer[i]["iduserfrom"] || idusuario == this.conversacionesSinLeer[i]["iduserto"]){
 				return true;
@@ -169,7 +169,7 @@ export class ChatComponent implements OnInit {
 	}
 
 	//funcion pra comprobar si hay amigos conectado
-	private comprobarAmigosConectado():boolean{
+	public comprobarAmigosConectado():boolean{
 		//si el array es nulo o no hay datos devolvemos false
 		if(this.amigosConectados == null || this.amigosConectados.length == 0){
 			return false;

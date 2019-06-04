@@ -27,47 +27,47 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./administracion.component.css']
 })
 export class AdministracionComponent implements OnInit {
-	private urlRegistro:string;
-	private urlComprobarCorreo:string;
-	private denuncias:Array<Denuncias>;
-	private admin:Usuario;
-	private admins:Array<Usuario> = new Array();
+	public urlRegistro:string;
+	public urlComprobarCorreo:string;
+	public denuncias:Array<Denuncias>;
+	public admin:Usuario;
+	public admins:Array<Usuario> = new Array();
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
-	private contenidoUsuario:Array<Archivo> = new Array();
+	public contenidoUsuario:Array<Archivo> = new Array();
 	//variables para ordenar
-	private ordenarPor:string = "nada";
+	public ordenarPor:string = "nada";
 	//variable para dar de alta a nuevos administradores
-	private altaAdmin:boolean = false;
+	public altaAdmin:boolean = false;
 	//variables relacionadas al HTML
-	private correo :string = "";
-	private password:string = "";
-	private password2:string = "";
-	private enviar:boolean = false;
+	public correo :string = "";
+	public password:string = "";
+	public password2:string = "";
+	public enviar:boolean = false;
 	//variables que informan al usuario
-	private correoInfo:string;
-	private correoExiste:string;
-	private passwordInfo:string;
-	private password2Info:string;
-	private errorRegistro:string;
-	private errorRegistro2:string;
+	public correoInfo:string;
+	public correoExiste:string;
+	public passwordInfo:string;
+	public password2Info:string;
+	public errorRegistro:string;
+	public errorRegistro2:string;
 	//variables de validacion
-	private email:boolean = false;
-	private emailExist:boolean = false;
-	private pass:boolean = false;
-	private passlon:boolean = false;
-	private pass2:boolean = false;
-	private error:boolean = false;
+	public email:boolean = false;
+	public emailExist:boolean = false;
+	public pass:boolean = false;
+	public passlon:boolean = false;
+	public pass2:boolean = false;
+	public error:boolean = false;
   
   constructor(
-		private _cerrarSesion: CerrarSesionService,
-    private _operacionesDenuncias: OperacionesDenunciasService,
-		private _operacionesFechas: OperacionesFechasService,
-		private _operacionesUsuarios: OperacionesUsuariosService,
-		private _borrarArchivo: BorrarArchivoService,
-		private _comentarios: ComentariosService,
-		private _http: Http,
-		private _urls: UrlsService,
-		private _recogerUsuario: RecogerUsuarioLocalService
+		public _cerrarSesion: CerrarSesionService,
+    public _operacionesDenuncias: OperacionesDenunciasService,
+		public _operacionesFechas: OperacionesFechasService,
+		public _operacionesUsuarios: OperacionesUsuariosService,
+		public _borrarArchivo: BorrarArchivoService,
+		public _comentarios: ComentariosService,
+		public _http: Http,
+		public _urls: UrlsService,
+		public _recogerUsuario: RecogerUsuarioLocalService
   ) {
 		this.urlRegistro = _urls.getUrl("crearUsuario");
 		this.urlComprobarCorreo = _urls.getUrl("comprobarCorreo");
@@ -79,20 +79,20 @@ export class AdministracionComponent implements OnInit {
   ngOnInit() {
 	}
 
-	private obtenerAdmins(){
+	public obtenerAdmins(){
 		this.admins = this._operacionesUsuarios.getAdmins(this.admin.getId(),this.admins);
 	}
 
-	private altaAdminFormulario():void{
+	public altaAdminFormulario():void{
 		this.altaAdmin = true;
 		this.obtenerAdmins();
 	}
 
-	private irDenuncias(){
+	public irDenuncias(){
 		this.altaAdmin = false;
 	}
 
-	private validar():void{
+	public validar():void{
 		// preguntamos si todos los campos son validos
 		if(this.email && this.pass && this.pass2 && this.emailExist){
 			//creamos un array con los valores de los campos
@@ -133,7 +133,7 @@ export class AdministracionComponent implements OnInit {
 		}
 	}
 
-	private validarCorreo():void{
+	public validarCorreo():void{
 		if(this.correo != "" || this.correo == null){
 			if(this.expresionCorreo(this.correo)){
 				this.correoInfo = "";
@@ -147,7 +147,7 @@ export class AdministracionComponent implements OnInit {
 			this.email = false;
 		}
 	}
-	private validarPassword():void{
+	public validarPassword():void{
 		if(this.password != "" || this.password == null){
 			if(this.passlon){
 				this.passwordInfo = "";
@@ -159,7 +159,7 @@ export class AdministracionComponent implements OnInit {
 			this.pass = false;
 		}
 	}
-	private validarPassword2():void{
+	public validarPassword2():void{
 		if(this.password2 != "" || this.password2 == null){
 			//comprobamos si las contraseñas son iguales
 			if(this.password == this.password2){
@@ -174,14 +174,14 @@ export class AdministracionComponent implements OnInit {
 			this.pass2 = false;
 		}
 	}
-	private longitudCorreo():void{
+	public longitudCorreo():void{
 		if(this.correo.length > 100){
 			this.correo = this.correo.substring(0,99);
 			this.correoInfo = "Máximo 100 caracteres.";
 		}
 		this.comprobarCorreo();
 	}
-	private longitudPassword():void{
+	public longitudPassword():void{
 		if(this.password.length < 8){
 			this.passwordInfo = "Mínimo 8 caracteres.";
 		}else if(this.password.length > 7 && this.password.length < 33){
@@ -192,7 +192,7 @@ export class AdministracionComponent implements OnInit {
 			this.passwordInfo = "Máximo 32 caracteres.";
 		}
 	}
-	private expresionCorreo(cadena):boolean{
+	public expresionCorreo(cadena):boolean{
 		//patron que valida el 99% de los correos existentes
 		let expresion = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 		//comprobamos el patron con la cadena que se nos ha pasado
@@ -203,7 +203,7 @@ export class AdministracionComponent implements OnInit {
 	}
 
 	//comprobar si un correo existe
-	private comprobarCorreo():void{
+	public comprobarCorreo():void{
 		//creamos un array con los valores de los campos
 		let parametros = {
 			email: this.correo,
@@ -220,7 +220,7 @@ export class AdministracionComponent implements OnInit {
 			}
 		);
 	}
-	private correoInformar(existe:string):void{
+	public correoInformar(existe:string):void{
 		//comprobamos el resultado e informamos al usuario
 		if(existe == "1"){
 			this.correoExiste = "El correo ya esta en uso.";
@@ -231,7 +231,7 @@ export class AdministracionComponent implements OnInit {
 		}
 	}
 
-	private borraAdmin(idusuario:number):void{
+	public borraAdmin(idusuario:number):void{
 		this._operacionesUsuarios.borrarUsuario(idusuario);
 		
 		for(var i = 0; i < this.admins.length; i++){
@@ -241,7 +241,7 @@ export class AdministracionComponent implements OnInit {
 		}
 	}
 	
-	private ordenarPorNumero():void{
+	public ordenarPorNumero():void{
 		//ordenamos por numero de deuncias de manera descendente
 		this.denuncias.sort(function (a, b) {
 			if (a.getNumdenuncias() > b.getNumdenuncias()) {
@@ -257,13 +257,13 @@ export class AdministracionComponent implements OnInit {
 		this.ordenarPor = "numero";
 	}
 
-	private ordenarPorFecha():void{
+	public ordenarPorFecha():void{
 		//ordenamos por fecha
 		this.denuncias = this._operacionesFechas.ordenarPorFechaDesc(this.denuncias);
 		this.ordenarPor = "fecha";
 	}
 
-  private obtenerDenuncias():void{
+  public obtenerDenuncias():void{
 		this.denuncias = this._operacionesDenuncias.getDenuncias();
 		//comprobamos si el admin ha ordenado el array para ordenar el array
 		if(this.ordenarPor == "numero"){
@@ -274,7 +274,7 @@ export class AdministracionComponent implements OnInit {
 	}
 	
 	//comprobamos si hay denuncias
-	private hayDenuncias():boolean{
+	public hayDenuncias():boolean{
 		if(this.denuncias.length > 0){
 			return true;
 		}
@@ -282,7 +282,7 @@ export class AdministracionComponent implements OnInit {
 	}
 
 	//comprobar si el archivo es un video
-	private comprobarVideo(tipo:string):boolean{
+	public comprobarVideo(tipo:string):boolean{
 		if(tipo == "video"){
 			return true;
 		}
@@ -290,7 +290,7 @@ export class AdministracionComponent implements OnInit {
 	}
 
 	//comprobar si el archivo es un foto
-	private comprobarFoto(tipo:string):boolean{
+	public comprobarFoto(tipo:string):boolean{
 		if(tipo == "foto"){
 			return true;
 		}
@@ -298,7 +298,7 @@ export class AdministracionComponent implements OnInit {
 	}
 
 	//saber si un array esta vacio
-	private esVacio(array:Array<any>):boolean{
+	public esVacio(array:Array<any>):boolean{
 		if(array.length > 0){
 			return false;
 		}
@@ -306,7 +306,7 @@ export class AdministracionComponent implements OnInit {
 		return true;
 	}
 
-	private borrarComentario(idcomentario:number,idelemento:number):void{
+	public borrarComentario(idcomentario:number,idelemento:number):void{
 		//borramos el comentario de la base de datos
 		this._comentarios.borrarComentario(idcomentario);
 		//lo sacamos del array
@@ -332,7 +332,7 @@ export class AdministracionComponent implements OnInit {
 		}
 	}
 
-	private borrarPublicacion(idelemento:number):void{
+	public borrarPublicacion(idelemento:number):void{
 		//borramos las denuncias de ese lemetno
 		this.borrarDenuncias(idelemento);
 		//borramos ese elemeto de la base de datos
@@ -341,7 +341,7 @@ export class AdministracionComponent implements OnInit {
 
 	}
 
-	private borrarComentarios(idelemento:number):void{
+	public borrarComentarios(idelemento:number):void{
 		this._comentarios.borrarComentarios(idelemento);
 
 		//quitamos los comentarios del array
@@ -352,7 +352,7 @@ export class AdministracionComponent implements OnInit {
 		}
 	}
 
-	private borrarDenuncias(idlemento:number):void{
+	public borrarDenuncias(idlemento:number):void{
 		this._operacionesDenuncias.borrarDenuncias(idlemento);
 
 		//eliminamos el elemento de las denuncias
@@ -363,7 +363,7 @@ export class AdministracionComponent implements OnInit {
 		}
 	}
 
-	private cerrarModal(): void {
+	public cerrarModal(): void {
     //recorremos la ventana modal y la cerramos
     //usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
     //componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
@@ -372,7 +372,7 @@ export class AdministracionComponent implements OnInit {
 	}
 
 	//funcion para cerrar sesion
-	private cerrarSesion():void{
+	public cerrarSesion():void{
 		//borramos datos de sesion
 		this._cerrarSesion.cerrarSesion();
 	}

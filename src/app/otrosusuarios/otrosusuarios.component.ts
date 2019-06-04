@@ -40,45 +40,45 @@ import {OperacionesDenunciasService} from '../services/operaciones-denuncias.ser
 })
 export class OtrosusuariosComponent implements OnInit {
   //variables referentes a las urls
-	private urlRecogerArchivos:string;
+	public urlRecogerArchivos:string;
 	//Variables referentes al usuario
-	private miUsuario:Usuario;
-	private otroUsuario:Usuario;
-	private apodo:string;
+	public miUsuario:Usuario;
+	public otroUsuario:Usuario;
+	public apodo:string;
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
-	private contenidoUsuario:Array<Archivo> = new Array();
-	private hayContenido:boolean = true;
+	public contenidoUsuario:Array<Archivo> = new Array();
+	public hayContenido:boolean = true;
 	//variables referentes a subir archivos
-	private nombreArchivo:string = "";
-	private fichero:File;
-	private infoNombre:string = "";
-	private infoFichero:string = "";
-	private archivo:any;
+	public nombreArchivo:string = "";
+	public fichero:File;
+	public infoNombre:string = "";
+	public infoFichero:string = "";
+	public archivo:any;
 	//variables referentes a los comentarios de los archivos
-	private comentarios:Array<Comentario> = new Array();
-	private comentando:boolean = false;
-	private ocultar:boolean = false;
-	private nuevoComentario:string = "";
-	private comentarioinfo:string = "";
+	public comentarios:Array<Comentario> = new Array();
+	public comentando:boolean = false;
+	public ocultar:boolean = false;
+	public nuevoComentario:string = "";
+	public comentarioinfo:string = "";
 	//variable referente a los mensajes
-	private mensaje:string = "";
+	public mensaje:string = "";
 	//variable referente a la redireccion a un archivo en concreto
-	private referencia:string = "";
+	public referencia:string = "";
 
 
 	constructor(
-		private _router: Router,
-		private _recogerUsuario: RecogerUsuarioLocalService,
-		private _urls: UrlsService,
-		private _http: Http,
-		private _operacionesFechas: OperacionesFechasService,
-		private _operacionesMegustas: OperacionesMeGustasService,
-		private _operacionesUsuarios: OperacionesUsuariosService,
-		private _operacionesPeticiones: OperacionesPeticionesService,
-		private _operacionesDenuncias: OperacionesDenunciasService,
-		private _operacionesAmigos: OperacioneAmigosService,
-		private _comentarios: ComentariosService,
-		private _mensajes: MensajesService
+		public _router: Router,
+		public _recogerUsuario: RecogerUsuarioLocalService,
+		public _urls: UrlsService,
+		public _http: Http,
+		public _operacionesFechas: OperacionesFechasService,
+		public _operacionesMegustas: OperacionesMeGustasService,
+		public _operacionesUsuarios: OperacionesUsuariosService,
+		public _operacionesPeticiones: OperacionesPeticionesService,
+		public _operacionesDenuncias: OperacionesDenunciasService,
+		public _operacionesAmigos: OperacioneAmigosService,
+		public _comentarios: ComentariosService,
+		public _mensajes: MensajesService
 	) {
 		this.miUsuario = this._recogerUsuario.getUsuario();
 		this.obtenerUrl();
@@ -96,7 +96,7 @@ export class OtrosusuariosComponent implements OnInit {
     
 	}
 
-	private comprobarContenido():void{
+	public comprobarContenido():void{
 		if(this.contenidoUsuario.length == 0){
 			this.hayContenido = false;
 		}else{
@@ -104,7 +104,7 @@ export class OtrosusuariosComponent implements OnInit {
 		}
 	}
 
-	private esActivado():boolean{
+	public esActivado():boolean{
 		if(this.miUsuario.getActivado() == 1){
 			return true;
 		}
@@ -112,7 +112,7 @@ export class OtrosusuariosComponent implements OnInit {
 		return false;
 	}
 
-	private iniciar():void{
+	public iniciar():void{
 		
 		this.urlRecogerArchivos = this._urls.getUrl("recogerArchivos");
 		//obtenemos los archivos
@@ -120,7 +120,7 @@ export class OtrosusuariosComponent implements OnInit {
 		setInterval(this.recogerArchivos.bind(this),300000)
 	}
 
-	private obtenerUrl():void{
+	public obtenerUrl():void{
 		//obtenemos el parametro que queremos de la url
     let url = this._router.parseUrl(this._router.url);
 		this.apodo = url.queryParams['apodo'];
@@ -137,7 +137,7 @@ export class OtrosusuariosComponent implements OnInit {
     setTimeout(this.obtenerOtroUsuario.bind(this),500);
 	}
 
-	private irA():void{
+	public irA():void{
 		if(this.referencia != ""){
 			$("html, body").animate({
 				scrollTop: $("[name='"+this.referencia+"']").offset().top-100
@@ -145,18 +145,18 @@ export class OtrosusuariosComponent implements OnInit {
 		}
 	}
 
-	private obtenerOtroUsuario(){
+	public obtenerOtroUsuario(){
 		this.otroUsuario =  this._recogerUsuario.getOtroUsuario();
 	}
 
-	private oculatr():void{
+	public oculatr():void{
 		//recogemos los textareas de los comentarios y los ocultamos siempre que no se ente comentando
 		if(!this.comentando){
 			$('[id^="textcomentario"]').hide();
 		}
 	}
 
-	private recogerArchivos():void{
+	public recogerArchivos():void{
 		if(!this.comentando){
 			//enviamos el id del usuario
 			let parametros = {
@@ -177,7 +177,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	//funcion para actualizar el array con las fotos y los videos en local
-	private agregarArchivosArray(datos:Array<string>):void{
+	public agregarArchivosArray(datos:Array<string>):void{
 		//recogemos el array
 		for ( var i = 0; i < datos.length; i++){
 			//modifico la fecha en funcion si es de hoy
@@ -207,7 +207,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	//comprobar si el archivo es un video
-	private comprobarVideo(tipo:string):boolean{
+	public comprobarVideo(tipo:string):boolean{
 		if(tipo == "video"){
 			return true;
 		}
@@ -215,7 +215,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	//comprobar si el archivo es un foto
-	private comprobarFoto(tipo:string):boolean{
+	public comprobarFoto(tipo:string):boolean{
 		if(tipo == "foto"){
 			return true;
 		}
@@ -223,19 +223,19 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 	
 	//funcion para dar o quitar un megusta
-	private darQuitarMegusta(idelemento:number):void{
+	public darQuitarMegusta(idelemento:number):void{
 		//llamamos al servicio que me permite dar un nuevo megusta
 		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.miUsuario.getId(),idelemento,this.contenidoUsuario);
 		//this.actualizarRuta();
 	}
 
-	/* private actualizarRuta():void{
+	/* public actualizarRuta():void{
 		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
 		this.contenidoUsuario = this._operacionesMegustas.actualizarRuta(this.contenidoUsuario);
 	} */
 
 	//funcion para obetener los comentarios de cada archivo
-	private obtenerComentariosArchivos():Array<Archivo>{
+	public obtenerComentariosArchivos():Array<Archivo>{
 		//creamos un array que devolveremos
 		let ret = this.contenidoUsuario;
 		//recorremos el array actual
@@ -247,7 +247,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	//saber si un array esta vacio
-	private esVacio(array:Array<any>):boolean{
+	public esVacio(array:Array<any>):boolean{
 		if(array.length > 0){
 			return false;
 		}
@@ -255,7 +255,7 @@ export class OtrosusuariosComponent implements OnInit {
 		return true;
 	}
 
-	private comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
+	public comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
 		if(this.comentando){
 			//comprobamos que el comentario no este vacio
 			if(this.nuevoComentario != ""){
@@ -288,7 +288,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	//comprobamos si los usuarios son amigos
-  private comprobarAmistad(amistad:number):boolean{
+  public comprobarAmistad(amistad:number):boolean{
     if(amistad == 1){
       return true;
     }
@@ -296,14 +296,14 @@ export class OtrosusuariosComponent implements OnInit {
     return false;
   }
 
-  private comprobarSocilitud(amistad:number):boolean{
+  public comprobarSocilitud(amistad:number):boolean{
     if(amistad == 2){
       return false;
     }
     return true;
 	}
 	
-	private enviarSolicitud(): void {
+	public enviarSolicitud(): void {
     //comprobamos que el mensaje no este vacio
     if (this.mensaje.trim() != "") {
       this._operacionesPeticiones.enviarSolicitud(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje)
@@ -318,7 +318,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 	
 	//funcion paera enviar el mensaje
-  private enviarMensaje(): void {
+  public enviarMensaje(): void {
     //comprobamos que el mensaje no este vacio
     if (this.mensaje.trim() != "") {
       this._mensajes.enviarMensaje(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje);
@@ -332,13 +332,13 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 	
 	//funcion par aborrar amigo
-	private borrarAmigo():void{
+	public borrarAmigo():void{
 		//borramos el amigo
 		this._operacionesAmigos.borrarAmigo(this.miUsuario.getId(),this.otroUsuario.getId())
 		this.otroUsuario.setAmistad(0);
 	}
 
-	private cerrarModal(): void {
+	public cerrarModal(): void {
     //recorremos la ventana modal y la cerramos
     //usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
     //componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
@@ -351,7 +351,7 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 	
 	//funcion para denunciar un contenido
-	private denunciar(idelemento,idautor):void{
+	public denunciar(idelemento,idautor):void{
 		this._operacionesDenuncias.crearDenuncia(this.miUsuario.getId(),idelemento,idautor);
 	}
 }

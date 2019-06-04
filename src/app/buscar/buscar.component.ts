@@ -25,24 +25,24 @@ import { RefrescarService } from './../services/refrescar.service';
   styleUrls: ['./buscar.component.css']
 })
 export class BuscarComponent implements OnInit {
-  private busqueda:string = "";
-  private usuario: Usuario;
+  public busqueda:string = "";
+  public usuario: Usuario;
   //variables referentes a los amigos
-  private usuarios: Array<Usuario> = new Array();
-  private amigoActivo: Usuario = null;
+  public usuarios: Array<Usuario> = new Array();
+  public amigoActivo: Usuario = null;
   //variables referentes a los mensajes
-  private mensaje:string = "";
+  public mensaje:string = "";
   //ventana modal
-  private ventanaModal: any = null;
+  public ventanaModal: any = null;
   constructor(
-    private _recogerUsuario: RecogerUsuarioLocalService,
-    private _operacionesUsuario: OperacionesUsuariosService,
-    private _operacionesAmigos: OperacioneAmigosService,
-    private _operacionesPeticiones: OperacionesPeticionesService,
-    private _redirigir: RefrescarService,
-    private _mensajes: MensajesService,
-    private _route: ActivatedRoute,
-    private _router: Router
+    public _recogerUsuario: RecogerUsuarioLocalService,
+    public _operacionesUsuario: OperacionesUsuariosService,
+    public _operacionesAmigos: OperacioneAmigosService,
+    public _operacionesPeticiones: OperacionesPeticionesService,
+    public _redirigir: RefrescarService,
+    public _mensajes: MensajesService,
+    public _route: ActivatedRoute,
+    public _router: Router
   ) {
     this.usuario = this._recogerUsuario.getUsuario();
     //inicializamos la variuable amigoActivo para que no de problemas
@@ -55,7 +55,7 @@ export class BuscarComponent implements OnInit {
     this.obtenerBusqueda();
   }
 
-  private obtenerBusqueda():void{
+  public obtenerBusqueda():void{
     //obtenemos el parametro que queremos de la url
     let test = this._router.parseUrl(this._router.url);
     this.busqueda = test.queryParams['nombre'];
@@ -64,7 +64,7 @@ export class BuscarComponent implements OnInit {
 
   }
 
-  private obtenerUsuarios(): void {
+  public obtenerUsuarios(): void {
     //llamamos a la funcion para obetener los usuarios
     this.usuarios = this._operacionesUsuario.buscarUsuarioCadena(this.usuario.getId(),decodeURI(this.busqueda),this.usuarios);
   }
@@ -73,18 +73,18 @@ export class BuscarComponent implements OnInit {
 
 
 
-  private asignarVentanaModal(ev): void {
+  public asignarVentanaModal(ev): void {
     if (this.ventanaModal == null) {
       this.ventanaModal = ev.target;
     }
   }
 
   //recogemos el usuario sobre el que queremos realizar la accion
-  private recogerAmigoAccion(amigo: Usuario): void {
+  public recogerAmigoAccion(amigo: Usuario): void {
     this.amigoActivo = amigo;
   }
   //funcion paera enviar el mensaje
-  private enviarMensaje(): void {
+  public enviarMensaje(): void {
     //comprobamos que el mensaje no este vacio
     if (this.mensaje.trim() != "") {
       this._mensajes.enviarMensaje(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje);
@@ -97,7 +97,7 @@ export class BuscarComponent implements OnInit {
     }
   }
 
-  private enviarSolicitud(): void {
+  public enviarSolicitud(): void {
     //comprobamos que el mensaje no este vacio
     if (this.mensaje.trim() != "") {
       this._operacionesPeticiones.enviarSolicitud(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje)
@@ -117,7 +117,7 @@ export class BuscarComponent implements OnInit {
   }
 
   //funcion par aborrar amigo
-	private borrarAmigo():void{
+	public borrarAmigo():void{
 		//borramos el amigo
 		this._operacionesAmigos.borrarAmigo(this.usuario.getId(),this.amigoActivo.getId())
 		//eliminamos al amigo del array y recargarmos el arry de amigos
@@ -129,7 +129,7 @@ export class BuscarComponent implements OnInit {
 	}
 
   //funcion para cerrar la ventana modal
-  private cerrarModal(): void {
+  public cerrarModal(): void {
     //recorremos la ventana modal y la cerramos
     //usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
     //componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
@@ -142,7 +142,7 @@ export class BuscarComponent implements OnInit {
   }
 
   //comprobamos si los usuarios son amigos
-  private comprobarAmistad(amistad:number):boolean{
+  public comprobarAmistad(amistad:number):boolean{
     if(amistad == 1){
       return true;
     }
@@ -150,19 +150,19 @@ export class BuscarComponent implements OnInit {
     return false;
   }
 
-  private comprobarSocilitud(amistad:number):boolean{
+  public comprobarSocilitud(amistad:number):boolean{
     if(amistad == 2){
       return false;
     }
     return true;
   }
 
-  private redirigir(apodo:string):void{
+  public redirigir(apodo:string):void{
     let url = "/usuario?apodo="+apodo;
 		window.location.href = url;
   }
 
-  private hayResultados():boolean{
+  public hayResultados():boolean{
     if(this.usuarios.length == 0){
       return false;
     }

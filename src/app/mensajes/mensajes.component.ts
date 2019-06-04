@@ -17,28 +17,28 @@ import { OperacioneAmigosService } from '../services/operacione-amigos.service';
 })
 export class MensajesComponent implements OnInit {
 	//variables referentes a los usuarios
-	private usuario:Usuario;
+	public usuario:Usuario;
 	//variables referentes a los mensajes
-	private mensajes:Array<Mensaje> = new Array();
+	public mensajes:Array<Mensaje> = new Array();
 	//variables para mostrar o no contenido
-	private mostrarRecibidos:boolean = true;
-	private mostrarEnviados:boolean = false;
-	private estiloEnviados:string;
-	private estiloRecibidos:string;
+	public mostrarRecibidos:boolean = true;
+	public mostrarEnviados:boolean = false;
+	public estiloEnviados:string;
+	public estiloRecibidos:string;
 	//variables referentes a responder/enviar mensajes
-	private respondiendo:boolean = false;
-	private nuevoMensaje:boolean = false;
-	private respuesta:string = "";
-	private mensaje:string = "";
-	private destinatario:number = 0;
+	public respondiendo:boolean = false;
+	public nuevoMensaje:boolean = false;
+	public respuesta:string = "";
+	public mensaje:string = "";
+	public destinatario:number = 0;
 	//variables referentyes a los amigos
-	private amigos:Array<Usuario> = new Array();
+	public amigos:Array<Usuario> = new Array();
 
 
 	constructor(
-		private _mensajes: MensajesService,
-		private _recogerUsuario: RecogerUsuarioLocalService,
-		private _operacionesAmigos: OperacioneAmigosService
+		public _mensajes: MensajesService,
+		public _recogerUsuario: RecogerUsuarioLocalService,
+		public _operacionesAmigos: OperacioneAmigosService
 	) {
 		this.usuario = this._recogerUsuario.getUsuario();
 		this.obtenerMensajes();
@@ -53,7 +53,7 @@ export class MensajesComponent implements OnInit {
 		setTimeout(this.ocultar.bind(this),250);
 	}
 
-	private ocultar():void{
+	public ocultar():void{
 		//si no se esta respondiendo se puden ocultar los textareas
 		if(!this.respondiendo){
 			$('[id^="responder"]').hide();
@@ -61,7 +61,7 @@ export class MensajesComponent implements OnInit {
 		//recogemos los textareas de las respuestas
 	}
 
-	private obtenerMensajes():void{
+	public obtenerMensajes():void{
 		//si no se esta respondiendo se pueden recargar los mensajes
 		if(!this.respondiendo && !this.nuevoMensaje){
 			this.mensajes = this._mensajes.obtenerMensajes(this.mensajes,this.usuario.getId());
@@ -70,7 +70,7 @@ export class MensajesComponent implements OnInit {
 	}
 	
 	//funciones que muestran u ocultan contenido
-	private mostrarSoloRecibidos():void{
+	public mostrarSoloRecibidos():void{
 		//ocultamos los recibidos y mostramoslos enviados
 		this.mostrarRecibidos = true;
 		this.mostrarEnviados = false;
@@ -78,7 +78,7 @@ export class MensajesComponent implements OnInit {
 		this.cambiarEstilo("recibidos");
 		setTimeout(this.ocultar.bind(this),1);
 	}
-	private mostrarSoloEnviados():void{
+	public mostrarSoloEnviados():void{
 		//ocultamos los enviados y mostramoslos recibidos
 		this.mostrarEnviados = true;
 		this.mostrarRecibidos = false;
@@ -87,7 +87,7 @@ export class MensajesComponent implements OnInit {
 		this.ocultar();
 	}
 
-	private cambiarEstilo(mostrar:string):void{
+	public cambiarEstilo(mostrar:string):void{
 		// le quitamos el estido a todos por defecto
 		this.estiloEnviados = "";
 		this.estiloRecibidos = "";
@@ -99,7 +99,7 @@ export class MensajesComponent implements OnInit {
 		}
 	}
 	// funciones para saber si un mensaje ha sido enviado o recibido y mostrarlo o no
-	private mensajeEnviado(mensaje:Mensaje):boolean{
+	public mensajeEnviado(mensaje:Mensaje):boolean{
 		//comprobamos si el que envio el mensaje es el Usuario
 		if(this.mostrarEnviados){
 			if(mensaje.getIdusuariofrom() == this.usuario.getId()){
@@ -109,7 +109,7 @@ export class MensajesComponent implements OnInit {
 		//si no elo es devolvemos false
 		return false
 	}
-	private mensajeRecibido(mensaje:Mensaje):boolean{
+	public mensajeRecibido(mensaje:Mensaje):boolean{
 		//comprobamos si el que envio el mensaje es el Usuario
 		if(mensaje.getIdusuarioto() == this.usuario.getId() && this.mostrarRecibidos){
 			return true
@@ -118,7 +118,7 @@ export class MensajesComponent implements OnInit {
 		return false
 	}
 
-	private borrarMensaje(mensaje:Mensaje,tipomensaje:string):void{
+	public borrarMensaje(mensaje:Mensaje,tipomensaje:string):void{
 		this._mensajes.borrarMensaje(mensaje.getId(),tipomensaje);
 
 		for(var i = 0; i < this.mensajes.length;i++){
@@ -130,7 +130,7 @@ export class MensajesComponent implements OnInit {
 
 	}
 
-	private comprobarNoLeido(mensaje:Mensaje):boolean{
+	public comprobarNoLeido(mensaje:Mensaje):boolean{
 		//comprobamos si el usuario no ha leido el mensaje
 		if(mensaje.getLeido() == 0){
 			return true;
@@ -138,7 +138,7 @@ export class MensajesComponent implements OnInit {
 		return false;
 	}
 
-	private marcarLeido(mensaje:Mensaje):void{
+	public marcarLeido(mensaje:Mensaje):void{
 		this._mensajes.marcarLeido(mensaje.getId());
 		//cambiamos el mensaje a leidp
 		for(var i = 0; i < this.mensajes.length ; i++){
@@ -148,7 +148,7 @@ export class MensajesComponent implements OnInit {
 		}
 	}
 
-	private mostrarResponder(idmensaje:number):void{
+	public mostrarResponder(idmensaje:number):void{
 		if(this.respondiendo){
 			this.respondiendo = false;
 			this.respuesta = "";
@@ -161,7 +161,7 @@ export class MensajesComponent implements OnInit {
 		this.ocultar();
 	}
 
-	private responder(idusuarioto:number,idtextarea:string,mensaje){
+	public responder(idusuarioto:number,idtextarea:string,mensaje){
 		//comprobamos que se halla escrito una respuesta
 		if(this.respuesta.trim() != ""){
 			//enviamos el comentario a la base de datos
@@ -182,12 +182,12 @@ export class MensajesComponent implements OnInit {
 		}
 	}
 
-	private mensajeNuevo():void{
+	public mensajeNuevo():void{
 		//indicamos que estamos escribiendop un nuevo mensaje
 		this.nuevoMensaje = true;
 	}
 
-	private enviar():void{
+	public enviar():void{
 		//comprobamos que se halla escrito una respuesta
 		if(this.mensaje.trim() != "" && this.destinatario != 0){
 			//enviamos el comentario a la base de datos
@@ -214,13 +214,13 @@ export class MensajesComponent implements OnInit {
 	}
 	  
 
-	private enviarMensaje(idusuario:number,idusuarioto:number,mensaje:string):void{
+	public enviarMensaje(idusuario:number,idusuarioto:number,mensaje:string):void{
 		this._mensajes.enviarMensaje(idusuario,idusuarioto,mensaje);
 		this.ocultar();
 	}
 
 	//funcion para cerrar la ventana modal
-	private cerrarModal(): void {
+	public cerrarModal(): void {
 		//recorremos la ventana modal y la cerramos
 		//usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
 		//componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
@@ -232,7 +232,7 @@ export class MensajesComponent implements OnInit {
 		this.mensaje = "";
 	}
 
-	private hayRecibidos():boolean{
+	public hayRecibidos():boolean{
 		if(this.mostrarRecibidos){
 			//comprobamos si hay mensajes recibidor
 			for (var i = 0; i < this.mensajes.length; i++){
@@ -246,7 +246,7 @@ export class MensajesComponent implements OnInit {
 		return true;
 	}
 
-	private hayEnviados():boolean{
+	public hayEnviados():boolean{
 		if(this.mostrarEnviados){
 			//comprobamos si hay mensajes recibidor
 			for (var i = 0; i < this.mensajes.length; i++){

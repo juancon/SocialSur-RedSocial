@@ -24,31 +24,31 @@ import {UrlsService} from '../services/urls.service';
 })
 export class LoginComponent implements OnInit {
 	//direccion del fichero php
-  private urlLogin:string;
+  public urlLogin:string;
   //variables relacionadas al HTML
-	private correo :string = "";
-	private password:string = "";
-	private recordar:boolean = false;
-	private enviar:boolean = false;
+	public correo :string = "";
+	public password:string = "";
+	public recordar:boolean = false;
+	public enviar:boolean = false;
   //variables que informan al usuario
-	private correoInfo:string;
-  private passwordInfo:string;
-	private emailPassIncorreto:string;
+	public correoInfo:string;
+  public passwordInfo:string;
+	public emailPassIncorreto:string;
 	//variables de validacion
-	private email:boolean = false;
-	private pass:boolean = false;
-  private error:boolean = false;
+	public email:boolean = false;
+	public pass:boolean = false;
+  public error:boolean = false;
   //otras variables
-  private usuario:Usuario;
+  public usuario:Usuario;
 
 
   constructor(
-    private _router: Router,
-    private _http: Http,
-    private _zone: NgZone,
-    private _cookies: CookieService,
-    private _refrescar: RefrescarService,
-    private _urls: UrlsService
+    public _router: Router,
+    public _http: Http,
+    public _zone: NgZone,
+    public _cookies: CookieService,
+    public _refrescar: RefrescarService,
+    public _urls: UrlsService
   	) {
     //asignamos el valor a la variable url con el servicio que continene todas las urls
     this.urlLogin = _urls.getUrl("login");
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
   //validar compos vacios
-  private validarCorreo():void{
+  public validarCorreo():void{
   	if(this.correo != "" || this.correo == null){
   		this.correoInfo = "";
   		this.email = true;
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
   		this.email = false;
   	}
   }
-  private validarPassword():void{
+  public validarPassword():void{
   	if(this.password != "" || this.password == null){
   		this.passwordInfo = "";
   		this.pass = true;
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
   	}
   }
   //validar boton
-  private validar():void{
+  public validar():void{
     //si los campos son correctos
   	if(this.email && this.pass){
       //llamamos al servicio de inicio se sesion pasandole el correo y la contraseña
@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
   	}
   }
 
-  private iniciarSesion(correo,password):void{
+  public iniciarSesion(correo,password):void{
     //datos que vamos a enviar
      let parametros = {
       email: correo,
@@ -110,17 +110,17 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  private emailPassMal():void{
+  public emailPassMal():void{
     //Avaisamos al usuario de que su correo o contraseña son incorrectos
     this.emailPassIncorreto = "Usuario o Contraseña Incorrectos";
     this.error = true;
   }
 
-  private redirigir():void{
+  public redirigir():void{
     this._router.navigateByUrl("http://localhost:4200/");
   }
 
-  private almacenarUsuaro(datos):void{
+  public almacenarUsuaro(datos):void{
     //creamos un nuevo usuario con los datos que hemos recibido
     this.usuario = new Usuario(
       datos['id'],

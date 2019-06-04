@@ -20,21 +20,21 @@ import { } from 'jquery';
 	styleUrls: ['./amigos.component.css']
 })
 export class AmigosComponent implements OnInit {
-	private urlRecogerAmigos: string;
-	private usuario: Usuario;
+	public urlRecogerAmigos: string;
+	public usuario: Usuario;
 	//variables referentes a los amigos
-	private amigos: Array<Usuario> = new Array();
-	private amigoActivo: Usuario = null;
+	public amigos: Array<Usuario> = new Array();
+	public amigoActivo: Usuario = null;
 	//variables referentes a los mensajes
-	private mensaje: string = "";
+	public mensaje: string = "";
 	//ventana modal
-	private ventanaModal: any = null;
+	public ventanaModal: any = null;
 	constructor(
-		private _urls: UrlsService,
-		private _redirigir: RefrescarService,
-		private _recogerUsuario: RecogerUsuarioLocalService,
-		private _operacionesAmigos: OperacioneAmigosService,
-		private _mensajes: MensajesService
+		public _urls: UrlsService,
+		public _redirigir: RefrescarService,
+		public _recogerUsuario: RecogerUsuarioLocalService,
+		public _operacionesAmigos: OperacioneAmigosService,
+		public _mensajes: MensajesService
 	) {
 		this.usuario = this._recogerUsuario.getUsuario();
 		//obtenemos los amigos cada 20segundo
@@ -47,23 +47,23 @@ export class AmigosComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	private obtenerAmigos(): void {
+	public obtenerAmigos(): void {
 		//llamamos a la funcion para obetener amigos
 		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
 	}
 
-	private asignarVentanaModal(ev): void {
+	public asignarVentanaModal(ev): void {
 		if (this.ventanaModal == null) {
 			this.ventanaModal = ev.target;
 		}
 	}
 
 	//recogemos el usuario sobre el que queremos realizar la accion
-	private recogerAmigoAccion(amigo: Usuario): void {
+	public recogerAmigoAccion(amigo: Usuario): void {
 		this.amigoActivo = amigo;
 	}
 	//funcion paera enviar el mensaje
-	private enviar(): void {
+	public enviar(): void {
 		//comprobamos que el mensaje no este vacio
 		if (this.mensaje.trim() != "") {
 			this._mensajes.enviarMensaje(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje);
@@ -77,7 +77,7 @@ export class AmigosComponent implements OnInit {
 		}
 	}
 	//funcion para cerrar la ventana modal
-	private cerrarModal(): void {
+	public cerrarModal(): void {
 		//recorremos la ventana modal y la cerramos
 		//usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
 		//componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
@@ -88,7 +88,7 @@ export class AmigosComponent implements OnInit {
 	}
 
 	//funcion par aborrar amigo
-	private borrarAmigo(): void {
+	public borrarAmigo(): void {
 		//borramos el amigo
 		this._operacionesAmigos.borrarAmigo(this.usuario.getId(), this.amigoActivo.getId())
 		//eliminamos al amigo del array y recargarmos el arry de amigos
@@ -100,12 +100,12 @@ export class AmigosComponent implements OnInit {
 		this.obtenerAmigos();
 	}
 
-	private redirigir(apodo: string) {
+	public redirigir(apodo: string) {
 		let url = "/usuario?apodo=" + apodo;
 		window.location.href = url;
 	}
 
-	private hayAmigos(): boolean {
+	public hayAmigos(): boolean {
 		if (this.amigos.length == 0) {
 			return false;
 		}

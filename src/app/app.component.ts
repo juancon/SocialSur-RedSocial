@@ -20,30 +20,30 @@ import { RecogerUsuarioLocalService } from './services/recoger-usuario-local.ser
 })
 export class AppComponent {
 	//variables referentes a las url
-	private urlConectar:string;
+	public urlConectar:string;
 	//variable para saber si el usuario esta logueado
-	private usarioLogueado:boolean;
+	public usarioLogueado:boolean;
 	//variables para mostrar un contenido u otro
-	private contenidoUsuario:boolean = false;
-	private perfil:boolean = false;
-	private amigos:boolean = false;
-	private mensajes:boolean = false;
-	private peticiones:boolean = false;
-	private buscar:boolean = false;
-	private otrosusuarios:boolean = false;
-	private informarActivado:boolean = false;
-	private correoEnviado:boolean = false;
+	public contenidoUsuario:boolean = false;
+	public perfil:boolean = false;
+	public amigos:boolean = false;
+	public mensajes:boolean = false;
+	public peticiones:boolean = false;
+	public buscar:boolean = false;
+	public otrosusuarios:boolean = false;
+	public informarActivado:boolean = false;
+	public correoEnviado:boolean = false;
 	//variable para saber si es admin
-	private esAdmin:boolean = false;
+	public esAdmin:boolean = false;
 	@ViewChild('activar') activar: ConfirmarComponent; //variabla para recoger cuando se ha cerrado el mensaje de activar
 
 	constructor(
 	//instanciamos las variables de los componentes que hemos importado
-	private _route: ActivatedRoute,
-	private _router: Router,
-	private _http: Http,
-	private _recogerUsuario: RecogerUsuarioLocalService,
-	private _urls: UrlsService
+	public _route: ActivatedRoute,
+	public _router: Router,
+	public _http: Http,
+	public _recogerUsuario: RecogerUsuarioLocalService,
+	public _urls: UrlsService
 	) {
 		//asignas la url de los ficheros php
 		this.urlConectar = this._urls.getUrl("conectar")
@@ -97,7 +97,7 @@ export class AppComponent {
 		setInterval(this.ocultar.bind(this),1000)
 	}
 
-	private ocultar():void{
+	public ocultar():void{
 		if(this.informarActivado){
 			this.activar.ocultar
 			.subscribe(
@@ -111,12 +111,12 @@ export class AppComponent {
 		}
 	}
 
-	private cerrar():void{
+	public cerrar():void{
 		this.correoEnviado = false;
 	}
 
 	//funcion para poner el estado en conectado
-	private ponerConectado():void{
+	public ponerConectado():void{
 		let idusuario = this._recogerUsuario.getUsuario().getId();
 		let parametros = {
 			"id" : idusuario,
@@ -131,7 +131,7 @@ export class AppComponent {
 		);
 	}
 
-	private mostrarComponentes(componente:string):void{
+	public mostrarComponentes(componente:string):void{
 		this.amigos = false;
 		this.perfil = false;
 		this.mensajes = false;

@@ -19,46 +19,46 @@ import {UrlsService} from '../services/urls.service';
 })
 export class RegistroComponent implements OnInit {
 	//url del fichero php
-	private urlRegistro:string;
-	private urlComprobarCorreo:string;
+	public urlRegistro:string;
+	public urlComprobarCorreo:string;
 	//variables relacionadas al HTML
-	private nombre:string = "";
-	private apellido:string = "";
-	private apodo:string = "";
-	private correo :string = "";
-	private password:string = "";
-	private password2:string = "";
-	private enviar:boolean = false;
+	public nombre:string = "";
+	public apellido:string = "";
+	public apodo:string = "";
+	public correo :string = "";
+	public password:string = "";
+	public password2:string = "";
+	public enviar:boolean = false;
 	//variables que informan al usuario
-	private nombreInfo:string;
-	private apellidoInfo:string;
-	private apodoInfo:string;
-	private correoInfo:string;
-	private correoExiste:string;
-	private apodoExiste:string;
-	private passwordInfo:string;
-	private password2Info:string;
-	private errorRegistro:string;
-	private errorRegistro2:string;
+	public nombreInfo:string;
+	public apellidoInfo:string;
+	public apodoInfo:string;
+	public correoInfo:string;
+	public correoExiste:string;
+	public apodoExiste:string;
+	public passwordInfo:string;
+	public password2Info:string;
+	public errorRegistro:string;
+	public errorRegistro2:string;
 	//variables de validacion
-	private name:boolean = false;
-	private lastName:boolean = false;
-	private nick:boolean = false;
-	private nickExist:boolean = false;
-	private email:boolean = false;
-	private emailExist:boolean = false;
-	private pass:boolean = false;
-	private passlon:boolean = false;
-	private pass2:boolean = false;
-	private error:boolean = false;
+	public name:boolean = false;
+	public lastName:boolean = false;
+	public nick:boolean = false;
+	public nickExist:boolean = false;
+	public email:boolean = false;
+	public emailExist:boolean = false;
+	public pass:boolean = false;
+	public passlon:boolean = false;
+	public pass2:boolean = false;
+	public error:boolean = false;
 	//otras variables	
-	private usuario:Usuario;
+	public usuario:Usuario;
 
 	constructor(
-		private _http: Http,
-		private _refrescar: RefrescarService,
-		private _urls: UrlsService,
-		private _confirmacion: EmailConfirmacionService
+		public _http: Http,
+		public _refrescar: RefrescarService,
+		public _urls: UrlsService,
+		public _confirmacion: EmailConfirmacionService
 	) {
 		//asignamos el valor a las urls
 		this.urlRegistro = _urls.getUrl("crearUsuario");
@@ -68,7 +68,7 @@ export class RegistroComponent implements OnInit {
 	ngOnInit() {
 	}
 	//validacion boton
-	private validar():void{
+	public validar():void{
 		// preguntamos si todos los campos son validos
 		if(this.name && this.lastName && this.nick && this.email && this.pass && this.pass2 && this.emailExist && this.nickExist){
 			//creamos un array con los valores de los campos
@@ -128,7 +128,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	//validaciones campos vacios
-	private validarNombre():void{
+	public validarNombre():void{
 		if(this.nombre != "" || this.nombre == null){
 			if(this.expresionNombreApellido(this.nombre)){
 				this.nombreInfo = "";
@@ -142,7 +142,7 @@ export class RegistroComponent implements OnInit {
 			this.name = false;
 		}
 	}
-	private validarApellido():void{
+	public validarApellido():void{
 		if(this.apellido != "" || this.apellido == null){
 			if(this.expresionNombreApellido(this.apellido)){
 				this.apellidoInfo = "";
@@ -156,7 +156,7 @@ export class RegistroComponent implements OnInit {
 			this.lastName = false;
 		}
 	}
-	private validarApodo():void{
+	public validarApodo():void{
 		if(this.apodo != "" || this.apodo == null){
 			if(this.expresionApodo(this.apodo)){
 				this.apodoInfo = "";
@@ -170,7 +170,7 @@ export class RegistroComponent implements OnInit {
 			this.nick = false;
 		}
 	}
-	private validarCorreo():void{
+	public validarCorreo():void{
 		if(this.correo != "" || this.correo == null){
 			if(this.expresionCorreo(this.correo)){
 				this.correoInfo = "";
@@ -184,7 +184,7 @@ export class RegistroComponent implements OnInit {
 			this.email = false;
 		}
 	}
-	private validarPassword():void{
+	public validarPassword():void{
 		if(this.password != "" || this.password == null){
 			if(this.passlon){
 				this.passwordInfo = "";
@@ -196,7 +196,7 @@ export class RegistroComponent implements OnInit {
 			this.pass = false;
 		}
 	}
-	private validarPassword2():void{
+	public validarPassword2():void{
 		if(this.password2 != "" || this.password2 == null){
 			//comprobamos si las contraseñas son iguales
 			if(this.password == this.password2){
@@ -213,33 +213,33 @@ export class RegistroComponent implements OnInit {
 	}
 
 	//Validaciones longitud de campo
-	private longitudNombre():void{
+	public longitudNombre():void{
 		if(this.nombre.length > 50){
 			this.nombre = this.nombre.substring(0,49);
 			this.nombreInfo = "Máximo 50 caracteres.";
 		}
 	}
-	private longitudApellido():void{
+	public longitudApellido():void{
 		if(this.apellido.length > 50){
 			this.apellido = this.apellido.substring(0,49);
 			this.apellidoInfo = "Máximo 50 caracteres.";
 		}
 	}
-	private longitudApodo():void{
+	public longitudApodo():void{
 		if(this.apodo.length > 49){
 			this.apodo = this.apodo.substring(0,48);
 			this.apodoInfo = "Máximo 49 caracteres.";
 		}
 		this.comprobarApodo();
 	}
-	private longitudCorreo():void{
+	public longitudCorreo():void{
 		if(this.correo.length > 100){
 			this.correo = this.correo.substring(0,99);
 			this.correoInfo = "Máximo 100 caracteres.";
 		}
 		this.comprobarCorreo();
 	}
-	private longitudPassword():void{
+	public longitudPassword():void{
 		if(this.password.length < 8){
 			this.passwordInfo = "Mínimo 8 caracteres.";
 		}else if(this.password.length > 7 && this.password.length < 33){
@@ -251,7 +251,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	//validaciones de expresiones regulares
-	private expresionNombreApellido(cadena):boolean{
+	public expresionNombreApellido(cadena):boolean{
 		//patron que solo permite introducir palabras espacios, tildes y la ñ
 		let expresion = new RegExp('^([a-zA-Z ñÑáÁéÉíÍóÓúÚ]{2,50})');
 		//comprobamos el patron con la cadena que se nos ha pasado
@@ -260,7 +260,7 @@ export class RegistroComponent implements OnInit {
 		}
 		return false;
 	}
-	private expresionApodo(cadena):boolean{
+	public expresionApodo(cadena):boolean{
 		//patron que solo permite introducir palabras espacios, tildes y la ñ
 		let expresion = new RegExp('^([a-zA-Z0-9]{6,50})');
 		//comprobamos el patron con la cadena que se nos ha pasado
@@ -269,7 +269,7 @@ export class RegistroComponent implements OnInit {
 		}
 		return false;
 	}
-	private expresionCorreo(cadena):boolean{
+	public expresionCorreo(cadena):boolean{
 		//patron que valida el 99% de los correos existentes
 		let expresion = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 		//comprobamos el patron con la cadena que se nos ha pasado
@@ -279,7 +279,7 @@ export class RegistroComponent implements OnInit {
 		return false;
 	}
 	//comprobar si un apodo existe
-	private comprobarApodo():void{
+	public comprobarApodo():void{
 		//creamos un array con los valores de los campos
 		let parametros = {
 			apodo: this.apodo,
@@ -296,7 +296,7 @@ export class RegistroComponent implements OnInit {
 			}
 		);
 	}
-	private apodoInformar(existe:string):void{
+	public apodoInformar(existe:string):void{
 		//comprobamos el resultado e informamos al usuario
 		if(existe == "1"){
 			this.apodoExiste = "El apodo ya esta en uso.";
@@ -307,7 +307,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	//comprobar si un correo existe
-	private comprobarCorreo():void{
+	public comprobarCorreo():void{
 		//creamos un array con los valores de los campos
 		let parametros = {
 			email: this.correo,
@@ -324,7 +324,7 @@ export class RegistroComponent implements OnInit {
 			}
 		);
 	}
-	private correoInformar(existe:string):void{
+	public correoInformar(existe:string):void{
 		//comprobamos el resultado e informamos al usuario
 		if(existe == "1"){
 			this.correoExiste = "El correo ya esta en uso.";

@@ -22,26 +22,26 @@ import {SubirArchivoService} from '../services/subir-archivo.service';
 })
 export class InformacionUsuarioComponent implements OnInit {
 	//url de los ficheros php
-	private urlModificarUsuario:string;
-	private urlSubirArchivo:string;
+	public urlModificarUsuario:string;
+	public urlSubirArchivo:string;
 	//variables referentes al usuario
-	private usuario:Usuario;
-	private avatar:string;
-	private nombre:string;
-	private apellido:string;
-	private apodo:string;
-	private bio:string;
-	private aux:string;
+	public usuario:Usuario;
+	public avatar:string;
+	public nombre:string;
+	public apellido:string;
+	public apodo:string;
+	public bio:string;
+	public aux:string;
 	//variable para cambiar el avatar
-	private textoBoton:string = "Cambiar";
-	private ocultarMostrar:boolean;
+	public textoBoton:string = "Cambiar";
+	public ocultarMostrar:boolean;
 
 	constructor(
-		private _cookies: CookieService,
-		private _recogerUsuario: RecogerUsuarioLocalService,
-		private _http: Http,
-		private _urls: UrlsService,
-		private _subirArchivo: SubirArchivoService
+		public _cookies: CookieService,
+		public _recogerUsuario: RecogerUsuarioLocalService,
+		public _http: Http,
+		public _urls: UrlsService,
+		public _subirArchivo: SubirArchivoService
 	){
 		//recogemos la url del fichero php
 		this.urlModificarUsuario = this._urls.getUrl("modificarUsuario");
@@ -60,7 +60,7 @@ export class InformacionUsuarioComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	private guardarBio():void{
+	public guardarBio():void{
 		//guardamos la anterior descipcion en una variable auxiliar
 		this.aux = this.bio;
 		//cambiamos la bio del usuario por la actual
@@ -76,7 +76,7 @@ export class InformacionUsuarioComponent implements OnInit {
 		
 	}
 
-	private guardarUsuario():void{
+	public guardarUsuario():void{
 		//cambiamos el almacenamiento local por el nuevo
 		sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
 
@@ -86,7 +86,7 @@ export class InformacionUsuarioComponent implements OnInit {
 		}
 	}
 
-	private modificarUsuarioBD(parametros:Object,tipo:string):void{
+	public modificarUsuarioBD(parametros:Object,tipo:string):void{
 		//funcion http.post para enviar los datos
 		let login = this._http.post(this.urlModificarUsuario, JSON.stringify(parametros)).pipe(map(res => res.json()));
 		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
@@ -108,7 +108,7 @@ export class InformacionUsuarioComponent implements OnInit {
 		);
 	}
 
-	private devolverValor(tipo:string){
+	public devolverValor(tipo:string){
 		//preguntamos cual era la variable
 		if(tipo == "bio"){
 			//cambiamos su valor
@@ -116,7 +116,7 @@ export class InformacionUsuarioComponent implements OnInit {
 		}
 	}
 
-	private subirAvatar(ev):void{
+	public subirAvatar(ev):void{
 		//recogemos los parametros del input type file
 		let img:any = ev.target;
 		//files es una propiedad array que contiene todos los archivos del input file
@@ -137,12 +137,12 @@ export class InformacionUsuarioComponent implements OnInit {
 		}
 	}
 
-	private cambiarAvatar(ruta:string){
+	public cambiarAvatar(ruta:string){
 		this.usuario.setAvatar(ruta);
 		this.guardarUsuario();
 	}
 
-	private mostarOcultar():void{
+	public mostarOcultar():void{
 		if(!this.ocultarMostrar){
 			this.ocultarMostrar = true;
 			this.textoBoton="Cancelar";

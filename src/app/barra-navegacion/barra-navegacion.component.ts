@@ -29,35 +29,35 @@ import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 	providers: [CerrarSesionService, RefrescarService, RecogerUsuarioLocalService, UrlsService]
 })
 export class BarraNavegacionComponent implements OnInit {
-	private urlGetNumNotificaciones: string;
-	private urlGetConversacion: string;
-	private urlEnviarMensajeChat: string;
-	private usuario: Usuario;
+	public urlGetNumNotificaciones: string;
+	public urlGetConversacion: string;
+	public urlEnviarMensajeChat: string;
+	public usuario: Usuario;
 	//variables referentes a las notificaciones
-	private peticionesIco: string;
-	private numPeticiones: string;
+	public peticionesIco: string;
+	public numPeticiones: string;
 	//variables referentes a los mensajes
-	private mensajesIco: string;
-	private numMensajes: string;
+	public mensajesIco: string;
+	public numMensajes: string;
 	//variables referentes al chat
 	@ViewChild('chat') chat: ChatComponent; //variabla para recoger cuando se ha activado el chat
-	private veces: number = 0;
-	private hablando: boolean = false;
-	private amigoHablando: Usuario;
-	private conversaciones: Array<string> = new Array();
-	private mensaje: string = "";
+	public veces: number = 0;
+	public hablando: boolean = false;
+	public amigoHablando: Usuario;
+	public conversaciones: Array<string> = new Array();
+	public mensaje: string = "";
 	//variable referente a buscar
-	private buscar: string = "";
+	public buscar: string = "";
 
 	constructor(
-		private _route: ActivatedRoute,
-		private _router: Router,
-		private _cerrarSesion: CerrarSesionService,
-		private _refrescar: RefrescarService,
-		private _recogerUsuario: RecogerUsuarioLocalService,
-		private _urls: UrlsService,
-		private _http: Http,
-		private _operacionesFechas: OperacionesFechasService
+		public _route: ActivatedRoute,
+		public _router: Router,
+		public _cerrarSesion: CerrarSesionService,
+		public _refrescar: RefrescarService,
+		public _recogerUsuario: RecogerUsuarioLocalService,
+		public _urls: UrlsService,
+		public _http: Http,
+		public _operacionesFechas: OperacionesFechasService
 	) {
 		this.urlGetNumNotificaciones = this._urls.getUrl("getNumNotificaciones");
 		this.urlGetConversacion = this._urls.getUrl("getConversacion");
@@ -74,14 +74,14 @@ export class BarraNavegacionComponent implements OnInit {
 	}
 
 
-	private obtenerHablando(): void {
+	public obtenerHablando(): void {
 		this.amigoHablando = this._recogerUsuario.getAmigoHablando();
 
 		this.mostrarChat();
 		this.getMensajesChat();
 	}
 
-	private mostrarChat(): void {
+	public mostrarChat(): void {
 		this.chat.enviarHablando
 			.subscribe(
 				res => {
@@ -94,11 +94,11 @@ export class BarraNavegacionComponent implements OnInit {
 
 
 	//ocultar el chat
-	private ocultarChat(): void {
+	public ocultarChat(): void {
 		this.hablando = false;
 	}
 
-	private getMensajesChat(): void {
+	public getMensajesChat(): void {
 		//recogemos la id de nuestro usuario y del usuario con quien queremos hablar
 		let parametros = {
 			id: this.usuario.getId(),
@@ -123,13 +123,13 @@ export class BarraNavegacionComponent implements OnInit {
 
 
 	//funcion para cerrar sesion
-	private cerrarSesion(): void {
+	public cerrarSesion(): void {
 		//borramos datos de sesion
 		this._cerrarSesion.cerrarSesion();
 	}
 
 	//enviar mensaje
-	private enviar(): void {
+	public enviar(): void {
 		if (this.mensaje.length - 1 > 0) {
 			//recogemos los parametros que vamos a enviar
 			let parametros = {
@@ -153,11 +153,11 @@ export class BarraNavegacionComponent implements OnInit {
 		this.borrarText();
 	}
 	//Borrar el texto en mi chat
-	private borrarText(): void {
+	public borrarText(): void {
 		this.mensaje = "";
 	}
 	//comprobamos quien envia el mensaje
-	private comprobarUsuarioFrom(id: number): boolean {
+	public comprobarUsuarioFrom(id: number): boolean {
 		if (id == this.usuario.getId()) {
 			return true;
 		} else {
@@ -166,7 +166,7 @@ export class BarraNavegacionComponent implements OnInit {
 	}
 
 	//obtener las notificaciones
-	private obtenerNotificaciones(): void {
+	public obtenerNotificaciones(): void {
 		let parametros = {
 			id: this.usuario.getId(),
 			tipo: "peticiones"
@@ -202,7 +202,7 @@ export class BarraNavegacionComponent implements OnInit {
 	}
 
 	//obtener los mensajes
-	private obtenerMensajes(): void {
+	public obtenerMensajes(): void {
 		let parametros = {
 			id: this.usuario.getId(),
 			tipo: "mensajes"
