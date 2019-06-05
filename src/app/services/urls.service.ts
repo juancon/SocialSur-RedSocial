@@ -13,7 +13,7 @@ export class UrlsService {
 	constructor() {
         //asignamos el nombre del servidor
         //casa
-        this.servidor = "http://192.168.1.150/";
+        this.servidor = "http://192.168.1.150/php/";
 
         //otros
         //this.servidor = "http://192.168.114.56/";

@@ -9,7 +9,7 @@ import {RegistroComponent } from './registro/registro.component';
 
 const routes: Routes = [
 	//indicamos la ruta que tendra cada componente
-	//{path: '**', component: ErrorComponent},
+	{path: '**', component: AppComponent},
 	{path: '', component: AppComponent},
 	{path: 'inicio', component: AppComponent},
 	{path: 'inicio/:page', component: AppComponent},

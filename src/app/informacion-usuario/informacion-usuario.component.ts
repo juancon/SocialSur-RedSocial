@@ -13,6 +13,7 @@ import { Usuario } from '../Usuario/usuario';
 import {UrlsService} from '../services/urls.service';
 //importamos el servicio que contiene las urls
 import {SubirArchivoService} from '../services/subir-archivo.service';
+import { RefrescarService } from '../services/refrescar.service';
 
 @Component({
   selector: 'app-informacion-usuario',
@@ -41,7 +42,8 @@ export class InformacionUsuarioComponent implements OnInit {
 		public _recogerUsuario: RecogerUsuarioLocalService,
 		public _http: Http,
 		public _urls: UrlsService,
-		public _subirArchivo: SubirArchivoService
+		public _subirArchivo: SubirArchivoService,
+		public _refrescar: RefrescarService
 	){
 		//recogemos la url del fichero php
 		this.urlModificarUsuario = this._urls.getUrl("modificarUsuario");
@@ -84,6 +86,8 @@ export class InformacionUsuarioComponent implements OnInit {
 		if(localStorage.getItem("usuario") != null){
 			localStorage.setItem("usuario",JSON.stringify(this.usuario));
 		}
+
+		setTimeout(this._refrescar.refrescar, 1000);
 	}
 
 	public modificarUsuarioBD(parametros:Object,tipo:string):void{
