@@ -17,9 +17,9 @@
 
 	//ruta donde se va a subir el fichero en funcion si es un video o una foto
 	if($tipo == "foto"){
-		$ruta = './assets/fotos/';
+		$ruta = '../assets/fotos/';
 	}else{
-		$ruta = './assets/videos/';
+		$ruta = '../assets/videos/';
 
 	}
 	$nombreFichero = $_FILES['file']['name'];
@@ -27,7 +27,7 @@
 	$ext = '.'.$_POST['extension'];
 	//generamos un numero aleatorio entre 1 y 999999
 	$aleatorio =rand(1,999999);
-	$url = $ruta.md5($idusuario.$nombre.$aleatorio).$ext;
+	$url = $ruta.md5($idusuario."-".$nombre."-".$aleatorio).$ext;
 
 	$respuesta = array('resultado' => 0 );
 	//preguntamos si el fichero se ha recibido con exito

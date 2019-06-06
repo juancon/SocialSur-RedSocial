@@ -104,7 +104,7 @@ export class RegistroComponent implements OnInit {
 						datos['admin']
 						);
 						//guardamos el usuario en el navegador
-						localStorage.setItem("usuario",JSON.stringify(this.usuario));
+						//localStorage.setItem("usuario",JSON.stringify(this.usuario));
 						sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
 						//enviamos el meail de confirmacion
 						this._confirmacion.enviarEmail(datos['password'],datos['nombre']+" "+datos['apellido'],datos['apodo']);
@@ -129,7 +129,7 @@ export class RegistroComponent implements OnInit {
 	}
 	//validaciones campos vacios
 	public validarNombre():void{
-		if(this.nombre != "" || this.nombre == null){
+		if(this.nombre.trim() != "" || this.nombre == null){
 			if(this.expresionNombreApellido(this.nombre)){
 				this.nombreInfo = "";
 				this.name = true;
@@ -143,7 +143,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	public validarApellido():void{
-		if(this.apellido != "" || this.apellido == null){
+		if(this.apellido.trim() != "" || this.apellido == null){
 			if(this.expresionNombreApellido(this.apellido)){
 				this.apellidoInfo = "";
 				this.lastName = true;
@@ -157,7 +157,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	public validarApodo():void{
-		if(this.apodo != "" || this.apodo == null){
+		if(this.apodo.trim() != "" || this.apodo == null){
 			if(this.expresionApodo(this.apodo)){
 				this.apodoInfo = "";
 				this.nick = true;
@@ -171,7 +171,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	public validarCorreo():void{
-		if(this.correo != "" || this.correo == null){
+		if(this.correo.trim() != "" || this.correo == null){
 			if(this.expresionCorreo(this.correo)){
 				this.correoInfo = "";
 				this.email = true;
@@ -185,7 +185,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	public validarPassword():void{
-		if(this.password != "" || this.password == null){
+		if(this.password.trim() != "" || this.password == null){
 			if(this.passlon){
 				this.passwordInfo = "";
 				this.pass = true;
@@ -197,7 +197,7 @@ export class RegistroComponent implements OnInit {
 		}
 	}
 	public validarPassword2():void{
-		if(this.password2 != "" || this.password2 == null){
+		if(this.password2.trim() != "" || this.password2 == null){
 			//comprobamos si las contraseñas son iguales
 			if(this.password == this.password2){
 				this.password2Info = "";

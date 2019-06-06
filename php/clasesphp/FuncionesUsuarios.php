@@ -3,7 +3,13 @@
 	require_once 'Usuarios.php';
 
 	class FuncionesUsuarios
-	{
+	{	
+
+		/**
+		 * crea un nuevo usuario no administrador
+		 * @param Usuario $usuario
+		 * @return int
+		*/
 		public static function crearUsuario($usuario)
 		{
 			$conexion = DB::connectDB();
@@ -31,6 +37,12 @@
 			return -1;
 		}
 
+		/**
+		 * crea un nuevo usuario administrador
+		 * @param string $correo
+		 * @param string $password
+		 * @return int
+		*/
 		public static function crearAdmin($correo,$password)
 		{
 			$conexion = DB::connectDB();
@@ -46,6 +58,11 @@
 			return -1;
 		}
 
+		/**
+		 * comprueba si existe un usuario con ese correo y devuelve 0 o 1
+		 * @param string $email
+		 * @return int
+		*/
 		public static function buscarUsuarioByEmail($email)
 		{
 			$conexion = DB::connectDB();
@@ -61,6 +78,11 @@
 			return $TRegistros;
 		}
 
+		/**
+		 * comprueba si existe un usuario con ese apodo y devuelve 0 o 1
+		 * @param string $apodo
+		 * @return int
+		*/
 		public static function buscarUsuarioByApodo($apodo)
 		{
 			$conexion = DB::connectDB();
@@ -76,6 +98,10 @@
 			return $TRegistros;
 		}
 
+		/**
+		 * obtiene todos los usuarios menos los administradores
+		 * @return array
+		*/
 		public static function getUsuarios()
 		{
 			$conexion = DB::connectDB();
@@ -90,6 +116,10 @@
 			return $usuarios;
 		}
 
+		/**
+		 * obtiene todos los usuarios administradores
+		 * @return array
+		*/
 		public static function getAdmins()
 		{
 			$conexion = DB::connectDB();
@@ -104,6 +134,12 @@
 			return $usuarios;
 		}
 
+		/**
+		 * obtiene un usuario a travez de la contraseña y el email
+		 * @param string $email
+		 * @param string $password
+		 * @return array
+		*/
 		public static function getUsuarioByEmailPassword($email,$password)
 		{
 
@@ -119,6 +155,11 @@
 			return $usuarios;
 		}
 
+		/**
+		 * obtiene un usuario a travez de su id
+		 * @param int $id
+		 * @return array
+		*/
 		public static function getUsuarioById($id)
 		{
 
@@ -134,12 +175,18 @@
 			return $usuarios;
 		}
 
+
+		/**
+		 * obtiene los usuarios cullo nombre y apellido o apodo de parescan a la cadena solicitada
+		 * @param string $cadena
+		 * @return array
+		*/
 		public static function getUsuariosByCadenaBusqueda($cadena)
 		{
 			$conexion = DB::connectDB();
 			$seleccion = "	SELECT *
 							FROM usuarios
-							WHERE lower(CONCAT(nombre, ' ', apellido)) like '%".strtolower($cadena)."%' AND admin != 1 AND id != 0";
+							WHERE lower(CONCAT(nombre, ' ', apellido)) like '%".strtolower($cadena)."%' OR lower(apodo) like '%".strtolower($cadena)."%' AND admin != 1 AND id != 0";
 			$consulta = $conexion->query($seleccion);
 			$usuarios = [];
 			while ($registro = $consulta->fetchObject()) {
@@ -149,6 +196,11 @@
 			return $usuarios;
 		}
 
+		/**
+		 * obtiene un usuario a travez de su apodo
+		 * @param string $apodo
+		 * @return array
+		*/
 		public static function getUsuariosByApodo($apodo)
 		{
 			$conexion = DB::connectDB();
@@ -164,6 +216,11 @@
 			return $usuarios;
 		}
 
+		/**
+		 * obtiene un usuario a travez de su email
+		 * @param string $email
+		 * @return array
+		*/
 		public static function getUsuariosByEmail($email)
 		{
 			$conexion = DB::connectDB();
@@ -179,6 +236,11 @@
 			return $usuarios;
 		}
 
+		/**
+		 * borra un usuario por su id
+		 * @param int $id
+		 * @return int
+		*/
 		public static function borrarUsuario($id)
 		{
 			$conexion = DB::connectDB();
@@ -192,6 +254,11 @@
     		}
 		}
 
+		/**
+		 * modifica el estado activado de la cuenta de un usuario a travez de su codigo
+		 * @param string $codigo
+		 * @return int
+		*/
 		public static function modificarActivadoUsuario($codigo)
 		{
 			$conexion = DB::connectDB();
@@ -206,34 +273,12 @@
     		}
 		}
 
-		public static function modificarNombreApellidoUsuario($id,$nombre,$apellido)
-		{
-			$conexion = DB::connectDB();
-
-    		$modificar = "UPDATE usuarios
-    						SET nombre = \"$nombre\", apellido = \"$apellido\" 
-    						WHERE id = $id;";
-    		if($conexion->exec($modificar) == 1){
-    			return 1;
-    		}else{
-    			return 0;
-    		}
-		}
-
-		public static function modificarPasswordUsuario($id,$password)
-		{
-			$conexion = DB::connectDB();
-
-    		$modificar = "UPDATE usuarios
-    						SET password = \"".md5($password)."\"
-    						WHERE id = $id;";
-    		if($conexion->exec($modificar) == 1){
-    			return 1;
-    		}else{
-    			return 0;
-    		}
-		}
-
+		/**
+		 * modifica la bio de un usuario a travez de su id
+		 * @param int $id
+		 * @param string $bio
+		 * @return int
+		*/
 		public static function modificarBioUsuario($id,$bio)
 		{
 			$conexion = DB::connectDB();
@@ -248,6 +293,12 @@
     		}
 		}
 
+		/**
+		 * modifica el avatar de un usuario a travez de su id
+		 * @param int $id
+		 * @param string $avatar
+		 * @return int
+		*/
 		public static function modificarAvatarUsuario($id,$avatar)
 		{
 			$conexion = DB::connectDB();
@@ -262,6 +313,11 @@
     		}
 		}
 
+		/**
+		 * modifica el estado un usuario a conectado a travez de su id
+		 * @param int $id
+		 * @return int
+		*/
 		public static function conectarUsuario($id)
 		{
 			$conexion = DB::connectDB();
@@ -276,6 +332,11 @@
     		}
 		}
 
+		/**
+		 * modifica el estado un usuario a desconectado a travez de su id
+		 * @param int $id
+		 * @return int
+		*/
 		public static function desconectarUsuario($id)
 		{
 			$conexion = DB::connectDB();
@@ -286,6 +347,10 @@
     		$conexion->exec($modificar);
 		}
 
+		/**
+		 * modifica el estado de todos los usuarios a desconectado a travez de su id
+		 * @return int
+		*/
 		public static function desconectarUsuarios()
 		{
 			$conexion = DB::connectDB();

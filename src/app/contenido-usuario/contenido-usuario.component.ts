@@ -159,6 +159,8 @@ export class ContenidoUsuarioComponent implements OnInit {
 		this.contenidoUsuario = this._operacionesFechas.ordenarPorFechaDesc(this.contenidoUsuario);
 		//obetenemos los comentarios de los archivos
 		this.contenidoUsuario = this.obtenerComentariosArchivos();
+		
+		this.comprobarContenido();
 	}
 
 	//comprobar si el archivo es un video

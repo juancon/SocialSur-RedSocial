@@ -1,0 +1,62 @@
+<?php
+class Usuario{
+	private $id;
+	private $nombre;
+	private $apellido;
+	private $apodo;
+	private $email;
+	private $password;
+	private $bio;
+	private $avatar;
+	private $conectado;
+	private $activado;
+	private $admin;
+  
+	function __construct($id, $nombre,$apellido,$apodo,$password, $email,$bio,$avatar,$conectado,$activado, $admin) {
+		$this->id = $id;
+		$this->nombre = $nombre;
+		$this->apellido = $apellido;
+		$this->apodo = $apodo;
+		$this->password = $password;
+		$this->email = $email;
+		$this->bio = $bio;
+		$this->avatar = $avatar;
+		$this->conectado = $conectado;
+		$this->activado = $activado;
+		$this->admin = $admin;
+	}
+
+	function getId(){
+		return $this->id;
+	}
+	function getNombre(){
+		return $this->nombre;
+	}
+	function getApellido(){
+		return $this->apellido;
+	}
+	function getApodo(){
+		return $this->apodo;
+	}
+	function getEmail(){
+		return $this->email;
+	}
+	function getPassword(){
+		return $this->password;
+	}
+	function getBio(){
+		return $this->bio;
+	}
+	function getAvatar(){
+		return $this->avatar;
+	}
+	function getConectado(){
+		return $this->conectado;
+	}
+	function getActivado(){
+		return $this->activado;
+	}
+	function getAdmin(){
+		return $this->admin;
+	}
+}

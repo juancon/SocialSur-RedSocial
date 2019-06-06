@@ -3,6 +3,13 @@
 
 	class FuncionesDenuncias
 	{
+		/**
+		 * crea una nueva denuncia
+		 * @param int $idusuario
+		 * @param int $idelemento
+		 * @param string $idautor
+		 * @return int
+		*/
 		public static function nuevaDenuncia($idusuario,$idelemento,$idautor)
 		{
 			$conexion = DB::connectDB();
@@ -16,6 +23,10 @@
 			return 0;
 		}
 
+		/**
+		 * obtiene todas las denuncias
+		 * @return array
+		*/
 		public static function getDenuncias()
 		{
 			$denuncias = [];
@@ -36,6 +47,11 @@
 			return $denuncias;	
 		}
 
+		/**
+		 * obtiene todas las denunicas de un elemento
+		 * @param int $idelemento
+		 * @return array
+		*/
 		public static function getNumDenunciasElemento($idelemento)
 		{
 
@@ -53,23 +69,11 @@
 			return $numDenuncias;
 		}
 
-		public static function getNumDenunciasUsuario($idusuario)
-		{
-
-			$conexion = DB::connectDB();
-			$seleccion = "	SELECT count(*) as numDenuncias
-							FROM denuncias
-							WHERE idusuario = $idusuario";
-			$consulta = $conexion->query($seleccion);
-			$numDenuncias = [];
-			while ($registro = $consulta->fetchObject()) {
-				$numDenuncias[] = array(
-					"numdenuncias" => $registro->numdenuncias
-				);
-			}
-			return $numDenuncias;
-		}
-
+		/**
+		 * borra todas las denuncias de un elemento
+		 * @param int $idelemento
+		 * @return int
+		*/
 		public static function borrarDenuncias($idelemento)
 		{
 			$conexion = DB::connectDB();

@@ -239,7 +239,7 @@ export class BarraNavegacionComponent implements OnInit {
 
 	public buscarUsuario() {
 		if (this.buscar.trim() != "") {
-			let url = "/buscar?nombre=" + this.buscar.trim();
+			let url = "/buscar?busqueda=" + this.buscar.trim();
 			window.location.href = url;
 		}
 	}

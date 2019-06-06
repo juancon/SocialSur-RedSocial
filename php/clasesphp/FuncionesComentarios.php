@@ -4,6 +4,13 @@
 
 	class FuncionesComentarios
 	{
+		/**
+		 * crea un nuevo comentario
+		 * @param int $idusuario
+		 * @param int $idelemento
+		 * @param string $comentario
+		 * @return int
+		*/
 		public static function crearComentario($idusuario,$idelemento,$comentario)
 		{
 			$conexion = DB::connectDB();
@@ -16,6 +23,11 @@
     		}
 		}
 
+		/**
+		 * obtiene todos los comentarios que posee un elemento
+		 * @param int $idelemento
+		 * @return array
+		*/
 		public static function getComentariosArchivo($idelemento)
 		{
 			$conexion = DB::connectDB();
@@ -32,52 +44,11 @@
 			return $comentarios;
 		}
 
-		public static function getComentarios()
-		{
-
-			$conexion = DB::connectDB();
-			$seleccion = "	SELECT * 
-							FROM comentarios";
-			$consulta = $conexion->query($seleccion);
-			$comentarios = [];
-			while ($registro = $consulta->fetchObject()) {
-				$comentarios[] = new Comentario($registro->id,$registro->idusuario,$registro->idelemento,$registro->comentario,$registro->fecha);
-			}
-			return $comentarios;
-		}
-
-		public static function getComentariosByIdusuario($idusuario)
-		{
-			$conexion = DB::connectDB();
-			$seleccion = "	SELECT * 
-							FROM comentarios
-							WHERE idusuario = $idusuario
-							ORDER BY fecha;
-							";
-			$consulta = $conexion->query($seleccion);
-			$comentarios = [];
-			while ($registro = $consulta->fetchObject()) {
-				$comentarios[] = new Comentario($registro->id,$registro->idusuario,$registro->idelemento,$registro->comentario,$registro->fecha);
-			}
-			return $comentarios;
-		}
-
-		public static function getComentarioById($id)
-		{
-			$conexion = DB::connectDB();
-			$seleccion = "	SELECT * 
-							FROM comentarios
-							WHERE id = $id
-							ORDER BY fecha;
-							";
-			$consulta = $conexion->query($seleccion);
-			$comentarios = [];
-			while ($registro = $consulta->fetchObject()) {
-				$comentarios[] = new Comentario($registro->id,$registro->idusuario,$registro->idelemento,$registro->comentario,$registro->fecha);
-			}
-			return $comentarios;
-		}
-
+		/**
+		 * borra un comentario por su id
+		 * @param int $id
+		 * @return int
+		*/
 		public static function borrarComentario($id)
 		{
 			$conexion = DB::connectDB();
@@ -90,6 +61,11 @@
     		}
 		}	
 
+		/**
+		 * borra todos los comentarios de un elemento
+		 * @param int $idelemento
+		 * @return int
+		*/
 		public static function borrarComentarios($idelemento)
 		{
 			$conexion = DB::connectDB();

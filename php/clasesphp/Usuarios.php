@@ -26,54 +26,90 @@ class Usuario{
 		$this->admin = $admin;
 	}
 
-	function setpassword($password) {
-		$this->password = $password;
-	}
-
-	function setBio($bio) {
-		$this->bio = $bio;
-	}
-
-	function setActivado($activado) {
-		$this->activado = $activado;
-	}
-	function setAvatar($avatar) {
-		$this->avatar = $avatar;
-	}
-	function setConectado($avatar) {
-		$this->conectado = $conectado;
-	}
-
+	/**
+	 * devuelve el id del usuario
+	 * @return int
+	*/
 	function getId(){
 		return $this->id;
 	}
+
+	/**
+	 * devuelve el nombre del usuario
+	 * @return string
+	*/
 	function getNombre(){
 		return $this->nombre;
 	}
+
+	/**
+	 * devuelve el apellido del usuario
+	 * @return string
+	*/
 	function getApellido(){
 		return $this->apellido;
 	}
+
+	/**
+	 * devuelve el apodo del usuario
+	 * @return string
+	*/
 	function getApodo(){
 		return $this->apodo;
 	}
+
+	/**
+	 * devuelve el email del usuario
+	 * @return string
+	*/
 	function getEmail(){
 		return $this->email;
 	}
+
+	/**
+	 * devuelve la contraseña encriptada en md5 del usuario
+	 * @return string
+	*/
 	function getPassword(){
 		return $this->password;
 	}
+
+	/**
+	 * devuelve la bio del usuario
+	 * @return string
+	*/
 	function getBio(){
 		return $this->bio;
 	}
+
+	/**
+	 * devuelve ruta del avatar del usuario
+	 * @return string
+	*/
 	function getAvatar(){
 		return $this->avatar;
 	}
+
+	/**
+	 * devuelve el estado del chat del usuario
+	 * @return int
+	*/
 	function getConectado(){
 		return $this->conectado;
 	}
+
+	/**
+	 * devuelve el estado de la cuenta del usuario
+	 * @return int
+	*/
 	function getActivado(){
 		return $this->activado;
 	}
+
+	/**
+	 * devuelve si el usuario es un adminitrador
+	 * @return int
+	*/
 	function getAdmin(){
 		return $this->admin;
 	}

@@ -14,18 +14,43 @@ class Comentario{
 		$this->fecha = $fecha;
 	}
 
+
+	/**
+	 * devuelve el id del comentario
+	 * @return int
+	*/
 	function getId(){
 		return $this->id;
 	}
+
+	/**
+	 * devuelve el id del usuario que ha realizado el comentario
+	 * @return int
+	*/
 	function getIdusuario(){
 		return $this->idusuario;
 	}
+
+	/**
+	 * devuelve el id del elemento sobre el que se ha realizado el comentario
+	 * @return int
+	*/
 	function getIdelemento(){
 		return $this->idelemento;
 	}
+
+	/**
+	 * devuelve el comentario
+	 * @return string
+	*/
 	function getComentario(){
 		return $this->comentario;
 	}
+
+	/**
+	 * devuelve la fecha a la que se ha realizado el comentario
+	 * @return string
+	*/
 	function getFecha(){
 		return $this->fecha;
 	}

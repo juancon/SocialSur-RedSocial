@@ -3,6 +3,12 @@
 
 	class FuncionesMegustaArchivos
 	{
+		/**
+		 * crea un nuevo megusta
+		 * @param int $idusuario
+		 * @param int $idelemento
+		 * @return int
+		*/
 		public static function nuevoMegusta($idusuario,$idelemento)
 		{
 			$conexion = DB::connectDB();
@@ -17,6 +23,11 @@
 			return 0;
 		}
 
+		/**
+		 * obtiene los megusta de un archivo a traves de su id
+		 * @param int $idelemento
+		 * @return int
+		*/
 		public static function getNumMegustasArchivo($idelemento)
 		{
 			$numMegusta = 0;
@@ -33,36 +44,12 @@
 			return $numMegusta;	
 		}
 
-		public static function getUsuarioHanDadoMegustaArchivo($idelemento)
-		{
-
-			$conexion = DB::connectDB();
-			$seleccion = "	SELECT *
-							FROM megustafotosvideos
-							WHERE idelemento = $idelemento";
-			$consulta = $conexion->query($seleccion);
-			$megustas = [];
-			while ($registro = $consulta->fetchObject()) {
-				$megustas[] = [$registro->idusuario,$registro->idelemento];
-			}
-			return $megustas;
-		}
-
-		public static function getMegustasUsuarioHaDado($idusuario)
-		{
-
-			$conexion = DB::connectDB();
-			$seleccion = "	SELECT *
-							FROM megustafotosvideos
-							WHERE idusuario = $idusuario";
-			$consulta = $conexion->query($seleccion);
-			$megustas = [];
-			while ($registro = $consulta->fetchObject()) {
-				$megustas[] = [$registro->idusuario,$registro->idelemento];
-			}
-			return $megustas;
-		}
-
+		/**
+		 * comprueba si un usuario ha dado megusta a un archivo a traves de sus ids
+		 * @param int $idusuario
+		 * @param int $idelemento
+		 * @return int
+		*/
 		public static function comprobarMegusta($idusuario,$idelemento)
 		{
 
@@ -81,6 +68,12 @@
 			return 0;
 		}
 
+		/**
+		 * Borra un megusta
+		 * @param int $idusuario
+		 * @param int $idelemento
+		 * @return int
+		*/
 		public static function borrarMegusta($idusuario,$idelemento)
 		{
 			$conexion = DB::connectDB();

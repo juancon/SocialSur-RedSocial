@@ -17,7 +17,7 @@
 	$tipo = $_POST['tipo'];
 	if($tipo == "avatar"){
 		//ruta donde se va a subir el fichero
-		$ruta = './assets/img/avatar/';
+		$ruta = '../assets/img/avatar/';
 		$nombre = $_FILES['file']['name'];
 		//recogemos la extencion
 		$ext = '.'.pathinfo($nombre, PATHINFO_EXTENSION);

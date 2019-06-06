@@ -24,6 +24,8 @@ export class AppComponent {
 	//variable para saber si el usuario esta logueado
 	public usarioLogueado:boolean;
 	//variables para mostrar un contenido u otro
+	public login:boolean = false;
+	public registro:boolean = false;
 	public contenidoUsuario:boolean = false;
 	public perfil:boolean = false;
 	public amigos:boolean = false;
@@ -73,11 +75,13 @@ export class AppComponent {
 				let url = event.urlAfterRedirects;
 				//comprobamos la variable usuarioLogueado
 				//Para saber si hay un usuario logeado
-				if(url == "/login" || url == "/registro"){
-					//si esta logueado redirigimos al inicio
-					if(this.usarioLogueado){
-						this._router.navigate(['']);
-					}
+				
+				if(url == "/login" && !this.usarioLogueado){
+					this.registro = false;
+					this.login = true;
+				}else if(url == "/registro" && !this.usarioLogueado){
+					this.login = false;
+					this.registro = true;
 				}else{
 					//si no esta logueado redirigimos al login
 					if(!this.usarioLogueado){

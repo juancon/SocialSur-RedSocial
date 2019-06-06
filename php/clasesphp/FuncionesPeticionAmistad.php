@@ -5,6 +5,13 @@
 
 	class FuncionesPeticionAmistad
 	{
+		/**
+		 * crea una nueva peticion de amistad
+		 * @param int $usuariofrom
+		 * @param int $usuarioto
+		 * @param string $mensaje
+		 * @return int
+		*/
 		public static function nuevaPeticion($usuariofrom,$usuarioto,$mensaje)
 		{
 				$conexion = DB::connectDB();
@@ -17,21 +24,11 @@
 				return 0;
 		}
 
-		public static function getPeticionesUsuarioFrom($idusuario)
-		{
-
-			$conexion = DB::connectDB();
-			$seleccion = "	SELECT * 
-							FROM solicitudesamistad
-							WHERE usuariofrom = $idusuario;";
-			$consulta = $conexion->query($seleccion);
-			$peticiones = [];
-			while ($registro = $consulta->fetchObject()) {
-				$peticiones[] = new Peticion($registro->usuariofrom,$registro->usuarioto,$registro->mensaje,$registro->aceptado,$registro->fecha);
-			}
-			return $peticiones;
-		}
-
+		/**
+		 * obtiene las peticiones que ha recibido un usuario
+		 * @param int $idusuario
+		 * @return array
+		*/
 		public static function getPeticionesUsuarioTo($idusuario)
 		{
 
@@ -47,6 +44,11 @@
 			return $peticiones;
 		}
 
+		/**
+		 * obtiene las peticiones no aceptadas que ha recibido un usuario
+		 * @param int $idusuario
+		 * @return array
+		*/
 		public static function getPeticionesUsuarioToNoAceptadas($idusuario)
 		{
 
@@ -62,6 +64,12 @@
 			return $peticiones;
 		}
 
+		/**
+		 * comprueba si hay una peticion de amistad entre dos usuarios
+		 * @param int $idusuario1
+		 * @param int $idusuario2
+		 * @return int
+		*/
 		public static function comprobarPeticion($idusuario1,$idusuario2)
 		{
 
@@ -79,6 +87,12 @@
 			return 0;
 		}
 
+		/**
+		 * borra una peticion de amistad entre dos usuarios
+		 * @param int $usuariofrom
+		 * @param int $usuarioto
+		 * @return int
+		*/
 		public static function borrarPeticion($usuariofrom,$usuarioto)
 		{
 			
@@ -91,20 +105,5 @@
     		}
 			return 0;
 		}
-		/**/
-		public static function modificarPeticion($usuariofrom,$usuarioto)
-		{
-			if(self::comprobarPeticion($usuariofrom,$usuarioto) == 1){
-				$conexion = DB::connectDB();
-	    		$insercion = "UPDATE solicitudesamistad
-	    						SET aceptado = 1
-	    						WHERE (usuariofrom = $usuariofrom AND usuarioto = $usuarioto)
-	    							OR (usuariofrom = $usuarioto AND usuarioto = $usuariofrom)";
-	    		if($conexion->exec($insercion) > 0){
-	    			return 1;
-	    		}
-			}
-			return 0;
-		}		
 	}
 ?>

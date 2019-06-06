@@ -3,6 +3,12 @@
 
 	class FuncionesAmigos
 	{
+		/**
+		 * crea una nueva amistad
+		 * @param int $usuario1
+		 * @param int $usuario2
+		 * @return int
+		*/
 		public static function nuevoAmigo($usuario1,$usuario2)
 		{
 			$conexion = DB::connectDB();
@@ -17,6 +23,11 @@
 			return 0;
 		}
 
+		/**
+		 * obtiene los amigos de un usuario
+		 * @param int $usuario
+		 * @return array
+		*/
 		public static function getAmigosUsuario($idusuario)
 		{
 
@@ -36,6 +47,12 @@
 			return $amigos;
 		}
 
+		/**
+		 * comprueba la amistad entre dos usuarios
+		 * @param int $usuario1
+		 * @param int $usuario2
+		 * @return int
+		*/
 		public static function comprobarAmistad($idusuario1,$idusuario2)
 		{
 
@@ -53,6 +70,12 @@
 			return 0;
 		}
 
+		/**
+		 * borra la amistad entre dos usuarios
+		 * @param int $usuario1
+		 * @param int $usuario2
+		 * @return int
+		*/
 		public static function borrarAmigo($idusuario1,$idusuario2)
 		{
 			$conexion = DB::connectDB();

@@ -156,5 +156,9 @@ export class InformacionUsuarioComponent implements OnInit {
 		}
 	}
 
+	public abrirAyuda():void{
+		window.open("../../assets/SocialSurManualdeUsuario.pdf");
+	}
+
 	
 }

@@ -15,7 +15,7 @@
 
 	$mensaje = "<html><body>";
 	$mensaje .= "<p>Hola $nombre, ¡bienvenido a SocialSur!</p>";
-	$mensaje .="<p>Porfavor <a href='http://192.168.1.150/confirmacion.php?cod=$codigo'>pulsa en este enlace</a> para confirmar tu cuenta</p>";
+	$mensaje .="<p>Porfavor <a href='http://192.168.1.150/php/confirmacion.php?cod=$codigo'>pulsa en este enlace</a> para confirmar tu cuenta</p>";
 	$mensaje .= "</body></html>";
 
 	$headers = 'From: SocialSur@no-reply.com' . "\r\n";

@@ -47,11 +47,16 @@
 			<app-otrosusuarios></app-otrosusuarios>
 		</div>
 	</div>
-	<!-- infroar al suaurio sorbe cuenta no activada -->
+	<!-- informar al usuario sobre cuenta no activada -->
 	<div class="row" *ngIf="!esAdmin && informarActivado">
 		<app-confirmar class="fixed-bottom" #activar></app-confirmar>
 	</div>
 </div>
 <div *ngIf="!usarioLogueado" class="login">
-	<router-outlet></router-outlet>
+	<div *ngIf="login">
+		<app-login></app-login>
+	</div>
+	<div *ngIf="registro">
+		<app-registro></app-registro>
+	</div>
 </div>

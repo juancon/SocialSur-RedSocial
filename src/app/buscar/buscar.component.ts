@@ -58,7 +58,7 @@ export class BuscarComponent implements OnInit {
   public obtenerBusqueda():void{
     //obtenemos el parametro que queremos de la url
     let test = this._router.parseUrl(this._router.url);
-    this.busqueda = test.queryParams['nombre'];
+    this.busqueda = test.queryParams['busqueda'];
     //llamamos a la funcion para obtener a los usuario que coincidad
     this.obtenerUsuarios()
 

@@ -1,10 +1,13 @@
 <div id="informacionUsuario" class="offset-md-3 col-md-6">
 	<div class="d-flex flex-column align-items-center">
+		<img class="ayuda" src="../../assets/iconos/info.svg" tittle="ayuda" width="5%" (click)="abrirAyuda()">
 		<h1 class="titulo">Mi Perfil</h1>
 		<div class="d-flex flex-column align-items-center w-100">
 			<img src="../../{{avatar}}" class="img-thumbnail d-block perfil" title="Foto de perfil"  width="50%">
-			<div *ngIf="ocultarMostrar">
-				<input type="file" name="nuevaFotoPerfil" class="subirAvatar" (change)="subirAvatar($event)" accept="image/*">
+			<div class="custom-file" *ngIf="ocultarMostrar">
+				<input #archivo type="file" class="custom-file-input subirAvatar" id="inputFichero" aria-describedby="adorno" (change)="subirAvatar($event)" name="nuevaFotoPerfil" (change)="almacenarFichero($event)" accept="image/*">
+				<label class="custom-file-label" for="inputFichero">Selecciona tu fichero</label>
+				<!-- <input type="file" name="nuevaFotoPerfil" class="subirAvatar" (change)="subirAvatar($event)" accept="image/*"> -->
 			</div>
 			<button (click)="mostarOcultar()" class="btn btn-primary d-block cambiar mt-1" title="Cambiar foto de pérfil">
 				{{textoBoton}}

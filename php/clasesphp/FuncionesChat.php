@@ -2,7 +2,14 @@
 	require_once 'DB.php';
 
 	class FuncionesChat
-	{
+	{	
+		/**
+		 * crea un nuevo mensaje de chat
+		 * @param int $idelemento
+		 * @param int $iduserto
+		 * @param string $mensaje
+		 * @return int
+		*/
 		public static function nuevoMensaje($iduserfrom,$iduserto,$mensaje)
 		{
 			$conexion = DB::connectDB();
@@ -15,6 +22,12 @@
 			return 0;
 		}
 
+		/**
+		 * obtiene los mensajes de chat entre dos usuario
+		 * @param int $iduserfrom
+		 * @param int $iduserto
+		 * @return array
+		*/
 		public static function getConversacion($iduserfrom,$iduserto)
 		{
 
@@ -37,6 +50,11 @@
 			return $conversacion;
 		}
 
+		/**
+		 * obtiene los mensajes sin leer de un usuario
+		 * @param int $iduserto
+		 * @return array
+		*/
 		public static function getChatUserSinLeer($iduserto)
 		{
 
@@ -59,6 +77,12 @@
 			return $conversacion;
 		}
 
+		/**
+		 * marca todos los mensajes entre dos usuario como leidos
+		 * @param int $iduserfrom
+		 * @param int $iduserto
+		 * @return array
+		*/
 		public static function marcarLeido($iduserfrom,$iduserto)
 		{
 

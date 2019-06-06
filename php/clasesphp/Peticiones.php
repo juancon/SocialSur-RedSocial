@@ -14,18 +14,42 @@ class Peticion{
 		$this->fecha = $fecha;
 	}
 
+	/**
+	 * devuelve el id del usaurio que ha enviado la peticion
+	 * @return int
+	*/
 	function getUsuariofrom(){
 		return $this->usuariofrom;
 	}
+
+	/**
+	 * devuelve el id del usuario que ha recibido la peticion
+	 * @return int
+	*/
 	function getusuarioto(){
 		return $this->usuarioto;
 	}
+
+	/**
+	 * devuelve el mensaje
+	 * @return string
+	*/
 	function getMensaje(){
 		return $this->mensaje;
 	}
+
+	/**
+	 * devuelve si se ha aceptado la peticion
+	 * @return int
+	*/
 	function getAceptado(){
 		return $this->aceptado;
 	}
+
+	/**
+	 * devuelve la fecha de la peticion
+	 * @return snting
+	*/
 	function getFecha(){
 		return $this->fecha;
 	}

@@ -7,6 +7,9 @@
 	padding-top: 20px;
 	box-shadow: 6px 6px #D7EBFA;
 }
+.ayuda{
+	cursor: pointer;
+}
 .perfil{
 	border: 1px solid 
 }
