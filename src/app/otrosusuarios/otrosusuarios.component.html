@@ -62,77 +62,16 @@
         <div class="bordederecho"></div>
       </div>
 
-      <!-- prguntamos si el contenido actual es un video -->
-      <div class="archivo d-flex" *ngIf="comprobarVideo(contenido.getTipo())">
-        <!-- archivo -->
-        <div class="col-8 video">
-          <video src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}" width="100%" controls></video>
-        </div>
-        <div class="col-4 informacion">
-          <!-- megusta y fecha -->
-          <div class="row">
-            <button class="megusta" (click)="darQuitarMegusta(contenido.getId())" *ngIf="otroUsuario.getAmistad() == 1">
-              <img src="{{contenido.getRutamegustas()}}" width="20px" height="20px" title="Me gusta" alt="Me gusta">
-              {{contenido.getMegustas()}}
-            </button>
-            <div class="ml-auto fecha">
-              {{contenido.getFecha()}}
-            </div>
-          </div>
-          <!-- comentarios -->
-          <div>
-            <div class="comentarios">
-              <div *ngIf="esVacio(contenido.getComentarios())">
-                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
-              </div>
-              <div *ngFor="let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
-                <div class="col-12 comentario d-block">
-                  <i class="fecha">{{comentario.getFecha()}}</i><br />
-                </div>
-                <div class="col-12 comentario d-block">
-                  <b>{{comentario.getNombreUsuario()}}</b>
-                  {{comentario.getComentario()}}
-                </div>
-              </div>
-            </div>
-
-
-            <div *ngIf="esActivado()">
-              <div class="dropdown denunciar">
-                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <img src="../../assets/iconos/flag.svg">
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido
-                    inapropiado u ofensivo.</a>
-                </div>
-              </div>
-
-              <div class="botonComentar col-12" *ngIf="otroUsuario.getAmistad() == 1">
-                <div class="col-12" id="textcomentario{{contenido.getId()}}">
-                  <div class="info text-center">{{comentarioinfo}}</div>
-                  <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
-                    [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
-                </div>
-                <button class="d-flex ml-auto comentar"
-                  (click)="comentar(contenido.getId(),contenido.getComentarios())">
-                  Comentar
-                </button>
-              </div>
-            </div>
-
-
-
-          </div>
-        </div>
-      </div>
-
 
       <!-- prguntamos si el contenido actual es una foto -->
-      <div class="archivo d-flex" *ngIf="comprobarFoto(contenido.getTipo())">
+      <div class="archivo d-flex">
         <!-- archivo -->
-        <div class="col-8 foto">
+        <!-- comprobamos si es un video -->
+        <div class="col-8 video" *ngIf="comprobarVideo(contenido.getTipo())">
+          <video src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}" width="100%" controls></video>
+        </div>
+        <!-- comprobamos si es una foto -->
+        <div class="col-8 foto" *ngIf="comprobarFoto(contenido.getTipo())">
           <img src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}">
         </div>
         <div class="col-4 informacion">

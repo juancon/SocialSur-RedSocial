@@ -30,11 +30,15 @@
 					</div>
 
 					<a class="nav-item nav-link active ml-0" routerLink="/mensajes" routerLinkActive="active">
-						<img src="{{mensajesIco}}" width="30px" title="{{numMensajes}}" alt=""> 
+						<img src="{{mensajesIco}}" width="30px" title="{{numMensajes}}" alt="Mensajes"> 
 						<span class="sr-only">(current)</span>
 					</a>
 					<a class="nav-item nav-link active ml-0" routerLink="/peticiones" routerLinkActive="active">
-						<img src="{{peticionesIco}}" class="rounded" width="30px" title="{{numPeticiones}}" alt=""> 
+						<img src="{{peticionesIco}}" class="rounded" width="30px" title="{{numPeticiones}}" alt="Petciones de amistad"> 
+						<span class="sr-only">(current)</span>
+					</a>
+					<a class="nav-item nav-link active ml-0" routerLink="/novedades" routerLinkActive="active">
+						<img src="../../assets/iconos/worldwide.svg" class="rounded" width="30px" title="Últimas publicaciones de mis amigos" alt="publicaciones de mis amigos"> 
 						<span class="sr-only">(current)</span>
 					</a>
 					<input type="text" class="form-control mt-2 mx-auto" name="buscar" placeholder="Buscar usuarios" title="Buscar usuarios" [(ngModel)]="buscar" [ngModelOptions]="{standalone: true}" (keyup.enter)="buscarUsuario()">

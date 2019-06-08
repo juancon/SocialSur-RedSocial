@@ -1,0 +1,275 @@
+#contenidoUsuario{
+	height: 50%;
+}
+.contenido{
+	height: 100vw;
+    box-sizing: content-box;
+
+}
+/*-----------------------Media queries del contenido---------------------------*/
+@media (min-height: 625px) {
+	.contenido{
+		max-height: 45vw;
+	}
+}
+@media (min-height: 728px) {
+	.contenido{
+		max-height: 55vw;
+	}	
+}
+@media (min-height: 914px) {
+	.contenido{
+		max-height: 50.5vw;
+	}
+}
+@media (min-height: 921px) {
+	.contenido{
+		max-height: 69vw;
+	}
+		
+}
+@media (min-height: 1024px) {
+	.contenido{
+		max-height: 77vw;
+	}	
+}
+@media (min-height: 1080px) {
+	.contenido{
+		max-height: 59vw;
+	}	
+}
+@media (max-width: 625px) {
+	.contenido{
+		min-height: 500vw;
+		margin-left: -5%;
+	}	
+}
+
+/*-----------------------Media queries de los comentarios---------------------------*/
+@media (max-width: 320px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 320px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 355px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 400px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 500px) {
+	.comentarios{
+		height: 23vw;
+	}	
+}
+@media (min-width: 600px) {
+	.comentarios{
+		height: 22vw;
+	}	
+}
+@media (min-width: 675px) {
+	.comentarios{
+		height: 21vw;
+	}	
+}
+@media (min-width: 730px) {
+	.comentarios{
+		height: 20vw;
+	}	
+}
+@media (min-width: 872px) {
+	.comentarios{
+		height: 25vw;
+	}	
+}
+@media (min-width: 1280px) {
+	.comentarios{
+		height: 29vw;
+	}	
+}
+@media (min-width: 1366px) {
+	.comentarios{
+		height: 29.5vw;
+	}	
+}
+
+.sincontenido img{
+	border: 1px solid #A0D8FE;
+}
+.autor{
+	color: #40B0FF;
+	font-size: 0.8em;
+	text-align: center;
+}
+.autor a:hover{
+	text-decoration: none;
+}
+.nombre{
+	width: 75%;
+	border: none;
+	background-color: rgba(255,255,255,1);
+	margin-bottom: -7px;
+	color: #40B0FF;
+}
+.nombre h2{
+	font-size: 1.5em;
+}
+.bordederecho{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 30px 30px 0;
+	border-color: transparent #E6E6E6 transparent transparent;
+}
+.bordeizquierdo{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 30px 0 0;
+	border-color: #E6E6E6 transparent transparent transparent;
+}
+.archivo{
+	/*BDBDBD*/
+	border: 1px solid #A0D8FE;
+	box-shadow: 2px 2px #D7EBFA;
+}
+.foto{
+	background-color: white;
+}
+.foto img{
+	position: absolute; 
+    top: 0; 
+    left: 0;
+    max-width: 100%; 
+    max-height: 100%;
+    width: 100vw; 
+    height: 100vw;
+}
+.video video{
+	position: absolute; 
+    top: 0; 
+    left: 0;
+    max-width: 100%; 
+    max-height: 100%;
+    width: 100vw; 
+    height: 100vw;
+    background-color: black;
+    background-size: contain;
+    overflow: hidden;
+}
+.informacion{
+	background-color: white;
+	border-left: 1px solid #008BEA;
+}
+.informacion h2{
+	font-size: 1em;
+	color: green;
+}
+
+.megusta,.guardar{
+	border: none;
+	background-color: rgba(0,0,0,0);	
+}
+
+.estados{
+	text-align: center;
+}
+
+.info{
+	color: red;
+	font-size: 0.8em;
+}
+.denunciar{
+	z-index: 2;
+	width: 50%;
+}
+.denunciar button{
+	border: none;
+	background-color: rgba(0, 0, 0,0)
+}
+.comentarios{
+	overflow-y: auto;
+}
+h5{
+	font-size: 0.8em;
+}
+.sincomentarios{
+	font-size: 0.8em;
+	font-style: italic;
+	text-align: center;
+}
+.comentario{
+	font-size: 0.8em;
+}
+.fecha{
+	font-size: 0.7em;
+	color: #B1B1B1;
+}
+.botonComentar{
+	background-color: white;
+	position: absolute;
+	border-left: 1px solid #008BEA;
+	bottom: 0px;
+	right: 1px;
+	z-index: 1;
+}
+.botonComentar button{
+	border: none;
+	background-color: rgba(0,0,0,0);
+	color: #A5D0EE;
+}
+.botonComentar textarea{
+	width: 90%;
+}
+
+.relleno{
+	color: rgba(0,0,0,0);
+}
+
+.modal:before{
+	content: '';
+	display: inline-block;
+	height: 25%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
+
+
+@media (max-width: 625px) {
+	.modal:before{
+		margin-right: 0px;
+	}	
+}
+.modal .col-12{
+	padding-left: 0px;
+}
+.modal h3{
+	color: #40B0FF;
+}
+
+.col-8,.col-12{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+/* creamos el macro */
+@keyframes parpadear { 
+	50% { border-color: #ff0000; } 
+ }
+ /* clase que llamara a ese macro */
+.parpadear{
+	animation-name: parpadear ;/* llamamamos al macro*/
+    animation-duration: .5s ; /* establecemos el tiempo que durara la animacion */
+    animation-timing-function: step-end; /* establecemos la manera en la que la animacion se ejecutara */
+    animation-iteration-count: 10 ; /*establecememos las veces que se ejecutaran las animaciones*/
+    animation-direction: alternate ; /*establecemos la direccion de la animacion*/
+}

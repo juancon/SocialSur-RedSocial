@@ -133,6 +133,13 @@
 
 		//borramos el usuario
 		$borrar = $funcionesUsuarios::borrarUsuario($idusuario);
+	}else if($accion == "cambiarpassword"){
+		@$idusuario = $array->idusuario;
+		@$password = $array->password;
+
+		//cambiamos la contraseña del usuario
+		$borrar = $funcionesUsuarios::cambiarPass($idusuario,$password);
+
 	}
 	
 	

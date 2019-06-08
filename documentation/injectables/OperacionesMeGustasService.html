@@ -1,0 +1,1064 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>socialsur-pi documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">socialsur-pi documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>OperacionesMeGustasService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/services/operaciones-me-gustas.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#contenidoUsuario">contenidoUsuario</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#urlMegustas">urlMegustas</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#actualizarRuta">actualizarRuta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cambiarComprobar">cambiarComprobar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cambiarNumMegusta">cambiarNumMegusta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#comprobarMegusta">comprobarMegusta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#darMegusta">darMegusta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#obtenerMegustas">obtenerMegustas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#obtenerMegustasConsulta">obtenerMegustasConsulta</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_http: <a href="https://angular.io/api/http/Http" target="_blank">Http</a>, _urls: <a href="../injectables/UrlsService.html">UrlsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/http/Http" target="_blank" >Http</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_urls</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UrlsService.html" target="_self" >UrlsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="actualizarRuta"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            actualizarRuta
+                        </b>
+                        <a href="#actualizarRuta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>actualizarRuta(arrayContenido: <a href="../classes/Archivo.html">Array<Archivo></a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:120</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>arrayContenido</td>
+                                    <td>
+                                                <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cambiarComprobar"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            cambiarComprobar
+                        </b>
+                        <a href="#cambiarComprobar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cambiarComprobar(respuesta: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, idelemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:151</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>respuesta</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>idelemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cambiarNumMegusta"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            cambiarNumMegusta
+                        </b>
+                        <a href="#cambiarNumMegusta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cambiarNumMegusta(megustas: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, idelemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:63</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>megustas</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>idelemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comprobarMegusta"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            comprobarMegusta
+                        </b>
+                        <a href="#comprobarMegusta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>comprobarMegusta(idusuario: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, idelemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:131</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idusuario</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>idelemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="darMegusta"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            darMegusta
+                        </b>
+                        <a href="#darMegusta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>darMegusta(idusuario: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, idElemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, arrayContenido: <a href="../classes/Archivo.html">Array<Archivo></a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:88</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idusuario</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>idElemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>arrayContenido</td>
+                                    <td>
+                                                <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerMegustas"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            obtenerMegustas
+                        </b>
+                        <a href="#obtenerMegustas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>obtenerMegustas(arrayContenido: <a href="../classes/Archivo.html">Array<Archivo></a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>arrayContenido</td>
+                                    <td>
+                                                <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerMegustasConsulta"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            obtenerMegustasConsulta
+                        </b>
+                        <a href="#obtenerMegustasConsulta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>obtenerMegustasConsulta(idElemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idElemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contenidoUsuario"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            contenidoUsuario</b>
+                            <a href="#contenidoUsuario"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="urlMegustas"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            urlMegustas</b>
+                            <a href="#urlMegustas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/services/operaciones-me-gustas.service.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+//Importamos el modulo http al servicio
+import {Http, Response, Headers} from &quot;@angular/http&quot;;
+//Importamos la funcion map
+import { map } from &#x27;rxjs/operators&#x27;;
+//importamos el servicio que contiene las urls
+import {UrlsService} from &#x27;./urls.service&#x27;;
+//Importamos la clase archivo
+import { Archivo } from &#x27;../Archivo/archivo&#x27;;
+//Importamos la clase estado
+import { Estado } from &#x27;../Estado/estado&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class OperacionesMeGustasService {
+	//variables referentes a las url de los ficheros php
+	private urlMegustas:string;
+	//variables que devolvemos en las funciones
+	private contenidoUsuario:Array&lt;Archivo&gt;;
+
+	constructor(
+		private _http: Http,
+		private _urls: UrlsService
+	) {
+		this.urlMegustas &#x3D; this._urls.getUrl(&quot;megustas&quot;);
+	}
+
+	//funcion para obtener los megustas
+	public obtenerMegustas(arrayContenido:Array&lt;Archivo&gt;):Array&lt;Archivo&gt;{
+		//convertimos el array del servicio al array que se nos pasa
+		this.contenidoUsuario &#x3D; arrayContenido;
+		//recorremos el array que se nos pasa
+		for (var i &#x3D; 0; i &lt; arrayContenido.length; i++){
+			//preguntamos el tipo de contenido que es
+				this.obtenerMegustasConsulta(arrayContenido[i].getId());
+		}
+		//devolvemos el array
+		return this.contenidoUsuario;
+	}
+
+	//obtener los megustas de las fotos y los videos
+	private obtenerMegustasConsulta(idElemento:number):void{	
+		//variable que pasaremos al fichero php
+		var parametros &#x3D; {
+			idelemento : idElemento,
+			accion : &quot;obtenermegustas&quot;
+		}
+		//funcion http.post para enviar los datos
+		let num &#x3D; this._http.post(this.urlMegustas, JSON.stringify(parametros)).pipe(map(res &#x3D;&gt; res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		num.subscribe(
+			result &#x3D;&gt; {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos &#x3D; result;
+				//llamamos a la funcion que cambia los megusta de los contenidos
+				this.cambiarNumMegusta(datos[&quot;nummegustas&quot;],datos[&quot;idelemento&quot;]);
+			}
+		);
+	}
+
+	//funcion para cambiar el numero de megustas de las fotos, los videos y los estadsos
+	private cambiarNumMegusta(megustas:number,idelemento:number):void{
+		//recorremos el array
+		for(var i &#x3D; 0; i &lt; this.contenidoUsuario.length;i++){
+			//preguntamos si el id del contenido y el tipo coinciden
+			if(this.contenidoUsuario[i].getId() &#x3D;&#x3D; idelemento){
+				//si coinciden los cambiamos
+				//preguntamos si el numero de megusta es 0 o mas
+				if(megustas &gt;&#x3D; 0){
+					//actualizamos los gustas con los megustan que vengas
+					this.contenidoUsuario[i].setMegustas(megustas);
+					//sumamos uno al numero de megustas actual
+				}else if(megustas &#x3D;&#x3D; -1){
+					//si es -1 sumamos uno a los megustas actuales
+					this.contenidoUsuario[i].setMegustas(+this.contenidoUsuario[i].getMegustas()+1);
+					this.contenidoUsuario[i].setRutamegustas(&quot;../../assets/iconos/like-1.svg&quot;);
+				}else if(megustas &#x3D;&#x3D; -2){
+					//si es -2 restamos uno a los megustas actuales
+					this.contenidoUsuario[i].setMegustas(+this.contenidoUsuario[i].getMegustas()-1);
+					this.contenidoUsuario[i].setRutamegustas(&quot;../../assets/iconos/like-3.svg&quot;);
+				}
+			}
+		}
+	}
+
+	//funcion para dar megusta
+	public darMegusta(idusuario:number,idElemento:number,arrayContenido:Array&lt;Archivo&gt;):Array&lt;Archivo&gt;{
+		//convertimos el array del servicio al array que se nos pasa
+		this.contenidoUsuario &#x3D; arrayContenido;
+		//variable que pasaremos al fichero php
+		var parametros &#x3D; {
+			idusuario : idusuario,
+			idelemento : idElemento,
+			accion : &quot;darmegusta&quot;
+		}
+		//funcion http.post para enviar los datos
+		let num &#x3D; this._http.post(this.urlMegustas, JSON.stringify(parametros)).pipe(map(res &#x3D;&gt; res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		num.subscribe(
+			result &#x3D;&gt; {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos &#x3D; result;
+				//si el reultado de dar es uno
+				if(datos[&quot;dar&quot;] &#x3D;&#x3D; 1){
+					//llamamos a la funcion que actualiza los megusta pasandole -1 para que sume
+					this.cambiarNumMegusta(-1,idElemento)
+				}else if(datos[&quot;quitar&quot;] &#x3D;&#x3D; 1){
+					//si qiutar es 1
+					//llamamos a la funcion que actualiza los megusta pasandole -2 para que reste
+					this.cambiarNumMegusta(-2,idElemento)
+				}
+			}
+		);
+		//devolvemos el array con los campos de megusta actualizados
+		return this.contenidoUsuario;
+	}
+
+	//actualizar la ruta del icono del megusta
+	public actualizarRuta(arrayContenido:Array&lt;Archivo&gt;):Array&lt;Archivo&gt;{
+		//convertimos el array del servicio al array que se nos pasa
+		this.contenidoUsuario &#x3D; arrayContenido;
+		//recorremos el array que se nos pasa
+		for (var i &#x3D; 0; i &lt; arrayContenido.length; i++){
+			//llamamos a la funcion que comprueba si se ha dada megusta al archivo o no
+			this.comprobarMegusta(arrayContenido[i].getIdusuario(),arrayContenido[i].getId());
+		}
+		return this.contenidoUsuario;
+	}
+	//funcion que compureba si se ha dado megusta
+	public comprobarMegusta(idusuario:number,idelemento:number):void{
+		//variable que pasaremos al fichero php
+		var parametros &#x3D; {
+			idusuario : idusuario,
+			idelemento : idelemento,
+			accion : &quot;comprobarmegusta&quot;
+		}
+		//funcion http.post para enviar los datos
+		let num &#x3D; this._http.post(this.urlMegustas, JSON.stringify(parametros)).pipe(map(res &#x3D;&gt; res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		num.subscribe(
+			result &#x3D;&gt; {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos &#x3D; result;
+				//llamamos a la funcion que cambia la ruta
+				this.cambiarComprobar(datos[&#x27;comprobar&#x27;],idelemento);
+			}
+		);
+	}
+	//funcion que cambia la ruta del icono del megusta del contenido
+	private cambiarComprobar(respuesta:number,idelemento:number):void{
+		//recorremos el array
+		for (var i &#x3D; 0; i &lt; this.contenidoUsuario.length; i++){
+			//comprobamos que el id del elemento del array se igual al elemento que se ha recibido por parametro
+			if(this.contenidoUsuario[i].getId() &#x3D;&#x3D; idelemento){
+				//dependiento de la la respuesta del fichero de ficheroponemos una ruta u otra
+				if(respuesta &#x3D;&#x3D; 1){
+					this.contenidoUsuario[i].setRutamegustas(&quot;../../assets/iconos/like-1.svg&quot;);
+				}else{
+					this.contenidoUsuario[i].setRutamegustas(&quot;../../assets/iconos/like-3.svg&quot;);
+				}
+			}
+		}
+	}
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'OperacionesMeGustasService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

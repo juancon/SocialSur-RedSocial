@@ -33,6 +33,7 @@ export class AppComponent {
 	public peticiones:boolean = false;
 	public buscar:boolean = false;
 	public otrosusuarios:boolean = false;
+	public novedades:boolean = false;
 	public informarActivado:boolean = false;
 	public correoEnviado:boolean = false;
 	//variable para saber si es admin
@@ -143,6 +144,7 @@ export class AppComponent {
 		this.contenidoUsuario = false;
 		this.buscar = false;
 		this.otrosusuarios = false;
+		this.novedades = false;
 		this.informarActivado = false;
 
 		if(componente == "/amigos"){
@@ -163,6 +165,11 @@ export class AppComponent {
 		}else if(componente.substring(0,8) == "/usuario"){
 			//si no estamos en ninguna de estas paginas motramos el componente de contenido del usuario
 			this.otrosusuarios = true;
+			if(this._recogerUsuario.getUsuario().getActivado() == 0){
+				this.informarActivado = true;
+			}
+		}else if(componente == "/novedades"){
+			this.novedades = true;
 			if(this._recogerUsuario.getUsuario().getActivado() == 0){
 				this.informarActivado = true;
 			}

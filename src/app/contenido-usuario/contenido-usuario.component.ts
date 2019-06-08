@@ -73,11 +73,11 @@ export class ContenidoUsuarioComponent implements OnInit {
 		this.obtenerReferencia();
 		setTimeout(this.irA.bind(this),1000);
 		setTimeout(this.comprobarContenido.bind(this),1000);
+		//ocultamos loc comentarios cuando no se este comentado
+		setTimeout(this.oculatr.bind(this),500);
 	}
 
 	ngOnInit() {
-		//ocultamos loc comentarios cuando no se este comentado
-		setTimeout(this.oculatr.bind(this),500);
 	}
 
 	public comprobarContenido():void{
@@ -183,14 +183,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	public darQuitarMegusta(idelemento:number):void{
 		//llamamos al servicio que me permite dar un nuevo megusta
 		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.usuario.getId(),idelemento,this.contenidoUsuario);
-
-		//this.actualizarRuta();
 	}
-
-	/* public actualizarRuta():void{
-		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
-		this.contenidoUsuario = this._operacionesMegustas.actualizarRuta(this.contenidoUsuario);
-	} */
 
 	//funcion para almacenar un archivo en local
 	public almacenarFichero(ev):void{
@@ -235,6 +228,10 @@ export class ContenidoUsuarioComponent implements OnInit {
 							//llamamos a la funcion que recoge los archivos del usuario
 							this.recogerArchivos();
 							this.cerrarModal();
+							this.comentando = false;
+							setTimeout(function(){
+								$('[id^="textcomentario"]').hide();
+							},1000);
 						}
 					}
 				);
@@ -282,7 +279,6 @@ export class ContenidoUsuarioComponent implements OnInit {
 	}
 
 	public comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
-		console.log(2);
 		if(this.comentando){
 			//comprobamos que el comentario no este vacio
 			if(this.nuevoComentario != ""){
@@ -305,10 +301,9 @@ export class ContenidoUsuarioComponent implements OnInit {
 					}
 				}
 			}else{
-				//$("#textcomentario"+idelemento).hide();
+				$("#textcomentario"+idelemento).hide();
 				this.comentando = false;
 			}
-			this.oculatr();
 		}else{
 			this.comentando = true;
 			$("#textcomentario"+idelemento).show();

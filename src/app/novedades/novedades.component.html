@@ -1,0 +1,96 @@
+<div class="supreme-container" id="contenidoUsuario">
+  <div class="container contenido col-md-10">
+
+    <!-- si el usuario no tiene novedades mostramos un gif -->
+    <div class="sincontenido mx-auto mb-5 col-12" *ngIf="!hayContenido">
+      <div class="d-flex justify-content-center">
+        <img src="../../assets/arbusto.gif" width="60%">
+      </div>
+    </div>
+
+    <!-- recorremos el array con el contenido del usuario -->
+    <div *ngFor="let contenido of contenidos" class="archivos mb-5">
+
+      <div class="nombre d-flex justify-content-between mx-auto" title="{{contenido.getNombre()}}">
+        <div class="bordeizquierdo"></div>
+        <h2>
+          <a class="referencia" name="{{contenido.getId()}}">{{contenido.getNombre()}}</a>
+        </h2>
+        <div class="bordederecho"></div>
+      </div>
+
+      <div class="archivo d-flex" >
+        <!-- archivo -->
+        <!-- comprobamos si es un video -->
+        <div class="col-8 video" *ngIf="comprobarVideo(contenido.getTipo())">
+          <video src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}" width="100%" controls></video>
+        </div>
+        <!-- comprobamos si es una foto -->
+        <div class="col-8 foto" *ngIf="comprobarFoto(contenido.getTipo())">
+          <img src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}">
+        </div>
+        <div class="col-4 informacion">
+          <!-- autor de la publicacion -->
+          <div class="row d-flex justify-content-center autor">
+              <a href="/usuario?apodo={{contenido.getApodoAutor()}}" class="mxauto">{{contenido.getAutor()}}</a>
+          </div>
+          <!-- fecha y megusta -->
+          <div class="row">
+            <button class="megusta" (click)="darQuitarMegusta(contenido.getId())">
+              <img src="{{contenido.getRutamegustas()}}" width="20px" height="20px" title="Me gusta" alt="Me gusta">
+              {{contenido.getMegustas()}}
+            </button>
+            <div class="ml-auto fecha">
+              {{contenido.getFecha()}}
+            </div>
+          </div>
+          <!-- comentarios -->
+          <div>
+            <div class="comentarios">
+              <div *ngIf="esVacio(contenido.getComentarios())">
+                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+              </div>
+              <div *ngFor="let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
+                <div class="col-12 comentario d-block">
+                  <i class="fecha">{{comentario.getFecha()}}</i><br />
+                </div>
+                <div class="col-12 comentario d-block">
+                  <b>{{comentario.getNombreUsuario()}}</b>
+                  {{comentario.getComentario()}}
+
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="esActivado()">
+              <div class="dropdown denunciar">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img src="../../assets/iconos/flag.svg">
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" (click)="denunciar(contenido.getId(),contenido.getIdusuario())">Contenido
+                    inapropiado u ofensivo.</a>
+                </div>
+              </div>
+              <div class="botonComentar col-12" >
+                <!-- *ngIf="comentando" -->
+                <div class="col-12" id="textcomentario{{contenido.getId()}}">
+                  <div class="info text-center">{{comentarioinfo}}</div>
+                  <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
+                    [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <button class="d-flex ml-auto comentar"
+                  (click)="comentar(contenido.getId(),contenido.getComentarios())">
+                  Comentar
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

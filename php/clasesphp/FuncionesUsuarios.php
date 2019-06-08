@@ -255,6 +255,26 @@
 		}
 
 		/**
+		 * modifica la contraseña de un usuario
+		 * @param int $id
+		 * @param string $password
+		 * @return int
+		*/
+		public static function cambiarPass($id,$password)
+		{
+			$conexion = DB::connectDB();
+
+    		$modificar = "UPDATE usuarios
+    						SET password = '$password'
+    						WHERE id = '$id';";
+    		if($conexion->exec($modificar) == 1){
+    			return 1;
+    		}else{
+    			return 0;
+    		}
+		}
+
+		/**
 		 * modifica el estado activado de la cuenta de un usuario a travez de su codigo
 		 * @param string $codigo
 		 * @return int

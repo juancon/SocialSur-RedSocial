@@ -21,6 +21,7 @@ const routes: Routes = [
 	{path: 'buscar', component: AppComponent},
 	{path: 'buscar/:page', component: AppComponent},
 	{path: 'usuario', component: AppComponent},
+	{path: 'navegacion', component: AppComponent},
 	{path: 'usuario/:page', component: AppComponent},
 	{path: 'registro', component: RegistroComponent},
 	{path: 'perfil', component: AppComponent}

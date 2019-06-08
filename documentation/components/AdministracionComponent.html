@@ -1,0 +1,3926 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>socialsur-pi documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">socialsur-pi documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AdministracionComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/administracion/administracion.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-administracion</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./administracion.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./administracion.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_borrarArchivo">_borrarArchivo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_cerrarSesion">_cerrarSesion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_comentarios">_comentarios</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_http">_http</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_operacionesDenuncias">_operacionesDenuncias</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_operacionesFechas">_operacionesFechas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_operacionesUsuarios">_operacionesUsuarios</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_recogerUsuario">_recogerUsuario</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#_urls">_urls</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#admin">admin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#admins">admins</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#altaAdmin">altaAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#contenidoUsuario">contenidoUsuario</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#correo">correo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#correoExiste">correoExiste</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#correoInfo">correoInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#denuncias">denuncias</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#email">email</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#emailExist">emailExist</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#enviar">enviar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#error">error</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorRegistro">errorRegistro</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#errorRegistro2">errorRegistro2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ordenarPor">ordenarPor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pass">pass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pass2">pass2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#passlon">passlon</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#password">password</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#password2">password2</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#password2Info">password2Info</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#passwordInfo">passwordInfo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#urlComprobarCorreo">urlComprobarCorreo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#urlRegistro">urlRegistro</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#altaAdminFormulario">altaAdminFormulario</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#borraAdmin">borraAdmin</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#borrarComentario">borrarComentario</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#borrarComentarios">borrarComentarios</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#borrarDenuncias">borrarDenuncias</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#borrarPublicacion">borrarPublicacion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#cerrarModal">cerrarModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#cerrarSesion">cerrarSesion</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#comprobarCorreo">comprobarCorreo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#comprobarFoto">comprobarFoto</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#comprobarVideo">comprobarVideo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#correoInformar">correoInformar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#esVacio">esVacio</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#expresionCorreo">expresionCorreo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#hayDenuncias">hayDenuncias</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#irDenuncias">irDenuncias</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#longitudCorreo">longitudCorreo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#longitudPassword">longitudPassword</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#obtenerAdmins">obtenerAdmins</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#obtenerDenuncias">obtenerDenuncias</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ordenarPorFecha">ordenarPorFecha</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#ordenarPorNumero">ordenarPorNumero</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validar">validar</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validarCorreo">validarCorreo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validarPassword">validarPassword</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#validarPassword2">validarPassword2</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(_cerrarSesion: <a href="../injectables/CerrarSesionService.html">CerrarSesionService</a>, _operacionesDenuncias: <a href="../injectables/OperacionesDenunciasService.html">OperacionesDenunciasService</a>, _operacionesFechas: <a href="../injectables/OperacionesFechasService.html">OperacionesFechasService</a>, _operacionesUsuarios: <a href="../injectables/OperacionesUsuariosService.html">OperacionesUsuariosService</a>, _borrarArchivo: <a href="../injectables/BorrarArchivoService.html">BorrarArchivoService</a>, _comentarios: <a href="../injectables/ComentariosService.html">ComentariosService</a>, _http: <a href="https://angular.io/api/http/Http" target="_blank">Http</a>, _urls: <a href="../injectables/UrlsService.html">UrlsService</a>, _recogerUsuario: <a href="../injectables/RecogerUsuarioLocalService.html">RecogerUsuarioLocalService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/administracion/administracion.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>_cerrarSesion</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CerrarSesionService.html" target="_self" >CerrarSesionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_operacionesDenuncias</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/OperacionesDenunciasService.html" target="_self" >OperacionesDenunciasService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_operacionesFechas</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/OperacionesFechasService.html" target="_self" >OperacionesFechasService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_operacionesUsuarios</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/OperacionesUsuariosService.html" target="_self" >OperacionesUsuariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_borrarArchivo</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BorrarArchivoService.html" target="_self" >BorrarArchivoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_comentarios</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ComentariosService.html" target="_self" >ComentariosService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/http/Http" target="_blank" >Http</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_urls</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UrlsService.html" target="_self" >UrlsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>_recogerUsuario</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RecogerUsuarioLocalService.html" target="_self" >RecogerUsuarioLocalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="altaAdminFormulario"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            altaAdminFormulario
+                        </b>
+                        <a href="#altaAdminFormulario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>altaAdminFormulario()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="borraAdmin"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            borraAdmin
+                        </b>
+                        <a href="#borraAdmin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>borraAdmin(idusuario: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="234"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:234</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idusuario</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="borrarComentario"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            borrarComentario
+                        </b>
+                        <a href="#borrarComentario"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>borrarComentario(idcomentario: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, idelemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="309"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:309</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idcomentario</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>idelemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="borrarComentarios"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            borrarComentarios
+                        </b>
+                        <a href="#borrarComentarios"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>borrarComentarios(idelemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="344"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:344</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idelemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="borrarDenuncias"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            borrarDenuncias
+                        </b>
+                        <a href="#borrarDenuncias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>borrarDenuncias(idlemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="355"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:355</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idlemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="borrarPublicacion"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            borrarPublicacion
+                        </b>
+                        <a href="#borrarPublicacion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>borrarPublicacion(idelemento: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="335"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:335</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idelemento</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cerrarModal"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            cerrarModal
+                        </b>
+                        <a href="#cerrarModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cerrarModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="366"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:366</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cerrarSesion"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            cerrarSesion
+                        </b>
+                        <a href="#cerrarSesion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cerrarSesion()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="375"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:375</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comprobarCorreo"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            comprobarCorreo
+                        </b>
+                        <a href="#comprobarCorreo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>comprobarCorreo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:206</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comprobarFoto"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            comprobarFoto
+                        </b>
+                        <a href="#comprobarFoto"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>comprobarFoto(tipo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="293"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:293</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>tipo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="comprobarVideo"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            comprobarVideo
+                        </b>
+                        <a href="#comprobarVideo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>comprobarVideo(tipo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="285"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:285</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>tipo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="correoInformar"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            correoInformar
+                        </b>
+                        <a href="#correoInformar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>correoInformar(existe: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:223</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>existe</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="esVacio"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            esVacio
+                        </b>
+                        <a href="#esVacio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>esVacio(array: Array<any>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="301"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:301</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>array</td>
+                                    <td>
+                                            <code>Array&lt;any&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expresionCorreo"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            expresionCorreo
+                        </b>
+                        <a href="#expresionCorreo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>expresionCorreo(cadena)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:195</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cadena</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hayDenuncias"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            hayDenuncias
+                        </b>
+                        <a href="#hayDenuncias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>hayDenuncias()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="277"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:277</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="irDenuncias"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            irDenuncias
+                        </b>
+                        <a href="#irDenuncias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>irDenuncias()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="longitudCorreo"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            longitudCorreo
+                        </b>
+                        <a href="#longitudCorreo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>longitudCorreo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:177</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="longitudPassword"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            longitudPassword
+                        </b>
+                        <a href="#longitudPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>longitudPassword()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerAdmins"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            obtenerAdmins
+                        </b>
+                        <a href="#obtenerAdmins"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>obtenerAdmins()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="obtenerDenuncias"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            obtenerDenuncias
+                        </b>
+                        <a href="#obtenerDenuncias"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>obtenerDenuncias()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ordenarPorFecha"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            ordenarPorFecha
+                        </b>
+                        <a href="#ordenarPorFecha"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ordenarPorFecha()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="260"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:260</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ordenarPorNumero"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            ordenarPorNumero
+                        </b>
+                        <a href="#ordenarPorNumero"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ordenarPorNumero()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="244"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:244</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validar"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            validar
+                        </b>
+                        <a href="#validar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validarCorreo"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            validarCorreo
+                        </b>
+                        <a href="#validarCorreo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validarCorreo()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:136</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validarPassword"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            validarPassword
+                        </b>
+                        <a href="#validarPassword"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validarPassword()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:150</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validarPassword2"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            validarPassword2
+                        </b>
+                        <a href="#validarPassword2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validarPassword2()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/app/administracion/administracion.component.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_borrarArchivo"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _borrarArchivo</b>
+                            <a href="#_borrarArchivo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/BorrarArchivoService.html" target="_self" >BorrarArchivoService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/administracion/administracion.component.ts:66</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_cerrarSesion"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _cerrarSesion</b>
+                            <a href="#_cerrarSesion"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/CerrarSesionService.html" target="_self" >CerrarSesionService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/administracion/administracion.component.ts:62</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_comentarios"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _comentarios</b>
+                            <a href="#_comentarios"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/ComentariosService.html" target="_self" >ComentariosService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/administracion/administracion.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_http"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _http</b>
+                            <a href="#_http"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/http/Http" target="_blank" >Http</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/administracion/administracion.component.ts:68</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_operacionesDenuncias"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _operacionesDenuncias</b>
+                            <a href="#_operacionesDenuncias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/OperacionesDenunciasService.html" target="_self" >OperacionesDenunciasService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/administracion/administracion.component.ts:63</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_operacionesFechas"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _operacionesFechas</b>
+                            <a href="#_operacionesFechas"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/OperacionesFechasService.html" target="_self" >OperacionesFechasService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/administracion/administracion.component.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_operacionesUsuarios"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _operacionesUsuarios</b>
+                            <a href="#_operacionesUsuarios"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/OperacionesUsuariosService.html" target="_self" >OperacionesUsuariosService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/administracion/administracion.component.ts:65</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_recogerUsuario"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _recogerUsuario</b>
+                            <a href="#_recogerUsuario"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/RecogerUsuarioLocalService.html" target="_self" >RecogerUsuarioLocalService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/administracion/administracion.component.ts:70</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_urls"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            _urls</b>
+                            <a href="#_urls"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../injectables/UrlsService.html" target="_self" >UrlsService</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/administracion/administracion.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="admin"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            admin</b>
+                            <a href="#admin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Usuario.html" target="_self" >Usuario</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/administracion/administracion.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="admins"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            admins</b>
+                            <a href="#admins"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Usuario.html" target="_self" >Array&lt;Usuario&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Array()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/administracion/administracion.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="altaAdmin"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            altaAdmin</b>
+                            <a href="#altaAdmin"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/administracion/administracion.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contenidoUsuario"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            contenidoUsuario</b>
+                            <a href="#contenidoUsuario"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Archivo.html" target="_self" >Array&lt;Archivo&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Array()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/administracion/administracion.component.ts:36</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="correo"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            correo</b>
+                            <a href="#correo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/administracion/administracion.component.ts:42</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="correoExiste"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            correoExiste</b>
+                            <a href="#correoExiste"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/administracion/administracion.component.ts:48</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="correoInfo"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            correoInfo</b>
+                            <a href="#correoInfo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/administracion/administracion.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="denuncias"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            denuncias</b>
+                            <a href="#denuncias"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/Denuncias.html" target="_self" >Array&lt;Denuncias&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/administracion/administracion.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="email"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            email</b>
+                            <a href="#email"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/administracion/administracion.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emailExist"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            emailExist</b>
+                            <a href="#emailExist"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/administracion/administracion.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="enviar"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            enviar</b>
+                            <a href="#enviar"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/administracion/administracion.component.ts:45</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="error"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            error</b>
+                            <a href="#error"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/administracion/administracion.component.ts:59</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errorRegistro"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            errorRegistro</b>
+                            <a href="#errorRegistro"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/administracion/administracion.component.ts:51</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errorRegistro2"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            errorRegistro2</b>
+                            <a href="#errorRegistro2"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/administracion/administracion.component.ts:52</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ordenarPor"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            ordenarPor</b>
+                            <a href="#ordenarPor"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;nada&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/administracion/administracion.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pass"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            pass</b>
+                            <a href="#pass"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/administracion/administracion.component.ts:56</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pass2"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            pass2</b>
+                            <a href="#pass2"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/administracion/administracion.component.ts:58</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="passlon"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            passlon</b>
+                            <a href="#passlon"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/administracion/administracion.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="password"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            password</b>
+                            <a href="#password"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/administracion/administracion.component.ts:43</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="password2"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            password2</b>
+                            <a href="#password2"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&quot;&quot;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/administracion/administracion.component.ts:44</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="password2Info"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            password2Info</b>
+                            <a href="#password2Info"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/administracion/administracion.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="passwordInfo"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            passwordInfo</b>
+                            <a href="#passwordInfo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/administracion/administracion.component.ts:49</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="urlComprobarCorreo"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            urlComprobarCorreo</b>
+                            <a href="#urlComprobarCorreo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/administracion/administracion.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="urlRegistro"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            urlRegistro</b>
+                            <a href="#urlRegistro"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/administracion/administracion.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RecogerUsuarioLocalService } from &#x27;./../services/recoger-usuario-local.service&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
+//importamos la clase con las operacions de las denuncias
+import { OperacionesDenunciasService } from &#x27;./../services/operaciones-denuncias.service&#x27;;
+//importamos la clase denuncias
+import { Denuncias } from &#x27;../Denuncias/denuncias&#x27;;
+//improtamos la clase archivo
+import { Archivo } from &#x27;../Archivo/archivo&#x27;;
+//importamos las funciones de las fechas. los usuarios, los comentarios y borrar archivoss
+import { OperacionesFechasService } from &#x27;../services/operaciones-fechas.service&#x27;;
+import { OperacionesUsuariosService } from &#x27;../services/operaciones-usuarios.service&#x27;;
+import { ComentariosService } from &#x27;../services/comentarios.service&#x27;;
+import { BorrarArchivoService } from &#x27;./../services/borrar-archivo.service&#x27;;
+import {UrlsService} from &#x27;../services/urls.service&#x27;;
+import { Comentario } from &#x27;../Comentario/comentario&#x27;;
+import { Usuario } from &#x27;../Usuario/usuario&#x27;;
+//servicio para cerrar sesion
+import { CerrarSesionService } from &#x27;../services/cerrar-sesion.service&#x27;;
+//Importamos el modulo http al servicio
+import {Http, Response, Headers} from &quot;@angular/http&quot;;
+//Importamos la funcion map
+import { map } from &#x27;rxjs/operators&#x27;;
+
+@Component({
+  selector: &#x27;app-administracion&#x27;,
+  templateUrl: &#x27;./administracion.component.html&#x27;,
+  styleUrls: [&#x27;./administracion.component.css&#x27;]
+})
+export class AdministracionComponent implements OnInit {
+	public urlRegistro:string;
+	public urlComprobarCorreo:string;
+	public denuncias:Array&lt;Denuncias&gt;;
+	public admin:Usuario;
+	public admins:Array&lt;Usuario&gt; &#x3D; new Array();
+	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
+	public contenidoUsuario:Array&lt;Archivo&gt; &#x3D; new Array();
+	//variables para ordenar
+	public ordenarPor:string &#x3D; &quot;nada&quot;;
+	//variable para dar de alta a nuevos administradores
+	public altaAdmin:boolean &#x3D; false;
+	//variables relacionadas al HTML
+	public correo :string &#x3D; &quot;&quot;;
+	public password:string &#x3D; &quot;&quot;;
+	public password2:string &#x3D; &quot;&quot;;
+	public enviar:boolean &#x3D; false;
+	//variables que informan al usuario
+	public correoInfo:string;
+	public correoExiste:string;
+	public passwordInfo:string;
+	public password2Info:string;
+	public errorRegistro:string;
+	public errorRegistro2:string;
+	//variables de validacion
+	public email:boolean &#x3D; false;
+	public emailExist:boolean &#x3D; false;
+	public pass:boolean &#x3D; false;
+	public passlon:boolean &#x3D; false;
+	public pass2:boolean &#x3D; false;
+	public error:boolean &#x3D; false;
+  
+  constructor(
+		public _cerrarSesion: CerrarSesionService,
+    public _operacionesDenuncias: OperacionesDenunciasService,
+		public _operacionesFechas: OperacionesFechasService,
+		public _operacionesUsuarios: OperacionesUsuariosService,
+		public _borrarArchivo: BorrarArchivoService,
+		public _comentarios: ComentariosService,
+		public _http: Http,
+		public _urls: UrlsService,
+		public _recogerUsuario: RecogerUsuarioLocalService
+  ) {
+		this.urlRegistro &#x3D; _urls.getUrl(&quot;crearUsuario&quot;);
+		this.urlComprobarCorreo &#x3D; _urls.getUrl(&quot;comprobarCorreo&quot;);
+		this.admin &#x3D; _recogerUsuario.getUsuario();
+		this.obtenerDenuncias();
+		setInterval(this.obtenerDenuncias.bind(this),300000)
+  }
+	
+  ngOnInit() {
+	}
+
+	public obtenerAdmins(){
+		this.admins &#x3D; this._operacionesUsuarios.getAdmins(this.admin.getId(),this.admins);
+	}
+
+	public altaAdminFormulario():void{
+		this.altaAdmin &#x3D; true;
+		this.obtenerAdmins();
+	}
+
+	public irDenuncias(){
+		this.altaAdmin &#x3D; false;
+	}
+
+	public validar():void{
+		// preguntamos si todos los campos son validos
+		if(this.email &amp;&amp; this.pass &amp;&amp; this.pass2 &amp;&amp; this.emailExist){
+			//creamos un array con los valores de los campos
+			let parametros &#x3D; {
+				tipo: &quot;admin&quot;,
+				email: this.correo,
+				pass: this.password
+			}
+			//funcion http.post para enviar los datos
+			let registro &#x3D; this._http.post(this.urlRegistro, JSON.stringify(parametros)).pipe(map(res &#x3D;&gt; res.json()));
+			//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+			registro.subscribe(
+				result &#x3D;&gt; {
+					//recogemos solo la respuesta del PHP y la pasamos a una variable
+					let datos &#x3D; result;
+					//comprobamos que no haya devuleto error
+					if(typeof(datos[&#x27;error&#x27;]) &#x3D;&#x3D; &quot;undefined&quot;){
+						this.correo &#x3D; &quot;&quot;;
+						this.password &#x3D; &quot;&quot;;
+						this.password2 &#x3D; &quot;&quot;;
+						this.email &#x3D; false;
+						this.emailExist &#x3D; false;
+						this.pass &#x3D; false;
+						this.pass2 &#x3D; false;
+						this.obtenerAdmins();
+					}else{
+						//si da error se lo informamos al usuario
+						this.errorRegistro &#x3D; &quot;Se ha producido un error.&quot;;
+						this.errorRegistro2 &#x3D; &quot;Por favor, inténtelo más tarde.&quot;;
+					}
+				}
+			);
+		}else{
+			//si no lo son informamos de los campos incorrectos al usuario
+			this.validarCorreo();
+			this.validarPassword();
+			this.validarPassword2();
+		}
+	}
+
+	public validarCorreo():void{
+		if(this.correo !&#x3D; &quot;&quot; || this.correo &#x3D;&#x3D; null){
+			if(this.expresionCorreo(this.correo)){
+				this.correoInfo &#x3D; &quot;&quot;;
+				this.email &#x3D; true;
+			}else{
+				this.correoInfo &#x3D; &quot;Correo no válido.&quot;;
+				this.email &#x3D; false;
+			}
+		}else{
+			this.correoInfo &#x3D; &quot;Escribe una dirección de correo.&quot;;
+			this.email &#x3D; false;
+		}
+	}
+	public validarPassword():void{
+		if(this.password !&#x3D; &quot;&quot; || this.password &#x3D;&#x3D; null){
+			if(this.passlon){
+				this.passwordInfo &#x3D; &quot;&quot;;
+				this.pass &#x3D; true;
+			}
+			this.validarPassword2();
+		}else{
+			this.passwordInfo &#x3D; &quot;Escribe una contraseña.&quot;;
+			this.pass &#x3D; false;
+		}
+	}
+	public validarPassword2():void{
+		if(this.password2 !&#x3D; &quot;&quot; || this.password2 &#x3D;&#x3D; null){
+			//comprobamos si las contraseñas son iguales
+			if(this.password &#x3D;&#x3D; this.password2){
+				this.password2Info &#x3D; &quot;&quot;;
+				this.pass2 &#x3D; true;
+			}else{
+				this.password2Info &#x3D; &quot;Las contraseñas no coinciden.&quot;;
+				this.pass2 &#x3D; false;	
+			}
+		}else{
+			this.password2Info &#x3D; &quot;Escribe una contraseña.&quot;;
+			this.pass2 &#x3D; false;
+		}
+	}
+	public longitudCorreo():void{
+		if(this.correo.length &gt; 100){
+			this.correo &#x3D; this.correo.substring(0,99);
+			this.correoInfo &#x3D; &quot;Máximo 100 caracteres.&quot;;
+		}
+		this.comprobarCorreo();
+	}
+	public longitudPassword():void{
+		if(this.password.length &lt; 8){
+			this.passwordInfo &#x3D; &quot;Mínimo 8 caracteres.&quot;;
+		}else if(this.password.length &gt; 7 &amp;&amp; this.password.length &lt; 33){
+			this.passwordInfo &#x3D; &quot;&quot;;
+			this.passlon &#x3D; true;
+		}else if(this.password.length &gt; 33){
+			this.password &#x3D; this.password.substring(0,32);
+			this.passwordInfo &#x3D; &quot;Máximo 32 caracteres.&quot;;
+		}
+	}
+	public expresionCorreo(cadena):boolean{
+		//patron que valida el 99% de los correos existentes
+		let expresion &#x3D; new RegExp(&quot;^[a-z0-9!#$%&amp;&#x27;*+/&#x3D;?^_&#x60;{|}~-]+(?:\.[a-z0-9!#$%&amp;&#x27;*+/&#x3D;?^_&#x60;{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$&quot;);
+		//comprobamos el patron con la cadena que se nos ha pasado
+		if(expresion.test(cadena)){
+			return true;
+		}
+		return false;
+	}
+
+	//comprobar si un correo existe
+	public comprobarCorreo():void{
+		//creamos un array con los valores de los campos
+		let parametros &#x3D; {
+			email: this.correo,
+			accion : &quot;comprobarcorreo&quot;
+		};
+		//funcion http.post para enviar los datos
+		let correo &#x3D; this._http.post(this.urlComprobarCorreo, JSON.stringify(parametros)).pipe(map(res &#x3D;&gt; res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		correo.subscribe(
+			result &#x3D;&gt; {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos &#x3D; result;
+				this.correoInformar(datos[&#x27;existe&#x27;])
+			}
+		);
+	}
+	public correoInformar(existe:string):void{
+		//comprobamos el resultado e informamos al usuario
+		if(existe &#x3D;&#x3D; &quot;1&quot;){
+			this.correoExiste &#x3D; &quot;El correo ya esta en uso.&quot;;
+			this.emailExist &#x3D; false;
+		}else{
+			this.correoExiste &#x3D; &quot;&quot;;
+			this.emailExist &#x3D; true;
+		}
+	}
+
+	public borraAdmin(idusuario:number):void{
+		this._operacionesUsuarios.borrarUsuario(idusuario);
+		
+		for(var i &#x3D; 0; i &lt; this.admins.length; i++){
+			if(this.admins[i].getId() &#x3D;&#x3D; idusuario){
+				this.admins.splice(i,1);
+			}
+		}
+	}
+	
+	public ordenarPorNumero():void{
+		//ordenamos por numero de deuncias de manera descendente
+		this.denuncias.sort(function (a, b) {
+			if (a.getNumdenuncias() &gt; b.getNumdenuncias()) {
+				return -1;
+			}
+			if (a.getNumdenuncias() &lt; b.getNumdenuncias()) {
+				return 1;
+			}
+			// a must be equal to b
+			return 0;
+		});
+
+		this.ordenarPor &#x3D; &quot;numero&quot;;
+	}
+
+	public ordenarPorFecha():void{
+		//ordenamos por fecha
+		this.denuncias &#x3D; this._operacionesFechas.ordenarPorFechaDesc(this.denuncias);
+		this.ordenarPor &#x3D; &quot;fecha&quot;;
+	}
+
+  public obtenerDenuncias():void{
+		this.denuncias &#x3D; this._operacionesDenuncias.getDenuncias();
+		//comprobamos si el admin ha ordenado el array para ordenar el array
+		if(this.ordenarPor &#x3D;&#x3D; &quot;numero&quot;){
+			this.ordenarPorNumero();
+		}else if(this.ordenarPor &#x3D;&#x3D; &quot;fecha&quot;){
+			this.ordenarPorFecha();
+		}
+	}
+	
+	//comprobamos si hay denuncias
+	public hayDenuncias():boolean{
+		if(this.denuncias.length &gt; 0){
+			return true;
+		}
+		return false;
+	}
+
+	//comprobar si el archivo es un video
+	public comprobarVideo(tipo:string):boolean{
+		if(tipo &#x3D;&#x3D; &quot;video&quot;){
+			return true;
+		}
+		return false;
+	}
+
+	//comprobar si el archivo es un foto
+	public comprobarFoto(tipo:string):boolean{
+		if(tipo &#x3D;&#x3D; &quot;foto&quot;){
+			return true;
+		}
+		return false;
+	}
+
+	//saber si un array esta vacio
+	public esVacio(array:Array&lt;any&gt;):boolean{
+		if(array.length &gt; 0){
+			return false;
+		}
+
+		return true;
+	}
+
+	public borrarComentario(idcomentario:number,idelemento:number):void{
+		//borramos el comentario de la base de datos
+		this._comentarios.borrarComentario(idcomentario);
+		//lo sacamos del array
+		for(var i &#x3D; 0; i &lt; this.denuncias.length; i++){
+			//comprobamos que el lemento sea el mismo
+			if(this.denuncias[i].getElemento().getId() &#x3D;&#x3D; idelemento){
+				//recorremos los comentarios de dicho elemento
+				for(var j &#x3D; 0; j &lt; this.denuncias[i].getElemento().getComentarios().length ; j++){
+					//comprobamos que sea el ismo comentario
+					if(this.denuncias[i].getElemento().getComentarios()[j].getId() &#x3D;&#x3D; idcomentario){
+						//creamos una rraay auxiliar
+						let aux &#x3D; this.denuncias[i].getElemento().getComentarios();
+						//eliminamos el comentario
+						aux.splice(j,1);
+
+						//cambiamos el array actual por el auxiliar
+						this.denuncias[i].getElemento().setComentarios(aux);
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+
+	public borrarPublicacion(idelemento:number):void{
+		//borramos las denuncias de ese lemetno
+		this.borrarDenuncias(idelemento);
+		//borramos ese elemeto de la base de datos
+		this._borrarArchivo.borrarArchivo(idelemento);
+
+
+	}
+
+	public borrarComentarios(idelemento:number):void{
+		this._comentarios.borrarComentarios(idelemento);
+
+		//quitamos los comentarios del array
+		for (var i &#x3D; 0; i &lt; this.denuncias.length;i++){
+			if(this.denuncias[i].getElemento().getId() &#x3D;&#x3D; idelemento){
+				this.denuncias[i].getElemento().setComentarios(new Array());
+			}
+		}
+	}
+
+	public borrarDenuncias(idlemento:number):void{
+		this._operacionesDenuncias.borrarDenuncias(idlemento);
+
+		//eliminamos el elemento de las denuncias
+		for(var i &#x3D; 0; i &lt; this.denuncias.length; i++ ){
+			if(this.denuncias[i].getElemento().getId() &#x3D;&#x3D; idlemento){
+				this.denuncias.splice(i,1);
+			}
+		}
+	}
+
+	public cerrarModal(): void {
+    //recorremos la ventana modal y la cerramos
+    //usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
+    //componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
+    //@ts-ignore
+    $(&#x27;#enviarmensaje&#x27;).modal(&#x27;hide&#x27;);
+	}
+
+	//funcion para cerrar sesion
+	public cerrarSesion():void{
+		//borramos datos de sesion
+		this._cerrarSesion.cerrarSesion();
+	}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+  &lt;div class&#x3D;&quot;navegacion col-12&quot;&gt;
+    &lt;nav class&#x3D;&quot;navbar navbar-expand-sm navbar-light col-12&quot;&gt;
+      &lt;!-- Boton para expandir --&gt;
+      &lt;button class&#x3D;&quot;navbar-toggler&quot; type&#x3D;&quot;button&quot; data-toggle&#x3D;&quot;collapse&quot; data-target&#x3D;&quot;#barraNavegacion&quot;
+        aria-controls&#x3D;&quot;barraNavegacion&quot; aria-expanded&#x3D;&quot;false&quot; aria-label&#x3D;&quot;Toggle navigation&quot;&gt;
+        &lt;span class&#x3D;&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;!-- Opciones --&gt;
+      &lt;div class&#x3D;&quot;collapse navbar-collapse row&quot; id&#x3D;&quot;barraNavegacion&quot;&gt;
+        &lt;div class&#x3D;&quot;navbar-nav container d-flex flex-row d-flex col-12&quot;&gt;
+
+          &lt;div class&#x3D;&quot;dropdown ml-5&quot; title&#x3D;&quot;Ordenar denuncias&quot;&gt;
+            &lt;button class&#x3D;&quot;btn btn-primary dropdown-toggle&quot; type&#x3D;&quot;button&quot; id&#x3D;&quot;ordenar&quot; data-toggle&#x3D;&quot;dropdown&quot;
+              aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot;&gt;
+              Ordenar
+            &lt;/button&gt;
+            &lt;div class&#x3D;&quot;dropdown-menu&quot; aria-labelledby&#x3D;&quot;ordenar&quot;&gt;
+              &lt;a class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;ordenarPorNumero()&quot;&gt;Número de denuncias.&lt;/a&gt;
+              &lt;a class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;ordenarPorFecha()&quot;&gt;Fecha última denuncia&lt;/a&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;dropdown ml-5&quot; title&#x3D;&quot;Añadir un nuevo adminitrador&quot; *ngIf&#x3D;&quot;admin.getId() &#x3D;&#x3D; 1&quot;&gt;
+            &lt;button class&#x3D;&quot;btn btn-primary dropdown&quot; type&#x3D;&quot;button&quot; id&#x3D;&quot;ordenar&quot; aria-haspopup&#x3D;&quot;true&quot;
+              aria-expanded&#x3D;&quot;false&quot; (click)&#x3D;&quot;altaAdminFormulario()&quot;&gt;
+              Modificar administradores
+            &lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;a class&#x3D;&quot;nav-item nav-link active ml-auto mr-3&quot; routerLink&#x3D;&quot;&quot; (click)&#x3D;&quot;cerrarSesion()&quot;&gt;
+            &lt;img src&#x3D;&quot;../../assets/iconos/exit-2.svg&quot; width&#x3D;&quot;30px&quot; title&#x3D;&quot;Salir&quot; alt&#x3D;&quot;Salir&quot;&gt;
+            &lt;span class&#x3D;&quot;sr-only&quot;&gt;(current)&lt;/span&gt;
+          &lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  &lt;/div&gt;
+
+  &lt;div *ngIf&#x3D;&quot;altaAdmin&quot;&gt;
+    &lt;!-- botones volver --&gt;
+    &lt;button class&#x3D;&quot;btn&quot; title&#x3D;&quot;Volver&quot; data-toggle&#x3D;&quot;modal&quot; data-target&#x3D;&quot;#enviarmensaje&quot; (click)&#x3D;&quot;irDenuncias()&quot;&gt;
+      &lt;img src&#x3D;&quot;../../assets/iconos/volver.svg&quot; class&#x3D;&quot;plus&quot; width&#x3D;&quot;40px&quot; height&#x3D;&quot;40px&quot;&gt;
+    &lt;/button&gt;
+
+
+    &lt;div class&#x3D;&quot;adminform col-md-8 mx-auto&quot;&gt;
+      &lt;!-- formulario nuevo administrador --&gt;
+      &lt;form class&#x3D;&quot;col-10 mx-auto&quot;&gt;
+        &lt;legend class&#x3D;&quot;text-center header&quot;&gt;Añadir un nuevo administrador.&lt;/legend&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;correo&quot;&gt;Correo eléctronico&lt;/label&gt;
+          &lt;div class&#x3D;&quot;info&quot;&gt;{{correoInfo}}&lt;/div&gt;
+          &lt;input type&#x3D;&quot;email&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;correo&quot; placeholder&#x3D;&quot;nombre@ejemplo.com&quot; [(ngModel)]&#x3D;&quot;correo&quot;
+            [ngModelOptions]&#x3D;&quot;{standalone: true}&quot; (focusout)&#x3D;&quot;validarCorreo()&quot; (input)&#x3D;&quot;longitudCorreo()&quot;
+            oninvalid&#x3D;&quot;setCustomValidity(&#x27;Correo invalido&#x27;)&quot;&gt;
+          &lt;label class&#x3D;&quot;info&quot;&gt;{{correoExiste}}&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;password&quot;&gt;Contraseña&lt;/label&gt;
+          &lt;div class&#x3D;&quot;info&quot;&gt;{{passwordInfo}}&lt;/div&gt;
+          &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Contraseña&quot; [(ngModel)]&#x3D;&quot;password&quot;
+            [ngModelOptions]&#x3D;&quot;{standalone: true}&quot; (focusout)&#x3D;&quot;validarPassword()&quot; (input)&#x3D;&quot;longitudPassword()&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;label for&#x3D;&quot;password2&quot;&gt;Repita la contraseña&lt;/label&gt;
+          &lt;div class&#x3D;&quot;info&quot;&gt;{{password2Info}}&lt;/div&gt;
+          &lt;input type&#x3D;&quot;password&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;password2&quot; placeholder&#x3D;&quot;Repita la contraseña.&quot;
+            [(ngModel)]&#x3D;&quot;password2&quot; [ngModelOptions]&#x3D;&quot;{standalone: true}&quot; (focusout)&#x3D;&quot;validarPassword2()&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-group&quot;&gt;
+          &lt;div class&#x3D;&quot;col-md-12 text-center&quot;&gt;
+            &lt;button class&#x3D;&quot;btn btn-primary btn-lg&quot; (click)&#x3D;&quot;validar()&quot;&gt;Crear&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+
+    &lt;div clas&#x3D;&quot;col-md-8 mx-auto&quot;&gt;
+      &lt;table class&#x3D;&quot;adminform col-md-6 mx-auto&quot;&gt;
+        &lt;tr *ngFor&#x3D;&quot;let administrador of admins&quot;&gt;
+          &lt;td class&#x3D;&quot;correoadmin&quot;&gt;{{administrador.getEmai()}}&lt;/td&gt;
+          &lt;td class&#x3D;&quot;borrar&quot;&gt;
+            &lt;button class&#x3D;&quot;btn btn-danger&quot; (click)&#x3D;&quot;borraAdmin(administrador.getId())&quot;&gt;Borrar&lt;/button&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+
+  &lt;div *ngIf&#x3D;&quot;!altaAdmin&quot;&gt;
+    &lt;div class&#x3D;&quot;d-flex mx-auto justify-content-center mb-1&quot;&gt;
+      &lt;!-- botones actualizar --&gt;
+      &lt;button class&#x3D;&quot;btn botonsubir&quot; title&#x3D;&quot;Actualizar&quot; data-toggle&#x3D;&quot;modal&quot; data-target&#x3D;&quot;#enviarmensaje&quot;
+        (click)&#x3D;&quot;obtenerDenuncias()&quot;&gt;
+        &lt;img src&#x3D;&quot;../../assets/iconos/refrescar.svg&quot; class&#x3D;&quot;plus&quot; width&#x3D;&quot;40px&quot; height&#x3D;&quot;40px&quot;&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div id&#x3D;&quot;denuncias&quot; class&#x3D;&quot;container contenido col-md-10&quot;&gt;
+      &lt;div class&#x3D;&quot;noHay&quot; *ngIf&#x3D;&quot;!hayDenuncias()&quot;&gt;
+        No hay contenido denunciado.
+      &lt;/div&gt;
+
+
+      &lt;div *ngFor&#x3D;&quot;let denuncia of denuncias&quot; class&#x3D;&quot;archivos mb-5&quot;&gt;
+
+        &lt;div class&#x3D;&quot;nombre d-flex justify-content-between mx-auto&quot; title&#x3D;&quot;{{denuncia.getElemento().getNombre()}}&quot;&gt;
+          &lt;div class&#x3D;&quot;bordeizquierdo&quot;&gt;&lt;/div&gt;
+          &lt;h2&gt;
+            &lt;a class&#x3D;&quot;referencia&quot; name&#x3D;&quot;{{denuncia.getElemento().getId()}}&quot;&gt;
+              {{denuncia.getElemento().getNombre()}}
+              &lt;span class&#x3D;&quot;numDenuncia&quot;&gt;{{denuncia.getNumdenuncias()}}&lt;/span&gt;
+            &lt;/a&gt;
+          &lt;/h2&gt;
+          &lt;div class&#x3D;&quot;bordederecho&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+
+        &lt;div class&#x3D;&quot;archivo d-flex&quot;&gt;
+          &lt;!-- archivo --&gt;
+          &lt;!-- comprobamos si es un video --&gt;
+          &lt;div class&#x3D;&quot;col-8 video&quot; *ngIf&#x3D;&quot;comprobarVideo(denuncia.getElemento().getTipo())&quot;&gt;
+            &lt;video src&#x3D;&quot;../../{{denuncia.getElemento().getUrl()}}&quot; title&#x3D;&quot;{{denuncia.getElemento().getNombre()}}&quot; width&#x3D;&quot;100%&quot; controls&gt;&lt;/video&gt;
+          &lt;/div&gt;
+          &lt;!-- comprobamos si es una foto --&gt;
+          &lt;div class&#x3D;&quot;col-8 foto&quot; *ngIf&#x3D;&quot;comprobarFoto(denuncia.getElemento().getTipo())&quot;&gt;
+            &lt;img src&#x3D;&quot;../../{{denuncia.getElemento().getUrl()}}&quot; title&#x3D;&quot;{{denuncia.getElemento().getNombre()}}&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;col-4 informacion&quot;&gt;
+            &lt;!-- fecha y acciones --&gt;
+            &lt;div class&#x3D;&quot;row&quot;&gt;
+              &lt;div class&#x3D;&quot;dropdown acciones&quot; title&#x3D;&quot;Acciones&quot;&gt;
+                &lt;button class&#x3D;&quot;btn btn-default dropdown-toggle&quot; type&#x3D;&quot;button&quot; id&#x3D;&quot;acciones&quot; data-toggle&#x3D;&quot;dropdown&quot;
+                  aria-haspopup&#x3D;&quot;true&quot; aria-expanded&#x3D;&quot;false&quot;&gt;
+                  &lt;img src&#x3D;&quot;../../assets/iconos/settings-1.svg&quot;&gt;
+                &lt;/button&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu&quot; aria-labelledby&#x3D;&quot;acciones&quot;&gt;
+                  &lt;a class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;borrarPublicacion(denuncia.getElemento().getId())&quot;&gt;Borrar
+                    publicación.&lt;/a&gt;
+                  &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+                  &lt;a class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;borrarComentarios(denuncia.getElemento().getId())&quot;&gt;Borrar todos los
+                    comentarios.&lt;/a&gt;
+                  &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+                  &lt;a class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;borrarDenuncias(denuncia.getElemento().getId())&quot;&gt;Ignorar
+                    denuncias.&lt;/a&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;ml-auto fecha&quot;&gt;
+                {{denuncia.getElemento().getFecha()}}
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- comentarios --&gt;
+            &lt;div&gt;
+              &lt;div class&#x3D;&quot;comentarios&quot;&gt;
+                &lt;div *ngIf&#x3D;&quot;esVacio(denuncia.getElemento().getComentarios())&quot;&gt;
+                  &lt;p class&#x3D;&quot;sincomentarios&quot;&gt;Esta tranquilo, demasiado tranquilo...&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div *ngFor&#x3D;&quot;let comentario  of denuncia.getElemento().getComentarios()&quot;
+                  class&#x3D;&quot;d-flex align-items-start flex-column&quot;&gt;
+                  &lt;div class&#x3D;&quot;col-12 comentario d-block&quot;&gt;
+                    &lt;i class&#x3D;&quot;fecha&quot;&gt;{{comentario.getFecha()}}&lt;/i&gt;&lt;br /&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;col-12 comentario d-block&quot;&gt;
+                    &lt;b&gt;{{comentario.getNombreUsuario()}}&lt;/b&gt;
+                    {{comentario.getComentario()}}
+                    &lt;img src&#x3D;&quot;../../assets/iconos/trash.svg&quot; class&#x3D;&quot;borrarcomentario&quot; width&#x3D;&quot;5%&quot;
+                      (click)&#x3D;&quot;borrarComentario(comentario.getId(),denuncia.getElemento().getId())&quot;
+                      title&#x3D;&quot;Borrar comentario&quot;&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./administracion.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/*--barra de navegacio */
+.navegacion{
+	margin-bottom: 4%;
+}
+nav{
+	background-color: white;
+	border-bottom: 2px solid #A0D8FE;
+	height: 3vw;
+}
+
+#contenidoUsuario{
+	height: 50%;
+}
+.contenido{
+    box-sizing: content-box;
+
+}
+
+.numDenuncia{
+    color: red;
+}
+
+/*-----------------------Media queries del contenido---------------------------*/
+@media (min-height: 625px) {
+	.contenido{
+		max-height: 45vw;
+	}
+}
+@media (min-height: 728px) {
+	.contenido{
+		max-height: 55vw;
+	}	
+}
+@media (min-height: 914px) {
+	.contenido{
+		max-height: 50.5vw;
+	}
+}
+@media (min-height: 921px) {
+	.contenido{
+		max-height: 69vw;
+	}
+		
+}
+@media (min-height: 1024px) {
+	.contenido{
+		max-height: 77vw;
+	}	
+}
+@media (min-height: 1080px) {
+	.contenido{
+		max-height: 59vw;
+	}	
+}
+@media (max-width: 625px) {
+	.contenido{
+		min-height: 500vw;
+		margin-left: -5%;
+	}	
+}
+
+/*-----------------------Media queries de los comentarios---------------------------*/
+@media (max-width: 320px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 320px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 355px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 400px) {
+	.comentarios{
+		height: 50vw;
+	}	
+}
+@media (min-width: 500px) {
+	.comentarios{
+		height: 23vw;
+	}	
+}
+@media (min-width: 600px) {
+	.comentarios{
+		height: 22vw;
+	}	
+}
+@media (min-width: 675px) {
+	.comentarios{
+		height: 21vw;
+	}	
+}
+@media (min-width: 730px) {
+	.comentarios{
+		height: 20vw;
+	}	
+}
+@media (min-width: 872px) {
+	.comentarios{
+		height: 25vw;
+	}	
+}
+@media (min-width: 1280px) {
+	.comentarios{
+		height: 29vw;
+	}	
+}
+@media (min-width: 1366px) {
+	.comentarios{
+		height: 29.5vw;
+	}	
+}
+
+
+.adminform{
+	background-color: white;
+	color: #4097FF;
+}
+
+.adminform form{
+	text-align: center;
+}
+
+.adminform form legend{
+	color: #008BEA;
+	font-weight: bold;
+}
+
+.adminform form div{
+	width: 50%;
+	margin: 0 auto;
+	margin-bottom: 5%;
+}
+
+table.adminform tr{
+	border-collapse: collapse;
+	border: 1px solid #A0D8FE
+}
+
+
+.nombre{
+	width: 75%;
+	border: none;
+	background-color: rgba(255,255,255,1);
+	margin-bottom: -7px;
+	color: #40B0FF;
+}
+.nombre h2{
+	font-size: 1.5em;
+}
+.bordederecho{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 30px 30px 0;
+	border-color: transparent #E6E6E6 transparent transparent;
+}
+.bordeizquierdo{
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 30px 30px 0 0;
+	border-color: #E6E6E6 transparent transparent transparent;
+}
+.archivo{
+	/*BDBDBD*/
+	border: 1px solid #A0D8FE;
+	box-shadow: 2px 2px #D7EBFA;
+}
+.foto{
+	background-color: white;
+}
+.foto img{
+	position: absolute; 
+    top: 0; 
+    left: 0;
+    max-width: 100%; 
+    max-height: 100%;
+    width: 100vw; 
+    height: 100vw;
+}
+.video video{
+	position: absolute; 
+    top: 0; 
+    left: 0;
+    max-width: 100%; 
+    max-height: 100%;
+    width: 100vw; 
+    height: 100vw;
+    background-color: black;
+    background-size: contain;
+    overflow: hidden;
+}
+.informacion{
+	background-color: white;
+	border-left: 1px solid #008BEA;
+}
+.informacion h2{
+	font-size: 1em;
+	color: green;
+}
+
+.estados{
+	text-align: center;
+}
+.acciones button{
+	width: 115%;
+}
+.info{
+	color: red;
+	font-size: 0.8em;
+}
+.denunciar{
+	z-index: 2;
+	width: 50%;
+}
+.denunciar button{
+	border: none;
+	background-color: rgba(0, 0, 0,0)
+}
+.comentarios{
+	overflow-y: auto;
+}
+h5{
+	font-size: 0.8em;
+}
+.sincomentarios{
+	font-size: 0.8em;
+	font-style: italic;
+	text-align: center;
+}
+.comentario{
+	font-size: 0.8em;
+}
+.fecha{
+	font-size: 0.7em;
+	color: #B1B1B1;
+}
+.borrarcomentario{
+	cursor: pointer;
+}
+.relleno{
+	color: rgba(0,0,0,0);
+}
+
+.modal:before{
+	content: &#x27;&#x27;;
+	display: inline-block;
+	height: 25%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
+
+
+@media (max-width: 625px) {
+	.modal:before{
+		margin-right: 0px;
+	}	
+}
+.modal .col-12{
+	padding-left: 0px;
+}
+.modal h3{
+	color: #40B0FF;
+}
+
+.col-8,.col-12{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.noHay{
+	font-size: 1.5em;
+	color: #40B0FF;
+	text-align: center;
+	font-weight: bold;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="navegacion col-12">    <nav class="navbar navbar-expand-sm navbar-light col-12">      <!-- Boton para expandir -->      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barraNavegacion"        aria-controls="barraNavegacion" aria-expanded="false" aria-label="Toggle navigation">        <span class="navbar-toggler-icon"></span>      </button>      <!-- Opciones -->      <div class="collapse navbar-collapse row" id="barraNavegacion">        <div class="navbar-nav container d-flex flex-row d-flex col-12">          <div class="dropdown ml-5" title="Ordenar denuncias">            <button class="btn btn-primary dropdown-toggle" type="button" id="ordenar" data-toggle="dropdown"              aria-haspopup="true" aria-expanded="false">              Ordenar            </button>            <div class="dropdown-menu" aria-labelledby="ordenar">              <a class="dropdown-item" (click)="ordenarPorNumero()">Número de denuncias.</a>              <a class="dropdown-item" (click)="ordenarPorFecha()">Fecha última denuncia</a>            </div>          </div>          <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">            <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"              aria-expanded="false" (click)="altaAdminFormulario()">              Modificar administradores            </button>          </div>          <a class="nav-item nav-link active ml-auto mr-3" routerLink="" (click)="cerrarSesion()">            <img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir">            <span class="sr-only">(current)</span>          </a>        </div>      </div>    </nav>  </div>  <div *ngIf="altaAdmin">    <!-- botones volver -->    <button class="btn" title="Volver" data-toggle="modal" data-target="#enviarmensaje" (click)="irDenuncias()">      <img src="../../assets/iconos/volver.svg" class="plus" width="40px" height="40px">    </button>    <div class="adminform col-md-8 mx-auto">      <!-- formulario nuevo administrador -->      <form class="col-10 mx-auto">        <legend class="text-center header">Añadir un nuevo administrador.</legend>        <div class="form-group">          <label for="correo">Correo eléctronico</label>          <div class="info">{{correoInfo}}</div>          <input type="email" class="form-control" id="correo" placeholder="nombre@ejemplo.com" [(ngModel)]="correo"            [ngModelOptions]="{standalone: true}" (focusout)="validarCorreo()" (input)="longitudCorreo()"            oninvalid="setCustomValidity(\'Correo invalido\')">          <label class="info">{{correoExiste}}</label>        </div>        <div class="form-group">          <label for="password">Contraseña</label>          <div class="info">{{passwordInfo}}</div>          <input type="password" class="form-control" id="password" placeholder="Contraseña" [(ngModel)]="password"            [ngModelOptions]="{standalone: true}" (focusout)="validarPassword()" (input)="longitudPassword()">        </div>        <div class="form-group">          <label for="password2">Repita la contraseña</label>          <div class="info">{{password2Info}}</div>          <input type="password" class="form-control" id="password2" placeholder="Repita la contraseña."            [(ngModel)]="password2" [ngModelOptions]="{standalone: true}" (focusout)="validarPassword2()">        </div>        <div class="form-group">          <div class="col-md-12 text-center">            <button class="btn btn-primary btn-lg" (click)="validar()">Crear</button>          </div>        </div>      </form>    </div>    <div clas="col-md-8 mx-auto">      <table class="adminform col-md-6 mx-auto">        <tr *ngFor="let administrador of admins">          <td class="correoadmin">{{administrador.getEmai()}}</td>          <td class="borrar">            <button class="btn btn-danger" (click)="borraAdmin(administrador.getId())">Borrar</button>          </td>        </tr>      </table>    </div>  </div>  <div *ngIf="!altaAdmin">    <div class="d-flex mx-auto justify-content-center mb-1">      <!-- botones actualizar -->      <button class="btn botonsubir" title="Actualizar" data-toggle="modal" data-target="#enviarmensaje"        (click)="obtenerDenuncias()">        <img src="../../assets/iconos/refrescar.svg" class="plus" width="40px" height="40px">      </button>    </div>    <div id="denuncias" class="container contenido col-md-10">      <div class="noHay" *ngIf="!hayDenuncias()">        No hay contenido denunciado.      </div>      <div *ngFor="let denuncia of denuncias" class="archivos mb-5">        <div class="nombre d-flex justify-content-between mx-auto" title="{{denuncia.getElemento().getNombre()}}">          <div class="bordeizquierdo"></div>          <h2>            <a class="referencia" name="{{denuncia.getElemento().getId()}}">              {{denuncia.getElemento().getNombre()}}              <span class="numDenuncia">{{denuncia.getNumdenuncias()}}</span>            </a>          </h2>          <div class="bordederecho"></div>        </div>        <div class="archivo d-flex">          <!-- archivo -->          <!-- comprobamos si es un video -->          <div class="col-8 video" *ngIf="comprobarVideo(denuncia.getElemento().getTipo())">            <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}" width="100%" controls></video>          </div>          <!-- comprobamos si es una foto -->          <div class="col-8 foto" *ngIf="comprobarFoto(denuncia.getElemento().getTipo())">            <img src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}">          </div>          <div class="col-4 informacion">            <!-- fecha y acciones -->            <div class="row">              <div class="dropdown acciones" title="Acciones">                <button class="btn btn-default dropdown-toggle" type="button" id="acciones" data-toggle="dropdown"                  aria-haspopup="true" aria-expanded="false">                  <img src="../../assets/iconos/settings-1.svg">                </button>                <div class="dropdown-menu" aria-labelledby="acciones">                  <a class="dropdown-item" (click)="borrarPublicacion(denuncia.getElemento().getId())">Borrar                    publicación.</a>                  <div class="dropdown-divider"></div>                  <a class="dropdown-item" (click)="borrarComentarios(denuncia.getElemento().getId())">Borrar todos los                    comentarios.</a>                  <div class="dropdown-divider"></div>                  <a class="dropdown-item" (click)="borrarDenuncias(denuncia.getElemento().getId())">Ignorar                    denuncias.</a>                </div>              </div>              <div class="ml-auto fecha">                {{denuncia.getElemento().getFecha()}}              </div>            </div>            <!-- comentarios -->            <div>              <div class="comentarios">                <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">                  <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>                </div>                <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"                  class="d-flex align-items-start flex-column">                  <div class="col-12 comentario d-block">                    <i class="fecha">{{comentario.getFecha()}}</i><br />                  </div>                  <div class="col-12 comentario d-block">                    <b>{{comentario.getNombreUsuario()}}</b>                    {{comentario.getComentario()}}                    <img src="../../assets/iconos/trash.svg" class="borrarcomentario" width="5%"                      (click)="borrarComentario(comentario.getId(),denuncia.getElemento().getId())"                      title="Borrar comentario">                  </div>                </div>              </div>            </div>          </div>        </div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AdministracionComponent', 'selector': 'app-administracion'},{'name': 'AmigosComponent', 'selector': 'app-amigos'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BarraNavegacionComponent', 'selector': 'app-barra-navegacion'},{'name': 'BuscarComponent', 'selector': 'app-buscar'},{'name': 'ChatComponent', 'selector': 'app-chat'},{'name': 'ConfirmarComponent', 'selector': 'app-confirmar'},{'name': 'ContenidoUsuarioComponent', 'selector': 'app-contenido-usuario'},{'name': 'InformacionUsuarioComponent', 'selector': 'app-informacion-usuario'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MensajesComponent', 'selector': 'app-mensajes'},{'name': 'NovedadesComponent', 'selector': 'app-novedades'},{'name': 'OtrosusuariosComponent', 'selector': 'app-otrosusuarios'},{'name': 'PeticionesComponent', 'selector': 'app-peticiones-component'},{'name': 'RegistroComponent', 'selector': 'app-registro'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AdministracionComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AdministracionComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

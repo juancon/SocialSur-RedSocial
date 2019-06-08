@@ -28,23 +28,29 @@
 		<div class="col-md-12" *ngIf="contenidoUsuario">
 			<app-contenido-usuario></app-contenido-usuario>
 		</div>
+		<!-- amigos -->
 		<div class="col-md-12" *ngIf="amigos">
 			<app-amigos></app-amigos>
 		</div>
+		<!-- mensajes -->
 		<div class="col-md-12" *ngIf="mensajes">
 			<app-mensajes></app-mensajes>
 		</div>
-		
+		<!-- pectiones de amistas -->
 		<div class="col-md-12" *ngIf="peticiones">
 			<app-peticiones-component></app-peticiones-component>
 		</div>
-		
+		<!-- buscar otros usuarios -->
 		<div class="col-md-12" *ngIf="buscar">
 			<app-buscar></app-buscar>
 		</div>
-
+		<!-- ver el perfil de otros usuario -->
 		<div class="col-md-12" *ngIf="otrosusuarios">
 			<app-otrosusuarios></app-otrosusuarios>
+		</div>
+		<!-- ver las novedades de los demas usuarios -->
+		<div class="col-md-12" *ngIf="novedades">
+			<app-novedades></app-novedades>
 		</div>
 	</div>
 	<!-- informar al usuario sobre cuenta no activada -->

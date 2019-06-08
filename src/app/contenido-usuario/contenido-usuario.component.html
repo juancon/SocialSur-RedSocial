@@ -1,169 +1,128 @@
-<div class="supreme-container" id="contenidoUsuario">		
-	<div class="container contenido col-md-10">
-		<!-- botones para agregar contenido -->
-		<div class="agregarContenido" *ngIf="usuario.getActivado() == 1">
-			<div class="d-flex mx-auto justify-content-end mt-1 mb-1">
-				<!-- botones subir contenido -->
-				<button class="btn botonsubir" title="Subir foto/video" data-toggle="modal" data-target="#subirarchivo">
-					<img src="../../assets/iconos/subir.svg" class="plus" width="40px" height="40px">
-				</button>
-			</div>
-		</div>
+<div class="supreme-container" id="contenidoUsuario">
+  <div class="container contenido col-md-10">
+    <!-- botones para agregar contenido -->
+    <div class="agregarContenido" *ngIf="usuario.getActivado() == 1">
+      <div class="d-flex mx-auto justify-content-end mt-1 mb-1">
+        <!-- botones subir contenido -->
+        <button class="btn botonsubir" title="Subir foto/video" data-toggle="modal" data-target="#subirarchivo">
+          <img src="../../assets/iconos/subir.svg" class="plus" width="40px" height="40px">
+        </button>
+      </div>
+    </div>
 
-		<!-- si el usuario no ha subido ninguna foto o video mostramos un gif -->
-		<div class="sincontenido mx-auto mb-5 col-12" *ngIf="!hayContenido">
-			<div class="d-flex justify-content-center">
-				<img src="../../assets/arbusto.gif" width="60%">
-			</div>
-		</div>
+    <!-- si el usuario no ha subido ninguna foto o video mostramos un gif -->
+    <div class="sincontenido mx-auto mb-5 col-12" *ngIf="!hayContenido">
+      <div class="d-flex justify-content-center">
+        <img src="../../assets/arbusto.gif" width="60%">
+      </div>
+    </div>
 
-		<!-- recorremos el array con el contenido del usuario -->
-		<div *ngFor="let contenido of contenidoUsuario" class="archivos mb-5 col-12">
+    <!-- recorremos el array con el contenido del usuario -->
+    <div *ngFor="let contenido of contenidoUsuario" class="archivos mb-5 col-12">
 
-			<div class="nombre d-flex justify-content-between mx-auto" title="{{contenido.getNombre()}}">
-				<div class="bordeizquierdo"></div>
-				<h2>
-					<a class="referencia" name="{{contenido.getId()}}">{{contenido.getNombre()}}</a>
-				</h2>
-				<div class="bordederecho"></div>				
-			</div>
+      <div class="nombre d-flex justify-content-between mx-auto" title="{{contenido.getNombre()}}">
+        <div class="bordeizquierdo"></div>
+        <h2>
+          <a class="referencia" name="{{contenido.getId()}}">{{contenido.getNombre()}}</a>
+        </h2>
+        <div class="bordederecho"></div>
+      </div>
 
-			<!-- prguntamos si el contenido actual es un video -->
-			<div class="archivo d-flex" *ngIf="comprobarVideo(contenido.getTipo())" >
-			<!-- archivo -->
-				<div class="col-8 video">
-					<video src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}" width="100%" controls></video>
-				</div>
-				<div class="col-4 informacion">
-					<!-- megusta y fecha -->
-					<div class="row">
-						<button class="megusta" (click)="darQuitarMegusta(contenido.getId())">
-							<img src="{{contenido.getRutamegustas()}}" width="20px" height="20px" title="Me gusta" alt="Me gusta">
-							{{contenido.getMegustas()}}
-						</button>
-						<div class="ml-auto fecha">
-							{{contenido.getFecha()}}
-						</div>
-					</div>
-					<!-- comentarios -->
-					<div>
-						<div class="comentarios">
-							<div *ngIf="esVacio(contenido.getComentarios())">
-								<p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
-							</div>
-							<div  *ngFor = "let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
-								<div class="col-12 comentario d-block">
-									<i class="fecha">{{comentario.getFecha()}}</i><br/>
-								</div>
-								<div class="col-12 comentario d-block">
-									<b>{{comentario.getNombreUsuario()}}</b>
-									{{comentario.getComentario()}}
-								</div>
-							</div>
-						</div>
-						<div class="relleno">Comentarios</div>
-						<div class="botonComentar col-12">
-							<div class="col-12" id="textcomentario{{contenido.getId()}}">
-								<div class="info text-center">{{comentarioinfo}}</div>
-								<textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
-								[(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
-							</div>
-							<button class="d-flex ml-auto comentar" (click)="comentar(contenido.getId(),contenido.getComentarios())">
-								Comentar
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
+      
+      <div class="archivo d-flex col-12">
+        <!-- archivo -->
+        <!-- comprobamos si es un video -->
+        <div class="col-8 video" *ngIf="comprobarVideo(contenido.getTipo())">
+          <video src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}" width="100%" controls></video>
+        </div>
+        <!-- comprobamos si es una foto -->
+        <div class="col-8 foto" *ngIf="comprobarFoto(contenido.getTipo())">
+          <img src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}">
+        </div>
+        <div class="col-4 informacion">
+          <!-- fecha y megusta -->
+          <div class="row">
+            <button class="megusta" (click)="darQuitarMegusta(contenido.getId())">
+              <img src="{{contenido.getRutamegustas()}}" width="20px" height="20px" title="Me gusta" alt="Me gusta">
+              {{contenido.getMegustas()}}
+            </button>
+            <div class="ml-auto fecha">
+              {{contenido.getFecha()}}
+            </div>
+          </div>
+          <!-- comentarios -->
+          <div>
+            <div class="comentarios">
+              <div *ngIf="esVacio(contenido.getComentarios())">
+                <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
+              </div>
+              <div *ngFor="let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
+                <div class="col-12 comentario d-block">
+                  <i class="fecha">{{comentario.getFecha()}}</i><br />
+                </div>
+                <div class="col-12 comentario d-block">
+                  <b>{{comentario.getNombreUsuario()}}</b>
+                  {{comentario.getComentario()}}
 
-			
-			<!-- prguntamos si el contenido actual es una foto -->
-			<div class="archivo d-flex col-12" *ngIf="comprobarFoto(contenido.getTipo())" >
-				<!-- archivo -->
-				<div class="col-8 foto">
-					<img src="../../{{contenido.getUrl()}}" title="{{contenido.getNombre()}}">
-				</div>
-				<div class="col-4 informacion">
-					<!-- fecha y megusta -->
-					<div class="row">
-						<button class="megusta" (click)="darQuitarMegusta(contenido.getId())">
-							<img src="{{contenido.getRutamegustas()}}" width="20px" height="20px" title="Me gusta" alt="Me gusta">
-							{{contenido.getMegustas()}}
-						</button>
-						<div class="ml-auto fecha">
-							{{contenido.getFecha()}}
-						</div>
-					</div>
-					<!-- comentarios -->
-					<div >
-						<div class="comentarios">
-							<div *ngIf="esVacio(contenido.getComentarios())">
-								<p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
-							</div>
-							<div  *ngFor = "let comentario  of contenido.getComentarios()" class="d-flex align-items-start flex-column">
-								<div class="col-12 comentario d-block">
-									<i class="fecha">{{comentario.getFecha()}}</i><br/>
-								</div>
-								<div class="col-12 comentario d-block">
-									<b>{{comentario.getNombreUsuario()}}</b>
-									{{comentario.getComentario()}}
-									
-								</div>
-							</div>
-						</div>
-						<div class="relleno">Comentarios</div>
-						<div class="botonComentar col-12">
-							<!-- *ngIf="comentando" -->
-							<div class="col-12" id="textcomentario{{contenido.getId()}}">
-								<div class="info text-center">{{comentarioinfo}}</div>
-								<textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
-								[(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
-							</div>
-							<button class="d-flex ml-auto comentar" (click)="comentar(contenido.getId(),contenido.getComentarios())">
-								Comentar
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+              </div>
+            </div>
+            <div class="relleno">Comentarios</div>
+            <div class="botonComentar col-12">
+              <!-- *ngIf="comentando" -->
+              <div class="col-12" id="textcomentario{{contenido.getId()}}">
+                <div class="info text-center">{{comentarioinfo}}</div>
+                <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
+                  [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>
+              </div>
+              <button class="d-flex ml-auto comentar" (click)="comentar(contenido.getId(),contenido.getComentarios())">
+                Comentar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ventana modal para subir archivos -->
-<div class="modal fade " data-backdrop="static" data-keyboard="false" id="subirarchivo" tabindex="-1" role="dialog" aria-labelledby="subirArchivos" aria-hidden="true">
-	<div class="modal-dialog " role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<form>
-				<div class="modal-body">
-					<div>
-						<input type="text" class="form-control" name="nombre" [(ngModel)]="nombreArchivo" [ngModelOptions]="{standalone: true}" placeholder="Nombre de la publicación" required>
-						<div class="info">{{infoNombre}}</div><br>
-					</div>
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="adorno">Subir</span>
-						</div>
-						<div class="custom-file">
-							<input #archivo type="file" class="custom-file-input" id="inputFichero" aria-describedby="adorno" [(ngModel)]="fichero" [ngModelOptions]="{standalone: true}"
-							accept="image/png, image/jpeg,image/gif, image/jpg,video/ogv,video/mp4,video/avi,video/mpg"
-							(change)="almacenarFichero($event)">
-							<label class="custom-file-label" for="inputFichero">Selecciona tu fichero</label>
-						</div>
-					</div>
-					<div class="info">{{infoFichero}}</div>
+<div class="modal fade " data-backdrop="static" data-keyboard="false" id="subirarchivo" tabindex="-1" role="dialog"
+  aria-labelledby="subirArchivos" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div>
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="nombreArchivo"
+              [ngModelOptions]="{standalone: true}" placeholder="Nombre de la publicación" required>
+            <div class="info">{{infoNombre}}</div><br>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="adorno">Subir</span>
+            </div>
+            <div class="custom-file">
+              <input #archivo type="file" class="custom-file-input" id="inputFichero" aria-describedby="adorno"
+                [(ngModel)]="fichero" [ngModelOptions]="{standalone: true}"
+                accept="image/png, image/jpeg,image/gif, image/jpg,video/ogv,video/mp4,video/avi,video/mpg"
+                (change)="almacenarFichero($event)">
+              <label class="custom-file-label" for="inputFichero">Selecciona tu fichero</label>
+            </div>
+          </div>
+          <div class="info">{{infoFichero}}</div>
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
-					<button type="button" class="btn btn-primary" (click)="subirFichero()">Subir</button>
-				</div>
-			</form>
-		</div>
-	</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="subirFichero()">Subir</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

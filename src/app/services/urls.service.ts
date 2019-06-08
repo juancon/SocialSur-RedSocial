@@ -1,3 +1,8 @@
+/**
+  * @ngdoc overview
+  * @name UrlsService
+  * @description Servicio para obtener las urls del servidor
+  */
 import { Injectable } from '@angular/core';
 
 @Injectable({

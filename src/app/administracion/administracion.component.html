@@ -39,12 +39,11 @@
 
   <div *ngIf="altaAdmin">
     <!-- botones volver -->
-    <button class="btn" title="Volver" data-toggle="modal" data-target="#enviarmensaje"
-      (click)="irDenuncias()">
+    <button class="btn" title="Volver" data-toggle="modal" data-target="#enviarmensaje" (click)="irDenuncias()">
       <img src="../../assets/iconos/volver.svg" class="plus" width="40px" height="40px">
     </button>
 
-    
+
     <div class="adminform col-md-8 mx-auto">
       <!-- formulario nuevo administrador -->
       <form class="col-10 mx-auto">
@@ -118,65 +117,15 @@
           <div class="bordederecho"></div>
         </div>
 
-        <!-- prguntamos si el contenido actual es un video -->
-        <div class="archivo d-flex" *ngIf="comprobarVideo(denuncia.getElemento().getTipo())">
-          <!-- archivo -->
-          <div class="col-8 video">
-            <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}"
-              width="100%" controls></video>
-          </div>
-          <div class="col-4 informacion">
-            <!--  fecha y acciones -->
-            <div class="row">
-              <div class="dropdown acciones" title="Acciones">
-                <button class="btn btn-default dropdown-toggle" type="button" id="acciones" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <img src="../../assets/iconos/settings-1.svg">
-                </button>
-                <div class="dropdown-menu" aria-labelledby="acciones">
-                  <a class="dropdown-item" (click)="borrarPublicacion(denuncia.getElemento().getId())">Borrar
-                    publicación.</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" (click)="borrarComentarios(denuncia.getElemento().getId())">Borrar todos los
-                    comentarios.</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" (click)="borrarDenuncias(denuncia.getElemento().getId())">Ignorar
-                    denuncias.</a>
-                </div>
-              </div>
-              <div class="ml-auto fecha">
-                {{denuncia.getElemento().getFecha()}}
-              </div>
-            </div>
-            <!-- comentarios -->
-            <div>
-              <div class="comentarios">
-                <div *ngIf="esVacio(denuncia.getElemento().getComentarios())">
-                  <p class="sincomentarios">Esta tranquilo, demasiado tranquilo...</p>
-                </div>
-                <div *ngFor="let comentario  of denuncia.getElemento().getComentarios()"
-                  class="d-flex align-items-start flex-column">
-                  <div class="col-12 comentario d-block">
-                    <i class="fecha">{{comentario.getFecha()}}</i><br />
-                  </div>
-                  <div class="col-12 comentario d-block">
-                    <b>{{comentario.getNombreUsuario()}}</b>
-                    {{comentario.getComentario()}}
-                    <img src="../../assets/iconos/trash.svg" class="borrarcomentario" width="5%"
-                      (click)="borrarComentario(comentario.getId(),denuncia.getElemento().getId())"
-                      title="Borrar comentario">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-
-        <!-- prguntamos si el contenido actual es una foto -->
-        <div class="archivo d-flex" *ngIf="comprobarFoto(denuncia.getElemento().getTipo())">
+        <div class="archivo d-flex">
           <!-- archivo -->
-          <div class="col-8 foto">
+          <!-- comprobamos si es un video -->
+          <div class="col-8 video" *ngIf="comprobarVideo(denuncia.getElemento().getTipo())">
+            <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}" width="100%" controls></video>
+          </div>
+          <!-- comprobamos si es una foto -->
+          <div class="col-8 foto" *ngIf="comprobarFoto(denuncia.getElemento().getTipo())">
             <img src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}">
           </div>
           <div class="col-4 informacion">

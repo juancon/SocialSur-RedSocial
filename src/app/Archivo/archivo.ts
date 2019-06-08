@@ -7,10 +7,12 @@ export class Archivo{
 	private nombre:string;
 	private idusuario:number;
 	private tipo:string;
-	private megustas:number;ç
+	private megustas:number;
 	private rutamegusta:string;
 	private fecha:string;
 	private comentarios:Array<Comentario>;
+	private autor:string;
+	private apodoAutor:string;
   
 	constructor(
 		id:number,
@@ -60,6 +62,12 @@ export class Archivo{
 	public getComentarios():Array<Comentario>{
 		return this.comentarios;
 	}
+	public getAutor():string{
+		return this.autor;
+	}
+	public getApodoAutor():string{
+		return this.apodoAutor;
+	}
 
 	public setId(id:number):void{
 		this.id = id;
@@ -88,7 +96,12 @@ export class Archivo{
 	public setComentarios(comentarios:Array<Comentario>):void{
 		this.comentarios = comentarios;
 	}
-
+	public setAutor(autor:string):void{
+		this.autor = autor;
+	}
+	public setApodoAutor(apodoAutor:string):void{
+		this.apodoAutor = apodoAutor;
+	}
 
 	public addComentario(comentario:Comentario):void{
 		this.comentarios.push(comentario);

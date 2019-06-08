@@ -39,7 +39,7 @@ import {OperacionesDenunciasService} from '../services/operaciones-denuncias.ser
   styleUrls: ['./otrosusuarios.component.css']
 })
 export class OtrosusuariosComponent implements OnInit {
-  //variables referentes a las urls
+	//variables referentes a las urls
 	public urlRecogerArchivos:string;
 	//Variables referentes al usuario
 	public miUsuario:Usuario;
@@ -85,14 +85,13 @@ export class OtrosusuariosComponent implements OnInit {
 		setTimeout(this.iniciar.bind(this),500);
 		setTimeout(this.irA.bind(this),1000);
 		setTimeout(this.comprobarContenido.bind(this),1000);
-
+		//ocultamos loc comentarios cuando no se este comentado
+		setInterval(this.oculatr.bind(this),500);
 	}
 
 
 	ngOnInit() {
     
-		//ocultamos loc comentarios cuando no se este comentado
-    setInterval(this.oculatr.bind(this),500);
     
 	}
 
@@ -122,7 +121,7 @@ export class OtrosusuariosComponent implements OnInit {
 
 	public obtenerUrl():void{
 		//obtenemos el parametro que queremos de la url
-    let url = this._router.parseUrl(this._router.url);
+    	let url = this._router.parseUrl(this._router.url);
 		this.apodo = url.queryParams['apodo'];
 		//si esxites la referencia la obtenemos
 		if(typeof(url.queryParams['ref']) != "undefined"){
@@ -132,9 +131,9 @@ export class OtrosusuariosComponent implements OnInit {
 		if(this.apodo == this.miUsuario.getApodo()){
 			this._router.navigate([""]);
 		}
-    //llamamos a la funcion para obtener a los usuario que coincidad
+  		//llamamos a la funcion para obtener a los usuario que coincidad
 		this._operacionesUsuarios.getUsuarioByApodo(this.apodo);
-    setTimeout(this.obtenerOtroUsuario.bind(this),500);
+		setTimeout(this.obtenerOtroUsuario.bind(this),500);
 	}
 
 	public irA():void{
@@ -246,7 +245,7 @@ export class OtrosusuariosComponent implements OnInit {
 		return ret;
 	}
 
-	//saber si un array esta vacio
+	//saber si el array esta vacio
 	public esVacio(array:Array<any>):boolean{
 		if(array.length > 0){
 			return false;
@@ -278,12 +277,12 @@ export class OtrosusuariosComponent implements OnInit {
 					}
 				}
 			}else{
-				$("#textcomentario"+idelemento).hide();
 				this.comentando = false;
+				$("#textcomentario"+idelemento).hide();
 			}
 		}else{
-			$("#textcomentario"+idelemento).show();
 			this.comentando = true;
+			$("#textcomentario"+idelemento).show();
 		}
 	}
 
