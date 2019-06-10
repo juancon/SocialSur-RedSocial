@@ -29,6 +29,7 @@ export class NovedadesComponent implements OnInit {
   public comentando:boolean = false;
   public nuevoComentario:string = "";
   public comentarioinfo:string = "";
+  public textareaActivo = "";
   
   constructor(
     public _urls: UrlsService,
@@ -44,7 +45,6 @@ export class NovedadesComponent implements OnInit {
     this.miUsuario = this._recogerUsuario.getUsuario();
     this.recogerArchivos();
     setInterval(this.recogerArchivos.bind(this),30000);
-    setTimeout(this.oculatr.bind(this),500)
   }
 
   ngOnInit() {
@@ -163,13 +163,7 @@ export class NovedadesComponent implements OnInit {
 		return false;
   }
 
-  //oculatr textarearas para comentar publicaciones
-  public oculatr():void{
-		//recogemos los textareas de los comentarios y los ocultamos siempre que no se ente comentando
-		if(!this.comentando){
-			$('[id^="textcomentario"]').hide();
-		}
-	}
+  
   
   //comprobar si el usuairo esta activado
   public esActivado():boolean{
@@ -178,6 +172,15 @@ export class NovedadesComponent implements OnInit {
 		}
 
 		return false;
+  }
+
+  public mostrarTextarea(idelemento:number):boolean{
+    if(this.comentando){
+      if(this.textareaActivo == idelemento+""){
+        return true;
+      }
+    }
+    return false;
   }
   
   //funcion para realizar el comentario
@@ -189,7 +192,7 @@ export class NovedadesComponent implements OnInit {
 				this._comentarios.nuevoComentario(this.miUsuario.getId(),idelemento,this.nuevoComentario);
 				//ocultamos el textarea y reseteamos los avriables
 				this.comentando = false;
-				$("#textcomentario"+idelemento).hide();
+				this.textareaActivo = "";
 				this.comentarioinfo = "";
 				this.nuevoComentario = "";
 				//recorremos el array actual para actualizar los comentarios
@@ -204,12 +207,12 @@ export class NovedadesComponent implements OnInit {
 					}
 				}
 			}else{
-				$("#textcomentario"+idelemento).hide();
+				this.textareaActivo = "";
 				this.comentando = false;
 			}
 		}else{
 			this.comentando = true;
-			$("#textcomentario"+idelemento).show();
+			this.textareaActivo = idelemento+"";
 		}
   }
   //funcion para denunciar un contenido

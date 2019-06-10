@@ -143,7 +143,7 @@ export class LoginComponent implements OnInit {
     //guardamos el usuario en el navegador
     sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
     //redirigimos al usuario
-    this._refrescar.refrescar();
+    window.open("/inicio","_self");
     //this._router.navigate(['']);
     //this._zone.run(() => this._router.navigate(['/inicio']));
     //this._router.navigate(['login']);

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { EmailConfirmacionService } from './../services/email-confirmacion.service';
 import { Component, OnInit } from '@angular/core';
 //Importamos el modulo http al servicio
@@ -56,6 +57,7 @@ export class RegistroComponent implements OnInit {
 
 	constructor(
 		public _http: Http,
+		public _router: Router,
 		public _refrescar: RefrescarService,
 		public _urls: UrlsService,
 		public _confirmacion: EmailConfirmacionService
@@ -109,7 +111,7 @@ export class RegistroComponent implements OnInit {
 						//enviamos el meail de confirmacion
 						this._confirmacion.enviarEmail(datos['password'],datos['nombre']+" "+datos['apellido'],datos['apodo']);
 						//redirigimos al usuario
-						this._refrescar.refrescar();
+						window.open("/inicio","_self");
 					}else{
 						//si da error se lo informamos al usuario
 						this.errorRegistro = "Se ha producido un error.";

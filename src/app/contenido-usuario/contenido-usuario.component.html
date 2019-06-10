@@ -70,7 +70,7 @@
             <div class="relleno">Comentarios</div>
             <div class="botonComentar col-12">
               <!-- *ngIf="comentando" -->
-              <div class="col-12" id="textcomentario{{contenido.getId()}}">
+              <div class="col-12" *ngIf="mostrarTextarea(contenido.getId())">
                 <div class="info text-center">{{comentarioinfo}}</div>
                 <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
                   [(ngModel)]="nuevoComentario" [ngModelOptions]="{standalone: true}"></textarea>

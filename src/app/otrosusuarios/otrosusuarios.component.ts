@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 //importamos los servicios para poder interactuar con las urls
-import { Router, ActivatedRoute, Params,NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, Params, NavigationEnd } from '@angular/router';
 //Importamos el modulo http al servicio
-import {Http, Response, Headers} from "@angular/http";
+import { Http, Response, Headers } from "@angular/http";
 //Importamos la funcion map
 import { map } from 'rxjs/operators';
 //Importamos el servicio para recoger el usuario en local
 import { RecogerUsuarioLocalService } from '../services/recoger-usuario-local.service';
 //importamos el servicio que contiene las urls
-import {UrlsService} from '../services/urls.service';
+import { UrlsService } from '../services/urls.service';
 //Importamos el servicio que realiza operaciones con las fechas
 import { OperacionesFechasService } from '../services/operaciones-fechas.service';
 //importamos el servicio que contiene las operaciones de los megustas
-import {OperacionesMeGustasService} from '../services/operaciones-me-gustas.service';
+import { OperacionesMeGustasService } from '../services/operaciones-me-gustas.service';
 //importamos el servicio que contiene las operaciones de los amigos
-import {OperacioneAmigosService} from '../services/operacione-amigos.service';
+import { OperacioneAmigosService } from '../services/operacione-amigos.service';
 //Importamos la clase usuario
 import { Usuario } from '../Usuario/usuario';
 //Importamos la clase archivo
@@ -22,48 +22,49 @@ import { Archivo } from '../Archivo/archivo';
 //Importamos la clase comentario
 import { Comentario } from '../Comentario/comentario';
 //importamos el servicio con las funciones de los comentarios
-import {ComentariosService } from '../services/comentarios.service';
+import { ComentariosService } from '../services/comentarios.service';
 //importamos el servicio con las funciones de los usuarios
-import {OperacionesUsuariosService } from '../services/operaciones-usuarios.service';
+import { OperacionesUsuariosService } from '../services/operaciones-usuarios.service';
 //importamos el servicio con las funciones de loas peticiones
-import {OperacionesPeticionesService } from '../services/operaciones-peticiones.service';
+import { OperacionesPeticionesService } from '../services/operaciones-peticiones.service';
 //importamos el servicio con las funciones de loas peticiones
-import {MensajesService } from '../services/mensajes.service';
+import { MensajesService } from '../services/mensajes.service';
 //importamos el servicio de las denuncias
-import {OperacionesDenunciasService} from '../services/operaciones-denuncias.service';
+import { OperacionesDenunciasService } from '../services/operaciones-denuncias.service';
 
 
 @Component({
-  selector: 'app-otrosusuarios',
-  templateUrl: './otrosusuarios.component.html',
-  styleUrls: ['./otrosusuarios.component.css']
+	selector: 'app-otrosusuarios',
+	templateUrl: './otrosusuarios.component.html',
+	styleUrls: ['./otrosusuarios.component.css']
 })
 export class OtrosusuariosComponent implements OnInit {
 	//variables referentes a las urls
-	public urlRecogerArchivos:string;
+	public urlRecogerArchivos: string;
 	//Variables referentes al usuario
-	public miUsuario:Usuario;
-	public otroUsuario:Usuario;
-	public apodo:string;
+	public miUsuario: Usuario;
+	public otroUsuario: Usuario;
+	public apodo: string;
 	//Variables que almacena todo el contenido subido por el usuario (fotos,videos,comentarios)
-	public contenidoUsuario:Array<Archivo> = new Array();
-	public hayContenido:boolean = true;
+	public contenidoUsuario: Array<Archivo> = new Array();
+	public hayContenido: boolean = true;
 	//variables referentes a subir archivos
-	public nombreArchivo:string = "";
-	public fichero:File;
-	public infoNombre:string = "";
-	public infoFichero:string = "";
-	public archivo:any;
+	public nombreArchivo: string = "";
+	public fichero: File;
+	public infoNombre: string = "";
+	public infoFichero: string = "";
+	public archivo: any;
 	//variables referentes a los comentarios de los archivos
-	public comentarios:Array<Comentario> = new Array();
-	public comentando:boolean = false;
-	public ocultar:boolean = false;
-	public nuevoComentario:string = "";
-	public comentarioinfo:string = "";
+	public comentarios: Array<Comentario> = new Array();
+	public comentando: boolean = false;
+	public ocultar: boolean = false;
+	public nuevoComentario: string = "";
+	public comentarioinfo: string = "";
+	public textareaActivo: string = "";
 	//variable referente a los mensajes
-	public mensaje:string = "";
+	public mensaje: string = "";
 	//variable referente a la redireccion a un archivo en concreto
-	public referencia:string = "";
+	public referencia: string = "";
 
 
 	constructor(
@@ -82,84 +83,75 @@ export class OtrosusuariosComponent implements OnInit {
 	) {
 		this.miUsuario = this._recogerUsuario.getUsuario();
 		this.obtenerUrl();
-		setTimeout(this.iniciar.bind(this),500);
-		setTimeout(this.irA.bind(this),1000);
-		setTimeout(this.comprobarContenido.bind(this),1000);
-		//ocultamos loc comentarios cuando no se este comentado
-		setInterval(this.oculatr.bind(this),500);
+		setTimeout(this.iniciar.bind(this), 500);
+		setTimeout(this.irA.bind(this), 1000);
+		setTimeout(this.comprobarContenido.bind(this), 1000);
 	}
 
 
 	ngOnInit() {
-    
-    
+
+
 	}
 
-	public comprobarContenido():void{
-		if(this.contenidoUsuario.length == 0){
+	public comprobarContenido(): void {
+		if (this.contenidoUsuario.length == 0) {
 			this.hayContenido = false;
-		}else{
+		} else {
 			this.hayContenido = true;
 		}
 	}
 
-	public esActivado():boolean{
-		if(this.miUsuario.getActivado() == 1){
+	public esActivado(): boolean {
+		if (this.miUsuario.getActivado() == 1) {
 			return true;
 		}
 
 		return false;
 	}
 
-	public iniciar():void{
-		
+	public iniciar(): void {
+
 		this.urlRecogerArchivos = this._urls.getUrl("recogerArchivos");
 		//obtenemos los archivos
 		this.recogerArchivos();
-		setInterval(this.recogerArchivos.bind(this),300000)
+		setInterval(this.recogerArchivos.bind(this), 300000)
 	}
 
-	public obtenerUrl():void{
+	public obtenerUrl(): void {
 		//obtenemos el parametro que queremos de la url
-    	let url = this._router.parseUrl(this._router.url);
+		let url = this._router.parseUrl(this._router.url);
 		this.apodo = url.queryParams['apodo'];
 		//si esxites la referencia la obtenemos
-		if(typeof(url.queryParams['ref']) != "undefined"){
+		if (typeof (url.queryParams['ref']) != "undefined") {
 			this.referencia = url.queryParams['ref'];
 		}
 
-		if(this.apodo == this.miUsuario.getApodo()){
+		if (this.apodo == this.miUsuario.getApodo()) {
 			this._router.navigate([""]);
 		}
-  		//llamamos a la funcion para obtener a los usuario que coincidad
+		//llamamos a la funcion para obtener a los usuario que coincidad
 		this._operacionesUsuarios.getUsuarioByApodo(this.apodo);
-		setTimeout(this.obtenerOtroUsuario.bind(this),500);
+		setTimeout(this.obtenerOtroUsuario.bind(this), 500);
 	}
 
-	public irA():void{
-		if(this.referencia != ""){
+	public irA(): void {
+		if (this.referencia != "") {
 			$("html, body").animate({
-				scrollTop: $("[name='"+this.referencia+"']").offset().top-100
+				scrollTop: $("[name='" + this.referencia + "']").offset().top - 100
 			}, 0);
 		}
 	}
 
-	public obtenerOtroUsuario(){
-		this.otroUsuario =  this._recogerUsuario.getOtroUsuario();
+	public obtenerOtroUsuario() {
+		this.otroUsuario = this._recogerUsuario.getOtroUsuario();
 	}
 
-	public oculatr():void{
-		//recogemos los textareas de los comentarios y los ocultamos siempre que no se ente comentando
-		if(!this.comentando){
-			$('[id^="textcomentario"]').hide();
-		}
-	}
-
-	public recogerArchivos():void{
-		if(!this.comentando){
+	public recogerArchivos(): void {
+		if (!this.comentando) {
 			//enviamos el id del usuario
 			let parametros = {
-				id : this.otroUsuario.getId()
+				id: this.otroUsuario.getId()
 			}
 			//funcion http.post para enviar los datos
 			let notificaciones = this._http.post(this.urlRecogerArchivos, JSON.stringify(parametros)).pipe(map(res => res.json()));
@@ -176,9 +168,9 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	//funcion para actualizar el array con las fotos y los videos en local
-	public agregarArchivosArray(datos:Array<string>):void{
+	public agregarArchivosArray(datos: Array<string>): void {
 		//recogemos el array
-		for ( var i = 0; i < datos.length; i++){
+		for (var i = 0; i < datos.length; i++) {
 			//modifico la fecha en funcion si es de hoy
 			datos[i]["fecha"] = this._operacionesFechas.convertirFecha(datos[i]["fecha"]);
 			//añadimos el archivo al array
@@ -192,9 +184,9 @@ export class OtrosusuariosComponent implements OnInit {
 				"",
 				datos[i]["fecha"]
 			);
-			
+
 		}
-	
+
 		//llamamos al servicio que actualiza los megustas a los megustas reales de los contenidos
 		this.contenidoUsuario = this._operacionesMegustas.obtenerMegustas(this.contenidoUsuario);
 		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
@@ -206,25 +198,25 @@ export class OtrosusuariosComponent implements OnInit {
 	}
 
 	//comprobar si el archivo es un video
-	public comprobarVideo(tipo:string):boolean{
-		if(tipo == "video"){
+	public comprobarVideo(tipo: string): boolean {
+		if (tipo == "video") {
 			return true;
 		}
 		return false;
 	}
 
 	//comprobar si el archivo es un foto
-	public comprobarFoto(tipo:string):boolean{
-		if(tipo == "foto"){
+	public comprobarFoto(tipo: string): boolean {
+		if (tipo == "foto") {
 			return true;
 		}
 		return false;
 	}
-	
+
 	//funcion para dar o quitar un megusta
-	public darQuitarMegusta(idelemento:number):void{
+	public darQuitarMegusta(idelemento: number): void {
 		//llamamos al servicio que me permite dar un nuevo megusta
-		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.miUsuario.getId(),idelemento,this.contenidoUsuario);
+		this.contenidoUsuario = this._operacionesMegustas.darMegusta(this.miUsuario.getId(), idelemento, this.contenidoUsuario);
 		//this.actualizarRuta();
 	}
 
@@ -234,123 +226,133 @@ export class OtrosusuariosComponent implements OnInit {
 	} */
 
 	//funcion para obetener los comentarios de cada archivo
-	public obtenerComentariosArchivos():Array<Archivo>{
+	public obtenerComentariosArchivos(): Array<Archivo> {
 		//creamos un array que devolveremos
 		let ret = this.contenidoUsuario;
 		//recorremos el array actual
-		for (var i = 0; i < this.contenidoUsuario.length; i++){
+		for (var i = 0; i < this.contenidoUsuario.length; i++) {
 			//por cada elemento llamaremos a la funcion del servicio que se encarga de obtener los comentrios
-			ret = this._comentarios.getComentariosElementos(ret[i].getId(),ret);
+			ret = this._comentarios.getComentariosElementos(ret[i].getId(), ret);
 		}
 		return ret;
 	}
 
 	//saber si el array esta vacio
-	public esVacio(array:Array<any>):boolean{
-		if(array.length > 0){
+	public esVacio(array: Array<any>): boolean {
+		if (array.length > 0) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
-		if(this.comentando){
+	//funcion para mostrar el textarea del comentario
+	public mostrarTextarea(idelemento: number): boolean {
+		if (this.comentando) {
+			if (this.textareaActivo == idelemento + "") {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public comentar(idelemento: number, arrayComentarios: Array<Comentario>): void {
+		if (this.comentando) {
 			//comprobamos que el comentario no este vacio
-			if(this.nuevoComentario != ""){
+			if (this.nuevoComentario != "") {
 				//enviamos el comentario a la base de datos
-				this._comentarios.nuevoComentario(this.miUsuario.getId(),idelemento,this.nuevoComentario);
+				this._comentarios.nuevoComentario(this.miUsuario.getId(), idelemento, this.nuevoComentario);
 				//ocultamos el textarea y reseteamos los avriables
 				this.comentando = false;
-				$("#textcomentario"+idelemento).hide();
+				this.textareaActivo = "";
 				this.comentarioinfo = "";
 				this.nuevoComentario = "";
 				//recorremos el array actual para actualizar los comentarios
-				for(var i = 0 ; i < this.contenidoUsuario.length ; i++){
+				for (var i = 0; i < this.contenidoUsuario.length; i++) {
 					//comprobamos que el id sea igual
-					if(this.contenidoUsuario[i].getId() == idelemento){
+					if (this.contenidoUsuario[i].getId() == idelemento) {
 						//llamamos a la funcion para obtener los comentarios actualizados
-						let aux = this._comentarios.refrescarComentarios(idelemento,this.contenidoUsuario[i].getComentarios())
+						let aux = this._comentarios.refrescarComentarios(idelemento, this.contenidoUsuario[i].getComentarios())
 						//solo DIOS sabe porque esta linea añade el nuevo comentario
 						this.contenidoUsuario[i].setComentarios(new Array());
 						break;
 					}
 				}
-			}else{
+			} else {
 				this.comentando = false;
-				$("#textcomentario"+idelemento).hide();
+				this.textareaActivo = "";
 			}
-		}else{
+		} else {
 			this.comentando = true;
-			$("#textcomentario"+idelemento).show();
+			this.textareaActivo = idelemento + "";
 		}
 	}
 
 	//comprobamos si los usuarios son amigos
-  public comprobarAmistad(amistad:number):boolean{
-    if(amistad == 1){
-      return true;
-    }
+	public comprobarAmistad(amistad: number): boolean {
+		if (amistad == 1) {
+			return true;
+		}
 
-    return false;
-  }
-
-  public comprobarSocilitud(amistad:number):boolean{
-    if(amistad == 2){
-      return false;
-    }
-    return true;
+		return false;
 	}
-	
+
+	public comprobarSocilitud(amistad: number): boolean {
+		if (amistad == 2) {
+			return false;
+		}
+		return true;
+	}
+
 	public enviarSolicitud(): void {
-    //comprobamos que el mensaje no este vacio
-    if (this.mensaje.trim() != "") {
-      this._operacionesPeticiones.enviarSolicitud(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje)
+		//comprobamos que el mensaje no este vacio
+		if (this.mensaje.trim() != "") {
+			this._operacionesPeticiones.enviarSolicitud(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje)
 			this.otroUsuario.setAmistad(2);
-      this.cerrarModal();
-    }else{
-      $("#peticion").addClass("parpadear");
+			this.cerrarModal();
+		} else {
+			$("#peticion").addClass("parpadear");
 			setTimeout(function () {
 				$("#peticion").removeClass("parpadear");
 			}, 5000)
-    }
+		}
 	}
-	
+
 	//funcion paera enviar el mensaje
-  public enviarMensaje(): void {
-    //comprobamos que el mensaje no este vacio
-    if (this.mensaje.trim() != "") {
-      this._mensajes.enviarMensaje(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje);
-      this.cerrarModal();
-    }else{
-      $("#mensaje").addClass("parpadear");
+	public enviarMensaje(): void {
+		//comprobamos que el mensaje no este vacio
+		if (this.mensaje.trim() != "") {
+			this._mensajes.enviarMensaje(this.miUsuario.getId(), this.otroUsuario.getId(), this.mensaje);
+			this.cerrarModal();
+		} else {
+			$("#mensaje").addClass("parpadear");
 			setTimeout(function () {
 				$("#mensaje").removeClass("parpadear");
 			}, 5000)
-    }
+		}
 	}
-	
+
 	//funcion par aborrar amigo
-	public borrarAmigo():void{
+	public borrarAmigo(): void {
 		//borramos el amigo
-		this._operacionesAmigos.borrarAmigo(this.miUsuario.getId(),this.otroUsuario.getId())
+		this._operacionesAmigos.borrarAmigo(this.miUsuario.getId(), this.otroUsuario.getId())
 		this.otroUsuario.setAmistad(0);
 	}
 
 	public cerrarModal(): void {
-    //recorremos la ventana modal y la cerramos
-    //usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
-    //componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
-    //@ts-ignore
-    $('#enviarmensaje').modal('hide');
-    //@ts-ignore
-    $('#solicitaramistad').modal('hide');
-    //reinicamos sus variables
-    this.mensaje = "";
+		//recorremos la ventana modal y la cerramos
+		//usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio
+		//componente que esta recogiendo con @ts-ignore se puede hacer que tipe script ignore este error
+		//@ts-ignore
+		$('#enviarmensaje').modal('hide');
+		//@ts-ignore
+		$('#solicitaramistad').modal('hide');
+		//reinicamos sus variables
+		this.mensaje = "";
 	}
-	
+
 	//funcion para denunciar un contenido
-	public denunciar(idelemento,idautor):void{
-		this._operacionesDenuncias.crearDenuncia(this.miUsuario.getId(),idelemento,idautor);
+	public denunciar(idelemento, idautor): void {
+		this._operacionesDenuncias.crearDenuncia(this.miUsuario.getId(), idelemento, idautor);
 	}
 }
