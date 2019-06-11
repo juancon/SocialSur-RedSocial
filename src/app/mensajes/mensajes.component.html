@@ -58,7 +58,7 @@
       <hr class="separarInfo">
       <div class="offset-md-3 col-md-6 mensaje">
         <div [innerHTML]="mensaje.getMensaje()"></div>
-        <div class="mt-2" id="responder{{mensaje.getId()}}">
+        <div class="mt-2" *ngIf="mostrarTextarea(mensaje.getId())">
           <textarea id="respuesta{{mensaje.getId()}}" class="form-control" [(ngModel)]="respuesta" [ngModelOptions]="{standalone: true}"
             placeholder="Escribe tu mensaje..."></textarea>
 

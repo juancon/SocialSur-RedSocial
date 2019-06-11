@@ -25,6 +25,7 @@ export class MensajesComponent implements OnInit {
 	public mostrarEnviados:boolean = false;
 	public estiloEnviados:string;
 	public estiloRecibidos:string;
+	public textareaActivo:string = "";
 	//variables referentes a responder/enviar mensajes
 	public respondiendo:boolean = false;
 	public nuevoMensaje:boolean = false;
@@ -50,22 +51,12 @@ export class MensajesComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		setTimeout(this.ocultar.bind(this),250);
-	}
-
-	public ocultar():void{
-		//si no se esta respondiendo se puden ocultar los textareas
-		if(!this.respondiendo){
-			$('[id^="responder"]').hide();
-		}
-		//recogemos los textareas de las respuestas
 	}
 
 	public obtenerMensajes():void{
 		//si no se esta respondiendo se pueden recargar los mensajes
 		if(!this.respondiendo && !this.nuevoMensaje){
 			this.mensajes = this._mensajes.obtenerMensajes(this.mensajes,this.usuario.getId());
-			setTimeout(this.ocultar.bind(this),50);
 		}
 	}
 	
@@ -75,8 +66,8 @@ export class MensajesComponent implements OnInit {
 		this.mostrarRecibidos = true;
 		this.mostrarEnviados = false;
 		this.respondiendo = false;
+		this.textareaActivo = "";
 		this.cambiarEstilo("recibidos");
-		setTimeout(this.ocultar.bind(this),1);
 	}
 	public mostrarSoloEnviados():void{
 		//ocultamos los enviados y mostramoslos recibidos
@@ -84,7 +75,7 @@ export class MensajesComponent implements OnInit {
 		this.mostrarRecibidos = false;
 		this.respondiendo = false;		
 		this.cambiarEstilo("enviados");
-		this.ocultar();
+		this.textareaActivo = "";
 	}
 
 	public cambiarEstilo(mostrar:string):void{
@@ -151,14 +142,22 @@ export class MensajesComponent implements OnInit {
 	public mostrarResponder(idmensaje:number):void{
 		if(this.respondiendo){
 			this.respondiendo = false;
+			this.textareaActivo = "";
 			this.respuesta = "";
 		}else{
 			this.respondiendo = true;
-			//@ts-ignore
-			$("#responder"+idmensaje).show();
+			this.textareaActivo = idmensaje+"";
 		}
+	}
 
-		this.ocultar();
+	//funcion para mostrar el textarea de respuesta
+	public mostrarTextarea(idelemento: number): boolean {
+		if (this.respondiendo) {
+			if (this.textareaActivo == idelemento + "") {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public responder(idusuarioto:number,idtextarea:string,mensaje){
@@ -169,6 +168,7 @@ export class MensajesComponent implements OnInit {
 			//ocultamos el textarea y reseteamos los avriables
 			this.respondiendo = false;
 			this.respuesta = "";
+			this.textareaActivo = "";
 			this.marcarLeido(mensaje);
 			
 			//actualizamos el array actual
@@ -216,7 +216,7 @@ export class MensajesComponent implements OnInit {
 
 	public enviarMensaje(idusuario:number,idusuarioto:number,mensaje:string):void{
 		this._mensajes.enviarMensaje(idusuario,idusuarioto,mensaje);
-		this.ocultar();
+		this.textareaActivo = "";
 	}
 
 	//funcion para cerrar la ventana modal
