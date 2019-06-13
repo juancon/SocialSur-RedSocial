@@ -1,3 +1,5 @@
+import { RecogerUsuarioLocalService } from './recoger-usuario-local.service';
+import { Usuario } from './../Usuario/usuario';
 import { Injectable } from '@angular/core';
 //Importamos el modulo http al servicio
 import {Http, Response, Headers} from "@angular/http";
@@ -18,12 +20,16 @@ export class OperacionesMeGustasService {
 	private urlMegustas:string;
 	//variables que devolvemos en las funciones
 	private contenidoUsuario:Array<Archivo>;
+	//usuario logueadoç
+	private usuario:Usuario;
 
 	constructor(
 		private _http: Http,
-		private _urls: UrlsService
+		private _urls: UrlsService,
+		private _recogerUsuario: RecogerUsuarioLocalService
 	) {
 		this.urlMegustas = this._urls.getUrl("megustas");
+		this.usuario = _recogerUsuario.getUsuario();
 	}
 
 	//funcion para obtener los megustas
@@ -123,15 +129,15 @@ export class OperacionesMeGustasService {
 		//recorremos el array que se nos pasa
 		for (var i = 0; i < arrayContenido.length; i++){
 			//llamamos a la funcion que comprueba si se ha dada megusta al archivo o no
-			this.comprobarMegusta(arrayContenido[i].getIdusuario(),arrayContenido[i].getId());
+			this.comprobarMegusta(arrayContenido[i].getId());
 		}
 		return this.contenidoUsuario;
 	}
 	//funcion que compureba si se ha dado megusta
-	public comprobarMegusta(idusuario:number,idelemento:number):void{
+	public comprobarMegusta(idelemento:number):void{
 		//variable que pasaremos al fichero php
 		var parametros = {
-			idusuario : idusuario,
+			idusuario : this.usuario.getId(),
 			idelemento : idelemento,
 			accion : "comprobarmegusta"
 		}

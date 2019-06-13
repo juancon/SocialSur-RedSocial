@@ -19,6 +19,9 @@ export class UrlsService {
         //asignamos el nombre del servidor
         //casa
         this.servidor = "http://192.168.1.150/php/";
+		
+		//aws
+		//this.servidor = "http://ec2-3-85-15-40.compute-1.amazonaws.com/php/";
 
         //otros
         //this.servidor = "http://192.168.114.56/";

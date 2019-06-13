@@ -19,6 +19,6 @@
 		echo "Código de confirmación no reconocido.";
 	}
 
-	header( "refresh:5;url=http://192.168.1.150" );
+	header( "refresh:5;url=http://ec2-3-85-15-40.compute-1.amazonaws.com" );
 
 ?>
