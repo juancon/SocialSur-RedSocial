@@ -18,22 +18,20 @@ export class UrlsService {
 	constructor() {
         //asignamos el nombre del servidor
         //casa
-        this.servidor = "http://192.168.1.150/php/";
+        //this.servidor = "http://192.168.1.150/php/";
 		
 		//aws
-		//this.servidor = "http://ec2-3-85-15-40.compute-1.amazonaws.com/php/";
+		this.servidor = "http://ec2-3-219-24-92.compute-1.amazonaws.com/php/";
 
         //otros
-        //this.servidor = "http://192.168.114.56/";
+		//this.servidor = "http://192.168.114.56/php/";
 
 		//añadimos el nombre del fichero y su accion al array
 		this.urls = [
 			 {nombre: "login", fichero: "login.php"},
 			 {nombre: "crearUsuario", fichero: "crearUsuario.php"},
 			 {nombre: "comprobarCorreo", fichero: "comprobarCorreo.php"},
-			 {nombre: "logout", fichero: "logout.php"},
 			 {nombre: "buscarUsuario", fichero: "buscarUsuario.php"},
-			 {nombre: "crearUsuario", fichero: "crearUsuario.php"},
 			 {nombre: "modificarUsuario", fichero: "modificarUsuario.php"},
 			 {nombre: "cambiarAvatar", fichero: "cambiarAvatar.php"},
 			 {nombre: "getNumNotificaciones", fichero: "getNumNotificaciones.php"},
@@ -43,7 +41,6 @@ export class UrlsService {
 			 {nombre: "recogerArchivos", fichero: "recogerArchivos.php"},
 			 {nombre: "enviarMensajeChat", fichero: "recogerComentarios.php"},
 			 {nombre: "megustas", fichero: "megustas.php"},
-			 {nombre: "nuevoEstado", fichero: "nuevoEstado.php"},
 			 {nombre: "conectar", fichero: "conectar.php"},
 			 {nombre: "subirArchivo", fichero: "subirArchivo.php"},
 			 {nombre: "mensajes", fichero: "mensajes.php"},
@@ -53,8 +50,6 @@ export class UrlsService {
 			 {nombre: "denuncias", fichero: "denuncias.php"},
 			 {nombre: "archivos", fichero: "archivos.php"},
 			 {nombre: "emailConfirmacion", fichero: "emailConfirmacion.php"}
-
-			 
 		]
 	}
 

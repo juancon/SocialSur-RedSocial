@@ -103,6 +103,9 @@
               [ngModelOptions]="{standalone: true}" placeholder="Nombre de la publicación" required>
             <div class="info">{{infoNombre}}</div><br>
           </div>
+          <div class="mb-3">
+            <textarea [(ngModel)]="menciones" [ngModelOptions]="{standalone: true}" class="form-control" name="tags" placeholder="Etiqueta a tus @amigos"></textarea>
+          </div>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="adorno">Subir</span>

@@ -76,8 +76,8 @@ export class RegistroComponent implements OnInit {
 			//creamos un array con los valores de los campos
 			let parametros = {
 				tipo: "usuario",
-				name: this.nombre,
-				lastname: this.apellido,
+				name: this.nombre.toLowerCase(),
+				lastname: this.apellido.toLowerCase(),
 				nick: this.apodo,
 				email: this.correo,
 				pass: this.password

@@ -43,6 +43,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 	public fichero: File;
 	public infoNombre: string = "";
 	public infoFichero: string = "";
+	public menciones:string  = "";
 	public archivo: any;
 	//variables referentes a los comentarios de los archivos
 	public comentarios: Array<Comentario> = new Array();
@@ -196,7 +197,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 		if (this.nombreArchivo.trim() != "") {
 			//comprobamos que se ha introducido un fichero
 			if (this.fichero != null) {
-				//cremaos la variable donde almacenaremos el tipo de archivo
+				//creamos la variable donde almacenaremos el tipo de archivo
 				let tipoArchivo;
 				//comprobamos si es una imagen o un video
 				//obtenemos la extension del archivo
@@ -220,6 +221,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 				parametros.append('nombre', this.nombreArchivo);
 				parametros.append('tipo', tipoArchivo);
 				parametros.append('extension', extension);
+				parametros.append('menciones', this.menciones);
 
 				//funcion http.post para enviar los datos
 				this._subirArchivo.subirArchivo(parametros).subscribe(
@@ -254,6 +256,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 		//reinicamos sus variables
 		this.nombreArchivo = "";
 		this.fichero = null;
+		this.menciones = "";
 
 	}
 

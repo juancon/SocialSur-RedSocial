@@ -36,8 +36,10 @@ export class AdministracionComponent implements OnInit {
 	public contenidoUsuario:Array<Archivo> = new Array();
 	//variables para ordenar
 	public ordenarPor:string = "nada";
-	//variable para dar de alta a nuevos administradores
+	//variable para moverse por los menus
+	public publicaciones:boolean = true;
 	public altaAdmin:boolean = false;
+	public mostrarUsuarios:boolean = false;
 	//variables relacionadas al HTML
 	public correo :string = "";
 	public password:string = "";
@@ -57,10 +59,12 @@ export class AdministracionComponent implements OnInit {
 	public passlon:boolean = false;
 	public pass2:boolean = false;
 	public error:boolean = false;
+	//variables para la página ver usuarios
+	public usuarios:Array<Usuario> = new Array();
   
   constructor(
 		public _cerrarSesion: CerrarSesionService,
-    public _operacionesDenuncias: OperacionesDenunciasService,
+    	public _operacionesDenuncias: OperacionesDenunciasService,
 		public _operacionesFechas: OperacionesFechasService,
 		public _operacionesUsuarios: OperacionesUsuariosService,
 		public _borrarArchivo: BorrarArchivoService,
@@ -79,17 +83,32 @@ export class AdministracionComponent implements OnInit {
   ngOnInit() {
 	}
 
-	public obtenerAdmins(){
+	public obtenerAdmins():void{
 		this.admins = this._operacionesUsuarios.getAdmins(this.admin.getId(),this.admins);
 	}
 
+	public obtenerUsuarios():void{
+		this.usuarios = this._operacionesUsuarios.getUsuarios(this.usuarios);
+	}
+
 	public altaAdminFormulario():void{
+		this.publicaciones = false;
+		this.mostrarUsuarios = false;
 		this.altaAdmin = true;
 		this.obtenerAdmins();
 	}
 
-	public irDenuncias(){
+	public irDenuncias():void{
 		this.altaAdmin = false;
+		this.mostrarUsuarios = false;
+		this.publicaciones = true;
+	}
+
+	public verUsuarios():void{
+		this.altaAdmin = false;
+		this.publicaciones = false;
+		this.mostrarUsuarios = true;
+		this.obtenerUsuarios();
 	}
 
 	public validar():void{
@@ -231,14 +250,23 @@ export class AdministracionComponent implements OnInit {
 		}
 	}
 
-	public borraAdmin(idusuario:number):void{
+	public borrarUsuario(idusuario:number,tipo:string):void{
 		this._operacionesUsuarios.borrarUsuario(idusuario);
-		
-		for(var i = 0; i < this.admins.length; i++){
-			if(this.admins[i].getId() == idusuario){
-				this.admins.splice(i,1);
+
+		if(tipo == "admin"){
+			for(var i = 0; i < this.admins.length; i++){
+				if(this.admins[i].getId() == idusuario){
+					this.admins.splice(i,1);
+				}
+			}
+		}else{
+			for(var i = 0; i < this.usuarios.length; i++){
+				if(this.usuarios[i].getId() == idusuario){
+					this.usuarios.splice(i,1);
+				}
 			}
 		}
+		
 	}
 	
 	public ordenarPorNumero():void{

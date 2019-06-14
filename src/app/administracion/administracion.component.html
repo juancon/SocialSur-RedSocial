@@ -10,7 +10,28 @@
       <div class="collapse navbar-collapse row" id="barraNavegacion">
         <div class="navbar-nav container d-flex flex-row d-flex col-12">
 
-          <div class="dropdown ml-5" title="Ordenar denuncias">
+          <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
+            <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
+              aria-expanded="false" (click)="irDenuncias()">
+              Ver Publicaciones denunciadas
+            </button>
+          </div>
+
+          <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
+            <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
+              aria-expanded="false" (click)="altaAdminFormulario()">
+              Modificar administradores
+            </button>
+          </div>
+
+          <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
+            <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
+              aria-expanded="false" (click)="verUsuarios()">
+              Ver usuarios
+            </button>
+          </div>
+
+          <div class="dropdown ml-5" title="Ordenar denuncias" *ngIf="publicaciones">
             <button class="btn btn-primary dropdown-toggle" type="button" id="ordenar" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
               Ordenar
@@ -21,13 +42,6 @@
             </div>
           </div>
 
-          <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
-            <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
-              aria-expanded="false" (click)="altaAdminFormulario()">
-              Modificar administradores
-            </button>
-          </div>
-
           <a class="nav-item nav-link active ml-auto mr-3" routerLink="" (click)="cerrarSesion()">
             <img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir">
             <span class="sr-only">(current)</span>
@@ -35,6 +49,30 @@
         </div>
       </div>
     </nav>
+  </div>
+
+  <div *ngIf="mostrarUsuarios">
+    <div clas="col-md-11 mx-auto">
+      <table class="adminform col-md-12 mx-auto">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Apodo</th>
+          <th>Bio</th>
+        </tr>
+        <tr *ngFor="let usuario of usuarios">
+            <td>{{usuario.getNombre()}}</td>
+            <td>{{usuario.getApellido()}}</td>
+            <td class="correoadmin">{{usuario.getEmai()}}</td>
+            <td>{{usuario.getApodo()}}</td>
+            <td>{{usuario.getBio()}}</td>
+          <td class="borrar">
+            <button class="btn btn-danger" (click)="borrarUsuario(usuario.getId(),'usuario')">Borrar</button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 
   <div *ngIf="altaAdmin">
@@ -81,7 +119,7 @@
         <tr *ngFor="let administrador of admins">
           <td class="correoadmin">{{administrador.getEmai()}}</td>
           <td class="borrar">
-            <button class="btn btn-danger" (click)="borraAdmin(administrador.getId())">Borrar</button>
+            <button class="btn btn-danger" (click)="borrarUsuario(administrador.getId(),'admin')">Borrar</button>
           </td>
         </tr>
       </table>
@@ -89,7 +127,7 @@
   </div>
 
 
-  <div *ngIf="!altaAdmin">
+  <div *ngIf="publicaciones">
     <div class="d-flex mx-auto justify-content-center mb-1">
       <!-- botones actualizar -->
       <button class="btn botonsubir" title="Actualizar" data-toggle="modal" data-target="#enviarmensaje"
