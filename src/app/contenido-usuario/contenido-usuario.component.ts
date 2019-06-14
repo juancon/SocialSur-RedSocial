@@ -309,7 +309,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 						//llamamos a la funcion para obtener los comentarios actualizados
 						let aux = this._comentarios.refrescarComentarios(idelemento, this.contenidoUsuario[i].getComentarios())
 						//solo DIOS sabe porque esta linea añade el nuevo comentario
-						this.contenidoUsuario[i].setComentarios(new Array());
+						this.contenidoUsuario[i].setComentarios(aux);
 						break;
 					}
 				}
