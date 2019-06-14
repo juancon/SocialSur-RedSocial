@@ -42,8 +42,8 @@
 		$usuarios = $funcionesUsuarios::getUsuariosByCadenaBusqueda($cadena);
 
 		for( $i = 0; $i < count($usuarios); $i++){
-			//evitamos devolver el usuario que ha realizado la busqueda
-			if ($idusuario == $usuarios[$i]->getId()) {
+			//evitamos devolver el usuario que ha realizado la busqueda o adminstradaores del sistema
+			if ($idusuario == $usuarios[$i]->getId() || $usuarios[$i]->getId() == 0 || $usuarios[$i]->getAdmin() == 1) {
 				continue;
 			}
 			//comprobamos si son amigos
@@ -140,6 +140,31 @@
 		//cambiamos la contraseña del usuario
 		$borrar = $funcionesUsuarios::cambiarPass($idusuario,$password);
 
+	}else if($accion == "obtenerusuarios"){
+
+		//realizamos la consulta
+		$usuarios = $funcionesUsuarios::getUsuarios();
+
+		for( $i = 0; $i < count($usuarios); $i++){
+			//evitamos devolver el usuario que ha realizado la busqueda
+			if ($usuarios[$i]->getId() == 0) {
+				continue;
+			}
+			
+
+			$usuario = array(
+					"id" => $usuarios[$i]->getId(),
+					"nombre" => $usuarios[$i]->getNombre(),
+					"apellido" => $usuarios[$i]->getApellido(),
+					"apodo" => $usuarios[$i]->getApodo(),
+					"email" => $usuarios[$i]->getPassword(),
+					"bio" => $usuarios[$i]->getBio(),
+					"avatar" => $usuarios[$i]->getAvatar(),
+					"conectado" => $usuarios[$i]->getConectado()
+			);
+
+			array_push($respuesta, $usuario);
+		}
 	}
 	
 	

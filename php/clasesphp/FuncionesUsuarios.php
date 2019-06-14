@@ -177,7 +177,7 @@
 
 
 		/**
-		 * obtiene los usuarios cullo nombre y apellido o apodo de parescan a la cadena solicitada
+		 * obtiene los usuarios cullo nombre y apellido o apodo se parescan a la cadena solicitada
 		 * @param string $cadena
 		 * @return array
 		*/

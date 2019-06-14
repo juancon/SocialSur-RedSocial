@@ -18,8 +18,8 @@
 	$respuesta = array();
 	if($tipo == "usuario"){
 		//recogemos las variables de ese objeto
-		@$name = $array->name;
-		@$lastname = $array->lastname;
+		@$name = ucwords($array->name);
+		@$lastname = ucwords($array->lastname);
 		@$nick = "@".$array->nick;
 		@$email = $array->email;
 		@$password = $array->pass;
