@@ -67,6 +67,25 @@
 		}
 
 		/**
+		 * obtiene un archivo por su ruta
+		 * @param string $ruta
+		 * @return array
+		*/
+		public static function getArchivosByRuta($ruta)
+		{
+			$conexion = DB::connectDB();
+			$seleccion = "	SELECT * 
+							FROM fotosvideos
+							WHERE url = '$ruta'";
+			$consulta = $conexion->query($seleccion);
+			$archivos = [];
+			while ($registro = $consulta->fetchObject()) {
+				$archivos[] = new Archivo($registro->id,$registro->url,$registro->nombre,$registro->idusuario,$registro->tipo,$registro->fecha);
+			}
+			return $archivos;
+		}
+
+		/**
 		 * borra un archivo de la base de datos por su id
 		 * @param int $id
 		 * @return ints

@@ -46,12 +46,15 @@
 		if (move_uploaded_file($_FILES["file"]["tmp_name"], $url)) {
 			//si se ha movido lo subimos
 			if($funcionesFotosVideos::subirArchivo($url,$nombre,$idusuario,$tipo) == 1){
-				//obtenemos el usuario
-				$usuario = $funcionesUsuarios::getUsuarioById($idusuario);
 				//recogemos las menciones de la publicación si las hay
 				if($_POST['menciones'] != ""){
+					//recogemos las menciones
 					$menciones  = $_POST['menciones'];
 					
+					//obtenemos la publicacion que acabamos de subir
+					$publicacion = $funcionesFotosVideos::getArchivosByRuta($url);
+					//obtenemos el usuario
+					$usuario = $funcionesUsuarios::getUsuarioById($idusuario);
 					//obtenemos los amigos del usuario
 					$amigos = $funcionesAmigos::getAmigosUsuario($idusuario);
 					$aux = array();
@@ -76,7 +79,7 @@
 					for($i = 0; $i < count($aux) ;$i++){
 						//preguntamos si el apodo del amigo se encontro en el mensaje
 						if(strrpos($menciones, $aux[$i]["apodo"]) !== false){
-							$mensaje = "<a href='/usuario?apodo=".$usuario[0]->getApodo()."'>".$usuario[0]->getNombre()." ".$usuario[0]->getApellido()."</a> te ha etiquetado en su última publicación";
+							$mensaje = "<a href='/usuario?apodo=".$usuario[0]->getApodo()."'>".$usuario[0]->getNombre()." ".$usuario[0]->getApellido()."</a> te ha etiquetado en su última <a href='/usuario?apodo=".$usuario[0]->getApodo()."&ref=".$publicacion[0]->getId()."'>publicación</a>";
 
 							//enviamos un mensaje al usuario del apado informandolo de que ha sido tagueado
 							$funcionesMensajes::crearMensaje(0,$aux[$i]["id"],$mensaje);
