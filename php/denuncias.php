@@ -26,16 +26,21 @@
 
 	$respuesta = array();
 	if($accion == "nuevadenuncia"){
+		// recogemos el id del usuairo que ha denunciado
 		@$idusuario = $array->idusuario;
+		// recogemos el id de la publicacion
 		@$idelemento = $array->idelemento;
+		// recogemos el id del autor de la publicacion
 		@$idautor = $array->idautor;
 		
 		//creamos la denuncia
-		$var = $funcionesDenuncias::nuevaDenuncia($idusuario,$idelemento,$idautor);
+		$creada = $funcionesDenuncias::nuevaDenuncia($idusuario,$idelemento,$idautor);
 
-		array_push($respuesta, $var);
+		//añadimos el resultado al array de respuesta
+		array_push($respuesta, $creada);
 		
 	}else if($accion == "borrardenuncias"){
+		// recogemos el id de la publicacion
 		@$idelemento = $array->idelemento;
 
 		//borramos la denuncia
@@ -53,11 +58,13 @@
 					$repetido =true;
 				}
 			}
-
+			// si la deuncia no se rpite la obtenemos
 			if(!$repetido){
-				//obtenemos los ids
+				//obtenemos el id del usuario que denuncia
 				$idusuario = $denunciasRaw[$i]["idusuario"];
+				//obtenemos el id de la publicacion
 				$idelemento = $denunciasRaw[$i]["idelemento"];
+				//obtenemos el id del autor de la publicacion
 				$idautor = $denunciasRaw[$i]["idautor"];
 				//obtenemos el usuario que ha realizado la denuncia
 				$usuario = $funcionesUsuarios::getUsuarioById($idusuario);
@@ -90,7 +97,7 @@
 
 				//obtenemos el numero de denuncias que ha recibido el elemento
 				$numDenuncias = $funcionesDenuncias::getNumDenunciasElemento($idelemento);
-				//lo añadimos al array de respuesta
+				//añadimos la información al array de respuesta
 				$respuesta[] = array(
 					"idusuario" => $idusuario,
 					"usuario" => array(
