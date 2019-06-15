@@ -48,10 +48,10 @@
 		}
 
 	}else if($accion == "getconversacion"){
-		//recogemos las demas variables
+		//recogemos el id del usuario
 		@$idAmigo = strtolower($array->idAmigo);
-		
-		//obtenemos las conversaciones de esas ids
+
+		//obtenemos las conversaciones sin leer de ese usuairo
 		$conversaciones = $funcionesChat::getConversacion($id,$idAmigo);
 		//preguntamos si hay conversaciones
 		if(count($conversaciones) == 0){
@@ -76,7 +76,7 @@
 			}
 		}
 	}else if($accion == "marcarleido"){
-		//recogemos las demas variables
+		//recogemos el id del amigo
 		@$idAmigo = strtolower($array->idAmigo);
 		//marcamos las conversaciones como leidas
 		$conversaciones = $funcionesChat::marcarLeido($idAmigo,$id);

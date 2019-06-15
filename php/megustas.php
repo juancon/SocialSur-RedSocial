@@ -21,29 +21,28 @@
 
 	$respuesta = array();
 	if($accion == "obtenermegustas"){
-		//si es para obtener el numero de megustas de un elemento
-		//recogemos las demas variables
+		//recogemos el id del elemento
 		@$idelemento = $array->idelemento;
-		//llamamos a la funcion del estado
+		//llamamos a la funcion para obtener los me gustas
 		$numMegustas = $funcionesMegustaArchivos::getNumMegustasArchivo($idelemento);
-		
+
 		// añadimos el numero al array con su id de elemento
 		$respuesta = array(
 			"nummegustas" => $numMegustas,
 			"idelemento" => $array->idelemento
 		);
 	}else if($accion == "darmegusta"){
-		//si es para dar megusta
-		//recogemos las demas variables
+		//recogemos la id la publicacion y del usuario
 		@$idelemento = $array->idelemento;
 		@$idusuario = $array->idusuario;
 
-		//preguntamos si es un estado o no
+		//creamos una variable para indicar si se ha borrado
 		$borrar = 0;
-		
+
 		//llamamos a la funcion para dar megusta a los archivos
 		$darMegusta = $funcionesMegustaArchivos::nuevoMegusta($idusuario,$idelemento);
 		if($darMegusta == 0){
+			// si el megusta existe lo borramos
 			$borrar = $funcionesMegustaArchivos::borrarMegusta($idusuario,$idelemento);
 		}
 
@@ -53,14 +52,13 @@
 			"quitar" => $borrar
 		);
 	}else if($accion == "comprobarmegusta"){
-		//si es para dar megusta
-		//recogemos las demas variables
+		//recogemos el id del elemento y del usuario
 		@$idelemento = $array->idelemento;
 		@$idusuario = $array->idusuario;
 
-		//si es un estado llamamos a la funcion del estado
+		//comprobamos si se ha dado megusta
 		$comprobar = $funcionesMegustaArchivos::comprobarMegusta($idusuario,$idelemento);
-		
+
 		// añadimos el estado que ha devulto la consulta al array
 		$respuesta = array(
 			"comprobar" => $comprobar

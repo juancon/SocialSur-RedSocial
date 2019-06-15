@@ -14,14 +14,16 @@
 	$json = file_get_contents('php://input');
 	//convertimos ese json a objeto
 	$array = json_decode($json);
-	//recogemos las variable que nos indica el tipo de modificacion
+	//recogemos el id del usuario
 	@$id = strtolower($array->id);
+	// recogemos el id del amigo que va a recibir el mensaje
 	@$idAmigo = strtolower($array->idAmigo);
+	// recogemos el mensaje
 	@$mensaje = $array->mensaje;
-	
 
+	// creamos el array de respuesta
 	$respuesta = array();
-	//creamos el mensaje
+	//enviamos el mensaje
 	if($funcionesChat::nuevoMensaje($id,$idAmigo,$mensaje) == 1){
 		//indicamos que se ha viado
 		$repuesta = array(

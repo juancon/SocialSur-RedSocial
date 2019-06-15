@@ -22,18 +22,19 @@
 	$respuesta = array();
 
 	if($accion == "enviarmensaje"){
-		//recogemos las variables necesarias par realizar la accion
+		//recogemos el id del remitente
 		$idusuariofrom = $array->idusuariofrom;
+		// recogemos el id del destinatario
 		$idusuarioto = $array->idusuarioto;
+		//recogemos el mensaje
 		$mensaje = $array->mensaje;
 
 		//enviamos el mensaje
-
 		$funcionesMensajes::crearMensaje($idusuariofrom,$idusuarioto,$mensaje);
 	}else if($accion == "obtenermensajes"){
-		//recogemos las demas variables
+		//recogemos el id del usuario
 		@$idusuario = $array->idusuario;
-		
+
 		//opbtenemos los mensajes que ha enviado o recibido el usuario
 		$mensajes = $funcionesMensajes::getMensajesEnviadosRecibidos($idusuario);
 		//recorremos el array y lo añadimos al array de respuesta
@@ -101,8 +102,10 @@
 			
 		}
 	}else if($accion == "borrarmensaje"){
+		// recogemos el id del mensaje y del usuario
 		@$idmensaje = $array->idmensaje;
 		@$idusuario = $array->idusuario;
+		// obtenemos si ees un mensaje enviado o recibido
 		@$tipomensaje = $array->tipomensaje;
 
 		//obtenemos el mensaje
@@ -124,10 +127,11 @@
 			"borrado" => $borrado
 		);
 	}else if($accion == "marcarleido"){
+		//recogemos el id del mensaje
 		@$idmensaje = $array->idmensaje;
-
+		// marcamos el mensaje como leido
 		$leido = $funcionesMensajes::modificarLeidoMensaje($idmensaje);
-
+		// enviamos la respuesta
 		$respuesta = array(
 			"leido" => $leido
 		);

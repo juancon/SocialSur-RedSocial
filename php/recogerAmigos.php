@@ -16,9 +16,9 @@
 	$json = file_get_contents('php://input');
 	//convertimos ese json a objeto
 	$array = json_decode($json);
-	//recogemos las variable que nos indica el tipo de modificacion
+	//recogemos el id del usuario
 	@$id = strtolower($array->id);
-	
+
 	//obtenemos los amigos del usuario
 	$amigos = $funcionesAmigos::getAmigosUsuario($id);
 	$respuesta = array();

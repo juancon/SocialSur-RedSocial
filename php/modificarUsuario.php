@@ -19,7 +19,7 @@
 
 	//preguntamos cual va a ser la modificacion
 	if($tipo == "bio"){
-		//recogemos las demas variables
+		//recogemos el id del usuario y la nueva bio
 		@$id = $array->id;
 		@$bio = $array->bio;
 		//realizamos la modificacion y devolvemos la respuesta

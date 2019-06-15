@@ -7,17 +7,17 @@
 	session_start();
 	//incluimos el fichero que continen las funciones referentes a los usuarios
 	include 'clasesphp/FuncionesUsuarios.php';
+	//instanciamos la calse que contiene todas las funciones de usuario
+	$funciones = new FuncionesUsuarios;
 
 	//convertimos a Jason los datos enviados por angular con la funcion http.post
 	$json = file_get_contents('php://input');
 	//convertimos ese json a objeto
 	$array = json_decode($json);
-	//recogemos las variables de ese objeto
+	//recogemos el correo y la contraseña
 	@$email = $array->email;
 	@$password = $array->pass;
 
-	//instanciamos la calse que contiene todas las funciones de usuario
-	$funciones = new FuncionesUsuarios;
 	//llamamos a la funcion que devulve un usuario por nombre y contraseña
 	$usuario = $funciones::getUsuarioByEmailPassword($email,$password);
 
@@ -38,7 +38,6 @@
 			"activado" => $usuario[0]->getActivado(),
 			"admin" => $usuario[0]->getAdmin()
 		);
-		$_SESSION["usuario"] = serialize($respuesta);
 	}else{
 		//creamos un array con error
 		$respuesta = array('error' => "error");

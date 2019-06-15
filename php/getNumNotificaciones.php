@@ -16,21 +16,21 @@
 	$json = file_get_contents('php://input');
 	//convertimos ese json a objeto
 	$array = json_decode($json);
-	//recogemos las variable que nos indica el tipo de modificacion
+	// recogemos el id del usaurio
 	@$id = strtolower($array->id);
+	// recogemos la variable que indica si queremos recoger las peticones o los mensajes
 	@$tipo = $array->tipo;
-	
-	//obtenemos los mensajes no leios
-	$mensajes = $funcionesMensajes::getMensajesNoLeidosbyUsuarioTo($id);
-	//obtenemos las peticiones no aceptas o rechazadas
-	$peticiones = $funcionesPeticiones::getPeticionesUsuarioToNoAceptadas($id);
 
-	//dependiendo de si se puden lapeticiones o los mensajes devolvemos una u otra
+	//dependiendo de si se quiere lapeticiones o los mensajes devolvemos una u otra
 	if($tipo == "mensajes"){
+		//obtenemos los mensajes no leios
+		$mensajes = $funcionesMensajes::getMensajesNoLeidosbyUsuarioTo($id);
 		$respuesta = array(
 			"total" => count($mensajes)
 		);
 	}else{
+		//obtenemos las peticiones no aceptas o rechazadas
+		$peticiones = $funcionesPeticiones::getPeticionesUsuarioToNoAceptadas($id);
 		$respuesta = array(
 			"total" => count($peticiones)
 		);

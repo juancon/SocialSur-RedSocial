@@ -23,41 +23,43 @@
 	$respuesta = array();
 
 	if($accion == "obtenerpeticiones"){
+		//recogemos el ide del usuario
 		@$idusuario = $array->idusuario;
 
 		//obtenetenemos las peticiones
 		$peticiones = $funcionesPeticionAmistad::getPeticionesUsuarioTo($idusuario);
-
+		// recorremos el array de las peticiones
 		for ($i=0; $i < count($peticiones); $i++) { 
 			//obtenemos el usuario que envia la peticion
 			$otroUsuario = $funcionesUsuarios::getUsuarioById($peticiones[$i]->getUsuariofrom());
 			
 			//creamos un array con los datos de la peticion y el usuario que la envia
 			$peticion = array(
-							"usuariofrom" => $peticiones[$i]->getUsuariofrom(),
-							"usuarioto" => $peticiones[$i]->getusuarioto(),
-							"mensaje" => $peticiones[$i]->getMensaje(),
-							"otroUsuario" => array(
-												"id" => $otroUsuario[0]->getId(),
-												"nombre" => $otroUsuario[0]->getNombre(),
-												"apellido" => $otroUsuario[0]->getApellido(),
-												"apodo" => $otroUsuario[0]->getApodo(),
-												"email" => $otroUsuario[0]->getPassword(),
-												"bio" => $otroUsuario[0]->getBio(),
-												"avatar" => $otroUsuario[0]->getAvatar(),
-												"conectado" => $otroUsuario[0]->getConectado()
-											),
-							"aceptado" => $peticiones[$i]->getAceptado(),
-							"fecha" => $peticiones[$i]->getFecha()
+					"usuariofrom" => $peticiones[$i]->getUsuariofrom(),
+					"usuarioto" => $peticiones[$i]->getusuarioto(),
+					"mensaje" => $peticiones[$i]->getMensaje(),
+					"otroUsuario" => array(
+						"id" => $otroUsuario[0]->getId(),
+						"nombre" => $otroUsuario[0]->getNombre(),
+						"apellido" => $otroUsuario[0]->getApellido(),
+						"apodo" => $otroUsuario[0]->getApodo(),
+						"email" => $otroUsuario[0]->getPassword(),
+						"bio" => $otroUsuario[0]->getBio(),
+						"avatar" => $otroUsuario[0]->getAvatar(),
+						"conectado" => $otroUsuario[0]->getConectado()
+					),
+					"aceptado" => $peticiones[$i]->getAceptado(),
+					"fecha" => $peticiones[$i]->getFecha()
 			);
 			//la añadimos al array
 			array_push($respuesta, $peticion);
 		}
-
-
 	}else if($accion == "responderpeticion"){
+		// recogemos el id del usuario
 		@$idusuariofrom = $array->idusuariofrom;
+		// recogemos el id del remitente
 		@$idusuarioto = $array->idusuarioto;
+		// recogemos la respuesta
 		@$respuestaUsuario = $array->respuesta;
 
 		//preguntamos si el usuario ha aceptado o rechazado la solicitud
@@ -82,12 +84,15 @@
 			);
 		}
 	}else if($accion == "enviarsolicitud"){
+		// recogemos la id del usuairo
 		@$idusuario = $array->idusuario;
+		// recogemos la id del destinatario
 		@$idusuarioto = $array->idusuarioto;
+		// recogemos el mensaje
 		@$mensaje = $array->mensaje;
-
+		// enviamos la peticion
 		$enviar = $funcionesPeticionAmistad::nuevaPeticion($idusuario,$idusuarioto,$mensaje);
-
+		// devolvemos la respuesta del create
 		$respuesta = array(
 			"enviar" => $enviar
 		);

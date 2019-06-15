@@ -23,24 +23,26 @@
 	$respuesta = array();
 
 	if($accion == "obtenernombreusuario"){
-		//recogemos las variables necesarias par realizar la accion
+		//recogemos el id del usuario
 		@$idusuario = $array->idusuario;
 
 		//realizamos la consulta
 		$usuario = $funcionesUsuarios::getUsuarioById($idusuario);
-
+		//añadimos el resultado al id de respuesta
 		$respuesta = array(
 			"nombre" => $usuario[0]->getNombre(),
 			"apellido" => $usuario[0]->getApellido()
 		);
 
 	}else if($accion == "buscarusuario"){
+		// recogemos el id del usaurio
 		@$idusuario = $array->idusuario;
+		// recogemos la cadena que se ha buscado
 		@$cadena = $array->cadena;
 
 		//realizamos la consulta
 		$usuarios = $funcionesUsuarios::getUsuariosByCadenaBusqueda($cadena);
-
+		// recorremos los usuarios
 		for( $i = 0; $i < count($usuarios); $i++){
 			//evitamos devolver el usuario que ha realizado la busqueda o adminstradaores del sistema
 			if ($idusuario == $usuarios[$i]->getId() || $usuarios[$i]->getId() == 0 || $usuarios[$i]->getAdmin() == 1) {
@@ -56,7 +58,7 @@
 					$amistad = 2;
 				}
 			}
-
+			// añadimos la informacion a un array
 			$usuario = array(
 					"id" => $usuarios[$i]->getId(),
 					"nombre" => $usuarios[$i]->getNombre(),
@@ -68,11 +70,13 @@
 					"conectado" => $usuarios[$i]->getConectado(),
 					"amistad" => $amistad
 			);
-
+			// añadimos el array al array de respuesta
 			array_push($respuesta, $usuario);
 		}
 	}else if($accion == "buscarapodo"){
+		//recogemos el id del usuario
 		@$idusuario = $array->idusuario;
+		//recogemos el apodo
 		@$apodo = $array->apodo;
 
 		//realizamos la consulta
@@ -88,7 +92,7 @@
 				$amistad = 2;
 			}
 		}
-
+		// añadimos la información a un array
 		$usuario = array(
 				"id" => $usuarios[0]->getId(),
 				"nombre" => $usuarios[0]->getNombre(),
@@ -100,21 +104,22 @@
 				"conectado" => $usuarios[0]->getConectado(),
 				"amistad" => $amistad
 		);
-
+		// añadimos el array al array de respuesta
 		array_push($respuesta, $usuario);
 	}else if($accion == "obteneradmins"){
+		// recogemos el id del usuario
 		@$idusuario = $array->idusuario;
 
 		//realizamos la consulta
 		$admins = $funcionesUsuarios::getAdmins();
-
+		//recorremos el array
 		for( $i = 0; $i < count($admins); $i++){
 			//evitamos devolver el usuario que ha realizado la busqueda
 			if ($idusuario == $admins[$i]->getId()) {
 				continue;
 			}
 			
-
+			//añadimos los datos a un array
 			$admin = array(
 					"id" => $admins[$i]->getId(),
 					"nombre" => $admins[$i]->getNombre(),
@@ -125,16 +130,19 @@
 					"avatar" => $admins[$i]->getAvatar(),
 					"conectado" => $admins[$i]->getConectado()
 			);
-
+			// añadimo el array al array de respuesta
 			array_push($respuesta, $admin);
 		}
 	}else if($accion == "borrarusuario"){
+		// recogemos le id del usuario
 		@$idusuario = $array->idusuario;
 
 		//borramos el usuario
 		$borrar = $funcionesUsuarios::borrarUsuario($idusuario);
 	}else if($accion == "cambiarpassword"){
+		// recogemos el id del usuario
 		@$idusuario = $array->idusuario;
+		// recogemos la nueva contraseña
 		@$password = $array->password;
 
 		//cambiamos la contraseña del usuario
@@ -144,14 +152,14 @@
 
 		//realizamos la consulta
 		$usuarios = $funcionesUsuarios::getUsuarios();
-
+		// recorremos el array de usuarios
 		for( $i = 0; $i < count($usuarios); $i++){
 			//evitamos devolver el usuario que ha realizado la busqueda
 			if ($usuarios[$i]->getId() == 0) {
 				continue;
 			}
 			
-
+			// añadimos la unformacion del usuario a un array
 			$usuario = array(
 					"id" => $usuarios[$i]->getId(),
 					"nombre" => $usuarios[$i]->getNombre(),
@@ -162,7 +170,7 @@
 					"avatar" => $usuarios[$i]->getAvatar(),
 					"conectado" => $usuarios[$i]->getConectado()
 			);
-
+			// lo añadimos al array de respuesta
 			array_push($respuesta, $usuario);
 		}
 	}
