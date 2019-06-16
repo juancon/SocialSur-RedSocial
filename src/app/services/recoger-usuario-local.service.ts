@@ -7,10 +7,10 @@ import { Usuario } from '../Usuario/usuario';
 })
 export class RecogerUsuarioLocalService {
 	
-	constructor(){
-	}
-
+	constructor(){}
+	// funcion que obtiene el usuario alñmacenado en sesion o en local
 	public getUsuario():Usuario{
+		// preguntamos si el usuario en sesion existe
 		if(sessionStorage.getItem("usuario") != null){
 			//recogemos el usuario almacenado en local y lo convertimos a objeto
 			let aux = JSON.parse(sessionStorage.getItem("usuario"));
@@ -31,13 +31,17 @@ export class RecogerUsuarioLocalService {
 			//lo devolvemos
 			return usuarioAux;
 		}else if(localStorage.getItem("usuario") != null){
+			// si no exciste el usuario en sesion pero si en local 
+			// creamo la sesion con los datos del local
 			sessionStorage.setItem("usuario",localStorage.getItem("usuario"));
+			// llamamos a esta misma funcion
 			this.getUsuario();
 		}
+		//si no esxite ninguno devolvemos null
 		return null;
 	}
 
-
+	//funcion para obetner un amigo guardado en sesion
 	public getAmigoHablando():Usuario{
 		if(sessionStorage.getItem("amigoHablando") != null){
 			//recogemos el usuario almacenado en local y lo convertimos a objeto
@@ -59,9 +63,10 @@ export class RecogerUsuarioLocalService {
 			//lo devolvemos
 			return usuarioAux;
 		}
+		//si no existe devolvemos un usuario vacio
 		return new Usuario(0," "," "," ",""," "," "," "," ",0,0);
 	}
-
+	// funcion ara obtener a un usuario guardado en sesion
 	public getOtroUsuario():Usuario{
 		if(sessionStorage.getItem("otrousuario") != null){
 			//recogemos el usuario almacenado en local y lo convertimos a objeto

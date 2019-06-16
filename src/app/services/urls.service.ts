@@ -16,43 +16,43 @@ export class UrlsService {
 	private urls:Array<{nombre:string,fichero:string}>;
 
 	constructor() {
-        //asignamos el nombre del servidor
-        //casa
-        //this.servidor = "http://192.168.1.150/php/";
+		//asignamos el nombre del servidor
+		//casa
+		//this.servidor = "http://192.168.1.150/php/";
 		
 		//aws
 		this.servidor = "http://ec2-3-219-24-92.compute-1.amazonaws.com/php/";
 
-        //otros
+		//otros
 		//this.servidor = "http://192.168.114.56/php/";
 
 		//añadimos el nombre del fichero y su accion al array
 		this.urls = [
-			 {nombre: "login", fichero: "login.php"},
-			 {nombre: "crearUsuario", fichero: "crearUsuario.php"},
-			 {nombre: "comprobarCorreo", fichero: "comprobarCorreo.php"},
-			 {nombre: "buscarUsuario", fichero: "buscarUsuario.php"},
-			 {nombre: "modificarUsuario", fichero: "modificarUsuario.php"},
-			 {nombre: "cambiarAvatar", fichero: "cambiarAvatar.php"},
-			 {nombre: "getNumNotificaciones", fichero: "getNumNotificaciones.php"},
-			 {nombre: "Amigos", fichero: "amigos.php"},
-			 {nombre: "getConversacion", fichero: "getConversacion.php"},
-			 {nombre: "enviarMensajeChat", fichero: "enviarMensajeChat.php"},
-			 {nombre: "recogerArchivos", fichero: "recogerArchivos.php"},
-			 {nombre: "enviarMensajeChat", fichero: "recogerComentarios.php"},
-			 {nombre: "megustas", fichero: "megustas.php"},
-			 {nombre: "conectar", fichero: "conectar.php"},
-			 {nombre: "subirArchivo", fichero: "subirArchivo.php"},
-			 {nombre: "mensajes", fichero: "mensajes.php"},
-			 {nombre: "comentarios", fichero: "comentarios.php"},
-			 {nombre: "usuarios", fichero: "usuarios.php"},
-			 {nombre: "peticiones", fichero: "peticiones.php"},
-			 {nombre: "denuncias", fichero: "denuncias.php"},
-			 {nombre: "archivos", fichero: "archivos.php"},
-			 {nombre: "emailConfirmacion", fichero: "emailConfirmacion.php"}
+				{nombre: "login", fichero: "login.php"},
+				{nombre: "crearUsuario", fichero: "crearUsuario.php"},
+				{nombre: "comprobarCorreo", fichero: "comprobarCorreo.php"},
+				{nombre: "buscarUsuario", fichero: "buscarUsuario.php"},
+				{nombre: "modificarUsuario", fichero: "modificarUsuario.php"},
+				{nombre: "cambiarAvatar", fichero: "cambiarAvatar.php"},
+				{nombre: "getNumNotificaciones", fichero: "getNumNotificaciones.php"},
+				{nombre: "Amigos", fichero: "amigos.php"},
+				{nombre: "getConversacion", fichero: "getConversacion.php"},
+				{nombre: "enviarMensajeChat", fichero: "enviarMensajeChat.php"},
+				{nombre: "recogerArchivos", fichero: "recogerArchivos.php"},
+				{nombre: "enviarMensajeChat", fichero: "recogerComentarios.php"},
+				{nombre: "megustas", fichero: "megustas.php"},
+				{nombre: "conectar", fichero: "conectar.php"},
+				{nombre: "subirArchivo", fichero: "subirArchivo.php"},
+				{nombre: "mensajes", fichero: "mensajes.php"},
+				{nombre: "comentarios", fichero: "comentarios.php"},
+				{nombre: "usuarios", fichero: "usuarios.php"},
+				{nombre: "peticiones", fichero: "peticiones.php"},
+				{nombre: "denuncias", fichero: "denuncias.php"},
+				{nombre: "archivos", fichero: "archivos.php"},
+				{nombre: "emailConfirmacion", fichero: "emailConfirmacion.php"}
 		]
 	}
-
+	//funcion que devulve la url
 	public getUrl(accion:string):string{
 		let cadena = this.servidor;
 		//recorremos el array

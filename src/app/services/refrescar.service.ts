@@ -6,16 +6,10 @@ import {Router} from '@angular/router';
 })
 export class RefrescarService {
 
-	constructor(
-		private router: Router
-	) { }
+	constructor() { }
 
 	//metodo para refrescar la ventana
 	public refrescar(): void {
 		window.location.reload();
-	}
-
-	public redirigirByApodo(apodo:string){
-		this.router.navigate(['/usuario/'+apodo])
 	}
 }

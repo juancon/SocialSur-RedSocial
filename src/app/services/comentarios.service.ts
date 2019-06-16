@@ -18,8 +18,11 @@ import {Archivo} from '../Archivo/archivo';
   providedIn: 'root'
 })
 export class ComentariosService {
+	// variable para almacenar la url del archivo PHP
 	private urlComentarios:string;
+	// array para almacenar las publicaciones que se devuelven
 	private archivos:Array<Archivo>;
+	// array par almacenar los comentarios que se devuelven
 	private comentarios:Array<Comentario> = new Array();
 
 	constructor(
@@ -32,6 +35,7 @@ export class ComentariosService {
 	}
 	//funcion para publicar un nuevo comentario
 	public nuevoComentario(idusuario:number,idelemento:number,comentario:string):void{
+		// variable que se enviara al servidor
 		let parametros = {
 			idusuario : idusuario,
 			idelemento : idelemento,
@@ -40,11 +44,9 @@ export class ComentariosService {
 		}
 		//funcion http.post para enviar los datos
 		let enviar = this._http.post(this.urlComentarios, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		//llamamos a la funcion subscribe para completar la llamada a php
 		enviar.subscribe(
 			result => {
-				//recogemos solo la respuesta del PHP y la pasamos a una variable
-				let datos = result;
 			}
 		);
 	}
@@ -52,7 +54,7 @@ export class ComentariosService {
 	//funcion para obetenr los comentarios de un elemento
 	public getComentariosElementos(idelemento:number,arrayContenido:Array<Archivo>):Array<Archivo>{
 		this.archivos = arrayContenido;
-
+		// variable que enveara al archivo PHP
 		let parametros = {
 			idelemento : idelemento,
 			accion : "obtenercomentarios"
@@ -72,7 +74,7 @@ export class ComentariosService {
 		//devolvemos el array
 		return this.archivos;
 	}
-	
+
 	//Funcion que añade los comentarios al array local
 	private addComentarios(datos:Array<any>):void{
 		//recorremos el array de archivos
@@ -98,9 +100,10 @@ export class ComentariosService {
 		}
 	}
 
+	// funcion para actualiozar los comentarios
 	public refrescarComentarios(idelemento:number,arrayComentarios:Array<Comentario>):Array<Comentario>{
 		this.comentarios = arrayComentarios;
-
+		// variable que se enviara al fichero PHP
 		let parametros = {
 			idelemento : idelemento,
 			accion : "obtenercomentarios"
@@ -121,30 +124,9 @@ export class ComentariosService {
 		return this.comentarios;
 	}
 
-	private refreshComentarios(datos:Array<string>):void{
-		//recorremos el array de datops
-		for (var i = 0; i< datos.length ; i++){
-			//recorremos el array de comentarios
-			for(var j = 0; j < this.comentarios.length; j++){
-				//comprobamos que los id de los datos y los comentarios coincidan
-				if(datos[i]["id"] == this.comentarios[j].getId()){
-					//cambiamos las fechas en funcion si son de hoy
-					datos[i]['fecha'] = this._operacionesFechas.convertirFecha(datos[i]['fecha']);
-					//añadimos el comentario
-					this.comentarios[j] = new Comentario(
-						datos[i]['id'],
-						datos[i]['idusuario'],
-						datos[i]['idelemento'],
-						datos[i]["nombre"],
-						datos[i]['comentario'],
-						datos[i]['fecha']
-					);
-				}
-			}
-		}
-	}
-
+	// funcion para borrar todos los comentarios de una publicacion
 	public borrarComentario(idcomentario:number):void{
+		//parametros que se enviaran al servidor
 		let parametros = {
 			idcomentario : idcomentario,
 			accion : "borrarcomentario"
@@ -159,7 +141,7 @@ export class ComentariosService {
 			}
 		);
 	}
-
+	// funcion para borrar un comentario de una publicacion
 	public borrarComentarios(idelemento:number):void{
 		let parametros = {
 			idelemento : idelemento,

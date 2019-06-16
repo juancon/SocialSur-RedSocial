@@ -18,7 +18,9 @@ import { RecogerUsuarioLocalService } from './recoger-usuario-local.service';
   providedIn: 'root'
 })
 export class OperacionesUsuariosService {
+	// variable que alamcena la rutal al fichero PHP
 	private urlUsuarios:string;
+	// variabvle que almacena la respuestas de las funciones
 	private usuario: Usuario;
 	private usuarios:Array<Usuario>;
 	private otroUsuario:Array<Usuario>;
@@ -33,16 +35,16 @@ export class OperacionesUsuariosService {
 		this.urlUsuarios = this._urls.getUrl("usuarios");
 		this.usuario = this._recogerUsuario.getUsuario();
 	}
-
+	// funcion para buscar un usuario por su nombre o apodo
 	public buscarUsuarioCadena(idusuario:number,cadena:string,arrayUsuarios:Array<Usuario>):Array<Usuario>{
 		this.usuarios = [];
-
+		// variable que almacena los parámetros que se enviaran a PHP
 		let parametros = {
 			idusuario : idusuario,
 			cadena : cadena,
 			accion : "buscarusuario"
-		  }
-	  
+			}
+		
 		//funcion http.post para enviar los datos
 		let obtener = this._http.post(this.urlUsuarios, JSON.stringify(parametros)).pipe(map(res => res.json()));
 		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
@@ -50,7 +52,7 @@ export class OperacionesUsuariosService {
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
-				//llamamos a la funcion que ñade los mensajes al array principal
+				//llamamos a la funcion que añade los usuarios al array principal
 				this.addUsuarios(datos);
 			}
 		);
@@ -75,6 +77,7 @@ export class OperacionesUsuariosService {
 					1,
 					0
 			);
+			// cambiamos el paramtro de amistad del usuario
 			this.usuarios[i].setAmistad(datos[i]["amistad"]);
 		}
 
@@ -93,10 +96,10 @@ export class OperacionesUsuariosService {
 			return 0;
 		});
 	}
-
+	// funcion que devulve un usuario por su apodo
 	public getUsuarioByApodo(apodo:string):void{
 		this.usuarios = [];
-
+		// variable que almacena los parámetros que se enviaran a PHP
 		let parametros = {
 			idusuario: this.usuario.getId(),
 			apodo : apodo,
@@ -109,23 +112,23 @@ export class OperacionesUsuariosService {
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
-				//llamamos a la funcion que ñade los mensajes al array principal
+				//llamamos a la funcion crea una sesion con el usuario
 				this.addOtroUsuario(datos);
 			}
 		);
 		
 	}
 		
-		
+	// funcion que crea una sesion con el usuario recibido desde PHP
 	private addOtroUsuario(datos:Array<string>):void{
 		//creamos una seesion con el usuario
 		sessionStorage.setItem("otrousuario",JSON.stringify(datos[0]))
 		
 	}
-
+	//funcion que obtinen todos los usuarios administradores
 	public getAdmins(idusuario:number,arrayAdmins:Array<Usuario>):Array<Usuario>{
 		this.usuarios = arrayAdmins;
-
+		// variable que almacena los parámetros que se enviaran a PHP
 		let parametros = {
 			idusuario: idusuario,
 			accion : "obteneradmins"
@@ -137,17 +140,17 @@ export class OperacionesUsuariosService {
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
-				//llamamos a la funcion que ñade los mensajes al array principal
+				//llamamos a la funcion queañade los usuarios al array principal
 				this.addUsuarios(datos);
 			}
 		);
 
 		return this.usuarios;
 	}
-
+	// funcion que obtiene todos los usuarios nomales
 	public getUsuarios(arrayAdmins:Array<Usuario>):Array<Usuario>{
 		this.usuarios = arrayAdmins;
-
+		// variable que almacena los parámetros que se enviaran a PHP
 		let parametros = {
 			accion : "obtenerusuarios"
 		}
@@ -158,15 +161,16 @@ export class OperacionesUsuariosService {
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
-				//llamamos a la funcion que ñade los mensajes al array principal
+				//llamamos a la funcion que añade los usuarios al array principal
 				this.addUsuarios(datos);
 			}
 		);
 
 		return this.usuarios;
 	}
-
+	//funcion que borra un usuario
 	public borrarUsuario(idusuario:number):void{
+		// variable que almacena los parámetros que se enviaran a PHP
 		let parametros = {
 			idusuario: idusuario,
 			accion : "borrarusuario"
@@ -174,10 +178,7 @@ export class OperacionesUsuariosService {
 		//funcion http.post para enviar los datos
 		let obtener = this._http.post(this.urlUsuarios, JSON.stringify(parametros)).pipe(map(res => res.json()));
 		//llamamos a la funcion subscribe para completar la llamada phps
-		obtener.subscribe(
-			result => {
-			}
-		);
+		obtener.subscribe(result => {});
 	}
 }
 

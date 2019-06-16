@@ -10,6 +10,7 @@ import {UrlsService} from '../services/urls.service';
   providedIn: 'root'
 })
 export class SubirArchivoService {
+	// varaiables para alamcenar las rutas de los ficheros PHP
 	private urlSubirArchivo:string;
 	private urlCambiarAvatar:string;
 	constructor(
@@ -19,12 +20,14 @@ export class SubirArchivoService {
 		this.urlCambiarAvatar = this._urls.getUrl("cambiarAvatar");
 		this.urlSubirArchivo = this._urls.getUrl("subirArchivo")
 	}
-
+	//funcion para subir avtar y cambiar lo en la bse de datos
 	public cambiarAvatar(datos:any):Observable<any>{
+		// devolvemos la llmada a falta de un suscribe
 		return this.http.post(this.urlCambiarAvatar, datos);
 	}
-
+	//funcion para subir una publicacion
 	public subirArchivo(datos:any):Observable<any>{
+		// devolvemos la llmada a falta de un suscribe
 		return this.http.post(this.urlSubirArchivo, datos);
 	}
 }

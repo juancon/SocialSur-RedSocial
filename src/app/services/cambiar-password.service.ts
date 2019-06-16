@@ -11,7 +11,9 @@ import { UrlsService } from './urls.service';
   providedIn: 'root'
 })
 export class CambiarPasswordService {
+  // url del fichero PHP en el servidor
   public urlCambiarPass:string;
+  // variable que almacenara el usuario
   public usuario:Usuario;
   constructor(
     public _urls: UrlsService,
@@ -22,7 +24,9 @@ export class CambiarPasswordService {
     this.usuario = this._recogerUsuario.getUsuario();
   }
 
+  //funcion para cambiar la contraseña
   public cambiarPassword(idusuario:number,passwordnueva:string):void{
+    //variable que se enviara al fichero PHP
     let parametros = {
       accion: "cambiarpassword",
       idusuario: idusuario,
@@ -30,14 +34,15 @@ export class CambiarPasswordService {
     }
 
     //funcion http.post para enviar los datos
-		let cambiarPass = this._http.post(this.urlCambiarPass, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para completar la llamada
-		cambiarPass.subscribe(
-			result => {
-				//cambiamos la contraseña del usuario local
+    let cambiarPass = this._http.post(this.urlCambiarPass, JSON.stringify(parametros)).pipe(map(res => res.json()));
+    //llamamos a la funcion subscribe para completar la llamada
+    cambiarPass.subscribe(
+      result => {
+        //cambiamos la contraseña del usuario
         this.usuario.setPassword(passwordnueva.toString());
+        //remplazamos el usuario almacenado en local
         sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
-			}
-		);
+      }
+    );
   }
 }

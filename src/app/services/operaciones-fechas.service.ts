@@ -7,6 +7,7 @@ export class OperacionesFechasService {
 
 	constructor() { }
 
+	// funcion para ordenar un array en funcion de sus fechas
 	public ordenarPorFechaDesc(fechas:Array<any>):Array<any>{
 		fechas.sort(function(a:any,b:any){
 			let fechaA = new Date(a.getFecha());
@@ -21,7 +22,6 @@ export class OperacionesFechasService {
 	public comprobarFechaHoy(fecha:Date):boolean{
 		//recogemos la fecha de hoy
 		let hoy = new Date();
-			//saco la fecha de cada mensaje
 
 		//comprobamos que el dia sea el mismo
 		if(hoy.getDate() == fecha.getDate()){
@@ -40,7 +40,6 @@ export class OperacionesFechasService {
 	public comprobarFechaAyer(fecha:Date):boolean{
 		//recogemos la fecha de hoy
 		let hoy = new Date();
-			//saco la fecha de cada mensaje
 
 		//comprobamos que el año
 		if(hoy.getFullYear() == fecha.getFullYear()){

@@ -8,8 +8,9 @@ export class CerrarSesionService {
 	constructor(
 		private _refrescar: RefrescarService
 	){}
-
+	//funncion para borrar sesion
 	public cerrarSesion():void{
+		//borramos tanto los datos de sesion como los locales
 		sessionStorage.clear();		
 		localStorage.clear();
 		//refrescamos la página

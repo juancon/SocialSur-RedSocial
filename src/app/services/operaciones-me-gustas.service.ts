@@ -20,7 +20,7 @@ export class OperacionesMeGustasService {
 	private urlMegustas:string;
 	//variables que devolvemos en las funciones
 	private contenidoUsuario:Array<Archivo>;
-	//usuario logueadoç
+	//usuario logueado
 	private usuario:Usuario;
 
 	constructor(
@@ -38,8 +38,8 @@ export class OperacionesMeGustasService {
 		this.contenidoUsuario = arrayContenido;
 		//recorremos el array que se nos pasa
 		for (var i = 0; i < arrayContenido.length; i++){
-			//preguntamos el tipo de contenido que es
-				this.obtenerMegustasConsulta(arrayContenido[i].getId());
+			// llamamos a la funcion que determina si el usaurio ha dado megusta
+			this.obtenerMegustasConsulta(arrayContenido[i].getId());
 		}
 		//devolvemos el array
 		return this.contenidoUsuario;
@@ -65,13 +65,12 @@ export class OperacionesMeGustasService {
 		);
 	}
 
-	//funcion para cambiar el numero de megustas de las fotos, los videos y los estadsos
+	//funcion para cambiar el numero de megustas de las publicaciones 
 	private cambiarNumMegusta(megustas:number,idelemento:number):void{
 		//recorremos el array
 		for(var i = 0; i < this.contenidoUsuario.length;i++){
 			//preguntamos si el id del contenido y el tipo coinciden
 			if(this.contenidoUsuario[i].getId() == idelemento){
-				//si coinciden los cambiamos
 				//preguntamos si el numero de megusta es 0 o mas
 				if(megustas >= 0){
 					//actualizamos los gustas con los megustan que vengas

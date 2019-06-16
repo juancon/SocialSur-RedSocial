@@ -16,18 +16,21 @@ import { Comentario } from '../Comentario/comentario';
   providedIn: 'root'
 })
 export class OperacionesDenunciasService {
+	// variable que almacena la ruta del fichero PHP
 	private urlDenuncias:string;
+	//variable que almacen ale array de respuesta
 	private denuncias:Array<Denuncias>;
 
-  constructor(
-    private _urls: UrlsService,
-    private _http:Http
-  ) {
-    this.urlDenuncias = this._urls.getUrl("denuncias");
-  }
+	constructor(
+		private _urls: UrlsService,
+		private _http:Http
+	) {
+		this.urlDenuncias = this._urls.getUrl("denuncias");
+	}
 
-  public crearDenuncia(idusuario,idelemento,idautor){
-    let parametros = {
+	public crearDenuncia(idusuario,idelemento,idautor){
+		// variable que contine los parametros que pasan a PHP
+		let parametros = {
 			idusuario : idusuario,
 			idelemento : idelemento,
 			idautor : idautor,
@@ -41,10 +44,9 @@ export class OperacionesDenunciasService {
 			}
 		);
 	}
-	
+
 	public getDenuncias():Array<Denuncias>{
 		this.denuncias = [];
-
 		//creamos una variable con los parametros que vamos a pasar a backend
 		let parametros = {
 			accion : "obtenerdenuncias"
@@ -56,14 +58,14 @@ export class OperacionesDenunciasService {
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
-				//llamamos a la funcion que ñade los mensajes al array principal
+				//llamamos a la funcion que añade los mensajes al array principal
 				this.addDenuncias(datos);
 			}
 		);
 
 		return this.denuncias;
 	}
-
+	// funcion que añade la respuesta PHP al array de que devuelve
 	private addDenuncias(datos:Array<string>):void{
 		for (var i = 0; i < datos.length; i++){
 			//recogemos el usuario que ha realizado la denuncia

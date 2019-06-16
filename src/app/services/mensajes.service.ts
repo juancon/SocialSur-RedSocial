@@ -12,6 +12,7 @@ import {Mensaje} from '../Mensaje/mensaje';
   providedIn: 'root'
 })
 export class MensajesService {
+	//variable que almacena la direccion del fichero PHP
 	private urlMensajes:string;
 	//variables referentes a los mensajes
 	private mensaje:Mensaje;
@@ -23,7 +24,7 @@ export class MensajesService {
 	) {
 		this.urlMensajes = this._urls.getUrl("mensajes");
 	}
-
+	//funcion para obetner los mensajes de un usuario
 	public obtenerMensajes(arrayMensajes:Array<Mensaje>,idusuario):Array<Mensaje>{
 		this.mensajes = arrayMensajes;
 		//creamos una variable con los parametros que vamos a pasar a backend
@@ -47,7 +48,6 @@ export class MensajesService {
 	}
 	//funcion que pasa los resultado del fichero php al array de mensajes
 	private addMensajes(datos:Array<string>):void{
-
 		//comprobamos que las longitudes sean diferentes
 		if(this.mensajes.length != datos.length){
 			//recorremos los mensajes recibidos
@@ -68,8 +68,9 @@ export class MensajesService {
 
 		}
 	}
-	
+	// para enviar un mensaje
 	public enviarMensaje(idusuariofrom:number,idusuarioto:number,mensaje:string){
+		//creamos una variable con los parametros que vamos a pasar a backend
 		let parametros = {
 			idusuariofrom : idusuariofrom,
 			idusuarioto : idusuarioto,
@@ -84,8 +85,9 @@ export class MensajesService {
 			}
 		);
 	}
-
+	// funcion para marcar un mnesaje como borrado
 	public borrarMensaje(idmensaje:number,tipomensaje:string):void{
+		//creamos una variable con los parametros que vamos a pasar a backend
 		let parametros = {
 			idmensaje : idmensaje,
 			tipomensaje : tipomensaje,
@@ -99,8 +101,9 @@ export class MensajesService {
 			}
 		);
 	}
-
+	// funicon para marcar un mensaje como leido
 	public marcarLeido(idmensaje:number):void{
+		//creamos una variable con los parametros que vamos a pasar a backend
 		let parametros = {
 			idmensaje : idmensaje,
 			accion : "marcarleido"

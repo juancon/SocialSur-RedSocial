@@ -20,34 +20,35 @@ export class OperacionesPeticionesService {
   private peticiones:Array<Peticion>;
   constructor(
     private _urls: UrlsService,
-		private _http: Http
+    private _http: Http
   ) {
     this.urlPeticiones = this._urls.getUrl("peticiones");
   }
-  
+
   //funcion para obtener peticiones
   public obtenerPeticiones(idusuario:number,arrayPeticiones:Array<Peticion>):Array<Peticion>{
     this.peticiones = arrayPeticiones;
+    // variable que almace los parametros que se enviaran a PHP
     let parametros = {
       idusuario : idusuario,
       accion : "obtenerpeticiones"
     }
 
     //funcion http.post para enviar los datos
-		let obtener = this._http.post(this.urlPeticiones, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
-		obtener.subscribe(
-			result => {
-				//recogemos solo la respuesta del PHP y la pasamos a una variable
-				let datos = result;
-				//llamamos a la funcion que ñade los mensajes al array principal
-				this.addPeticiones(datos);
-			}
-		);
+    let obtener = this._http.post(this.urlPeticiones, JSON.stringify(parametros)).pipe(map(res => res.json()));
+    //llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+    obtener.subscribe(
+      result => {
+        //recogemos solo la respuesta del PHP y la pasamos a una variable
+        let datos = result;
+        //llamamos a la funcion que ñade los mensajes al array principal
+        this.addPeticiones(datos);
+      }
+    );
 
     return this.peticiones;
   }
-
+  //funcion que añade las peticiones al array que se devuelve
   private addPeticiones(datos:Array<string>):void {
     //comprobamos quye el array recibido sea diferente al almacenado
     if(this.peticiones.length != datos.length){
@@ -64,8 +65,9 @@ export class OperacionesPeticionesService {
       }
     }
   }
-
+  // funcion para responder a una petción
   public responder(idusuariofrom:number,idusuarioto:number,respuesta:string):void{
+    // variable que almace los parametros que se enviaran a PHP
     let parametros = {
       idusuariofrom : idusuariofrom,
       idusuarioto : idusuarioto,
@@ -74,25 +76,23 @@ export class OperacionesPeticionesService {
     }
 
     //funcion http.post para enviar los datos
-		let responder = this._http.post(this.urlPeticiones, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para pque la operacion se realize correctamente
-		responder.subscribe(result => {});
+    let responder = this._http.post(this.urlPeticiones, JSON.stringify(parametros)).pipe(map(res => res.json()));
+    //llamamos a la funcion subscribe para pque la operacion se realize correctamente
+    responder.subscribe(result => {});
   }
 
 
   public enviarSolicitud(idusuario:number,idusuarioto:number,mensaje:string){
-		let parametros = {
-			idusuario : idusuario,
-			idusuarioto : idusuarioto,
-			mensaje : mensaje,
-			accion : "enviarsolicitud"
+    // variable que almace los parametros que se enviaran a PHP
+    let parametros = {
+      idusuario : idusuario,
+      idusuarioto : idusuarioto,
+      mensaje : mensaje,
+      accion : "enviarsolicitud"
     }
-		//funcion http.post para enviar los datos
-		let enviar = this._http.post(this.urlPeticiones, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para completar la llamada a PHP
-		enviar.subscribe(
-      result => {
-			}
-		);
+    //funcion http.post para enviar los datos
+    let enviar = this._http.post(this.urlPeticiones, JSON.stringify(parametros)).pipe(map(res => res.json()));
+    //llamamos a la funcion subscribe para completar la llamada a PHP
+    enviar.subscribe(result => {});
   }
 }

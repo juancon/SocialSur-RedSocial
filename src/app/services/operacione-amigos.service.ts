@@ -14,7 +14,9 @@ import { RecogerUsuarioLocalService } from '../services/recoger-usuario-local.se
   providedIn: 'root'
 })
 export class OperacioneAmigosService {
+	// variable que lamcena la ruta del fichero PHP
 	private urlAmigos:string;
+	// variable para guardar el usuario logueado
 	private usuario:Usuario;
 	//variables referentes a los amigos
 	private amigos:Array<Usuario> = new Array();
@@ -43,6 +45,7 @@ export class OperacioneAmigosService {
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
+				//llamamos a la funcion que se encarga de almacenar el resutaldo en el array de respuesta
 				this.agregarAmigosArray(datos);
 			}
 		);
@@ -87,6 +90,7 @@ export class OperacioneAmigosService {
 
 
 	public borrarAmigo(idusuario:number,idamigo:number):void{
+		//recogemos la id de nuestro usuario
 		let parametros = {
 			idusuario : idusuario,
 			idamigo : idamigo,
