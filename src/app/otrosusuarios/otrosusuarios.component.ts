@@ -66,7 +66,6 @@ export class OtrosusuariosComponent implements OnInit {
 	//variable referente a la redireccion a un archivo en concreto
 	public referencia: string = "";
 
-
 	constructor(
 		public _router: Router,
 		public _recogerUsuario: RecogerUsuarioLocalService,
@@ -88,12 +87,8 @@ export class OtrosusuariosComponent implements OnInit {
 		setTimeout(this.comprobarContenido.bind(this), 1000);
 	}
 
-
-	ngOnInit() {
-
-
-	}
-
+	ngOnInit() {}
+	// funcion que comprueba si hay publicaciones
 	public comprobarContenido(): void {
 		if (this.contenidoUsuario.length == 0) {
 			this.hayContenido = false;
@@ -101,7 +96,7 @@ export class OtrosusuariosComponent implements OnInit {
 			this.hayContenido = true;
 		}
 	}
-
+	//funcion que comprueba si el usuario esta activado
 	public esActivado(): boolean {
 		if (this.miUsuario.getActivado() == 1) {
 			return true;
@@ -109,15 +104,15 @@ export class OtrosusuariosComponent implements OnInit {
 
 		return false;
 	}
-
+	//funcionj que se ejecuta al cargar el componente
 	public iniciar(): void {
-
+		//recogemos la url del fichero PHP
 		this.urlRecogerArchivos = this._urls.getUrl("recogerArchivos");
 		//obtenemos los archivos
 		this.recogerArchivos();
 		setInterval(this.recogerArchivos.bind(this), 300000)
 	}
-
+	// funcion para obtener los parametros de la url
 	public obtenerUrl(): void {
 		//obtenemos el parametro que queremos de la url
 		let url = this._router.parseUrl(this._router.url);
@@ -126,7 +121,7 @@ export class OtrosusuariosComponent implements OnInit {
 		if (typeof (url.queryParams['ref']) != "undefined") {
 			this.referencia = url.queryParams['ref'];
 		}
-
+		// si el apodo el apodo de mi usuairo lo redireccionamos al inicio
 		if (this.apodo == this.miUsuario.getApodo()) {
 			this._router.navigate([""]);
 		}
@@ -134,19 +129,21 @@ export class OtrosusuariosComponent implements OnInit {
 		this._operacionesUsuarios.getUsuarioByApodo(this.apodo);
 		setTimeout(this.obtenerOtroUsuario.bind(this), 500);
 	}
-
+	// funciion para ir a una publicacion especifica
 	public irA(): void {
 		if (this.referencia != "") {
 			$("html, body").animate({
+				// hacemos scroll hasta la publicacion
 				scrollTop: $("[name='" + this.referencia + "']").offset().top - 100
 			}, 0);
 		}
 	}
-
+	// funcion para obtner al usuairo que se esta viendo
 	public obtenerOtroUsuario() {
+		// llamamaos al servicio que recoge al otro usuario
 		this.otroUsuario = this._recogerUsuario.getOtroUsuario();
 	}
-
+	//funcion para obtener los archivos
 	public recogerArchivos(): void {
 		if (!this.comentando) {
 			//enviamos el id del usuario
@@ -220,11 +217,6 @@ export class OtrosusuariosComponent implements OnInit {
 		//this.actualizarRuta();
 	}
 
-	/* public actualizarRuta():void{
-		//llamamos al servicio que actualiza las ruta en funcion si se ha dado megusta o no
-		this.contenidoUsuario = this._operacionesMegustas.actualizarRuta(this.contenidoUsuario);
-	} */
-
 	//funcion para obetener los comentarios de cada archivo
 	public obtenerComentariosArchivos(): Array<Archivo> {
 		//creamos un array que devolveremos
@@ -255,7 +247,7 @@ export class OtrosusuariosComponent implements OnInit {
 		}
 		return false;
 	}
-
+	//funcion para comentar en una publicacion
 	public comentar(idelemento: number, arrayComentarios: Array<Comentario>): void {
 		if (this.comentando) {
 			//comprobamos que el comentario no este vacio
@@ -296,14 +288,14 @@ export class OtrosusuariosComponent implements OnInit {
 
 		return false;
 	}
-
+	// funcion para comprobar si se ha enviado una peticion de amistad
 	public comprobarSocilitud(amistad: number): boolean {
 		if (amistad == 2) {
 			return false;
 		}
 		return true;
 	}
-
+	// funcion para enviar una solicitud de amistad
 	public enviarSolicitud(): void {
 		//comprobamos que el mensaje no este vacio
 		if (this.mensaje.trim() != "") {
@@ -338,7 +330,7 @@ export class OtrosusuariosComponent implements OnInit {
 		this._operacionesAmigos.borrarAmigo(this.miUsuario.getId(), this.otroUsuario.getId())
 		this.otroUsuario.setAmistad(0);
 	}
-
+	//funcion para cerrar la ventana modal
 	public cerrarModal(): void {
 		//recorremos la ventana modal y la cerramos
 		//usar esta linea puede dar error ya que modal no es una funcion jquery si no una del propio

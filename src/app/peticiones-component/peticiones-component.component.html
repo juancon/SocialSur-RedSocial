@@ -1,15 +1,15 @@
 <div class="titulo d-flex justify-content-between">
   <div class="bordeizquierdo"></div>
-
   <a>Peticiones de amistad</a>
-
   <div class="bordederecho"></div>
 </div>
 
 <div class="">
+  <!-- div para informar si no hay peticiones -->
   <div class="vacio row offset-1 col-10" *ngIf="peticiones.length == 0">
     <div>No hay nuevas peticiones de amistad.😅</div>
   </div>
+  <!-- recorremos y mostramos la pesticiones -->
   <div *ngFor="let peticion of peticiones" class="peticiones row offset-1 col-10">
     <div class="offset-3 col-6 peticion mt-4 mb-4">
 
@@ -28,16 +28,16 @@
 
       <!-- mensaje de la peticion -->
       <div *ngIf="comprobarMensaje(peticion)" class="mensaje mt-2">
-          {{peticion.getMensaje()}}
+        {{peticion.getMensaje()}}
       </div>
 
       <!-- accion a realizar -->
       <div class="botones col-12 mt-4 mb-4 d-flex justify-content-around">
         <button class="btn btn-danger" (click)="responder(peticion.getOtroUsuario()['id'],'rechazar')">
-            Rechazar
+          Rechazar
         </button>
         <button class="btn btn-primary" (click)="responder(peticion.getOtroUsuario()['id'],'aceptar')">
-            Aceptar
+          Aceptar
         </button>
       </div>
 

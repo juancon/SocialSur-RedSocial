@@ -1,4 +1,5 @@
 <div class="container">
+  <!-- barra de navecgacion -->
   <div class="navegacion col-12">
     <nav class="navbar navbar-expand-sm navbar-light col-12">
       <!-- Boton para expandir -->
@@ -9,28 +10,28 @@
       <!-- Opciones -->
       <div class="collapse navbar-collapse row" id="barraNavegacion">
         <div class="navbar-nav container d-flex flex-row d-flex col-12">
-
+          <!-- boton para ver las publicaicones -->
           <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
             <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
               aria-expanded="false" (click)="irDenuncias()">
               Ver Publicaciones denunciadas
             </button>
           </div>
-
+          <!-- boton para modifcar los adminitradores -->
           <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
             <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
               aria-expanded="false" (click)="altaAdminFormulario()">
               Modificar administradores
             </button>
           </div>
-
+          <!-- boton para ver los usuairos -->
           <div class="dropdown ml-5" title="Añadir un nuevo adminitrador" *ngIf="admin.getId() == 1">
             <button class="btn btn-primary dropdown" type="button" id="ordenar" aria-haspopup="true"
               aria-expanded="false" (click)="verUsuarios()">
               Ver usuarios
             </button>
           </div>
-
+          <!-- boton para ordenar las publicaciones -->
           <div class="dropdown ml-5" title="Ordenar denuncias" *ngIf="publicaciones">
             <button class="btn btn-primary dropdown-toggle" type="button" id="ordenar" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
@@ -41,7 +42,7 @@
               <a class="dropdown-item" (click)="ordenarPorFecha()">Fecha última denuncia</a>
             </div>
           </div>
-
+          <!-- boton para cerrar la sesion -->
           <a class="nav-item nav-link active ml-auto mr-3" routerLink="" (click)="cerrarSesion()">
             <img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir">
             <span class="sr-only">(current)</span>
@@ -50,10 +51,17 @@
       </div>
     </nav>
   </div>
-
+  <!-- div que muestra los usuarios si el boolen usuarios esta activo -->
   <div *ngIf="mostrarUsuarios">
+    <!-- boton volver -->
+    <button class="btn" title="Volver" (click)="irDenuncias()">
+        <img src="../../assets/iconos/volver.svg" class="plus" width="40px" height="40px">
+      </button>
+
     <div clas="col-md-11 mx-auto">
+      <!-- tabla pra mostrar los usuarios -->
       <table class="adminform col-md-12 mx-auto">
+        <!-- cabecera -->
         <tr>
           <th>Nombre</th>
           <th>Apellido</th>
@@ -61,12 +69,13 @@
           <th>Apodo</th>
           <th>Bio</th>
         </tr>
+        <!-- rrecorremos el array de usuaiors y mostramos los datos -->
         <tr *ngFor="let usuario of usuarios">
-            <td>{{usuario.getNombre()}}</td>
-            <td>{{usuario.getApellido()}}</td>
-            <td class="correoadmin">{{usuario.getEmai()}}</td>
-            <td>{{usuario.getApodo()}}</td>
-            <td>{{usuario.getBio()}}</td>
+          <td>{{usuario.getNombre()}}</td>
+          <td>{{usuario.getApellido()}}</td>
+          <td class="correoadmin">{{usuario.getEmai()}}</td>
+          <td>{{usuario.getApodo()}}</td>
+          <td>{{usuario.getBio()}}</td>
           <td class="borrar">
             <button class="btn btn-danger" (click)="borrarUsuario(usuario.getId(),'usuario')">Borrar</button>
           </td>
@@ -74,14 +83,13 @@
       </table>
     </div>
   </div>
-
+  <!-- div que permite modificar administradores si el boolean altaAdmin esta activo -->
   <div *ngIf="altaAdmin">
-    <!-- botones volver -->
-    <button class="btn" title="Volver" data-toggle="modal" data-target="#enviarmensaje" (click)="irDenuncias()">
+    <!-- boton volver -->
+    <button class="btn" title="Volver" (click)="irDenuncias()">
       <img src="../../assets/iconos/volver.svg" class="plus" width="40px" height="40px">
     </button>
-
-
+    <!-- formulario para crear un nuevo adminitrador -->
     <div class="adminform col-md-8 mx-auto">
       <!-- formulario nuevo administrador -->
       <form class="col-10 mx-auto">
@@ -113,7 +121,7 @@
         </div>
       </form>
     </div>
-
+    <!-- tabla para mostrar los admnitradores actuales -->
     <div clas="col-md-8 mx-auto">
       <table class="adminform col-md-6 mx-auto">
         <tr *ngFor="let administrador of admins">
@@ -126,24 +134,24 @@
     </div>
   </div>
 
-
+  <!-- div que muestra las publicaciones si el boolean publicaciones esta activo -->
   <div *ngIf="publicaciones">
     <div class="d-flex mx-auto justify-content-center mb-1">
-      <!-- botones actualizar -->
+      <!-- boton actualizar -->
       <button class="btn botonsubir" title="Actualizar" data-toggle="modal" data-target="#enviarmensaje"
         (click)="obtenerDenuncias()">
         <img src="../../assets/iconos/refrescar.svg" class="plus" width="40px" height="40px">
       </button>
     </div>
-
+    <!-- si no hay denuncias lo informamos --> 
     <div id="denuncias" class="container contenido col-md-10">
       <div class="noHay" *ngIf="!hayDenuncias()">
         No hay contenido denunciado.
       </div>
 
-
+      <!-- rrecoremos el array de denunicas -->
       <div *ngFor="let denuncia of denuncias" class="archivos mb-5">
-
+        <!-- mostramos el nombre de la publicacion -->
         <div class="nombre d-flex justify-content-between mx-auto" title="{{denuncia.getElemento().getNombre()}}">
           <div class="bordeizquierdo"></div>
           <h2>
@@ -154,13 +162,13 @@
           </h2>
           <div class="bordederecho"></div>
         </div>
-
-
+        <!-- mostramos la publicacion -->
         <div class="archivo d-flex">
           <!-- archivo -->
           <!-- comprobamos si es un video -->
           <div class="col-8 video" *ngIf="comprobarVideo(denuncia.getElemento().getTipo())">
-            <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}" width="100%" controls></video>
+            <video src="../../{{denuncia.getElemento().getUrl()}}" title="{{denuncia.getElemento().getNombre()}}"
+              width="100%" controls></video>
           </div>
           <!-- comprobamos si es una foto -->
           <div class="col-8 foto" *ngIf="comprobarFoto(denuncia.getElemento().getTipo())">
@@ -215,5 +223,4 @@
       </div>
     </div>
   </div>
-
 </div>

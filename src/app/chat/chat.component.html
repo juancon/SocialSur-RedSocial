@@ -1,10 +1,15 @@
+<!-- lista con los amigos conectado -->
 <li role="presentation">
-	<a role="menuitem" tabindex="-1">Amigos Conectados: {{amigosConectados.length}}</a>
+	<!-- cabecera que indica cuantos amigos hay conectados -->
+  <a role="menuitem" tabindex="-1">Amigos Conectados: {{amigosConectados.length}}</a>
 </li>
-<li role="presentation" *ngFor = "let amigo of amigosConectados" (click)="hablarAmigo(amigo)">
-	<a role="menuitem" tabindex="-1">
-		<img src="../../{{amigo.getAvatar()}}" width="15%" title="{{amigo.getNombre()+' '+amigo.getApellido()}}">
-		{{amigo.getNombre()+" "+amigo.getApellido()}}
-		<img src="../../assets/iconos/message.svg" width="5%" title="Conectado" *ngIf="comprobarSinLeido(amigo.getId())">
-	</a>
+<!-- recorremos el array de amigos conectados -->
+<li role="presentation" *ngFor="let amigo of amigosConectados" (click)="hablarAmigo(amigo)">
+  <a role="menuitem" tabindex="-1">
+	  <!-- en un enlace mostramos la informacion del amigo conectado -->
+    <img src="../../{{amigo.getAvatar()}}" width="15%" title="{{amigo.getNombre()+' '+amigo.getApellido()}}">
+	{{amigo.getNombre()+" "+amigo.getApellido()}}
+	<!-- si tiene una conversacion sin leer con ese usuario la mostramos -->
+    <img src="../../assets/iconos/message.svg" width="5%" title="Conectado" *ngIf="comprobarSinLeido(amigo.getId())">
+  </a>
 </li>

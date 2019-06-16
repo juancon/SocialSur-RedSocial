@@ -16,24 +16,28 @@
           <span class="bio">{{otroUsuario.getBio()}}</span>
         </div>
       </div>
-
+      <!-- botones de accion sobre el usuario -->
       <div class="col acciones">
+        <!-- boton para borrar amigo -->
         <div class="d-block mt-2 mb-2" *ngIf="comprobarAmistad(otroUsuario.getAmistad())">
           <button title="Borrar Amigo" data-toggle="modal" data-target="#borraramigo">
             <img src="../../assets/iconos/basura.svg" width="50%">
           </button>
         </div>
+        <!-- boton para enviar un mensaje -->
         <div class="d-block mb-2 mt-2" *ngIf="comprobarAmistad(otroUsuario.getAmistad())">
           <button title="Enviar Mensaje" data-toggle="modal" data-target="#enviarmensaje">
             <img src="../../assets/iconos/sobre.svg" width="50%">
           </button>
         </div>
+        <!-- boton para solicitar amistad -->
         <div class="d-block mb-2 mt-2"
           *ngIf="!comprobarAmistad(otroUsuario.getAmistad()) && comprobarSocilitud(otroUsuario.getAmistad())">
           <button title="solicituar amistad" data-toggle="modal" data-target="#solicitaramistad">
             <img src="../../assets/iconos/add-user.png" width="50%">
           </button>
         </div>
+        <!-- icono que indica que ya hay una peticion de amistad -->
         <div class="d-block mb-2 mt-2"
           *ngIf="!comprobarAmistad(otroUsuario.getAmistad()) && !comprobarSocilitud(otroUsuario.getAmistad())">
           <button title="Esperando respuesta...">
@@ -127,8 +131,6 @@
                 </button>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>

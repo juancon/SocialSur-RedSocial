@@ -30,7 +30,7 @@ export class NovedadesComponent implements OnInit {
   public nuevoComentario:string = "";
   public comentarioinfo:string = "";
   public textareaActivo = "";
-  
+
   constructor(
     public _urls: UrlsService,
     public _recogerUsuario: RecogerUsuarioLocalService,
@@ -44,6 +44,7 @@ export class NovedadesComponent implements OnInit {
     this.urlRecogerArchivos = this._urls.getUrl("archivos");
     this.miUsuario = this._recogerUsuario.getUsuario();
     this.recogerArchivos();
+    // volvemos a recoger los archivos cada 5 minutos
     setInterval(this.recogerArchivos.bind(this),30000);
   }
 
@@ -52,24 +53,25 @@ export class NovedadesComponent implements OnInit {
 
   //funcion para obetner los archivos de los amigos
   public recogerArchivos():void{
+    // si el suaurio no esta comentado se volveran a acargar los archivos
     if(!this.comentando){
-			//enviamos el id del usuario
-			let parametros = {
+      //enviamos el id del usuario
+      let parametros = {
         accion: "getpublicacionesamigos",
-				idusuario : this.miUsuario.getId()
-			}
-			//funcion http.post para enviar los datos
-			let notificaciones = this._http.post(this.urlRecogerArchivos, JSON.stringify(parametros)).pipe(map(res => res.json()));
-			//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
-			notificaciones.subscribe(
-				result => {
-					//recogemos solo la respuesta del PHP y la pasamos a una variable
+        idusuario : this.miUsuario.getId()
+      }
+      //funcion http.post para enviar los datos
+      let notificaciones = this._http.post(this.urlRecogerArchivos, JSON.stringify(parametros)).pipe(map(res => res.json()));
+      //llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+      notificaciones.subscribe(
+        result => {
+          //recogemos solo la respuesta del PHP y la pasamos a una variable
           let datos = result;
-					//llamamos a la funcion que almacena los datos en el array en local
-					this.agregarArchivosArray(datos);
-				}
-			);
-		}
+          //llamamos a la funcion que almacena los datos en el array en local
+          this.agregarArchivosArray(datos);
+        }
+      );
+    }
   }
 
   //fucnion para agregar los archvios al array
@@ -78,7 +80,7 @@ export class NovedadesComponent implements OnInit {
     //comprobamos que el array tenga datos
     if(datos.length != 0){
       
-      //recogemos el array
+      //recorremos el array
       for ( var i = 0; i < datos.length; i++){
         //añadimos el archivo al array
         this.contenidos[i] = new Archivo(
@@ -110,70 +112,69 @@ export class NovedadesComponent implements OnInit {
 
       }
     }else{
+      // llamamos a comprobar contenido
       this.comprobarContenido();
     }
   }
-  
-  //funcion para obetener los comentarios de cada archivo
-	public obtenerComentariosArchivos():Array<Archivo>{
-		//creamos un array que devolveremos
-		let ret = this.contenidos;
-		//recorremos el array actual
-		for (var i = 0; i < this.contenidos.length; i++){
-			//por cada elemento llamaremos a la funcion del servicio que se encarga de obtener los comentrios
-			ret = this._comentarios.getComentariosElementos(ret[i].getId(),ret);
-		}
-		return ret;
+
+  //funcion para obtener los comentarios de cada archivo
+  public obtenerComentariosArchivos():Array<Archivo>{
+    //creamos un array que devolveremos
+    let ret = this.contenidos;
+    //recorremos el array actual
+    for (var i = 0; i < this.contenidos.length; i++){
+      //por cada elemento llamaremos a la funcion del servicio que se encarga de obtener los comentrios
+      ret = this._comentarios.getComentariosElementos(ret[i].getId(),ret);
+    }
+    return ret;
   }
 
   //funcion para dar o quitar un megusta
-	public darQuitarMegusta(idelemento:number):void{
-		//llamamos al servicio que me permite dar un nuevo megusta
-		this.contenidos = this._operacionesMegustas.darMegusta(this.miUsuario.getId(),idelemento,this.contenidos);
-		//this.actualizarRuta();
-	}
+  public darQuitarMegusta(idelemento:number):void{
+    //llamamos al servicio que me permite dar un nuevo megusta
+    this.contenidos = this._operacionesMegustas.darMegusta(this.miUsuario.getId(),idelemento,this.contenidos);
+    //this.actualizarRuta();
+  }
 
   //funcion para comprabar si se han obtenido archivos
   public comprobarContenido():void{
     this.hayContenido = !this.esVacio(this.contenidos);
-	}
-  
+  }
+
   //saber si el array esta vacio
-	public esVacio(array:Array<any>):boolean{
-		if(array.length > 0){
-			return false;
-		}
+  public esVacio(array:Array<any>):boolean{
+    if(array.length > 0){
+      return false;
+    }
 
-		return true;
+    return true;
   }
-  
+
   //comprobar si el archivo es un video
-	public comprobarVideo(tipo:string):boolean{
-		if(tipo == "video"){
-			return true;
-		}
-		return false;
-	}
-
-	//comprobar si el archivo es un foto
-	public comprobarFoto(tipo:string):boolean{
-		if(tipo == "foto"){
-			return true;
-		}
-		return false;
+  public comprobarVideo(tipo:string):boolean{
+    if(tipo == "video"){
+      return true;
+    }
+    return false;
   }
 
-  
-  
+  //comprobar si el archivo es un foto
+  public comprobarFoto(tipo:string):boolean{
+    if(tipo == "foto"){
+      return true;
+    }
+    return false;
+  }
+
   //comprobar si el usuairo esta activado
   public esActivado():boolean{
-		if(this.miUsuario.getActivado() == 1){
-			return true;
-		}
+    if(this.miUsuario.getActivado() == 1){
+      return true;
+    }
 
-		return false;
+    return false;
   }
-
+  // funcion para mostrar el cuadro de texto de comentar
   public mostrarTextarea(idelemento:number):boolean{
     if(this.comentando){
       if(this.textareaActivo == idelemento+""){
@@ -182,41 +183,43 @@ export class NovedadesComponent implements OnInit {
     }
     return false;
   }
-  
+
   //funcion para realizar el comentario
   public comentar(idelemento:number,arrayComentarios:Array<Comentario>):void{
-		if(this.comentando){
-			//comprobamos que el comentario no este vacio
-			if(this.nuevoComentario != ""){
-				//enviamos el comentario a la base de datos
-				this._comentarios.nuevoComentario(this.miUsuario.getId(),idelemento,this.nuevoComentario);
-				//ocultamos el textarea y reseteamos los avriables
-				this.comentando = false;
-				this.textareaActivo = "";
-				this.comentarioinfo = "";
-				this.nuevoComentario = "";
-				//recorremos el array actual para actualizar los comentarios
-				for(var i = 0 ; i < this.contenidos.length ; i++){
-					//comprobamos que el id sea igual
-					if(this.contenidos[i].getId() == idelemento){
-						//llamamos a la funcion para obtener los comentarios actualizados
-						let aux = this._comentarios.refrescarComentarios(idelemento,this.contenidos[i].getComentarios())
-						//solo DIOS sabe porque esta linea añade el nuevo comentario
-						this.contenidos[i].setComentarios(new Array());
-						break;
-					}
-				}
-			}else{
-				this.textareaActivo = "";
-				this.comentando = false;
-			}
-		}else{
-			this.comentando = true;
-			this.textareaActivo = idelemento+"";
-		}
+    if(this.comentando){
+      //comprobamos que el comentario no este vacio
+      if(this.nuevoComentario != ""){
+        //enviamos el comentario a la base de datos
+        this._comentarios.nuevoComentario(this.miUsuario.getId(),idelemento,this.nuevoComentario);
+        //ocultamos el textarea y reseteamos los avriables
+        this.comentando = false;
+        this.textareaActivo = "";
+        this.comentarioinfo = "";
+        this.nuevoComentario = "";
+        //recorremos el array actual para actualizar los comentarios
+        for(var i = 0 ; i < this.contenidos.length ; i++){
+          //comprobamos que el id sea igual
+          if(this.contenidos[i].getId() == idelemento){
+            //llamamos a la funcion para obtener los comentarios actualizados
+            let aux = this._comentarios.refrescarComentarios(idelemento,this.contenidos[i].getComentarios())
+            //solo DIOS sabe porque esta linea añade el nuevo comentario
+            this.contenidos[i].setComentarios(new Array());
+            break;
+          }
+        }
+      }else{
+        //ocultamos el cuadro de texto de comentar
+        this.textareaActivo = "";
+        this.comentando = false;
+      }
+    }else{
+      //mostramos el cuadro de texto de comentar
+      this.comentando = true;
+      this.textareaActivo = idelemento+"";
+    }
   }
   //funcion para denunciar un contenido
-	public denunciar(idelemento,idautor):void{
-		this._operacionesDenuncias.crearDenuncia(this.miUsuario.getId(),idelemento,idautor);
-	}
+  public denunciar(idelemento,idautor):void{
+    this._operacionesDenuncias.crearDenuncia(this.miUsuario.getId(),idelemento,idautor);
+  }
 }

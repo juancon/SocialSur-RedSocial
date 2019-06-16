@@ -132,6 +132,7 @@ export class RegistroComponent implements OnInit {
 	//validaciones campos vacios
 	public validarNombre():void{
 		if(this.nombre.trim() != "" || this.nombre == null){
+			//comprobamos la expresion regular del nombre
 			if(this.expresionNombreApellido(this.nombre)){
 				this.nombreInfo = "";
 				this.name = true;
@@ -146,6 +147,7 @@ export class RegistroComponent implements OnInit {
 	}
 	public validarApellido():void{
 		if(this.apellido.trim() != "" || this.apellido == null){
+			//comprobamos la expresion regular del apellido
 			if(this.expresionNombreApellido(this.apellido)){
 				this.apellidoInfo = "";
 				this.lastName = true;
@@ -160,6 +162,7 @@ export class RegistroComponent implements OnInit {
 	}
 	public validarApodo():void{
 		if(this.apodo.trim() != "" || this.apodo == null){
+			//comprobamos la expresion regular del apodo
 			if(this.expresionApodo(this.apodo)){
 				this.apodoInfo = "";
 				this.nick = true;
@@ -174,6 +177,7 @@ export class RegistroComponent implements OnInit {
 	}
 	public validarCorreo():void{
 		if(this.correo.trim() != "" || this.correo == null){
+			//comprobamos la expresion regular del correo
 			if(this.expresionCorreo(this.correo)){
 				this.correoInfo = "";
 				this.email = true;

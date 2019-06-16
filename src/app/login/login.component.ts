@@ -23,20 +23,20 @@ import {UrlsService} from '../services/urls.service';
   providers: [RefrescarService,UrlsService]
 })
 export class LoginComponent implements OnInit {
-	//direccion del fichero php
+  //direccion del fichero php
   public urlLogin:string;
   //variables relacionadas al HTML
-	public correo :string = "";
-	public password:string = "";
-	public recordar:boolean = false;
-	public enviar:boolean = false;
+  public correo :string = "";
+  public password:string = "";
+  public recordar:boolean = false;
+  public enviar:boolean = false;
   //variables que informan al usuario
-	public correoInfo:string;
+  public correoInfo:string;
   public passwordInfo:string;
-	public emailPassIncorreto:string;
-	//variables de validacion
-	public email:boolean = false;
-	public pass:boolean = false;
+  public emailPassIncorreto:string;
+  //variables de validacion
+  public email:boolean = false;
+  public pass:boolean = false;
   public error:boolean = false;
   //otras variables
   public usuario:Usuario;
@@ -49,46 +49,56 @@ export class LoginComponent implements OnInit {
     public _cookies: CookieService,
     public _refrescar: RefrescarService,
     public _urls: UrlsService
-  	) {
+    ) {
     //asignamos el valor a la variable url con el servicio que continene todas las urls
     this.urlLogin = _urls.getUrl("login");
   }
 
   ngOnInit() {}
-  //validar compos vacios
+  //validar si el correo esta vacio
   public validarCorreo():void{
-  	if(this.correo != "" || this.correo == null){
-  		this.correoInfo = "";
-  		this.email = true;
-  	}else{
-  		this.correoInfo = "Escribe una dirección de correo";
-  		this.email = false;
-  	}
+    //comprobar que el correo no este vacio
+    if(this.correo != "" || this.correo == null){
+      this.correoInfo = "";
+      // cambiamos la variable de validacion a true
+      this.email = true;
+    }else{
+      // informamos al usuario
+      this.correoInfo = "Escribe una dirección de correo";
+      // cambiamos la variable de validacion a true
+      this.email = false;
+    }
   }
+  // validar si la contraseña esta vacia
   public validarPassword():void{
-  	if(this.password != "" || this.password == null){
-  		this.passwordInfo = "";
-  		this.pass = true;
-  	}else{
-  		this.passwordInfo = "Escribe una contraseña";
-  		this.pass = false;
-  	}
+    //comprobamos si la contraseña esrta vacia
+    if(this.password != "" || this.password == null){
+      this.passwordInfo = "";
+      // cambiamos la variable de validacion a true
+      this.pass = true;
+    }else{
+      // informamos al usuario
+      this.passwordInfo = "Escribe una contraseña";
+      // cambiamos la variable de validacion a false
+      this.pass = false;
+    }
   }
   //validar boton
   public validar():void{
     //si los campos son correctos
-  	if(this.email && this.pass){
+    if(this.email && this.pass){
       //llamamos al servicio de inicio se sesion pasandole el correo y la contraseña
-  		this.iniciarSesion(this.correo,this.password);
-  	}else{
+      this.iniciarSesion(this.correo,this.password);
+    }else{
+      // llamamos a las validaciones para informar al usuario
       this.validarCorreo();
       this.validarPassword();
-  	}
+    }
   }
-
+  //funcion para iniciar sesion
   public iniciarSesion(correo,password):void{
     //datos que vamos a enviar
-     let parametros = {
+      let parametros = {
       email: correo,
       pass: password
     }
@@ -101,25 +111,22 @@ export class LoginComponent implements OnInit {
         let datos = result;
         //comprobamos que no haya devuleto error
         if(typeof(datos['error']) == "undefined"){
+          //llamamos al usuario para guardar el usuario en local
           this.almacenarUsuaro(datos);
         }else{
           //si da error llamamos a ala funcion que informa al usuario
           this.emailPassMal();
         }
-     }
+      }
     );
   }
-
+  //funcion que avisa de que el login es invalido
   public emailPassMal():void{
     //Avaisamos al usuario de que su correo o contraseña son incorrectos
     this.emailPassIncorreto = "Usuario o Contraseña Incorrectos";
     this.error = true;
   }
-
-  public redirigir():void{
-    this._router.navigateByUrl("http://localhost:4200/");
-  }
-
+  // funcion que almacena el usuario en local
   public almacenarUsuaro(datos):void{
     //creamos un nuevo usuario con los datos que hemos recibido
     this.usuario = new Usuario(
@@ -144,9 +151,6 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
     //redirigimos al usuario
     window.open("/inicio","_self");
-    //this._router.navigate(['']);
-    //this._zone.run(() => this._router.navigate(['/inicio']));
-    //this._router.navigate(['login']);
   }
 }
 

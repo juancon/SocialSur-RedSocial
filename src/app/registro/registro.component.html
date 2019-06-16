@@ -1,53 +1,68 @@
 <div id="fondo"></div>
 <div id="registro" class="">
-	<div class="justify-content-center h-100">
-		<div class="logo">
-			<img src="../../assets/logo.png" width="100%">
-		</div>
-		<div class="container h-100 justify-content-center">
-			<div class="campos mx-auto">
-				<div class="d-flex justify-content-center">
-					<form>
-						<div class="form-group justify-content-center">
-							<div class="info justify-content-center">{{errorRegistro}}</div>
-							<div class="info justify-content-center">{{errorRegistro2}}</div>
-						</div>
-						<div class="form-group justify-content-center">
-							<div class="info">{{nombreInfo}}</div>
-							<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre"
-								[(ngModel)]="nombre" [ngModelOptions]="{standalone: true}" (focusout)="validarNombre()" (input)="longitudNombre()">
-							<div class="info">{{apellidoInfo}}</div>
-							<input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellidos"
-								[(ngModel)]="apellido" [ngModelOptions]="{standalone: true}" (focusout)="validarApellido()" (input)="longitudApellido()">
-						</div>
-						<div class="form-group justify-content-center">
-							<div class="info">{{apodoInfo}}</div>
-							<input type="text" class="form-control" name="apodo" id="apodo" placeholder="Apodo"
-								[(ngModel)]="apodo" [ngModelOptions]="{standalone: true}" (focusout)="validarApodo()" (input)="longitudApodo()" oninvalid="setCustomValidity('Correo invalido')">
-							<label class="info">{{apodoExiste}}</label>
-						</div>
-						<div class="form-group justify-content-center">
-							<div class="info">{{correoInfo}}</div>
-							<input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Eléctronico"
-								[(ngModel)]="correo" [ngModelOptions]="{standalone: true}" (focusout)="validarCorreo()" (input)="longitudCorreo()" oninvalid="setCustomValidity('Correo invalido')">
-							<label class="info">{{correoExiste}}</label>
-						</div>
-						<div class="form-group justify-content-center">
-							<div class="info">{{passwordInfo}}</div>
-							<input type="password" class="form-control" name="password" id ="password" placeholder="Contraseña"
-								[(ngModel)]="password" [ngModelOptions]="{standalone: true}" (focusout)="validarPassword()" (input)="longitudPassword()">
-							<div class="info">{{password2Info}}</div>
-							<input type="password" class="form-control" name="password2" id ="password2" placeholder="Repite la Contraseña" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}" (focusout)="validarPassword2()">
-						</div>
-						<div class="d-flex form-group justify-content-center">
-							<input type="button" class="btn btn-primary w-100" (click)="validar()" value ="Registrarme" />
-						</div>
-						<div class="d-flex justify-content-center links">
-							<br><a routerLink="/login" routerLinkActive="active">Volver al Login</a>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+  <!-- logo de la aplicacio -->
+  <div class="justify-content-center h-100">
+    <div class="logo">
+      <img src="../../assets/logo.png" width="100%">
+    </div>
+    <div class="container h-100 justify-content-center">
+      <div class="campos mx-auto">
+        <div class="d-flex justify-content-center">
+          <form>
+            <!-- datos de informacion al usuario -->
+            <div class="form-group justify-content-center">
+              <div class="info justify-content-center">{{errorRegistro}}</div>
+              <div class="info justify-content-center">{{errorRegistro2}}</div>
+            </div>
+            <!-- nombre y apellidos -->
+            <div class="form-group justify-content-center">
+              <div class="info">{{nombreInfo}}</div>
+              <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre"
+                [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}" (focusout)="validarNombre()"
+                (input)="longitudNombre()">
+              <div class="info">{{apellidoInfo}}</div>
+              <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellidos"
+                [(ngModel)]="apellido" [ngModelOptions]="{standalone: true}" (focusout)="validarApellido()"
+                (input)="longitudApellido()">
+            </div>
+            <!-- apodo -->
+            <div class="form-group justify-content-center">
+              <div class="info">{{apodoInfo}}</div>
+              <input type="text" class="form-control" name="apodo" id="apodo" placeholder="Apodo" [(ngModel)]="apodo"
+                [ngModelOptions]="{standalone: true}" (focusout)="validarApodo()" (input)="longitudApodo()"
+                oninvalid="setCustomValidity('Correo invalido')">
+              <label class="info">{{apodoExiste}}</label>
+            </div>
+            <!-- correo eléctronio -->
+            <div class="form-group justify-content-center">
+              <div class="info">{{correoInfo}}</div>
+              <input type="email" class="form-control" name="correo" id="correo" placeholder="Correo Eléctronico"
+                [(ngModel)]="correo" [ngModelOptions]="{standalone: true}" (focusout)="validarCorreo()"
+                (input)="longitudCorreo()" oninvalid="setCustomValidity('Correo invalido')">
+              <label class="info">{{correoExiste}}</label>
+            </div>
+            <!-- contraseña y confirmación -->
+            <div class="form-group justify-content-center">
+              <div class="info">{{passwordInfo}}</div>
+              <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña"
+                [(ngModel)]="password" [ngModelOptions]="{standalone: true}" (focusout)="validarPassword()"
+                (input)="longitudPassword()">
+              <div class="info">{{password2Info}}</div>
+              <input type="password" class="form-control" name="password2" id="password2"
+                placeholder="Repite la Contraseña" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}"
+                (focusout)="validarPassword2()">
+            </div>
+            <!-- boton prar registrase -->
+            <div class="d-flex form-group justify-content-center">
+              <input type="button" class="btn btn-primary w-100" (click)="validar()" value="Registrarme" />
+            </div>
+            <!-- link para volver al login -->
+            <div class="d-flex justify-content-center links">
+              <br><a routerLink="/login" routerLinkActive="active">Volver al Login</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

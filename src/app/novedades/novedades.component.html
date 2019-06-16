@@ -19,7 +19,7 @@
         <div class="bordederecho"></div>
       </div>
 
-      <div class="archivo d-flex" >
+      <div class="archivo d-flex">
         <!-- archivo -->
         <!-- comprobamos si es un video -->
         <div class="col-8 video" *ngIf="comprobarVideo(contenido.getTipo())">
@@ -32,7 +32,7 @@
         <div class="col-4 informacion">
           <!-- autor de la publicacion -->
           <div class="row d-flex justify-content-center autor">
-              <a href="/usuario?apodo={{contenido.getApodoAutor()}}" class="mxauto">{{contenido.getAutor()}}</a>
+            <a href="/usuario?apodo={{contenido.getApodoAutor()}}" class="mxauto">{{contenido.getAutor()}}</a>
           </div>
           <!-- fecha y megusta -->
           <div class="row">
@@ -73,8 +73,8 @@
                     inapropiado u ofensivo.</a>
                 </div>
               </div>
-              <div class="botonComentar col-12" >
-                <!-- *ngIf="comentando" -->
+              <div class="botonComentar col-12">
+                <!-- mostramos el cuadrop de texto de comentar si el usuario esta comentando -->
                 <div class="col-12" *ngIf="mostrarTextarea(contenido.getId())">
                   <div class="info text-center">{{comentarioinfo}}</div>
                   <textarea class="form-control mx-auto" placeholder="Escribe tu comentario..."
@@ -86,8 +86,6 @@
                 </button>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>

@@ -45,39 +45,43 @@ export class MensajesComponent implements OnInit {
 		this.obtenerMensajes();
 		this.cambiarEstilo("recibidos");
 
-		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
+		this.amigos = this._operacionesAmigos.obtenerAmigos3(this.amigos);
+		// recogemos los mensajes cada 10 segundos
 		setInterval(this.obtenerMensajes.bind(this),10000);
 		
 	}
 
 	ngOnInit() {
 	}
-
+	// funcion para obtener los mensajes
 	public obtenerMensajes():void{
 		//si no se esta respondiendo se pueden recargar los mensajes
 		if(!this.respondiendo && !this.nuevoMensaje){
+			//llamamos al servicio para obtener los mensajes
 			this.mensajes = this._mensajes.obtenerMensajes(this.mensajes,this.usuario.getId());
 		}
 	}
-	
+
 	//funciones que muestran u ocultan contenido
 	public mostrarSoloRecibidos():void{
-		//ocultamos los recibidos y mostramoslos enviados
+		//ocultamos los enviados y mostramos los recibidos
 		this.mostrarRecibidos = true;
 		this.mostrarEnviados = false;
 		this.respondiendo = false;
 		this.textareaActivo = "";
+		//cambiamos es el estilo de la sollapa de cabecera
 		this.cambiarEstilo("recibidos");
 	}
 	public mostrarSoloEnviados():void{
-		//ocultamos los enviados y mostramoslos recibidos
+		//ocultamos los recibidos y mostramoslos enviados
 		this.mostrarEnviados = true;
 		this.mostrarRecibidos = false;
 		this.respondiendo = false;		
+		//cambiamos es el estilo de la sollapa de cabecera
 		this.cambiarEstilo("enviados");
 		this.textareaActivo = "";
 	}
-
+	//funcion que cambia el estido de la solapa de cabecera
 	public cambiarEstilo(mostrar:string):void{
 		// le quitamos el estido a todos por defecto
 		this.estiloEnviados = "";
@@ -108,10 +112,11 @@ export class MensajesComponent implements OnInit {
 		//si no elo es devolvemos false
 		return false
 	}
-
+	//funcion para marcar un mensaje como borrado
 	public borrarMensaje(mensaje:Mensaje,tipomensaje:string):void{
+		// llamamos a la funcion para marcar el mensaje como borrado
 		this._mensajes.borrarMensaje(mensaje.getId(),tipomensaje);
-
+		// recorremos el array de mensajes
 		for(var i = 0; i < this.mensajes.length;i++){
 			//borramos el mensaje del array
 			if(this.mensajes[i].getId() == mensaje.getId()){
@@ -120,7 +125,7 @@ export class MensajesComponent implements OnInit {
 		}
 
 	}
-
+	// funcion que comprueba si un mensaje esta leido
 	public comprobarNoLeido(mensaje:Mensaje):boolean{
 		//comprobamos si el usuario no ha leido el mensaje
 		if(mensaje.getLeido() == 0){
@@ -128,23 +133,26 @@ export class MensajesComponent implements OnInit {
 		}
 		return false;
 	}
-
+	// funcion que marca un mensaje como leido
 	public marcarLeido(mensaje:Mensaje):void{
 		this._mensajes.marcarLeido(mensaje.getId());
-		//cambiamos el mensaje a leidp
+		//cambiamos el mensaje a leido
 		for(var i = 0; i < this.mensajes.length ; i++){
 			if(this.mensajes[i].getId() == mensaje.getId()){
 				this.mensajes[i].setLeido(1);
 			}
 		}
 	}
-
+	// funcion que muestra u oculta el cuadro de texto de responder
 	public mostrarResponder(idmensaje:number):void{
+		// si hay algun cuadro activo
 		if(this.respondiendo){
+			//lo ocultamos
 			this.respondiendo = false;
 			this.textareaActivo = "";
 			this.respuesta = "";
 		}else{
+			//si no lo mostramos
 			this.respondiendo = true;
 			this.textareaActivo = idmensaje+"";
 		}
@@ -159,7 +167,7 @@ export class MensajesComponent implements OnInit {
 		}
 		return false;
 	}
-
+	// funcion para responder a un mensaje
 	public responder(idusuarioto:number,idtextarea:string,mensaje){
 		//comprobamos que se halla escrito una respuesta
 		if(this.respuesta.trim() != ""){
@@ -169,6 +177,7 @@ export class MensajesComponent implements OnInit {
 			this.respondiendo = false;
 			this.respuesta = "";
 			this.textareaActivo = "";
+			// marcamos el mensaje como leido
 			this.marcarLeido(mensaje);
 			
 			//actualizamos el array actual
@@ -181,12 +190,12 @@ export class MensajesComponent implements OnInit {
 			},5000)
 		}
 	}
-
+	// funcion que indica si estamos escribiendo un mensaje
 	public mensajeNuevo():void{
 		//indicamos que estamos escribiendop un nuevo mensaje
 		this.nuevoMensaje = true;
 	}
-
+	// funcion que envia un mensaje
 	public enviar():void{
 		//comprobamos que se halla escrito una respuesta
 		if(this.mensaje.trim() != "" && this.destinatario != 0){
@@ -212,10 +221,12 @@ export class MensajesComponent implements OnInit {
 			}
 		}
 	}
-	  
-
+		
+	//funcion para enviar un mensaje
 	public enviarMensaje(idusuario:number,idusuarioto:number,mensaje:string):void{
+		// llamamso al servicio que envia el mensaje
 		this._mensajes.enviarMensaje(idusuario,idusuarioto,mensaje);
+		// oculatmos el mensaje
 		this.textareaActivo = "";
 	}
 
@@ -231,7 +242,7 @@ export class MensajesComponent implements OnInit {
 		this.destinatario = 0;
 		this.mensaje = "";
 	}
-
+	// funcion que compreba si hay mensajes recibidos
 	public hayRecibidos():boolean{
 		if(this.mostrarRecibidos){
 			//comprobamos si hay mensajes recibidor
@@ -245,7 +256,7 @@ export class MensajesComponent implements OnInit {
 		}
 		return true;
 	}
-
+	// funcion que comprueba si hay mensajes enviados
 	public hayEnviados():boolean{
 		if(this.mostrarEnviados){
 			//comprobamos si hay mensajes recibidor

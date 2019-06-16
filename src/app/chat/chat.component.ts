@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit {
 	public amigosConectados:Array<Usuario> = new Array();
 	public amigoHablando:Usuario;
 	public idAmigoActual:number = 0;
+	// variable que enviara datos al componente chat
 	@Output() enviarHablando:EventEmitter<boolean> = new EventEmitter<boolean>();
 	public hablando:boolean = false;
 	public conversaciones:Array<string>;
@@ -58,44 +59,59 @@ export class ChatComponent implements OnInit {
 	}
 	//recoger los amigos que tiene el usuario
 	public recogerAmigos():void{
+		//llamamos al servicio que recoge a los amigos
 		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
 	}
-	
+
 	//mostrar el chat
 	public mostrarChat():void{
+		// cambiamos el estado de hablando a true para mostrar el chat
 		this.hablando = true;
+		//enviamos la variable al componente chat
 		this.enviarHablando.emit(this.hablando);
 	}
 	//ocultar el chat
 	public ocultarChat():void{
+		// cambiamos el estado de hablando a true para ocultar el chat
 		this.hablando = false;
+		//enviamos la variable al componente chat
 		this.enviarHablando.emit(this.hablando);
 	}
 	//funcion para mostrar el chat de la persona indicada
 	public hablarAmigo(amigo:Usuario):void{
+		// preguntamos si le estamos hablando ya a un amigo
 		if(typeof(this.amigoHablando) == "undefined"){
+			// si no, guardamos el amigo
 			this.amigoHablando = amigo;
+			// mostramos el chat
 			this.mostrarChat();
+			// guardamos el amigo en sesion
 			sessionStorage.setItem("amigoHablando",JSON.stringify(amigo));
 
-		}{
+		}else{
+			// comprobamos si le estamos hablando al mismo amigo
 			if(this.amigoHablando.getId() == amigo.getId()){
+				// si es asi simplemente mostramos u ocultamos el chat
 				if(this.hablando){
 					this.ocultarChat();
 				}else{
 					this.mostrarChat();
 				}
 			}else{
+				// si no, guardamos el amigo
 				this.amigoHablando = amigo;
+				// mostramos el chat
 				this.mostrarChat();
+				// guardamos el amigo en sesion
 				sessionStorage.setItem("amigoHablando",JSON.stringify(amigo));
 			}
 		}
+		//marcamos la conversacion con el amigo como leida
 		this.marcarConversacionLeido();
 	}
-
+	// funcion que marca las conversaciones como leidas
 	public marcarConversacionLeido(){
-		//marcamos las conversaciones como leidas
+		//enviamos los parametros al fichero PHP
 		let parametros = {
 			id : this.usuario.getId(),
 			idAmigo : this.amigoHablando.getId(),
@@ -103,11 +119,8 @@ export class ChatComponent implements OnInit {
 		}
 		//funcion http.post para enviar los datos
 		let leidos = this._http.post(this.urlGetConversacion, JSON.stringify(parametros)).pipe(map(res => res.json()));
-		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
-		leidos.subscribe(
-			result => {
-			}
-		);
+		//llamamos a la funcion subscribe para completar la llamada a PHP
+		leidos.subscribe(result => {});
 	}
 
 	//comprobamos quien envia el mensaje
@@ -119,7 +132,7 @@ export class ChatComponent implements OnInit {
 		}
 	}
 
-	//Borrar el texto en mi chat
+	//Borrar el texto en el cuadro de mensaje del chat
 	public borrarText():void{
 		this.mensaje = "";
 	}
@@ -129,19 +142,22 @@ export class ChatComponent implements OnInit {
 		let amigosAux = [];
 		//rrecorremos el array de amigos
 		for (var i = 0; i < this.amigos.length; i++) {
-			//si esta conectadolo agregamos al array
+			//si esta conectado lo agregamos al array
 			if(this.amigos[i].getConectado() == "1"){
 				amigosAux.push(this.amigos[i]);
 			}
 		}
-		//cuando tengamos todos los amigos conectado simplemnete comparamos la longitud del array de miagos conectado con el auxiliar para comprobar que se hayan desconectado o conectado amigos nuevos
+		//cuando tengamos todos los amigos conectado simplemnete comparamos la
+		//longitud del array de miagos conectado con el auxiliar para comprobar
+		//que se hayan desconectado o conectado amigos nuevos
 
 		if(this.amigosConectados.length != amigosAux.length){
 			this.amigosConectados = amigosAux;
 		}
 	}
-
+	//funcion para obtener las conversaciones sin leer
 	public getConversacionesSinLeer():void{
+		// variable con los paremtros que enviaremos a PHP
 		let parametros = {
 			id : this.usuario.getId(),
 			accion : "getconversaciones"
@@ -153,16 +169,18 @@ export class ChatComponent implements OnInit {
 			result => {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
+				// convertimos las fechas segun si son de hoy
 				this.conversacionesSinLeer = this._operacionesFechas.convertirfechas(datos);
 			}
 		);
 	}
-
+	// funcion que comprueba si hay hay una conversacion sin leer con un amigo
 	public comprobarSinLeido(idusuario:number):boolean{
+		// recorremos el array de conversaciones sin leer
 		for(var i = 0; i < this.conversacionesSinLeer.length; i++){
+			// comprobamos que la conversacion este en el array de sin leer
 			if(idusuario == this.conversacionesSinLeer[i]["iduserfrom"] || idusuario == this.conversacionesSinLeer[i]["iduserto"]){
 				return true;
-				break;
 			}
 		}
 		return false;

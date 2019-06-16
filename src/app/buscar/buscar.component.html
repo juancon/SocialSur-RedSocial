@@ -4,104 +4,129 @@
 </div>
 
 <div class="componenteAmigos offset-md-3 col-md-6">
-    <div *ngFor = "let usuario of usuarios" class="amigos row" title="{{usuario.getNombre()+' '+usuario.getApellido()}}">
-      <div class="col avatar mt-2 pb-1" (click)="redirigir(usuario.getApodo())">
-        <img src="../../{{usuario.getAvatar()}}" class="mr-auto" width="90%">
+  <!-- recorremos el array de usuarios encontrados -->
+  <div *ngFor="let usuario of usuarios" class="amigos row" title="{{usuario.getNombre()+' '+usuario.getApellido()}}">
+    <!-- mosramos el avatar -->
+    <div class="col avatar mt-2 pb-1" (click)="redirigir(usuario.getApodo())">
+      <img src="../../{{usuario.getAvatar()}}" class="mr-auto" width="90%">
+    </div>
+    <!-- mostramos la informacion del suaurio -->
+    <div class="col-7 amigo" (click)="redirigir(usuario.getApodo())">
+      <div class="row ">
+        <span class="nombre">{{usuario.getNombre()+" "+usuario.getApellido()}}</span>
       </div>
-      <div class="col-7 amigo" (click)="redirigir(usuario.getApodo())">
-        <div class="row ">
-          <span class="nombre">{{usuario.getNombre()+" "+usuario.getApellido()}}</span>
-        </div>
-        <div class="row">
-          <span class="apodo">{{usuario.getApodo()}} </span>
-        </div>
-        <div class="row">
-          <span class="bio">{{usuario.getBio()}}</span>
-        </div>
+      <div class="row">
+        <span class="apodo">{{usuario.getApodo()}} </span>
       </div>
-      <div class="col acciones">
-        <div class="d-block mt-2 mb-2" *ngIf="comprobarAmistad(usuario.getAmistad())">
-          <button title="Borrar Amigo" data-toggle="modal" data-target="#borraramigo" (click)="recogerAmigoAccion(usuario)">
-            <img src="../../assets/iconos/basura.svg" width="50%" >
-          </button>
-        </div>
-        <div class="d-block mb-2 mt-2" *ngIf="comprobarAmistad(usuario.getAmistad())">
-          <button title="Enviar Mensaje" data-toggle="modal" data-target="#enviarmensaje" (click)="recogerAmigoAccion(usuario)">
-            <img src="../../assets/iconos/sobre.svg" width="50%" >
-          </button>
-        </div>
-        <div class="d-block mb-2 mt-2" *ngIf="!comprobarAmistad(usuario.getAmistad()) && comprobarSocilitud(usuario.getAmistad())">
-          <button title="solicituar amistad" data-toggle="modal" data-target="#solicitaramistad" (click)="recogerAmigoAccion(usuario)">
-            <img src="../../assets/iconos/add-user.png" width="50%" >
-          </button>
-        </div>
-        <div class="d-block mb-2 mt-2" *ngIf="!comprobarAmistad(usuario.getAmistad()) && !comprobarSocilitud(usuario.getAmistad())">
-          <button title="Esperando respuesta...">
-            <img src="../../assets/iconos/sand-clock.png" width="50%" >
-          </button>
-        </div>
+      <div class="row">
+        <span class="bio">{{usuario.getBio()}}</span>
+      </div>
+    </div>
+    <div class="col acciones">
+      <!-- si el usaurio es un amigo mostramos el botón para borrarlo -->
+      <div class="d-block mt-2 mb-2" *ngIf="comprobarAmistad(usuario.getAmistad())">
+        <button title="Borrar Amigo" data-toggle="modal" data-target="#borraramigo"
+          (click)="recogerAmigoAccion(usuario)">
+          <img src="../../assets/iconos/basura.svg" width="50%">
+        </button>
+      </div>
+      <!-- si el usaurio es un amigo mostramos el botón para enviarle un mensaje -->
+      <div class="d-block mb-2 mt-2" *ngIf="comprobarAmistad(usuario.getAmistad())">
+        <button title="Enviar Mensaje" data-toggle="modal" data-target="#enviarmensaje"
+          (click)="recogerAmigoAccion(usuario)">
+          <img src="../../assets/iconos/sobre.svg" width="50%">
+        </button>
+      </div>
+      <!-- si el usuario no es un amigo mostramos el boton para enviarle una peticion de amistad -->
+      <div class="d-block mb-2 mt-2"
+        *ngIf="!comprobarAmistad(usuario.getAmistad()) && comprobarSocilitud(usuario.getAmistad())">
+        <button title="solicituar amistad" data-toggle="modal" data-target="#solicitaramistad"
+          (click)="recogerAmigoAccion(usuario)">
+          <img src="../../assets/iconos/add-user.png" width="50%">
+        </button>
+      </div>
+      <!-- si el usuairo es amigo y se ha enviado una peticion mostramos el icono de espera -->
+      <div class="d-block mb-2 mt-2"
+        *ngIf="!comprobarAmistad(usuario.getAmistad()) && !comprobarSocilitud(usuario.getAmistad())">
+        <button title="Esperando respuesta...">
+          <img src="../../assets/iconos/sand-clock.png" width="50%">
+        </button>
       </div>
     </div>
   </div>
-  
+</div>
+
 
 
 <!-- ventana modal para enviar solicidtud de amistad -->
-<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="solicitaramistad" tabindex="-1" role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div>
-            <h3 class="mb-3 text-center">Solicitud de amistad para:</h3>
-            <h3 class="mb-3 text-center">{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</h3>
-            <textarea id="peticion" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="enviarSolicitud()">Enviar</button>
-          </div>
+<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="solicitaramistad" tabindex="-1"
+  role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <!-- mostramos el nombre del usuario que la recibira -->
+          <h3 class="mb-3 text-center">Solicitud de amistad para:</h3>
+          <h3 class="mb-3 text-center">{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</h3>
+          <!-- ligamos la variable mensaje al cuadro de texto -->
+          <textarea id="peticion" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+            class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
+        </div>
+        <div class="modal-footer">
+          <!-- botones para enviar o cancelar -->
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="enviarSolicitud()">Enviar</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 
-  <!-- ventana modal para enviar mensaje -->
-  <div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="enviarmensaje" tabindex="-1" role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div>
-            <h3 class="mb-3 text-center">Mensaje para:</h3>
-            <h3 class="mb-3 text-center">{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</h3>
-            <textarea id="mensaje" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
-            <button type="button" class="btn btn-primary" (click)="enviarMensaje()">Enviar</button>
+<!-- ventana modal para enviar mensaje -->
+<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="enviarmensaje" tabindex="-1"
+  role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <!-- mostramos el nombre del usuario que la recibira -->
+          <h3 class="mb-3 text-center">Mensaje para:</h3>
+          <h3 class="mb-3 text-center">{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</h3>
+          <!-- ligamos la variable mensaje al cuadro de texto -->
+          <textarea id="mensaje" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+            class="md-textarea form-control" rows="3" placeholder="Escribe tu mensaje...."></textarea>
+        </div>
+        <div class="modal-footer">
+          <!-- botones para enviar o cancelar -->
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrarModal()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="enviarMensaje()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ventana modal para borrar amigo -->
+<div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="borraramigo" tabindex="-1" role="dialog"
+  aria-labelledby="enviarmensajes" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div>
+          <h3 class="mb-3 text-center">
+            <!-- mostramos el nombre del usuario a borrar -->
+            ¿Está seguro que desea eliminar a
+            <b>{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</b>
+            de sus amigos?
+          </h3>
+          <div class="row d-flex justify-content-around">
+            <!-- botones de confirmacion -->
+            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-danger" (click)="borrarAmigo()" data-dismiss="modal">Si</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- ventana modal para borrar amigo -->
-  <div class="modal fade col-12" data-backdrop="static" data-keyboard="false" id="borraramigo" tabindex="-1" role="dialog" aria-labelledby="enviarmensajes" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div>
-            <h3 class="mb-3 text-center">
-              ¿Está seguro que desea eliminar a 
-              <b>{{amigoActivo.getNombre()+" "+amigoActivo.getApellido()}}</b>
-               de sus amigos?
-            </h3>
-            <div class="row d-flex justify-content-around">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-              <button type="button" class="btn btn-danger" (click)="borrarAmigo()"  data-dismiss="modal">Si</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>

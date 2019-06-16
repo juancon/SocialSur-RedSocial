@@ -73,19 +73,22 @@ export class BarraNavegacionComponent implements OnInit {
 		setInterval(this.obtenerHablando.bind(this), 1000)
 	}
 
-
+	// funcion para obtener al amigo al cual se esta hablando
 	public obtenerHablando(): void {
 		this.amigoHablando = this._recogerUsuario.getAmigoHablando();
-
+		// mostramos el chat
 		this.mostrarChat();
+		//obtenemos las conversaciones
 		this.getMensajesChat();
 	}
-
+	//funcion para mostrar el chat
 	public mostrarChat(): void {
+		//obtenemos la variable enviarHablando de chat
 		this.chat.enviarHablando
 			.subscribe(
 				res => {
 					if (res) {
+						// si ha cambio la ponemos hablando a true
 						this.hablando = true;
 					}
 				}
@@ -95,9 +98,10 @@ export class BarraNavegacionComponent implements OnInit {
 
 	//ocultar el chat
 	public ocultarChat(): void {
+		// para ocultar el chat ponemos hablando a false
 		this.hablando = false;
 	}
-
+	// variable para obtener los mensajes de una conversacion
 	public getMensajesChat(): void {
 		//recogemos la id de nuestro usuario y del usuario con quien queremos hablar
 		let parametros = {
@@ -114,6 +118,7 @@ export class BarraNavegacionComponent implements OnInit {
 				let datos = result;
 				//comprobamos que las longitudes sean diferentes para poder cambiar el array
 				if (this.conversaciones.length != datos.length) {
+					//cambiamos las fechas en funicon si son de hoy
 					this.conversaciones = this._operacionesFechas.convertirfechas(datos);
 				}
 
@@ -142,17 +147,16 @@ export class BarraNavegacionComponent implements OnInit {
 			//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
 			nuevoMensaje.subscribe(
 				result => {
-					//recogemos solo la respuesta del PHP y la pasamos a una variable
 					let datos = result;
+					//llamamos a la funcion para obtener las conversaciones
 					this.getMensajesChat();
-
-
 				}
 			);
 		}
+		// borramos el cuador de texto del chat
 		this.borrarText();
 	}
-	//Borrar el texto en mi chat
+	//Borrar el cuadro de texto del chat
 	public borrarText(): void {
 		this.mensaje = "";
 	}
@@ -165,8 +169,9 @@ export class BarraNavegacionComponent implements OnInit {
 		}
 	}
 
-	//obtener las notificaciones
+	//obtener el nuemro de notificaciones nuevas
 	public obtenerNotificaciones(): void {
+		// variable con los parametros que se envian a PHP
 		let parametros = {
 			id: this.usuario.getId(),
 			tipo: "peticiones"
@@ -185,7 +190,7 @@ export class BarraNavegacionComponent implements OnInit {
 			}
 		);
 	}
-
+	// funcion para cambiar el icono de las notificaciones
 	public cambiarIcoNoti(num: number): void {
 		//Asignamos el icono de varias peticiones de amistad por defecto
 		this.peticionesIco = "../../assets/iconos/alarm-1.svg";
@@ -203,6 +208,7 @@ export class BarraNavegacionComponent implements OnInit {
 
 	//obtener los mensajes
 	public obtenerMensajes(): void {
+		// variable con los parametros que se envian a PHP
 		let parametros = {
 			id: this.usuario.getId(),
 			tipo: "mensajes"
@@ -221,7 +227,7 @@ export class BarraNavegacionComponent implements OnInit {
 			}
 		);
 	}
-
+	// funcion para cambiar el icono de los mensajes
 	public cambiarIcoMensajes(num: number): void {
 		//Asignamos el icono de mensajes nuevos por defecto
 		this.mensajesIco = "../../assets/iconos/mensaje-1.svg";
@@ -236,12 +242,13 @@ export class BarraNavegacionComponent implements OnInit {
 			this.numMensajes = num + " Mensajes Nuevos";
 		}
 	}
-
+	//funcioon para ir al conponente buscar usuario
 	public buscarUsuario() {
+		// comprobamos que buscar no este vacio
 		if (this.buscar.trim() != "") {
+			// redireccionamos al componente buscar con el parametro de busqueda
 			let url = "/buscar?busqueda=" + this.buscar.trim();
 			window.location.href = url;
 		}
 	}
-
 }

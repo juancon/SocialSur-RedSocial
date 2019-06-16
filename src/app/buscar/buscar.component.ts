@@ -25,6 +25,7 @@ import { RefrescarService } from './../services/refrescar.service';
   styleUrls: ['./buscar.component.css']
 })
 export class BuscarComponent implements OnInit {
+  // variable que almacena la busqueda realizada
   public busqueda:string = "";
   public usuario: Usuario;
   //variables referentes a los amigos
@@ -49,12 +50,12 @@ export class BuscarComponent implements OnInit {
     this.amigoActivo = new Usuario(0, "", "","", "", "", "", "", "", 0, 0)
     
   }
-  
+
   ngOnInit() {
-    
+    // llamamos a la funcion para obtener la busqueda
     this.obtenerBusqueda();
   }
-
+  // funcin que obtiene la busqueda
   public obtenerBusqueda():void{
     //obtenemos el parametro que queremos de la url
     let test = this._router.parseUrl(this._router.url);
@@ -63,20 +64,10 @@ export class BuscarComponent implements OnInit {
     this.obtenerUsuarios()
 
   }
-
+  // funcion para obtener los usuarios que coinciden con esa cadena
   public obtenerUsuarios(): void {
     //llamamos a la funcion para obetener los usuarios
     this.usuarios = this._operacionesUsuario.buscarUsuarioCadena(this.usuario.getId(),decodeURI(this.busqueda),this.usuarios);
-  }
-
-
-
-
-
-  public asignarVentanaModal(ev): void {
-    if (this.ventanaModal == null) {
-      this.ventanaModal = ev.target;
-    }
   }
 
   //recogemos el usuario sobre el que queremos realizar la accion
@@ -87,46 +78,53 @@ export class BuscarComponent implements OnInit {
   public enviarMensaje(): void {
     //comprobamos que el mensaje no este vacio
     if (this.mensaje.trim() != "") {
+      // enviamos el mensaje
       this._mensajes.enviarMensaje(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje);
+      // llamamos a la funcion que cierra la ventana modal
       this.cerrarModal();
     }else{
+      // si esta vacio remarcamos el cuadro del mensaje en rojo
       $("#mensaje").addClass("parpadear");
-			setTimeout(function () {
-				$("#mensaje").removeClass("parpadear");
-			}, 5000)
+      // a los 5 segundo dejamos de remarcarlo
+      setTimeout(function () {
+        $("#mensaje").removeClass("parpadear");
+      }, 5000)
     }
   }
-
+  // funcion que envia una solicitud de amistad
   public enviarSolicitud(): void {
     //comprobamos que el mensaje no este vacio
     if (this.mensaje.trim() != "") {
+      // enviamos el mensaje
       this._operacionesPeticiones.enviarSolicitud(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje)
+      // cerramos la ventana modal
       this.cerrarModal();
-      //cambiamos el estado de la amistad
+      //cambiamos el estado de la amistad con el otro usuario
       for(var i = 0; i < this.usuarios.length; i++){
         if(this.usuarios[i].getId() == this.amigoActivo.getId()){
           this.usuarios[i].setAmistad(2);
         }
       }
     }else{
+      // si esta vacio remarcamos el cuadro del mensaje durante 5 segundos
       $("#peticion").addClass("parpadear");
-			setTimeout(function () {
-				$("#peticion").removeClass("parpadear");
-			}, 5000)
+      setTimeout(function () {
+        $("#peticion").removeClass("parpadear");
+      }, 5000)
     }
   }
 
   //funcion par aborrar amigo
-	public borrarAmigo():void{
-		//borramos el amigo
-		this._operacionesAmigos.borrarAmigo(this.usuario.getId(),this.amigoActivo.getId())
-		//eliminamos al amigo del array y recargarmos el arry de amigos
-		for(var i = 0; i < this.usuarios.length; i++){
-			if(this.usuarios[i].getId() == this.amigoActivo.getId()){
-				this.usuarios[i].setAmistad(0);
-			}
-		}
-	}
+  public borrarAmigo():void{
+    //borramos el amigo
+    this._operacionesAmigos.borrarAmigo(this.usuario.getId(),this.amigoActivo.getId())
+    //eliminamos al amigo del array y recargarmos el arry de amigos
+    for(var i = 0; i < this.usuarios.length; i++){
+      if(this.usuarios[i].getId() == this.amigoActivo.getId()){
+        this.usuarios[i].setAmistad(0);
+      }
+    }
+  }
 
   //funcion para cerrar la ventana modal
   public cerrarModal(): void {
@@ -149,19 +147,19 @@ export class BuscarComponent implements OnInit {
 
     return false;
   }
-
+  // funcion que comprueba si se ha envidao una solicitud
   public comprobarSocilitud(amistad:number):boolean{
     if(amistad == 2){
       return false;
     }
     return true;
   }
-
+  // fucnion que redirige al perfil del usaurio
   public redirigir(apodo:string):void{
     let url = "/usuario?apodo="+apodo;
-		window.location.href = url;
+    window.location.href = url;
   }
-
+  // funcion que muestra si se han encontrado resultados
   public hayResultados():boolean{
     if(this.usuarios.length == 0){
       return false;

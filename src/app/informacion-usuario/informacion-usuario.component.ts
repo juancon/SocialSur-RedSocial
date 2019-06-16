@@ -73,7 +73,7 @@ export class InformacionUsuarioComponent implements OnInit {
 
 	ngOnInit() {
 	}
-
+	//funcion para guardar la bio
 	public guardarBio():void{
 		//guardamos la anterior descipcion en una variable auxiliar
 		this.aux = this.bio;
@@ -86,10 +86,11 @@ export class InformacionUsuarioComponent implements OnInit {
 			id : this.usuario.getId(),
 			bio : this.usuario.getBio()
 		};
+		// llamamos a la funcion que modifica la bio
 		this.modificarUsuarioBD(parametros,"bio");
 		
 	}
-
+	// funcion que guarda el  usuario modificado en local
 	public guardarUsuario():void{
 		//cambiamos el almacenamiento local por el nuevo
 		sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
@@ -98,10 +99,9 @@ export class InformacionUsuarioComponent implements OnInit {
 		if(localStorage.getItem("usuario") != null){
 			localStorage.setItem("usuario",JSON.stringify(this.usuario));
 		}
-
 		setTimeout(this._refrescar.refrescar, 1000);
 	}
-
+	// funcion que modifica el usuairo en la base de datos
 	public modificarUsuarioBD(parametros:Object,tipo:string):void{
 		//funcion http.post para enviar los datos
 		let login = this._http.post(this.urlModificarUsuario, JSON.stringify(parametros)).pipe(map(res => res.json()));
@@ -123,7 +123,7 @@ export class InformacionUsuarioComponent implements OnInit {
 			}
 		);
 	}
-
+	//funcion que restable la bio en caso de fallo
 	public devolverValor(tipo:string){
 		//preguntamos cual era la variable
 		if(tipo == "bio"){
@@ -131,7 +131,7 @@ export class InformacionUsuarioComponent implements OnInit {
 			this.bio = this.aux;
 		}
 	}
-
+	//funcion que cambia y sube la foto de perfil
 	public subirAvatar(ev):void{
 		//recogemos los parametros del input type file
 		let img:any = ev.target;
@@ -152,26 +152,31 @@ export class InformacionUsuarioComponent implements OnInit {
 			);
 		}
 	}
-
+	//funcion que cambia el avatar
 	public cambiarAvatar(ruta:string){
+		// cambiamos del usaurio en variable
 		this.usuario.setAvatar(ruta);
+		// cambiamos la ruta del usuario en sesion o en local
 		this.guardarUsuario();
 	}
-
+	//fucnion para mostrar u coultar el input file para cambiar el avatar
 	public mostarOcultar():void{
+		// si esta oculto lo mostramos
 		if(!this.ocultarMostrar){
 			this.ocultarMostrar = true;
 			this.textoBoton="Cancelar";
 		}else{
+			// si no esta oculto lo ocultamos
 			this.ocultarMostrar = false;
 			this.textoBoton="Cambiar";
 		}
 	}
-
+	// funcion para abrir la ayuda de la aplicacion
 	public abrirAyuda():void{
+		// con la funcion windows.open abirmos el pdf en una pestaña nueva
 		window.open("../../assets/SocialSurManualdeUsuario.pdf");
 	}
-
+	//funcion que cambia la contraseña
 	public cambiarPassword():void{
 		//variables de comprobacion
 		let antiguo = false;
@@ -181,7 +186,7 @@ export class InformacionUsuarioComponent implements OnInit {
 		let md5NuevoComprobar = new Md5();
 		let md5Nuevo = new Md5();
 
-		//comprobamos la contraseña antigua y si falla informamos al usuairo de que ha fallado
+		//comprobamos la contraseña antigua y si falla informamos al usuario de que ha fallado
 		if(this.passAntiguo.trim() == ""){
 			$("#antigua").addClass("parpadear");
 			setTimeout(function(){
@@ -242,7 +247,5 @@ export class InformacionUsuarioComponent implements OnInit {
 			this.passNuevo = "";
 			this.passNuevoConfirmacion = "";
 		}
-
-
 	}
 }

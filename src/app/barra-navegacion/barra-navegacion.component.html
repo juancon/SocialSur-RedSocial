@@ -1,97 +1,117 @@
 <div class="navegacion">
-	<nav class="navbar navbar-expand-sm navbar-light fixed-top col-12">
-		<!-- Usuario y avatar -->
-		<a class="navbar-brand" routerLink="/inicio" title="Inicio">
-			<img src="../../{{usuario.getAvatar()}}" class="rounded-circle" width="30px" title="Avatar" alt="Avatar">
-			
-		</a>
-		<!-- Boton para expandir -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barraNavegacion" aria-controls="barraNavegacion" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<!-- Opciones -->
-		<div class="collapse navbar-collapse row" id="barraNavegacion">
-			<div class="navbar-nav container d-flex flex-row d-flex col-12">
-					<a class="nav-item nav-link active ml-0" routerLink="/perfil" routerLinkActive="active">
-						<img src="../../assets/iconos/user.png" width="30px" title="Mi Perfil" alt="Mi perfil"> 
-						<span class="sr-only">(current)</span>
-					</a>
-
-					<div class="dropdown">
-						<button class="btn btn-default" routerLink="/amigos" routerLinkActive="active" type="button" id="chat" >
-							<img src="../../assets/iconos/users.svg" width="30px" title="Amigos" alt="Amigos">
-						</button>
-						<button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="sr-only">Mostrar Amigos</span>
-						</button>
-						<ul class="dropdown-menu col-12" role="menu" aria-labelledby="chat">
-							<app-chat #chat></app-chat>
-						</ul>
-					</div>
-
-					<a class="nav-item nav-link active ml-0" routerLink="/mensajes" routerLinkActive="active">
-						<img src="{{mensajesIco}}" width="30px" title="{{numMensajes}}" alt="Mensajes"> 
-						<span class="sr-only">(current)</span>
-					</a>
-					<a class="nav-item nav-link active ml-0" routerLink="/peticiones" routerLinkActive="active">
-						<img src="{{peticionesIco}}" class="rounded" width="30px" title="{{numPeticiones}}" alt="Petciones de amistad"> 
-						<span class="sr-only">(current)</span>
-					</a>
-					<a class="nav-item nav-link active ml-0" routerLink="/novedades" routerLinkActive="active">
-						<img src="../../assets/iconos/worldwide.svg" class="rounded" width="30px" title="Últimas publicaciones de mis amigos" alt="publicaciones de mis amigos"> 
-						<span class="sr-only">(current)</span>
-					</a>
-					<input type="text" class="form-control mt-2 mx-auto" name="buscar" placeholder="Buscar usuarios" title="Buscar usuarios" [(ngModel)]="buscar" [ngModelOptions]="{standalone: true}" (keyup.enter)="buscarUsuario()">
-					<a class="nav-item nav-link active ml-auto" routerLink="" (click)="cerrarSesion()">
-						<img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir"> 
-						<span class="sr-only">(current)</span>
-					</a>
-			</div>
-		</div>
-	</nav>
+  <nav class="navbar navbar-expand-sm navbar-light fixed-top col-12">
+    <!-- Usuario y avatar -->
+    <a class="navbar-brand" routerLink="/inicio" title="Inicio">
+      <img src="../../{{usuario.getAvatar()}}" class="rounded-circle" width="30px" title="Avatar" alt="Avatar">
+    </a>
+    <!-- Boton para expandir -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barraNavegacion"
+      aria-controls="barraNavegacion" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Opciones -->
+    <div class="collapse navbar-collapse row" id="barraNavegacion">
+      <div class="navbar-nav container d-flex flex-row d-flex col-12">
+        <!-- potion para ir a la página de perfil -->
+        <a class="nav-item nav-link active ml-0" routerLink="/perfil" routerLinkActive="active">
+          <img src="../../assets/iconos/user.png" width="30px" title="Mi Perfil" alt="Mi perfil">
+          <span class="sr-only">(current)</span>
+        </a>
+        <!-- dropdown del chat -->
+        <div class="dropdown">
+          <!-- boton para ir ala pagina de amigos -->
+          <button class="btn btn-default" routerLink="/amigos" routerLinkActive="active" type="button" id="chat">
+            <img src="../../assets/iconos/users.svg" width="30px" title="Amigos" alt="Amigos">
+          </button>
+          <!-- boton para mostrar los amigos conectado -->
+          <button type="button" class="btn btn-default dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Mostrar Amigos</span>
+          </button>
+          <ul class="dropdown-menu col-12" role="menu" aria-labelledby="chat">
+            <!-- llamada al componente chat -->
+            <app-chat #chat></app-chat>
+          </ul>
+        </div>
+        <!-- boton para ir a la pgaina de mensajes -->
+        <a class="nav-item nav-link active ml-0" routerLink="/mensajes" routerLinkActive="active">
+          <img src="{{mensajesIco}}" width="30px" title="{{numMensajes}}" alt="Mensajes">
+          <span class="sr-only">(current)</span>
+        </a>
+        <!-- boton para ir a la pagina de peticiones de amistad -->
+        <a class="nav-item nav-link active ml-0" routerLink="/peticiones" routerLinkActive="active">
+          <img src="{{peticionesIco}}" class="rounded" width="30px" title="{{numPeticiones}}"
+            alt="Petciones de amistad">
+          <span class="sr-only">(current)</span>
+        </a>
+        <!-- boton para ir a la página de novedades -->
+        <a class="nav-item nav-link active ml-0" routerLink="/novedades" routerLinkActive="active">
+          <img src="../../assets/iconos/worldwide.svg" class="rounded" width="30px"
+            title="Últimas publicaciones de mis amigos" alt="publicaciones de mis amigos">
+          <span class="sr-only">(current)</span>
+        </a>
+        <!-- cuadro de busqueda que al pusal enter redirreciona al componente buscar -->
+        <input type="text" class="form-control mt-2 mx-auto" name="buscar" placeholder="Buscar usuarios"
+          title="Buscar usuarios" [(ngModel)]="buscar" [ngModelOptions]="{standalone: true}"
+          (keyup.enter)="buscarUsuario()">
+        <!-- boton para cerrar sesion -->
+        <a class="nav-item nav-link active ml-auto" routerLink="" (click)="cerrarSesion()">
+          <img src="../../assets/iconos/exit-2.svg" width="30px" title="Salir" alt="Salir">
+          <span class="sr-only">(current)</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 </div>
 
 
 
 
 
-
-<div  *ngIf="hablando" class="chat container d-flex flex-column justify-content-start">
-	<!-- chat -->
-	<div *ngIf="hablando" class="container ventanaChat" style="">
-		<div class="msg-wgt-header">
-			<a href="/usuario?apodo={{amigoHablando.getApodo()}}">
-				{{amigoHablando.getNombre()+" "+amigoHablando.getApellido()}}
-			</a>
-			<button class="cerrar" (click)="ocultarChat()">
-				<img src="../../assets/iconos/error.svg" width="20px" height="20px">
-			</button>
-		</div>
-		<!-- con #cuerpo [scrollTop]="cuerpo.scrollHeight" hacemos escroll hacia abajo automaticamente -->
-		<div class="msg-wgt-body" #cuerpo [scrollTop]="cuerpo.scrollHeight">
-			<table>
-				<tr class="msg-row-container">
-					<td>
-						<div class="msg-row" *ngFor="let conversacion of conversaciones">
-							<div *ngIf="!comprobarUsuarioFrom(conversacion.iduserfrom)">
-								<div class="avatar"><img src="../../{{amigoHablando.getAvatar()}}" class="rounded-circle" width="30" width="30"></div>
-								<div class="message">
-									<span class="user-label"><a style="color: #6D84B4;">{{amigoHablando.getNombre()}}</a> <span class="msg-time">{{conversacion.fecha}}</span></span><br/>{{conversacion.mensaje}}
-								</div>
-							</div>
-							<div *ngIf="comprobarUsuarioFrom(conversacion.iduserfrom)">
-								<div class="avatar"><img src="../../{{this.usuario.getAvatar()}}" class="rounded-circle" width="30" width="30"></div>
-								<div class="message">
-									<span class="user-label"><a style="color: #6D84B4;">Tú</a> <span class="msg-time">{{conversacion.fecha}}</span></span><br/>{{conversacion.mensaje}}
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div class="msg-wgt-footer">
-			<textarea id="chatMsg" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}" placeholder="Escribe tu mensaje..." (keyup.enter)="enviar()"></textarea>
-		</div>
+<!-- ventana de chat que se muestra si en booleano hablando esta activado -->
+<div *ngIf="hablando" class="chat container d-flex flex-column justify-content-start">
+  <!-- chat -->
+  <div *ngIf="hablando" class="container ventanaChat" style="">
+    <div class="msg-wgt-header">
+      <a href="/usuario?apodo={{amigoHablando.getApodo()}}">
+        {{amigoHablando.getNombre()+" "+amigoHablando.getApellido()}}
+      </a>
+      <button class="cerrar" (click)="ocultarChat()">
+        <img src="../../assets/iconos/error.svg" width="20px" height="20px">
+      </button>
+    </div>
+    <!-- con #cuerpo [scrollTop]="cuerpo.scrollHeight" hacemos escroll hacia abajo automaticamente -->
+    <div class="msg-wgt-body" #cuerpo [scrollTop]="cuerpo.scrollHeight">
+      <table>
+        <tr class="msg-row-container">
+          <td>
+			  <!-- recorremos el array de mensaje y lo mosramos -->
+            <div class="msg-row" *ngFor="let conversacion of conversaciones">
+              <div *ngIf="!comprobarUsuarioFrom(conversacion.iduserfrom)">
+                <div class="avatar"><img src="../../{{amigoHablando.getAvatar()}}" class="rounded-circle" width="30"
+                    width="30"></div>
+                <div class="message">
+                  <span class="user-label"><a style="color: #6D84B4;">{{amigoHablando.getNombre()}}</a> <span
+                      class="msg-time">{{conversacion.fecha}}</span></span><br />{{conversacion.mensaje}}
+                </div>
+              </div>
+              <div *ngIf="comprobarUsuarioFrom(conversacion.iduserfrom)">
+                <div class="avatar"><img src="../../{{this.usuario.getAvatar()}}" class="rounded-circle" width="30"
+                    width="30"></div>
+                <div class="message">
+                  <span class="user-label"><a style="color: #6D84B4;">Tú</a> <span
+                      class="msg-time">{{conversacion.fecha}}</span></span><br />{{conversacion.mensaje}}
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
 	</div>
+	<!-- cuador te etxto para enviar un mensaje en la conversacion -->
+    <div class="msg-wgt-footer">
+      <textarea id="chatMsg" [(ngModel)]="mensaje" [ngModelOptions]="{standalone: true}"
+        placeholder="Escribe tu mensaje..." (keyup.enter)="enviar()"></textarea>
+    </div>
+  </div>
 </div>

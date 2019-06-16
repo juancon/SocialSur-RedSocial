@@ -20,15 +20,16 @@ import { } from 'jquery';
 	styleUrls: ['./amigos.component.css']
 })
 export class AmigosComponent implements OnInit {
+	// variable que almacena la url del fichero PHP
 	public urlRecogerAmigos: string;
+	// variable que almacena el usaurio
 	public usuario: Usuario;
 	//variables referentes a los amigos
 	public amigos: Array<Usuario> = new Array();
 	public amigoActivo: Usuario = null;
+	public hayAmigos:boolean = false;
 	//variables referentes a los mensajes
 	public mensaje: string = "";
-	//ventana modal
-	public ventanaModal: any = null;
 	constructor(
 		public _urls: UrlsService,
 		public _redirigir: RefrescarService,
@@ -39,23 +40,18 @@ export class AmigosComponent implements OnInit {
 		this.usuario = this._recogerUsuario.getUsuario();
 		//obtenemos los amigos cada 20segundo
 		this.obtenerAmigos();
-		setInterval(this.obtenerAmigos.bind(this), 20000);
+		//setInterval(this.obtenerAmigos.bind(this), 1000);
 		//inicializamos la variuable amigoActivo para que no de problemas
 		this.amigoActivo = new Usuario(0, "", "", "", "", "", "", "", "", 0, 0)
 	}
 
 	ngOnInit() {
 	}
-
+	// funcion para obtener a los amigos
 	public obtenerAmigos(): void {
 		//llamamos a la funcion para obetener amigos
-		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
-	}
-
-	public asignarVentanaModal(ev): void {
-		if (this.ventanaModal == null) {
-			this.ventanaModal = ev.target;
-		}
+		this.amigos = this._operacionesAmigos.obtenerAmigos2(this.amigos);
+		setTimeout(this.comprobarAmigos.bind(this),200)
 	}
 
 	//recogemos el usuario sobre el que queremos realizar la accion
@@ -66,11 +62,14 @@ export class AmigosComponent implements OnInit {
 	public enviar(): void {
 		//comprobamos que el mensaje no este vacio
 		if (this.mensaje.trim() != "") {
+			//si no esta vacio lo enviamos
 			this._mensajes.enviarMensaje(this.usuario.getId(), this.amigoActivo.getId(), this.mensaje);
+			// cerramos la ventana modal
 			this.cerrarModal();
-
 		} else {
+			// si esta vacio informamos al usuario remarcando el borde en rojo
 			$("#mensaje").addClass("parpadear");
+			// a los 5 segundos paramos de remarcarlo
 			setTimeout(function () {
 				$("#mensaje").removeClass("parpadear");
 			}, 5000)
@@ -97,18 +96,19 @@ export class AmigosComponent implements OnInit {
 				this.amigos.splice(i, 1);
 			}
 		}
+		//llamamos a la funicon para obtener los amigos
 		this.obtenerAmigos();
 	}
-
+	// funcion para redirigir al usuario
 	public redirigir(apodo: string) {
 		let url = "/usuario?apodo=" + apodo;
 		window.location.href = url;
 	}
-
-	public hayAmigos(): boolean {
+	//funcion que comprueba si hay amigos
+	public comprobarAmigos(): void {
 		if (this.amigos.length == 0) {
-			return false;
+			this. hayAmigos = false;
 		}
-		return true;
+		this. hayAmigos = true;
 	}
 }

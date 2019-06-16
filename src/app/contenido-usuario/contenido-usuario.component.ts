@@ -72,16 +72,17 @@ export class ContenidoUsuarioComponent implements OnInit {
 		this.recogerArchivos();
 		//obetenemos todos los comentarios
 		this.obtenerComentariosArchivos();
+		//intenamos obtener la referencia
 		this.obtenerReferencia();
+		// funcion pra ir a la referencia si la hay
 		setTimeout(this.irA.bind(this), 1000);
+		// comprobamos si el usuairo ha subido contenido
 		setTimeout(this.comprobarContenido.bind(this), 1000);
-		//ocultamos loc comentarios cuando no se este comentado
-		setTimeout(this.oculatr.bind(this), 500);
 	}
 
 	ngOnInit() {
 	}
-
+	// funcion para comprobar si el usuario ha subido contenido
 	public comprobarContenido(): void {
 		if (this.contenidoUsuario.length == 0) {
 			this.hayContenido = false;
@@ -89,7 +90,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 			this.hayContenido = true;
 		}
 	}
-
+	// funcion para obtener la referencia de la publicacion si la hay
 	public obtenerReferencia(): void {
 		//obtenemos el parametro que queremos de la url
 		let url = this._router.parseUrl(this._router.url);
@@ -100,7 +101,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 		}
 
 	}
-
+	// funcion para ir a una publicacion en concreto
 	public irA(): void {
 		if (this.referencia != "") {
 			//si la referencia no esta vacia movemos el contenido del body hasta el top -100 del nombre de la publicacion
@@ -109,13 +110,7 @@ export class ContenidoUsuarioComponent implements OnInit {
 			}, 0);
 		}
 	}
-
-	public oculatr(): void {
-		//recogemos los textareas de los comentarios y los ocultamos siempre que no se ente comentando
-		if (!this.comentando)
-			$('[id^="textcomentario"]').hide();
-	}
-
+	//funcion para iobtener las publicaciones
 	public recogerArchivos(): void {
 		//enviamos el id del usuario
 		let parametros = {
@@ -161,7 +156,8 @@ export class ContenidoUsuarioComponent implements OnInit {
 		this.contenidoUsuario = this._operacionesFechas.ordenarPorFechaDesc(this.contenidoUsuario);
 		//obetenemos los comentarios de los archivos
 		this.contenidoUsuario = this.obtenerComentariosArchivos();
-
+		// llamamos a la funcion comprobar contenido
+		// en caso de quesea la primara publicacion del usuario
 		this.comprobarContenido();
 	}
 
@@ -230,7 +226,9 @@ export class ContenidoUsuarioComponent implements OnInit {
 						if (resp.resultado == 1) {
 							//llamamos a la funcion que recoge los archivos del usuario
 							this.recogerArchivos();
+							//cerramos la ventana modal
 							this.cerrarModal();
+							// restablecemos las variables
 							this.comentando = false;
 							this.textareaActivo = "";
 							this.nuevoComentario = "";
@@ -239,9 +237,11 @@ export class ContenidoUsuarioComponent implements OnInit {
 				);
 
 			} else {
+				// informamos al usuario
 				this.infoFichero = "Selecciona una imágen o un vídeo Fichero"
 			}
 		} else {
+			// informamos al usuario
 			this.infoNombre = "Introduce un Nombre para el Fichero"
 		}
 	}
@@ -314,10 +314,12 @@ export class ContenidoUsuarioComponent implements OnInit {
 					}
 				}
 			} else {
+				// ocultamos el textarea
 				this.textareaActivo = "";
 				this.comentando = false;
 			}
 		} else {
+			//mostramos el textarea
 			this.comentando = true;
 			this.textareaActivo = idelemento + "";
 		}

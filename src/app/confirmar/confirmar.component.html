@@ -1,16 +1,19 @@
 <div class="informaractivado">
+  <!-- informamos al usuario de que su cuenta no ha sido activada -->
   <h3>¡Hola {{usuario.getNombre()+" "+usuario.getApellido()}}!</h3>
   <h6>Tu cuenta aún no ha sido activada.</h6>
-  <h6>Si quieres publicar fotos, vídeos o comentarios debes activar tu cuenta a través del correo eléctronico que te hemos enviado.</h6>
+  <h6>Si quieres publicar fotos, vídeos o comentarios debes activar tu cuenta a través del correo eléctronico que te
+    hemos enviado.</h6>
 
   <div class="entendido d-flex justify-content-center">
+    <!-- boton para cerrar el componente -->
     <button class="btn btn-primary btn-lg" (click)="cerrar()">
       Entendido
     </button>
   </div>
-
+  <!-- boton para reenviar el correo de activacion -->
   <p class="reenviar" (click)="enviarEmail()">
     <i>Reenviar correo de confirmación</i>
   </p>
-  
+
 </div>
