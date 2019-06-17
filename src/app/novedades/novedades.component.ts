@@ -200,11 +200,9 @@ export class NovedadesComponent implements OnInit {
         for(var i = 0 ; i < this.contenidos.length ; i++){
           //comprobamos que el id sea igual
           if(this.contenidos[i].getId() == idelemento){
-            //llamamos a la funcion para obtener los comentarios actualizados
-            let aux = this._comentarios.refrescarComentarios(idelemento,this.contenidos[i].getComentarios())
-            //solo DIOS sabe porque esta linea añade el nuevo comentario
-            this.contenidos[i].setComentarios(new Array());
-            break;
+            //obtenemos los comentarios
+            this.obtenerComentariosArchivos()
+						break;
           }
         }
       }else{

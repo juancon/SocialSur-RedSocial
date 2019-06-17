@@ -263,10 +263,8 @@ export class OtrosusuariosComponent implements OnInit {
 				for (var i = 0; i < this.contenidoUsuario.length; i++) {
 					//comprobamos que el id sea igual
 					if (this.contenidoUsuario[i].getId() == idelemento) {
-						//llamamos a la funcion para obtener los comentarios actualizados
-						let aux = this._comentarios.refrescarComentarios(idelemento, this.contenidoUsuario[i].getComentarios())
-						//solo DIOS sabe porque esta linea añade el nuevo comentario
-						this.contenidoUsuario[i].setComentarios(new Array());
+						 //obtenemos los comentarios
+						 this.obtenerComentariosArchivos()
 						break;
 					}
 				}

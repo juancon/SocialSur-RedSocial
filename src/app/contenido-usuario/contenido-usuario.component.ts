@@ -297,22 +297,20 @@ export class ContenidoUsuarioComponent implements OnInit {
 			if (this.nuevoComentario != "") {
 				//enviamos el comentario a la base de datos
 				this._comentarios.nuevoComentario(this.usuario.getId(), idelemento, this.nuevoComentario);
+				//recorremos el array actual para actualizar los comentarios
+				for (var i = 0; i < this.contenidoUsuario.length; i++) {
+					//comprobamos que el id sea igual
+					if (this.contenidoUsuario[i].getId() == idelemento) {
+						 //obtenemos los comentarios
+						 this.obtenerComentariosArchivos()
+						break;
+					}
+				}
 				//ocultamos el textarea y reseteamos los avriables
 				this.comentando = false;
 				this.textareaActivo = "";
 				this.comentarioinfo = "";
 				this.nuevoComentario = "";
-				//recorremos el array actual para actualizar los comentarios
-				for (var i = 0; i < this.contenidoUsuario.length; i++) {
-					//comprobamos que el id sea igual
-					if (this.contenidoUsuario[i].getId() == idelemento) {
-						//llamamos a la funcion para obtener los comentarios actualizados
-						let aux = this._comentarios.refrescarComentarios(idelemento, this.contenidoUsuario[i].getComentarios())
-						//solo DIOS sabe porque esta linea añade el nuevo comentario
-						this.contenidoUsuario[i].setComentarios(aux);
-						break;
-					}
-				}
 			} else {
 				// ocultamos el textarea
 				this.textareaActivo = "";

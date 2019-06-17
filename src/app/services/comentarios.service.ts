@@ -81,20 +81,29 @@ export class ComentariosService {
 		for(var i = 0; i < this.archivos.length ; i++){
 			//rrecorremos el array de datos
 			for (var j = 0; j < datos.length; j++){
-				//comprobamos que el id de los archivos sean los mismos
-				if(this.archivos[i].getId() == datos[j]["idelemento"]){
-					//modificamos la fecha en funcion de si es hoy u otro dia
-					datos[j]['fecha'] = this._operacionesFechas.convertirFecha(datos[j]['fecha']);
-					
-					//añadimos el comentario al array
-					this.archivos[i].addComentario(new Comentario(
-						datos[j]['id'],
-						datos[j]['idusuario'],
-						datos[j]['idelemento'],
-						datos[j]["nombre"],
-						datos[j]['comentario'],
-						datos[j]['fecha']
-					));
+				//comprobamos que el comentario no se encuentre en el elemento
+				let esta = false;
+				for(var k = 0; k < this.archivos[i].getComentarios().length; k++){
+					if(this.archivos[i].getComentarios()[k].getId() == datos[j]["id"]){
+						esta = true;
+					}
+				}
+				if(!esta){
+					//comprobamos que el id de los archivos sean los mismos
+					if(this.archivos[i].getId() == datos[j]["idelemento"]){
+						//modificamos la fecha en funcion de si es hoy u otro dia
+						datos[j]['fecha'] = this._operacionesFechas.convertirFecha(datos[j]['fecha']);
+						
+						//añadimos el comentario al array
+						this.archivos[i].addComentario(new Comentario(
+							datos[j]['id'],
+							datos[j]['idusuario'],
+							datos[j]['idelemento'],
+							datos[j]["nombre"],
+							datos[j]['comentario'],
+							datos[j]['fecha']
+						));
+					}
 				}
 			}
 		}
