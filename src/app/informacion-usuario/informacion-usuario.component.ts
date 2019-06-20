@@ -231,7 +231,7 @@ export class InformacionUsuarioComponent implements OnInit {
 		}else{
 			if(this.passNuevoConfirmacion == this.passNuevo){
 				confirmacion = true;
-				this.infoNueva = "";
+				this.infoNuevaConfirmacion = "";
 			}else{
 				this.infoNuevaConfirmacion = "Las contraseñas no coinciden."
 			}

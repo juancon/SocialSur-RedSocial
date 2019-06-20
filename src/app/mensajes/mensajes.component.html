@@ -123,7 +123,10 @@
           <h3 class="mb-3 text-center">Mensaje para:</h3>
           <select id="para" class="browser-default custom-select mb-3" [(ngModel)]="destinatario"
             [ngModelOptions]="{standalone: true}">
-            <option selected value="0">Selecciona a un amigo.</option>
+            <!-- indicamos que debe seleccionar un amigo -->
+            <option selected value="0" *ngIf="amigos.length > 0">Selecciona a un amigo.</option>
+            <!-- si el usuario no posee ninguna amigo lo indicamos -->
+            <option selected value="0" *ngIf="amigos.length == 0">No hay amigos disponibles.</option>
             <!-- recorremos el array de amigos y los mostramos en el select -->
             <option *ngFor="let amigo of amigos" value="{{amigo.getId()}}">{{amigo.getNombre()+" "+amigo.getApellido()}}
             </option>

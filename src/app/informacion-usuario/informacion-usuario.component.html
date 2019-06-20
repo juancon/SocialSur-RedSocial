@@ -9,7 +9,7 @@
       <!-- div para cambiar el avatar -->
       <div class="custom-file" *ngIf="ocultarMostrar">
         <input #archivo type="file" class="custom-file-input subirAvatar" id="inputFichero" aria-describedby="adorno"
-          (change)="subirAvatar($event)" name="nuevaFotoPerfil" (change)="almacenarFichero($event)" accept="image/*">
+          (change)="subirAvatar($event)" name="nuevaFotoPerfil" (change)="subirAvatar($event)" accept="image/*">
         <label class="custom-file-label" for="inputFichero">Selecciona tu fichero</label>
       </div>
       <!-- boton para mostra el input file -->

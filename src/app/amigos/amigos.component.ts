@@ -108,7 +108,8 @@ export class AmigosComponent implements OnInit {
 	public comprobarAmigos(): void {
 		if (this.amigos.length == 0) {
 			this. hayAmigos = false;
+		}else{
+			this. hayAmigos = true;
 		}
-		this. hayAmigos = true;
 	}
 }

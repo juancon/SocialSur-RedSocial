@@ -23,15 +23,18 @@
 		$ext = '.'.pathinfo($nombre, PATHINFO_EXTENSION);
 		$nombre = $id.strtolower($ext);
 		$rutaCompleta = $ruta.$nombre;
-		//preguntamos si podemos escribir n la ruta
+		//preguntamos si el fichero esta disponible
 		if (isset($_FILES['file'])) {
+			// movemos el fichero
 			if (move_uploaded_file($_FILES['file']['tmp_name'], $rutaCompleta)) {
+				// modificamos el vatar en la base de datos
 				if($funciones::modificarAvatarUsuario($id,$rutaCompleta) == 1){
 					$respuesta = array('avatar' => $rutaCompleta );
 				}
 
 			}
 		}
+		$respuesta = array('avatar' => $rutaCompleta );
 	}
 	
 
