@@ -60,7 +60,7 @@ export class ChatComponent implements OnInit {
 	//recoger los amigos que tiene el usuario
 	public recogerAmigos():void{
 		//llamamos al servicio que recoge a los amigos
-		this.amigos = this._operacionesAmigos.obtenerAmigos(this.amigos);
+		this.amigos = this._operacionesAmigos.obtenerAmigos4(this.amigos);
 	}
 
 	//mostrar el chat

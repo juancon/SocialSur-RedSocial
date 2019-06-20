@@ -22,6 +22,7 @@ export class OperacioneAmigosService {
 	private amigos:Array<Usuario> = new Array();
 	private amigos2:Array<Usuario> = new Array();
 	private amigos3:Array<Usuario> = new Array();
+	private amigos4:Array<Usuario> = new Array();
 	private respuesta:boolean;
 
 	constructor(
@@ -97,6 +98,63 @@ export class OperacioneAmigosService {
 		);
 
 		return this.amigos;
+	}
+
+	public obtenerAmigos4(listaAmigos:Array<Usuario>):Array<Usuario>{
+		this.amigos4 = listaAmigos;
+		//recogemos la id de nuestro usuario
+		let parametros = {
+			id : this.usuario.getId(),
+			accion : "obteneramigos"
+		}
+		//funcion http.post para enviar los datos
+		let recogerAmigos = this._http.post(this.urlAmigos, JSON.stringify(parametros)).pipe(map(res => res.json()));
+		//llamamos a la funcion subscribe para poder obtener los datos que ha devuelto php
+		recogerAmigos.subscribe(
+			result => {
+				//recogemos solo la respuesta del PHP y la pasamos a una variable
+				let datos = result;
+				//llamamos a la funcion que se encarga de almacenar el resutaldo en el array de respuesta
+				this.agregarAmigosArray4(datos);
+			}
+		);
+
+		return this.amigos4;
+	}
+
+	//guardar los amigos en el array
+	private agregarAmigosArray4(amigos:Array<string>):void{
+		//recorremos los amigos recibidos
+		for (var i = 0; i <  amigos.length; i++){
+			//creamos u objeto usuario en el array por cada amigo recibido
+			this.amigos4[i] = new Usuario(
+					amigos[i]["id"],
+					amigos[i]["nombre"],
+					amigos[i]["apellido"],
+					amigos[i]["apodo"],
+					"",
+					amigos[i]["email"],
+					amigos[i]["bio"],
+					amigos[i]["avatar"],
+					amigos[i]["conectado"],
+					1,
+					0
+			);
+		}
+		//ordenamos los amigos por nombre
+		this.amigos4.sort(function(a:Usuario,b:Usuario){
+			//recogemos los nombre
+			let usuarioA = a.getNombre();
+			let usuarioB = b.getNombre();
+			//los comparamos
+			if(usuarioA > usuarioB){
+				return 1;
+			}else if(usuarioA < usuarioB){
+				return -1;
+			}
+			
+			return 0;
+		});
 	}
 
 	//guardar los amigos en el array

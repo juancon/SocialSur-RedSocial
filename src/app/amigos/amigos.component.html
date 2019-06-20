@@ -1,6 +1,6 @@
 <div class="componenteAmigos offset-md-3 col-md-6">
   <!-- informamos si no hay ninguna amigo -->
-  <div class="noHay" *ngIf="!hayAmigos">
+  <div class="noHay" *ngIf="amigos.length == 0">
     No tienes ningún amigo agregado en este momento.😨
   </div>
   <!-- recorremos el array de amigos y los mostramos -->
