@@ -110,6 +110,11 @@ export class RegistroComponent implements OnInit {
 						sessionStorage.setItem("usuario",JSON.stringify(this.usuario));
 						//enviamos el meail de confirmacion
 						this._confirmacion.enviarEmail(datos['password'],datos['nombre']+" "+datos['apellido'],datos['apodo']);
+						
+						(async () => {
+							await this.delay(1000);
+						})();
+
 						//redirigimos al usuario
 						window.open("/inicio","_self");
 					}else{
@@ -339,5 +344,9 @@ export class RegistroComponent implements OnInit {
 			this.correoExiste = "";
 			this.emailExist = true;
 		}
+	}
+
+	public delay(ms: number) {
+		return new Promise( resolve => setTimeout(resolve, ms) );
 	}
 }
