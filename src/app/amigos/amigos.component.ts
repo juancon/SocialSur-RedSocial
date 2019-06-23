@@ -27,7 +27,6 @@ export class AmigosComponent implements OnInit {
 	//variables referentes a los amigos
 	public amigos: Array<Usuario> = new Array();
 	public amigoActivo: Usuario = null;
-	public hayAmigos:boolean = false;
 	//variables referentes a los mensajes
 	public mensaje: string = "";
 	constructor(
@@ -40,7 +39,7 @@ export class AmigosComponent implements OnInit {
 		this.usuario = this._recogerUsuario.getUsuario();
 		//obtenemos los amigos cada 20segundo
 		this.obtenerAmigos();
-		//setInterval(this.obtenerAmigos.bind(this), 1000);
+		setInterval(this.obtenerAmigos.bind(this), 1000);
 		//inicializamos la variuable amigoActivo para que no de problemas
 		this.amigoActivo = new Usuario(0, "", "", "", "", "", "", "", "", 0, 0)
 	}
@@ -51,7 +50,6 @@ export class AmigosComponent implements OnInit {
 	public obtenerAmigos(): void {
 		//llamamos a la funcion para obetener amigos
 		this.amigos = this._operacionesAmigos.obtenerAmigos2(this.amigos);
-		setTimeout(this.comprobarAmigos.bind(this),200)
 	}
 
 	//recogemos el usuario sobre el que queremos realizar la accion
@@ -103,13 +101,5 @@ export class AmigosComponent implements OnInit {
 	public redirigir(apodo: string) {
 		let url = "/usuario?apodo=" + apodo;
 		window.location.href = url;
-	}
-	//funcion que comprueba si hay amigos
-	public comprobarAmigos(): void {
-		if (this.amigos.length == 0) {
-			this. hayAmigos = false;
-		}else{
-			this. hayAmigos = true;
-		}
 	}
 }

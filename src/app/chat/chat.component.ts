@@ -51,8 +51,7 @@ export class ChatComponent implements OnInit {
 		this.urlEnviarMensajeChat = this._urls.getUrl("enviarMensajeChat");
 		setInterval(this.getConversacionesSinLeer.bind(this),1000);
 		//metemos en un intervalo a las funciones que recogen a los amigos y a los amigos conectados
-		setInterval(this.recogerAmigos.bind(this),500);
-		setInterval(this.obtenerAmigosConectados.bind(this),900);
+		setInterval(this.recogerAmigos.bind(this),1000);
 	}
 
 	ngOnInit() {
@@ -60,7 +59,8 @@ export class ChatComponent implements OnInit {
 	//recoger los amigos que tiene el usuario
 	public recogerAmigos():void{
 		//llamamos al servicio que recoge a los amigos
-		this.amigos = this._operacionesAmigos.obtenerAmigos4(this.amigos);
+		this.amigos = this._operacionesAmigos.obtenerAmigos2(this.amigos);
+		this.obtenerAmigosConectados();
 	}
 
 	//mostrar el chat

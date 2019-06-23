@@ -35,7 +35,6 @@ export class OperacioneAmigosService {
 	}
 
 	public obtenerAmigos2(listaAmigos:Array<Usuario>):Array<Usuario>{
-		this.amigos2 = listaAmigos;
 		//recogemos la id de nuestro usuario
 		let parametros = {
 			id : this.usuario.getId(),
@@ -49,7 +48,7 @@ export class OperacioneAmigosService {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
 				//llamamos a la funcion que se encarga de almacenar el resutaldo en el array de respuesta
-				this.agregarAmigosArray(datos);
+				this.agregarAmigosArray2(datos);
 			}
 		);
 
@@ -93,7 +92,7 @@ export class OperacioneAmigosService {
 				//recogemos solo la respuesta del PHP y la pasamos a una variable
 				let datos = result;
 				//llamamos a la funcion que se encarga de almacenar el resutaldo en el array de respuesta
-				this.agregarAmigosArray2(datos);
+				this.agregarAmigosArray(datos);
 			}
 		);
 
@@ -101,7 +100,6 @@ export class OperacioneAmigosService {
 	}
 
 	public obtenerAmigos4(listaAmigos:Array<Usuario>):Array<Usuario>{
-		this.amigos4 = listaAmigos;
 		//recogemos la id de nuestro usuario
 		let parametros = {
 			id : this.usuario.getId(),
@@ -159,37 +157,41 @@ export class OperacioneAmigosService {
 
 	//guardar los amigos en el array
 	private agregarAmigosArray2(amigos:Array<string>):void{
-		//recorremos los amigos recibidos
-		for (var i = 0; i <  amigos.length; i++){
-			//creamos u objeto usuario en el array por cada amigo recibido
-			this.amigos2[i] = new Usuario(
-					amigos[i]["id"],
-					amigos[i]["nombre"],
-					amigos[i]["apellido"],
-					amigos[i]["apodo"],
-					"",
-					amigos[i]["email"],
-					amigos[i]["bio"],
-					amigos[i]["avatar"],
-					amigos[i]["conectado"],
-					1,
-					0
-			);
-		}
-		//ordenamos los amigos por nombre
-		this.amigos2.sort(function(a:Usuario,b:Usuario){
-			//recogemos los nombre
-			let usuarioA = a.getNombre();
-			let usuarioB = b.getNombre();
-			//los comparamos
-			if(usuarioA > usuarioB){
-				return 1;
-			}else if(usuarioA < usuarioB){
-				return -1;
+		//preguntamos si las longitudes son diferentes
+		if(this.amigos2.length != amigos.length){
+			this.amigos2 = new Array();
+			//recorremos los amigos recibidos
+			for (var i = 0; i <  amigos.length; i++){
+				//creamos u objeto usuario en el array por cada amigo recibido
+				this.amigos2[i] = new Usuario(
+						amigos[i]["id"],
+						amigos[i]["nombre"],
+						amigos[i]["apellido"],
+						amigos[i]["apodo"],
+						"",
+						amigos[i]["email"],
+						amigos[i]["bio"],
+						amigos[i]["avatar"],
+						amigos[i]["conectado"],
+						1,
+						0
+				);
 			}
-			
-			return 0;
-		});
+			//ordenamos los amigos por nombre
+			this.amigos2.sort(function(a:Usuario,b:Usuario){
+				//recogemos los nombre
+				let usuarioA = a.getNombre();
+				let usuarioB = b.getNombre();
+				//los comparamos
+				if(usuarioA > usuarioB){
+					return 1;
+				}else if(usuarioA < usuarioB){
+					return -1;
+				}
+				
+				return 0;
+			});
+		}
 	}
 
 	//guardar los amigos en el array
